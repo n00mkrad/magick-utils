@@ -74,13 +74,26 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.logTbox = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.delSmallImagesSizeCombox = new System.Windows.Forms.ComboBox();
             this.label24 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.delSmallImagesBtn = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.remAlphaWhite = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
             this.remAlphaBlack = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label25 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label26 = new System.Windows.Forms.Label();
+            this.delFilesNotMatchingExtBtn = new System.Windows.Forms.Button();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.label27 = new System.Windows.Forms.Label();
+            this.groupNormalsBtn = new System.Windows.Forms.Button();
+            this.normalSuffixCombox = new System.Windows.Forms.ComboBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.diffSuffixCombox = new System.Windows.Forms.ComboBox();
+            this.lowercaseCbox = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -88,6 +101,9 @@
             this.tabPage4.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // pathTextbox
@@ -103,9 +119,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(95, 13);
+            this.label1.Size = new System.Drawing.Size(69, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Current Root Path:";
+            this.label1.Text = "Current Path:";
             // 
             // label2
             // 
@@ -507,10 +523,9 @@
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.button2);
-            this.tabPage3.Controls.Add(this.label24);
-            this.tabPage3.Controls.Add(this.label23);
-            this.tabPage3.Controls.Add(this.comboBox1);
+            this.tabPage3.Controls.Add(this.panel5);
+            this.tabPage3.Controls.Add(this.panel4);
+            this.tabPage3.Controls.Add(this.panel3);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -538,12 +553,12 @@
             this.panel1.Controls.Add(this.label21);
             this.panel1.Location = new System.Drawing.Point(6, 6);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(224, 80);
+            this.panel1.Size = new System.Drawing.Size(690, 31);
             this.panel1.TabIndex = 0;
             // 
             // autoLevelBtn
             // 
-            this.autoLevelBtn.Location = new System.Drawing.Point(4, 19);
+            this.autoLevelBtn.Location = new System.Drawing.Point(472, 3);
             this.autoLevelBtn.Name = "autoLevelBtn";
             this.autoLevelBtn.Size = new System.Drawing.Size(213, 23);
             this.autoLevelBtn.TabIndex = 12;
@@ -555,11 +570,11 @@
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(3, 3);
+            this.label21.Location = new System.Drawing.Point(3, 8);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(106, 13);
+            this.label21.Size = new System.Drawing.Size(102, 13);
             this.label21.TabIndex = 8;
-            this.label21.Text = "Color Processing:";
+            this.label21.Text = "Color Processing";
             // 
             // recursiveCbox
             // 
@@ -582,6 +597,7 @@
             // 
             // logTbox
             // 
+            this.logTbox.BackColor = System.Drawing.SystemColors.ControlLight;
             this.logTbox.Location = new System.Drawing.Point(12, 352);
             this.logTbox.Multiline = true;
             this.logTbox.Name = "logTbox";
@@ -594,44 +610,45 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(6, 9);
+            this.label23.Location = new System.Drawing.Point(159, 8);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(238, 13);
+            this.label23.Size = new System.Drawing.Size(235, 13);
             this.label23.TabIndex = 20;
-            this.label23.Text = "Delete images with either side being smaller than:";
+            this.label23.Text = "Delete images with either side being smaller than";
             // 
-            // comboBox1
+            // delSmallImagesSizeCombox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.delSmallImagesSizeCombox.FormattingEnabled = true;
+            this.delSmallImagesSizeCombox.Items.AddRange(new object[] {
             "1024",
             "512",
             "256",
             "128",
             "64"});
-            this.comboBox1.Location = new System.Drawing.Point(250, 6);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(64, 21);
-            this.comboBox1.TabIndex = 19;
-            this.comboBox1.Text = "1024";
+            this.delSmallImagesSizeCombox.Location = new System.Drawing.Point(395, 4);
+            this.delSmallImagesSizeCombox.Name = "delSmallImagesSizeCombox";
+            this.delSmallImagesSizeCombox.Size = new System.Drawing.Size(64, 21);
+            this.delSmallImagesSizeCombox.TabIndex = 19;
+            this.delSmallImagesSizeCombox.Text = "1024";
             // 
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(315, 9);
+            this.label24.Location = new System.Drawing.Point(461, 8);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(18, 13);
             this.label24.TabIndex = 22;
             this.label24.Text = "px";
             // 
-            // button2
+            // delSmallImagesBtn
             // 
-            this.button2.Location = new System.Drawing.Point(339, 4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(200, 23);
-            this.button2.TabIndex = 32;
-            this.button2.Text = "Delete Small Images";
-            this.button2.UseVisualStyleBackColor = true;
+            this.delSmallImagesBtn.Location = new System.Drawing.Point(485, 3);
+            this.delSmallImagesBtn.Name = "delSmallImagesBtn";
+            this.delSmallImagesBtn.Size = new System.Drawing.Size(200, 23);
+            this.delSmallImagesBtn.TabIndex = 32;
+            this.delSmallImagesBtn.Text = "Delete Small Images";
+            this.delSmallImagesBtn.UseVisualStyleBackColor = true;
+            this.delSmallImagesBtn.Click += new System.EventHandler(this.delSmallImagesBtn_Click);
             // 
             // panel2
             // 
@@ -639,14 +656,14 @@
             this.panel2.Controls.Add(this.remAlphaBlack);
             this.panel2.Controls.Add(this.remAlphaWhite);
             this.panel2.Controls.Add(this.label22);
-            this.panel2.Location = new System.Drawing.Point(236, 6);
+            this.panel2.Location = new System.Drawing.Point(6, 43);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(224, 80);
+            this.panel2.Size = new System.Drawing.Size(690, 31);
             this.panel2.TabIndex = 13;
             // 
             // remAlphaWhite
             // 
-            this.remAlphaWhite.Location = new System.Drawing.Point(4, 19);
+            this.remAlphaWhite.Location = new System.Drawing.Point(253, 3);
             this.remAlphaWhite.Name = "remAlphaWhite";
             this.remAlphaWhite.Size = new System.Drawing.Size(213, 23);
             this.remAlphaWhite.TabIndex = 12;
@@ -659,21 +676,166 @@
             this.label22.AutoSize = true;
             this.label22.BackColor = System.Drawing.Color.Transparent;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(3, 3);
+            this.label22.Location = new System.Drawing.Point(3, 8);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(138, 13);
+            this.label22.Size = new System.Drawing.Size(134, 13);
             this.label22.TabIndex = 8;
-            this.label22.Text = "Remove Transparency:";
+            this.label22.Text = "Remove Transparency";
             // 
             // remAlphaBlack
             // 
-            this.remAlphaBlack.Location = new System.Drawing.Point(4, 48);
+            this.remAlphaBlack.Location = new System.Drawing.Point(472, 3);
             this.remAlphaBlack.Name = "remAlphaBlack";
             this.remAlphaBlack.Size = new System.Drawing.Size(213, 23);
             this.remAlphaBlack.TabIndex = 13;
             this.remAlphaBlack.Text = "Remove Alpha (Black Background)";
             this.remAlphaBlack.UseVisualStyleBackColor = true;
             this.remAlphaBlack.Click += new System.EventHandler(this.remAlphaBlack_Click);
+            // 
+            // panel3
+            // 
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.label25);
+            this.panel3.Controls.Add(this.delSmallImagesBtn);
+            this.panel3.Controls.Add(this.delSmallImagesSizeCombox);
+            this.panel3.Controls.Add(this.label24);
+            this.panel3.Controls.Add(this.label23);
+            this.panel3.Location = new System.Drawing.Point(6, 6);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(690, 31);
+            this.panel3.TabIndex = 33;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.BackColor = System.Drawing.Color.Transparent;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Location = new System.Drawing.Point(3, 8);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(122, 13);
+            this.label25.TabIndex = 8;
+            this.label25.Text = "Delete Small Images";
+            // 
+            // panel4
+            // 
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.label26);
+            this.panel4.Controls.Add(this.delFilesNotMatchingExtBtn);
+            this.panel4.Location = new System.Drawing.Point(6, 43);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(690, 31);
+            this.panel4.TabIndex = 34;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.BackColor = System.Drawing.Color.Transparent;
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.Location = new System.Drawing.Point(3, 8);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(267, 13);
+            this.label26.TabIndex = 8;
+            this.label26.Text = "Delete Files Not Matching Extension Wildcard";
+            // 
+            // delFilesNotMatchingExtBtn
+            // 
+            this.delFilesNotMatchingExtBtn.Location = new System.Drawing.Point(485, 3);
+            this.delFilesNotMatchingExtBtn.Name = "delFilesNotMatchingExtBtn";
+            this.delFilesNotMatchingExtBtn.Size = new System.Drawing.Size(200, 23);
+            this.delFilesNotMatchingExtBtn.TabIndex = 32;
+            this.delFilesNotMatchingExtBtn.Text = "Delete Files";
+            this.delFilesNotMatchingExtBtn.UseVisualStyleBackColor = true;
+            this.delFilesNotMatchingExtBtn.Click += new System.EventHandler(this.delFilesNotMatchingExtBtn_Click);
+            // 
+            // panel5
+            // 
+            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel5.Controls.Add(this.lowercaseCbox);
+            this.panel5.Controls.Add(this.label29);
+            this.panel5.Controls.Add(this.diffSuffixCombox);
+            this.panel5.Controls.Add(this.label28);
+            this.panel5.Controls.Add(this.normalSuffixCombox);
+            this.panel5.Controls.Add(this.label27);
+            this.panel5.Controls.Add(this.groupNormalsBtn);
+            this.panel5.Location = new System.Drawing.Point(6, 80);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(690, 60);
+            this.panel5.TabIndex = 35;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.BackColor = System.Drawing.Color.Transparent;
+            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.Location = new System.Drawing.Point(3, 8);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(245, 13);
+            this.label27.TabIndex = 8;
+            this.label27.Text = "Group Normal Maps With Diffuse Textures";
+            // 
+            // groupNormalsBtn
+            // 
+            this.groupNormalsBtn.Location = new System.Drawing.Point(485, 3);
+            this.groupNormalsBtn.Name = "groupNormalsBtn";
+            this.groupNormalsBtn.Size = new System.Drawing.Size(200, 23);
+            this.groupNormalsBtn.TabIndex = 32;
+            this.groupNormalsBtn.Text = "Group Textures";
+            this.groupNormalsBtn.UseVisualStyleBackColor = true;
+            this.groupNormalsBtn.Click += new System.EventHandler(this.groupNormalsBtn_Click);
+            // 
+            // normalSuffixCombox
+            // 
+            this.normalSuffixCombox.FormattingEnabled = true;
+            this.normalSuffixCombox.Items.AddRange(new object[] {
+            "_n",
+            "_n,_normal,_norm,_bump,_bumpmap,_normalmap,_normals"});
+            this.normalSuffixCombox.Location = new System.Drawing.Point(96, 32);
+            this.normalSuffixCombox.Name = "normalSuffixCombox";
+            this.normalSuffixCombox.Size = new System.Drawing.Size(180, 21);
+            this.normalSuffixCombox.TabIndex = 33;
+            this.normalSuffixCombox.Text = "_n";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(3, 37);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(91, 13);
+            this.label28.TabIndex = 33;
+            this.label28.Text = "Normal Suffix List:";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(282, 37);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(91, 13);
+            this.label29.TabIndex = 34;
+            this.label29.Text = "Diffuse Suffix List:";
+            // 
+            // diffSuffixCombox
+            // 
+            this.diffSuffixCombox.FormattingEnabled = true;
+            this.diffSuffixCombox.Items.AddRange(new object[] {
+            ",_d",
+            ",_d,_diffuse,_diff,_tex,_texture"});
+            this.diffSuffixCombox.Location = new System.Drawing.Point(379, 32);
+            this.diffSuffixCombox.Name = "diffSuffixCombox";
+            this.diffSuffixCombox.Size = new System.Drawing.Size(180, 21);
+            this.diffSuffixCombox.TabIndex = 35;
+            this.diffSuffixCombox.Text = ",_d";
+            // 
+            // lowercaseCbox
+            // 
+            this.lowercaseCbox.AutoSize = true;
+            this.lowercaseCbox.Checked = true;
+            this.lowercaseCbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.lowercaseCbox.Location = new System.Drawing.Point(571, 34);
+            this.lowercaseCbox.Name = "lowercaseCbox";
+            this.lowercaseCbox.Size = new System.Drawing.Size(114, 17);
+            this.lowercaseCbox.TabIndex = 8;
+            this.lowercaseCbox.Text = "Rename To Lower";
+            this.lowercaseCbox.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -699,12 +861,17 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -756,13 +923,26 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Button autoLevelBtn;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button delSmallImagesBtn;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox delSmallImagesSizeCombox;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button remAlphaBlack;
         private System.Windows.Forms.Button remAlphaWhite;
         private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Button delFilesNotMatchingExtBtn;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.ComboBox normalSuffixCombox;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Button groupNormalsBtn;
+        private System.Windows.Forms.CheckBox lowercaseCbox;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.ComboBox diffSuffixCombox;
     }
 }

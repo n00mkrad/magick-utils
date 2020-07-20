@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Configuration;
 
 namespace MagickUtils
 {
@@ -18,34 +19,40 @@ namespace MagickUtils
             Console.Write("Enter your command number: ");
             string cmd = Console.ReadLine();
 
+
+            /*
             if(int.Parse(cmd) == 1)
                 DelSmallImgsDir(ext);
             if(int.Parse(cmd) == 2)
                 DelMissing(ext);
             if(int.Parse(cmd) == 3)
                 DelNotMatchingWildcard(ext);
+                */
         }
 
-        static void DelNotMatchingWildcard (string ext)
+        public static void DelNotMatchingWildcard (bool recursive)
         {
+
+            /*
             string recursive = "n";
             Console.Write("[Default: n] Recursive (include all subfolders)? (y/n): ");
             string recursiveInput = Console.ReadLine();
             if(!string.IsNullOrWhiteSpace(recursiveInput.Trim())) recursive = recursiveInput;
+            */
 
             DirectoryInfo d = new DirectoryInfo(Program.currentDir);
             FileInfo[] whitelist;
             FileInfo[] allFiles;
 
-            if(Program.IsTrue(recursive))
+            if(recursive)
             {
                 allFiles = d.GetFiles("*.*", SearchOption.AllDirectories);
-                whitelist = d.GetFiles("*." + ext, SearchOption.AllDirectories);
+                whitelist = d.GetFiles("*." + Program.currentExt, SearchOption.AllDirectories);
             }
             else
             {
                 allFiles = d.GetFiles("*.*", SearchOption.TopDirectoryOnly);
-                whitelist = d.GetFiles("*." + ext, SearchOption.TopDirectoryOnly);
+                whitelist = d.GetFiles("*." + Program.currentExt, SearchOption.TopDirectoryOnly);
             }
 
             List<string> whitelistedPaths = new List<string>();
@@ -77,27 +84,32 @@ namespace MagickUtils
             Program.PostProcessing();
         }
 
-        static void DelSmallImgsDir (string ext)
+        public static void DelSmallImgsDir (bool recursive, int minAxisLength)
         {
+            /*
             string minAxisLength = "128";
             Console.Write("[Default: 128] Set minimum length of shorter axis: ");
             string minAxisLengthInput = Console.ReadLine();
             if(!string.IsNullOrWhiteSpace(minAxisLengthInput.Trim())) minAxisLength = minAxisLengthInput;
 
+            */
+
             int counter = 1;
-            DirectoryInfo d = new DirectoryInfo(Program.currentDir);
-            FileInfo[] Files = d.GetFiles("*." + ext);
+            FileInfo[] Files = Program.GetFiles(Program.currentDir, Program.currentExt, recursive);
             Program.Print("Checking " + Files.Length + " images...");
+            Program.PreProcessing();
             foreach(FileInfo file in Files)
             {
-                // Print("Checking Image " + counter + "/" + Files.Length);
+                Program.ShowProgress("", counter, Files.Length);
                 counter++;
-                OtherUtils.DeleteSmallImages(file.FullName, int.Parse(minAxisLength));
+                OtherUtils.DeleteSmallImages(file.FullName, minAxisLength);
             }
+            Program.PostProcessing();
         }
 
-        public static void GroupNormalsWithTex (string ext)
+        public static void GroupNormalsWithTex (string normalSuffixList, string diffuseSuffixList, bool lowercase)
         {
+            /*
             string setPrefix = "unnamed";
             Console.Write("[Default: 'unnamed'] Suffix for this texture set (e.g. game name): ");
             string setSuffixInput = Console.ReadLine();
@@ -111,21 +123,23 @@ namespace MagickUtils
             string normalSuffix = "_n";
             Console.Write("[Default: '_n'] Suffixes of normal map textures, comma-separated: ");
             string normalSuffixInput = Console.ReadLine();
-            if(!string.IsNullOrWhiteSpace(normalSuffixInput.Trim())) normalSuffix = normalSuffixInput;
-
-            string[] nrmSuffixes = normalSuffix.Split(',');
+            if(!string.IsNullOrWhiteSpace(normalSuffixInput.Trim())) normalSuffix = normalSuffixInput
 
             string albedoSuffix = "";
             Console.Write("[Default: ''] Suffixes of albedo/base textures (can be empty for no suffix), comma-separated: ");
             string albedoSuffixInput = Console.ReadLine();
             if(!string.IsNullOrWhiteSpace(albedoSuffixInput.Trim())) albedoSuffix = albedoSuffixInput;
+            */
 
-            string[] albSuffixes = albedoSuffix.Split(',');
+            string[] nrmSuffixes = normalSuffixList.Split(',');
+            string[] albSuffixes = diffuseSuffixList.Split(',');
 
-            OtherUtils.GroupNormalsWithTex(ext, nrmSuffixes, albSuffixes, setPrefix, Program.IsTrue(lowercase));
+            string setPrefix = "tex";
+
+            OtherUtils.GroupNormalsWithTex(Program.currentExt, nrmSuffixes, albSuffixes, setPrefix, lowercase);
         }
 
-        public static void DelMissing (string ext)
+        public static void DelMissing ()
         {
             string checkDir = "";
             Console.Write("Enter second directory to check for paired files: ");
@@ -139,7 +153,7 @@ namespace MagickUtils
             if(!string.IsNullOrWhiteSpace(matchSizeInput.Trim())) matchSize = matchSizeInput;
             */
 
-            OtherUtils.RemoveMissingFiles(ext, checkDir);
+            OtherUtils.RemoveMissingFiles(Program.currentExt, checkDir);
         }
     }
 }

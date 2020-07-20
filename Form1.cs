@@ -140,5 +140,21 @@ namespace MagickUtils
         {
             OtherUtilsUI.RemTransparency(recursiveCbox.Checked, false);
         }
+
+        private void delSmallImagesBtn_Click (object sender, EventArgs e)
+        {
+            int minSize = int.Parse(delSmallImagesSizeCombox.Text);
+            OtherUtilsUI.DelSmallImgsDir(recursiveCbox.Checked, minSize);
+        }
+
+        private void delFilesNotMatchingExtBtn_Click (object sender, EventArgs e)
+        {
+            OtherUtilsUI.DelNotMatchingWildcard(recursiveCbox.Checked);
+        }
+
+        private void groupNormalsBtn_Click (object sender, EventArgs e)
+        {
+            OtherUtilsUI.GroupNormalsWithTex(normalSuffixCombox.Text, diffSuffixCombox.Text, lowercaseCbox.Checked);
+        }
     }
 }

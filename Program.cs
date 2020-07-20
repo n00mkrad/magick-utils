@@ -80,7 +80,9 @@ namespace MagickUtils
 
         public static void ShowProgress (string text, int current, int amount)
         {
-            Print("\n" + text + current + "/" + amount);
+
+            if(text.Trim().Length > 1)
+                Print("\n" + text + current + "/" + amount);
             progBar.Value = (int)Math.Round((float)current / amount * 100);
         }
 
