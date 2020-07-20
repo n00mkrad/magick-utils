@@ -1,0 +1,14 @@
+C:\Users\NMKD\source\repos\MagickUtils\bin\Debug\MagickUtils.exe.config
+C:\Users\NMKD\source\repos\MagickUtils\bin\Debug\MagickUtils.exe
+C:\Users\NMKD\source\repos\MagickUtils\bin\Debug\MagickUtils.pdb
+C:\Users\NMKD\source\repos\MagickUtils\obj\Debug\MagickUtils.csproj.CoreCompileInputs.cache
+C:\Users\NMKD\source\repos\MagickUtils\obj\Debug\MagickUtils.exe
+C:\Users\NMKD\source\repos\MagickUtils\obj\Debug\MagickUtils.pdb
+C:\Users\NMKD\source\repos\MagickUtils\bin\Debug\Magick.NET.Core.dll
+C:\Users\NMKD\source\repos\MagickUtils\bin\Debug\Magick.NET.Core.xml
+C:\Users\NMKD\source\repos\MagickUtils\obj\Debug\MagickUtils.csproj.CopyComplete
+C:\Users\NMKD\source\repos\MagickUtils\bin\Debug\Magick.NET-Q16-AnyCPU.dll
+C:\Users\NMKD\source\repos\MagickUtils\bin\Debug\Magick.NET-Q16-AnyCPU.xml
+C:\Users\NMKD\source\repos\MagickUtils\obj\Debug\MagickUtils.csprojAssemblyReference.cache
+C:\Users\NMKD\source\repos\MagickUtils\obj\Debug\MagickUtils.MainForm.resources
+C:\Users\NMKD\source\repos\MagickUtils\obj\Debug\MagickUtils.csproj.GenerateResource.cache

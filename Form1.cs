@@ -1,0 +1,134 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace MagickUtils
+{
+    public partial class MainForm : Form
+    {
+        static Program.ImageFormat selectedFormat;
+        
+
+        public MainForm ()
+        {
+            InitializeComponent();
+        }
+
+        private void MainForm_Load (object sender, EventArgs e)
+        {
+            Program.logTbox = logTbox;
+            Program.progBar = progressBar1;
+
+            progressBar1.Maximum = 100;
+            progressBar1.Step = 1;
+            progressBar1.Value = 0;
+
+            Program.currentExt = extTbox.Text.Trim();
+        }
+
+        private void label2_Click (object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPage2_Click (object sender, EventArgs e)
+        {
+
+        }
+
+        private void convertStartBtn_Click (object sender, EventArgs e)
+        {
+            int qMin = int.Parse(qualityCombox.Text);
+            int qMax = qMin;
+            if(!string.IsNullOrWhiteSpace(qualityMaxCombox.Text.Trim()))
+                qMax = int.Parse(qualityMaxCombox.Text);
+
+            if(selectedFormat == Program.ImageFormat.JPG)
+                ConvertUtilsUI.ConvertDirToJpeg(pathTextbox.Text, extTbox.Text, qMin, qMax, recursiveCbox.Checked, delSrcCbox.Checked);
+
+            if(selectedFormat == Program.ImageFormat.PNG)
+                ConvertUtilsUI.ConvertDirToPng(pathTextbox.Text, extTbox.Text, qMin, recursiveCbox.Checked, delSrcCbox.Checked);
+
+            if(selectedFormat == Program.ImageFormat.DDS)
+                ConvertUtilsUI.ConvertDirToDds(pathTextbox.Text, extTbox.Text, recursiveCbox.Checked, delSrcCbox.Checked);
+
+            if(selectedFormat == Program.ImageFormat.TGA)
+                ConvertUtilsUI.ConvertDirToTga(pathTextbox.Text, extTbox.Text, recursiveCbox.Checked, delSrcCbox.Checked);
+        }
+
+        private void pathTextbox_TextChanged (object sender, EventArgs e)
+        {
+            Program.currentDir = pathTextbox.Text;
+        }
+
+        private void formatCombox_SelectedIndexChanged (object sender, EventArgs e)
+        {
+            string formatStrTrim = formatCombox.Text.Trim();
+            qualityCombox.Enabled = true;
+            qualityMaxCombox.Enabled = false;
+
+            if(formatStrTrim == "JPEG")
+            {
+                selectedFormat = Program.ImageFormat.JPG;
+                qualityMaxCombox.Enabled = true;
+            } 
+
+            if(formatStrTrim == "PNG")
+            {
+                selectedFormat = Program.ImageFormat.PNG;
+            }
+
+            if(formatStrTrim == "DDS")
+            {
+                selectedFormat = Program.ImageFormat.DDS;
+                qualityCombox.Enabled = false;
+            }
+                
+            if(formatStrTrim == "TGA")
+            {
+                selectedFormat = Program.ImageFormat.TGA;
+                qualityCombox.Enabled = false;
+            }
+
+            CheckDelSourceFormat();
+        }
+
+        void CheckDelSourceFormat ()
+        {
+            delSrcCbox.Enabled = true;
+            if(formatCombox.Text.Trim().ToLower() == Program.currentExt.ToLower())
+            {
+                delSrcCbox.Checked = false;
+                delSrcCbox.Enabled = false;
+            }
+        }
+
+        private void extTbox_TextChanged (object sender, EventArgs e)
+        {
+            Program.currentExt = extTbox.Text.Trim();
+            CheckDelSourceFormat();
+        }
+
+        private void DoScaleBtn_Click (object sender, EventArgs e)
+        {
+            int sMin = int.Parse(minScaleCombox.Text);
+            int sMax = sMin;
+            if(!string.IsNullOrWhiteSpace(maxScaleCombox.Text.Trim()))
+                sMax = int.Parse(maxScaleCombox.Text);
+            int filterMode = filterModeCombox.SelectedIndex;
+            bool useHeight = scaleModeCombox.SelectedIndex == 1;
+            ScaleUtilsUI.ScaleDir(Program.currentDir, Program.currentExt, sMin, sMax, filterMode, useHeight, recursiveCbox.Checked);
+        }
+
+        private void autoLevelBtn_Click (object sender, EventArgs e)
+        {
+            AdjustUtilsUI.AutoLevel(Program.currentDir, Program.currentExt, recursiveCbox.Checked);
+        }
+    }
+}
