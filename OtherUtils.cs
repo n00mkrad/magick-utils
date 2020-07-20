@@ -21,10 +21,13 @@ namespace MagickUtils
             }
         }
 
-        public static void RemoveTransparency (string path)
+        public static void RemoveTransparency (string path, bool whiteBg)
         {
             MagickImage img = new MagickImage(path);
-            img.ColorAlpha(MagickColors.Black);
+            if(whiteBg)
+                img.ColorAlpha(MagickColors.White);
+            else
+                img.ColorAlpha(MagickColors.Black);
             img.Format = MagickFormat.Png;
             string fname = Path.ChangeExtension(path, null);
             Program.Print("-> " + fname);

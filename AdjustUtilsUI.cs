@@ -34,15 +34,15 @@ namespace MagickUtils
 
 
             FileInfo[] files = Program.GetFiles(path, ext, recursive);
-
             int counter = 1;
+            Program.PreProcessing();
             foreach(FileInfo file in files)
             {
-                //Program.Print("Adjusting Image " + counter + "/" + files.Length);
                 Program.ShowProgress("Adjusting image ", counter, files.Length);
                 AdjustUtils.AutoLevel(file.FullName);
                 counter++;
             }
+            Program.PostProcessing();
         }
     }
 }

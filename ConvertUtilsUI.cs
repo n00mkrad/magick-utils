@@ -97,7 +97,7 @@ namespace MagickUtils
                 ConvertUtils.ConvertToPng(file.FullName, q, delSrc);
                 counter++;
             }
-            Program.PostProcessing();
+            Program.PostProcessing(true);
         }
 
 

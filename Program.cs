@@ -74,37 +74,6 @@ namespace MagickUtils
             }
         }
 
-        static void RemTransparency (string ext)
-        {
-            string recursive = "n";
-            Console.Write("[Default: n] Recursive (include all subfolders)? (y/n): ");
-            string recursiveInput = Console.ReadLine();
-            if(!string.IsNullOrWhiteSpace(recursiveInput.Trim())) recursive = recursiveInput;
-
-            /*
-            string bgColor = "n";
-            Console.Write("[Default: n] Recursive (include all subfolders)? (y/n): ");
-            string bgColorInput = Console.ReadLine();
-            if(!string.IsNullOrWhiteSpace(bgColorInput.Trim())) bgColor = bgColorInput;
-            */
-
-            int counter = 1;
-            FileInfo[] files = null;
-            DirectoryInfo d = new DirectoryInfo(currentDir);
-
-            if(IsTrue(recursive))
-                files = d.GetFiles("*." + ext, SearchOption.AllDirectories);
-            else
-                files = d.GetFiles("*." + ext, SearchOption.TopDirectoryOnly);
-
-            foreach(FileInfo file in files)
-            {
-                Print("\nRemoving Alpha on Image " + counter + "/" + files.Length);
-                counter++;
-                OtherUtils.RemoveTransparency(file.FullName);
-            }
-        }
-
         public static Stopwatch sw = new Stopwatch();
         static long dirSizePre;
         static long dirSizeAfter;
@@ -123,18 +92,24 @@ namespace MagickUtils
             sw.Reset();
         }
 
-        public static void PostProcessing ()
+        public static void PostProcessing (bool showStopwatch = false)
         {
             dirSizeAfter = 0;
             dirSizeAfter = IOUtils.GetDirSize(new DirectoryInfo(currentDir));
             Print("\nFolder size after processing: " + Format.Filesize(dirSizeAfter) + " from " + Format.Filesize(dirSizePre));
             Print("Size ratio: " + Format.Ratio(dirSizePre, dirSizeAfter) + " of original size");
-            Print("Processing time (no I/O or other overhead counted): " + Format.TimeSw(sw));
+            if(showStopwatch)
+                Print("Processing time (no I/O or other overhead counted): " + Format.TimeSw(sw));
             progBar.Value = 0;
         }
 
         public static FileInfo[] GetFiles (string path, string ext, bool recursive)
         {
+            if(!IsPathValid(path))
+            {
+                MessageBox.Show("Invalid path!", "Error");
+                return new FileInfo[0];
+            }
             DirectoryInfo d = new DirectoryInfo(path);
             if(recursive)
                 return d.GetFiles("*." + ext, SearchOption.AllDirectories);
@@ -155,6 +130,19 @@ namespace MagickUtils
             Console.WriteLine(s);
             s = s.Replace("\n", Environment.NewLine);
             logTbox.AppendText(Environment.NewLine + s);
+        }
+
+        public static bool IsPathValid (string path)
+        {
+            try
+            {
+                DirectoryInfo d = new DirectoryInfo(path);
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

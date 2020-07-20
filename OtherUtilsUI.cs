@@ -63,6 +63,20 @@ namespace MagickUtils
             }
         }
 
+        public static void RemTransparency (bool recursive, bool whiteBg)
+        {
+            int counter = 1;
+            FileInfo[] files = Program.GetFiles(Program.currentDir, Program.currentExt, recursive);
+            Program.PreProcessing();
+            foreach(FileInfo file in files)
+            {
+                Program.ShowProgress("Removing Alpha on Image ", counter, files.Length);
+                counter++;
+                OtherUtils.RemoveTransparency(file.FullName, whiteBg);
+            }
+            Program.PostProcessing();
+        }
+
         static void DelSmallImgsDir (string ext)
         {
             string minAxisLength = "128";

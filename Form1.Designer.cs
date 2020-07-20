@@ -73,11 +73,21 @@
             this.recursiveCbox = new System.Windows.Forms.CheckBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.logTbox = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.remAlphaWhite = new System.Windows.Forms.Button();
+            this.label22 = new System.Windows.Forms.Label();
+            this.remAlphaBlack = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // pathTextbox
@@ -497,6 +507,10 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.button2);
+            this.tabPage3.Controls.Add(this.label24);
+            this.tabPage3.Controls.Add(this.label23);
+            this.tabPage3.Controls.Add(this.comboBox1);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -507,6 +521,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.panel2);
             this.tabPage4.Controls.Add(this.panel1);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
@@ -523,7 +538,7 @@
             this.panel1.Controls.Add(this.label21);
             this.panel1.Location = new System.Drawing.Point(6, 6);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(224, 51);
+            this.panel1.Size = new System.Drawing.Size(224, 80);
             this.panel1.TabIndex = 0;
             // 
             // autoLevelBtn
@@ -576,6 +591,90 @@
             this.logTbox.TabIndex = 7;
             this.logTbox.Text = "Ready...";
             // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(6, 9);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(238, 13);
+            this.label23.TabIndex = 20;
+            this.label23.Text = "Delete images with either side being smaller than:";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "1024",
+            "512",
+            "256",
+            "128",
+            "64"});
+            this.comboBox1.Location = new System.Drawing.Point(250, 6);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(64, 21);
+            this.comboBox1.TabIndex = 19;
+            this.comboBox1.Text = "1024";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(315, 9);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(18, 13);
+            this.label24.TabIndex = 22;
+            this.label24.Text = "px";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(339, 4);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(200, 23);
+            this.button2.TabIndex = 32;
+            this.button2.Text = "Delete Small Images";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.remAlphaBlack);
+            this.panel2.Controls.Add(this.remAlphaWhite);
+            this.panel2.Controls.Add(this.label22);
+            this.panel2.Location = new System.Drawing.Point(236, 6);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(224, 80);
+            this.panel2.TabIndex = 13;
+            // 
+            // remAlphaWhite
+            // 
+            this.remAlphaWhite.Location = new System.Drawing.Point(4, 19);
+            this.remAlphaWhite.Name = "remAlphaWhite";
+            this.remAlphaWhite.Size = new System.Drawing.Size(213, 23);
+            this.remAlphaWhite.TabIndex = 12;
+            this.remAlphaWhite.Text = "Remove Alpha (White Background)";
+            this.remAlphaWhite.UseVisualStyleBackColor = true;
+            this.remAlphaWhite.Click += new System.EventHandler(this.remAlphaWhite_Click);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.BackColor = System.Drawing.Color.Transparent;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(3, 3);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(138, 13);
+            this.label22.TabIndex = 8;
+            this.label22.Text = "Remove Transparency:";
+            // 
+            // remAlphaBlack
+            // 
+            this.remAlphaBlack.Location = new System.Drawing.Point(4, 48);
+            this.remAlphaBlack.Name = "remAlphaBlack";
+            this.remAlphaBlack.Size = new System.Drawing.Size(213, 23);
+            this.remAlphaBlack.TabIndex = 13;
+            this.remAlphaBlack.Text = "Remove Alpha (Black Background)";
+            this.remAlphaBlack.UseVisualStyleBackColor = true;
+            this.remAlphaBlack.Click += new System.EventHandler(this.remAlphaBlack_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -599,9 +698,13 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -653,5 +756,13 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Button autoLevelBtn;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button remAlphaBlack;
+        private System.Windows.Forms.Button remAlphaWhite;
+        private System.Windows.Forms.Label label22;
     }
 }

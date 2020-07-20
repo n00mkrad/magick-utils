@@ -130,5 +130,15 @@ namespace MagickUtils
         {
             AdjustUtilsUI.AutoLevel(Program.currentDir, Program.currentExt, recursiveCbox.Checked);
         }
+
+        private void remAlphaWhite_Click (object sender, EventArgs e)
+        {
+            OtherUtilsUI.RemTransparency(recursiveCbox.Checked, true);
+        }
+
+        private void remAlphaBlack_Click (object sender, EventArgs e)
+        {
+            OtherUtilsUI.RemTransparency(recursiveCbox.Checked, false);
+        }
     }
 }
