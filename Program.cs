@@ -4,6 +4,7 @@ using System.IO;
 using ImageMagick;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace MagickUtils
 {
@@ -23,41 +24,13 @@ namespace MagickUtils
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             mainForm = new MainForm();
+            mainForm.FormClosing += new FormClosingEventHandler(OnFormClose);
             Application.Run(mainForm);
+        }
 
-            /*
-            Console.Write("\nWelcome to NMKD's Magick.NET utils!\n\n");
-            Console.Write("Available commands:\n");
-            Console.Write("1 List Files\n2 Convert...\n3 Scale or Resample...\n4 Delete/Filter Files...\n5 Remove Alpha\n6 Auto-Adjust\n7 Group Textures & Normal Maps");
-            Console.Write("\n\n");
-
-            Console.Write("Enter your command number: ");
-            string cmd = Console.ReadLine();
-            Console.Write("Enter a directory: ");
-            currentDir = Console.ReadLine();
-
-            string fileExt = "*";
-            Console.Write("[Default: '*'] Enter a file extension to filter (\"png\", \"jpg\", \"*\", ...): ");
-            string fileExtInput = Console.ReadLine();
-            if(!string.IsNullOrWhiteSpace(fileExtInput.Trim())) fileExt = fileExtInput;
-
-            if(int.Parse(cmd) == 1)
-                PrintFilesInDir(fileExt);
-            if(int.Parse(cmd) == 2)
-                ConvertUtilsUI.ConvertChooser(fileExt);
-            if(int.Parse(cmd) == 3)
-                ScaleUtilsUI.ScaleChooser(fileExt);
-            if(int.Parse(cmd) == 4)
-                OtherUtilsUI.OtherUtilChooser(fileExt);
-            if(int.Parse(cmd) == 5)
-                RemTransparency(fileExt);
-            if(int.Parse(cmd) == 6)
-                AdjustUtilsUI.AutoAdj(fileExt);
-            if(int.Parse(cmd) == 7)
-                OtherUtilsUI.GroupNormalsWithTex(fileExt);
-
-            Main(null);
-            */
+        private static void OnFormClose (Object sender, FormClosingEventArgs e)
+        {
+            CrunchInterface.DeleteExe();
         }
 
         static void PrintFilesInDir (string ext)
@@ -117,6 +90,11 @@ namespace MagickUtils
                 return d.GetFiles("*." + ext, SearchOption.AllDirectories);
             else
                 return d.GetFiles("*." + ext, SearchOption.TopDirectoryOnly);
+        }
+
+        public static async Task PutTaskDelay ()
+        {
+            await Task.Delay(1);
         }
 
         public static bool IsTrue (string input)

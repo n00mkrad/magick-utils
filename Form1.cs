@@ -30,6 +30,15 @@ namespace MagickUtils
             progressBar1.Value = 0;
 
             Program.currentExt = extTbox.Text.Trim();
+
+            InitCombox(formatCombox, 0);
+            InitCombox(dxtQualCombox, 1);
+        }
+
+        void InitCombox (ComboBox cbox, int index)
+        {
+            cbox.SelectedIndex = index;
+            cbox.Text = cbox.Items[index].ToString();
         }
 
         private void label2_Click (object sender, EventArgs e)
@@ -56,8 +65,11 @@ namespace MagickUtils
                 ConvertUtilsUI.ConvertDirToPng(pathTextbox.Text, extTbox.Text, qMin, recursiveCbox.Checked, delSrcCbox.Checked);
 
             if(selectedFormat == Program.ImageFormat.DDS)
-                ConvertUtilsUI.ConvertDirToDds(pathTextbox.Text, extTbox.Text, recursiveCbox.Checked, delSrcCbox.Checked);
-
+            {
+                if(crunchDdsCbox.Checked) ConvertUtilsUI.ConvertDirToDdsCrunch(recursiveCbox.Checked, qMin, qMax, delSrcCbox.Checked);
+                else ConvertUtilsUI.ConvertDirToDds(pathTextbox.Text, extTbox.Text, recursiveCbox.Checked, delSrcCbox.Checked);
+            }
+                
             if(selectedFormat == Program.ImageFormat.TGA)
                 ConvertUtilsUI.ConvertDirToTga(pathTextbox.Text, extTbox.Text, recursiveCbox.Checked, delSrcCbox.Checked);
         }
@@ -72,6 +84,7 @@ namespace MagickUtils
             string formatStrTrim = formatCombox.Text.Trim();
             qualityCombox.Enabled = true;
             qualityMaxCombox.Enabled = false;
+            ddsOptionsPanel.Visible = false;
 
             if(formatStrTrim == "JPEG")
             {
@@ -87,7 +100,10 @@ namespace MagickUtils
             if(formatStrTrim == "DDS")
             {
                 selectedFormat = Program.ImageFormat.DDS;
-                qualityCombox.Enabled = false;
+                qualityCombox.Enabled = crunchDdsCbox.Checked;
+                qualityMaxCombox.Enabled = qualityCombox.Enabled;
+                ddsOptionsPanel.Visible = true;
+                crunchPanel.Enabled = crunchDdsCbox.Checked;
             }
                 
             if(formatStrTrim == "TGA")
@@ -155,6 +171,25 @@ namespace MagickUtils
         private void groupNormalsBtn_Click (object sender, EventArgs e)
         {
             OtherUtilsUI.GroupNormalsWithTex(normalSuffixCombox.Text, diffSuffixCombox.Text, lowercaseCbox.Checked);
+        }
+
+        private void crunchDdsCbox_CheckedChanged (object sender, EventArgs e)
+        {
+            formatCombox_SelectedIndexChanged(null, null);
+        }
+
+        private void dxtQualCombox_SelectedIndexChanged (object sender, EventArgs e)
+        {
+            if(dxtQualCombox.SelectedIndex == 0) CrunchInterface.currentQual = CrunchInterface.DXTQuality.superfast;
+            if(dxtQualCombox.SelectedIndex == 1) CrunchInterface.currentQual = CrunchInterface.DXTQuality.fast;
+            if(dxtQualCombox.SelectedIndex == 2) CrunchInterface.currentQual = CrunchInterface.DXTQuality.normal;
+            if(dxtQualCombox.SelectedIndex == 3) CrunchInterface.currentQual = CrunchInterface.DXTQuality.better;
+            if(dxtQualCombox.SelectedIndex == 4) CrunchInterface.currentQual = CrunchInterface.DXTQuality.uber;
+        }
+
+        private void useMipsCbox_CheckedChanged (object sender, EventArgs e)
+        {
+            CrunchInterface.currentMipMode = useMipsCbox.Checked;
         }
     }
 }

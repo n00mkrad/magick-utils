@@ -64,6 +64,7 @@
     <Compile Include="ConsoleUtils.cs" />
     <Compile Include="ConvertUtils.cs" />
     <Compile Include="ConvertUtilsUI.cs" />
+    <Compile Include="CrunchInterface.cs" />
     <Compile Include="EffectUtils.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -77,6 +78,11 @@
     <Compile Include="OtherUtilsUI.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="ScaleUtils.cs" />
     <Compile Include="ScaleUtilsUI.cs" />
   </ItemGroup>
@@ -85,6 +91,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="crunch.exe" />
     <Content Include="NMKD2020-nonly1-smoothed.ico" />
     <Content Include="NMKD2020-nonly1-smoothed2.ico" />
     <Content Include="NMKD2020-nonly1.ico" />
@@ -93,6 +100,10 @@
   <ItemGroup>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
