@@ -81,35 +81,6 @@ namespace MagickUtils
             progBar.Value = 0;
         }
 
-        public static FileInfo[] GetFiles (string path, string ext, bool recursive)
-        {
-            Stopwatch getFilesSw = new Stopwatch(); getFilesSw.Start();
-            Print("Getting file list...");
-            var exts = new[] { ".png", ".jpg", ".jpeg", ".dds", ".bmp", ".tga" };
-            if(!IsPathValid(path))
-            {
-                MessageBox.Show("Invalid path!", "Error");
-                return new FileInfo[0];
-            }
-            IEnumerable<string> filePaths;
-            if(recursive)
-            {
-                filePaths = Directory.GetFiles(path, "*." + ext, SearchOption.AllDirectories)
-                    .Where(file => exts.Any(x => file.EndsWith(x, StringComparison.OrdinalIgnoreCase)));
-            }
-            else
-            {
-                filePaths = Directory.GetFiles(path, "*." + ext, SearchOption.TopDirectoryOnly)
-                    .Where(file => exts.Any(x => file.EndsWith(x, StringComparison.OrdinalIgnoreCase)));
-            }
-            List<FileInfo> fileInfos = new List<FileInfo>();
-            foreach(string s in filePaths)
-                fileInfos.Add(new FileInfo(s));
-            FileInfo[] fileInfoArray = fileInfos.ToArray();
-            Print("Got file list in " + Format.TimeSw(getFilesSw));
-            return fileInfoArray;
-        }
-
         public static async Task PutTaskDelay ()
         {
             await Task.Delay(1);

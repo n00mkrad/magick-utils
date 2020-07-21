@@ -44,7 +44,7 @@ namespace MagickUtils
             */
 
             int counter = 1;
-            FileInfo[] files = Program.GetFiles(path, ext, recursive);
+            FileInfo[] files = IOUtils.GetFiles(path, ext, recursive);
 
             foreach(FileInfo file in files)
             {
@@ -76,7 +76,7 @@ namespace MagickUtils
 
             int counter = 1;
             DirectoryInfo d = new DirectoryInfo(Program.currentDir);
-            FileInfo[] Files = Program.GetFiles(path, ext, recurs);
+            FileInfo[] Files = IOUtils.GetFiles(path, ext, recurs);
             Program.PreProcessing();
             foreach(FileInfo file in Files)
             {

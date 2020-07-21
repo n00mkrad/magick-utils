@@ -9,7 +9,7 @@ namespace MagickUtils
         public static void ConvertDirToJpeg (string path, string ext, int qMin, int qMax, bool recursive, bool delSrc)
         {
             int counter = 1;
-            FileInfo[] files = Program.GetFiles(path, ext, recursive);
+            FileInfo[] files = IOUtils.GetFiles(path, ext, recursive);
 
             Program.PreProcessing();
             foreach(FileInfo file in files)
@@ -26,7 +26,7 @@ namespace MagickUtils
         {
             int counter = 1;
             int iterationsUntilWait = 150;
-            FileInfo[] files = Program.GetFiles(path, ext, recursive);
+            FileInfo[] files = IOUtils.GetFiles(path, ext, recursive);
 
             Program.PreProcessing();
             foreach(FileInfo file in files)
@@ -56,7 +56,7 @@ namespace MagickUtils
             */
 
             int counter = 1;
-            FileInfo[] files = Program.GetFiles(path, ext, recursive);
+            FileInfo[] files = IOUtils.GetFiles(path, ext, recursive);
 
             Program.PreProcessing();
             foreach(FileInfo file in files)
@@ -71,7 +71,7 @@ namespace MagickUtils
         public static void ConvertDirToDdsCrunch (bool recursive, int qMin, int qMax, bool delSrc)
         {
             int counter = 1;
-            FileInfo[] files = Program.GetFiles(Program.currentDir, Program.currentExt, recursive);
+            FileInfo[] files = IOUtils.GetFiles(Program.currentDir, Program.currentExt, recursive);
 
             Program.PreProcessing();
             foreach(FileInfo file in files)
@@ -98,7 +98,7 @@ namespace MagickUtils
             */
 
             int counter = 1;
-            FileInfo[] files = Program.GetFiles(path, ext, recursive);
+            FileInfo[] files = IOUtils.GetFiles(path, ext, recursive);
 
             Program.PreProcessing();
             foreach(FileInfo file in files)

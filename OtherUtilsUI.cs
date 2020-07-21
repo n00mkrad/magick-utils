@@ -73,7 +73,7 @@ namespace MagickUtils
         public static void RemTransparency (bool recursive, bool whiteBg)
         {
             int counter = 1;
-            FileInfo[] files = Program.GetFiles(Program.currentDir, Program.currentExt, recursive);
+            FileInfo[] files = IOUtils.GetFiles(Program.currentDir, Program.currentExt, recursive);
             Program.PreProcessing();
             foreach(FileInfo file in files)
             {
@@ -95,7 +95,7 @@ namespace MagickUtils
             */
 
             int counter = 1;
-            FileInfo[] Files = Program.GetFiles(Program.currentDir, Program.currentExt, recursive);
+            FileInfo[] Files = IOUtils.GetFiles(Program.currentDir, Program.currentExt, recursive);
             Program.Print("Checking " + Files.Length + " images...");
             Program.PreProcessing();
             foreach(FileInfo file in Files)

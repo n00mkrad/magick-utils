@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace MagickUtils
 {
@@ -21,6 +25,42 @@ namespace MagickUtils
                 size += GetDirSize(di);
             }
             return size;
+        }
+
+        public static FileInfo[] GetFiles (string path, string ext, bool recursive)
+        {
+            Stopwatch getFilesSw = new Stopwatch(); getFilesSw.Start();
+            Program.Print("Getting file list...");
+            var exts = new[] { ".png", ".jpg", ".jpeg", ".dds", ".bmp", ".tga" };
+            if(!Program.IsPathValid(path))
+            {
+                MessageBox.Show("Invalid path!", "Error");
+                return new FileInfo[0];
+            }
+            IEnumerable<string> filePaths;
+            SearchOption rec = SearchOption.AllDirectories;
+            SearchOption top = SearchOption.TopDirectoryOnly;
+            StringComparison ignCase = StringComparison.OrdinalIgnoreCase;
+            if(recursive)
+            {
+                if(Program.exclIncompatible)
+                    filePaths = Directory.GetFiles(path, "*." + ext, rec).Where(file => exts.Any(x => file.EndsWith(x, ignCase)));
+                else
+                    filePaths = Directory.GetFiles(path, "*." + ext, rec);
+            }
+            else
+            {
+                if(Program.exclIncompatible)
+                    filePaths = Directory.GetFiles(path, "*." + ext, top).Where(file => exts.Any(x => file.EndsWith(x, ignCase)));
+                else
+                    filePaths = Directory.GetFiles(path, "*." + ext, top);
+            }
+            List<FileInfo> fileInfos = new List<FileInfo>();
+            foreach(string s in filePaths)
+                fileInfos.Add(new FileInfo(s));
+            FileInfo[] fileInfoArray = fileInfos.ToArray();
+            Program.Print("Got file list in " + Format.TimeSw(getFilesSw));
+            return fileInfoArray;
         }
     }
 }
