@@ -33,6 +33,8 @@ namespace MagickUtils
 
             InitCombox(formatCombox, 0);
             InitCombox(dxtQualCombox, 1);
+
+            Program.exclIncompatible = ignoreIncompatCbox.Checked;
         }
 
         void InitCombox (ComboBox cbox, int index)
@@ -190,6 +192,11 @@ namespace MagickUtils
         private void useMipsCbox_CheckedChanged (object sender, EventArgs e)
         {
             CrunchInterface.currentMipMode = useMipsCbox.Checked;
+        }
+
+        private void ignoreIncompatCbox_CheckedChanged (object sender, EventArgs e)
+        {
+            Program.exclIncompatible = ignoreIncompatCbox.Checked;
         }
     }
 }

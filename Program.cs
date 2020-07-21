@@ -5,6 +5,8 @@ using ImageMagick;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using System.Linq;
+using System.Collections;
 
 namespace MagickUtils
 {
@@ -12,6 +14,7 @@ namespace MagickUtils
     {
         public static string currentDir;
         public static string currentExt;
+        public static bool exclIncompatible;
         public static Form mainForm;
         public static TextBox logTbox;
         public static ProgressBar progBar;
@@ -80,16 +83,31 @@ namespace MagickUtils
 
         public static FileInfo[] GetFiles (string path, string ext, bool recursive)
         {
+            Stopwatch getFilesSw = new Stopwatch(); getFilesSw.Start();
+            Print("Getting file list...");
+            var exts = new[] { ".png", ".jpg", ".jpeg", ".dds", ".bmp", ".tga" };
             if(!IsPathValid(path))
             {
                 MessageBox.Show("Invalid path!", "Error");
                 return new FileInfo[0];
             }
-            DirectoryInfo d = new DirectoryInfo(path);
+            IEnumerable<string> filePaths;
             if(recursive)
-                return d.GetFiles("*." + ext, SearchOption.AllDirectories);
+            {
+                filePaths = Directory.GetFiles(path, "*." + ext, SearchOption.AllDirectories)
+                    .Where(file => exts.Any(x => file.EndsWith(x, StringComparison.OrdinalIgnoreCase)));
+            }
             else
-                return d.GetFiles("*." + ext, SearchOption.TopDirectoryOnly);
+            {
+                filePaths = Directory.GetFiles(path, "*." + ext, SearchOption.TopDirectoryOnly)
+                    .Where(file => exts.Any(x => file.EndsWith(x, StringComparison.OrdinalIgnoreCase)));
+            }
+            List<FileInfo> fileInfos = new List<FileInfo>();
+            foreach(string s in filePaths)
+                fileInfos.Add(new FileInfo(s));
+            FileInfo[] fileInfoArray = fileInfos.ToArray();
+            Print("Got file list in " + Format.TimeSw(getFilesSw));
+            return fileInfoArray;
         }
 
         public static async Task PutTaskDelay ()

@@ -55,6 +55,8 @@ namespace MagickUtils
             crunchProcess.Start();
             crunchProcess.WaitForExit();
             Program.Print("Done crunching " + path);
+            if(deleteSrc)
+                File.Delete(path);
         }
 
         static int GetRandomQuality (int qMin, int qMax)

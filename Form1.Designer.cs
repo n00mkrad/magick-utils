@@ -102,6 +102,7 @@
             this.label32 = new System.Windows.Forms.Label();
             this.useMipsCbox = new System.Windows.Forms.CheckBox();
             this.ddsOptionsPanel = new System.Windows.Forms.Panel();
+            this.ignoreIncompatCbox = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -933,11 +934,25 @@
             this.ddsOptionsPanel.Size = new System.Drawing.Size(248, 89);
             this.ddsOptionsPanel.TabIndex = 23;
             // 
+            // ignoreIncompatCbox
+            // 
+            this.ignoreIncompatCbox.AutoSize = true;
+            this.ignoreIncompatCbox.Checked = true;
+            this.ignoreIncompatCbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ignoreIncompatCbox.Location = new System.Drawing.Point(353, 46);
+            this.ignoreIncompatCbox.Name = "ignoreIncompatCbox";
+            this.ignoreIncompatCbox.Size = new System.Drawing.Size(192, 17);
+            this.ignoreIncompatCbox.TabIndex = 8;
+            this.ignoreIncompatCbox.Text = "Ignore Incompatible File Extensions";
+            this.ignoreIncompatCbox.UseVisualStyleBackColor = true;
+            this.ignoreIncompatCbox.CheckedChanged += new System.EventHandler(this.ignoreIncompatCbox_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(734, 561);
+            this.Controls.Add(this.ignoreIncompatCbox);
             this.Controls.Add(this.logTbox);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.recursiveCbox);
@@ -1052,5 +1067,6 @@
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.CheckBox useMipsCbox;
         private System.Windows.Forms.Panel ddsOptionsPanel;
+        private System.Windows.Forms.CheckBox ignoreIncompatCbox;
     }
 }
