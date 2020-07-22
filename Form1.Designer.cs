@@ -35,6 +35,14 @@
             this.extTbox = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.ddsOptionsPanel = new System.Windows.Forms.Panel();
+            this.crunchPanel = new System.Windows.Forms.Panel();
+            this.label32 = new System.Windows.Forms.Label();
+            this.useMipsCbox = new System.Windows.Forms.CheckBox();
+            this.dxtQualCombox = new System.Windows.Forms.ComboBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.crunchDdsCbox = new System.Windows.Forms.CheckBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.qualityMaxCombox = new System.Windows.Forms.ComboBox();
@@ -84,6 +92,11 @@
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.label34 = new System.Windows.Forms.Label();
+            this.colorDepthCombox = new System.Windows.Forms.ComboBox();
+            this.applyColorDepthBtn = new System.Windows.Forms.Button();
+            this.label33 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.remAlphaBlack = new System.Windows.Forms.Button();
             this.remAlphaWhite = new System.Windows.Forms.Button();
@@ -94,27 +107,20 @@
             this.recursiveCbox = new System.Windows.Forms.CheckBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.logTbox = new System.Windows.Forms.TextBox();
-            this.crunchDdsCbox = new System.Windows.Forms.CheckBox();
-            this.dxtQualCombox = new System.Windows.Forms.ComboBox();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.crunchPanel = new System.Windows.Forms.Panel();
-            this.label32 = new System.Windows.Forms.Label();
-            this.useMipsCbox = new System.Windows.Forms.CheckBox();
-            this.ddsOptionsPanel = new System.Windows.Forms.Panel();
             this.ignoreIncompatCbox = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.ddsOptionsPanel.SuspendLayout();
+            this.crunchPanel.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.crunchPanel.SuspendLayout();
-            this.ddsOptionsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // pathTextbox
@@ -189,6 +195,92 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Convert, Compress";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // ddsOptionsPanel
+            // 
+            this.ddsOptionsPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ddsOptionsPanel.Controls.Add(this.crunchPanel);
+            this.ddsOptionsPanel.Controls.Add(this.label31);
+            this.ddsOptionsPanel.Controls.Add(this.crunchDdsCbox);
+            this.ddsOptionsPanel.Location = new System.Drawing.Point(448, 129);
+            this.ddsOptionsPanel.Name = "ddsOptionsPanel";
+            this.ddsOptionsPanel.Size = new System.Drawing.Size(248, 89);
+            this.ddsOptionsPanel.TabIndex = 23;
+            // 
+            // crunchPanel
+            // 
+            this.crunchPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.crunchPanel.Controls.Add(this.label32);
+            this.crunchPanel.Controls.Add(this.useMipsCbox);
+            this.crunchPanel.Controls.Add(this.dxtQualCombox);
+            this.crunchPanel.Controls.Add(this.label30);
+            this.crunchPanel.Enabled = false;
+            this.crunchPanel.Location = new System.Drawing.Point(3, 26);
+            this.crunchPanel.Name = "crunchPanel";
+            this.crunchPanel.Size = new System.Drawing.Size(240, 58);
+            this.crunchPanel.TabIndex = 22;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(3, 37);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(132, 13);
+            this.label32.TabIndex = 23;
+            this.label32.Text = "Generate/Reuse Mipmaps";
+            // 
+            // useMipsCbox
+            // 
+            this.useMipsCbox.AutoSize = true;
+            this.useMipsCbox.Location = new System.Drawing.Point(149, 37);
+            this.useMipsCbox.Name = "useMipsCbox";
+            this.useMipsCbox.Size = new System.Drawing.Size(15, 14);
+            this.useMipsCbox.TabIndex = 22;
+            this.useMipsCbox.UseVisualStyleBackColor = true;
+            this.useMipsCbox.CheckedChanged += new System.EventHandler(this.useMipsCbox_CheckedChanged);
+            // 
+            // dxtQualCombox
+            // 
+            this.dxtQualCombox.FormattingEnabled = true;
+            this.dxtQualCombox.Items.AddRange(new object[] {
+            "superfast",
+            "fast",
+            "normal",
+            "better",
+            "uber"});
+            this.dxtQualCombox.Location = new System.Drawing.Point(149, 7);
+            this.dxtQualCombox.Name = "dxtQualCombox";
+            this.dxtQualCombox.Size = new System.Drawing.Size(83, 21);
+            this.dxtQualCombox.TabIndex = 19;
+            this.dxtQualCombox.SelectedIndexChanged += new System.EventHandler(this.dxtQualCombox_SelectedIndexChanged);
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(3, 10);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(103, 13);
+            this.label30.TabIndex = 20;
+            this.label30.Text = "DXT Quality/Speed:";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(3, 6);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(120, 13);
+            this.label31.TabIndex = 21;
+            this.label31.Text = "Use Crunch compressor";
+            // 
+            // crunchDdsCbox
+            // 
+            this.crunchDdsCbox.AutoSize = true;
+            this.crunchDdsCbox.Location = new System.Drawing.Point(153, 6);
+            this.crunchDdsCbox.Name = "crunchDdsCbox";
+            this.crunchDdsCbox.Size = new System.Drawing.Size(15, 14);
+            this.crunchDdsCbox.TabIndex = 8;
+            this.crunchDdsCbox.UseVisualStyleBackColor = true;
+            this.crunchDdsCbox.CheckedChanged += new System.EventHandler(this.crunchDdsCbox_CheckedChanged);
             // 
             // label10
             // 
@@ -326,7 +418,7 @@
             "TGA"});
             this.formatCombox.Location = new System.Drawing.Point(103, 6);
             this.formatCombox.Name = "formatCombox";
-            this.formatCombox.Size = new System.Drawing.Size(111, 24);
+            this.formatCombox.Size = new System.Drawing.Size(111, 21);
             this.formatCombox.TabIndex = 0;
             this.formatCombox.SelectedIndexChanged += new System.EventHandler(this.formatCombox_SelectedIndexChanged);
             // 
@@ -735,6 +827,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.panel6);
             this.tabPage4.Controls.Add(this.panel2);
             this.tabPage4.Controls.Add(this.panel1);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
@@ -744,6 +837,65 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Other Image Processing";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // panel6
+            // 
+            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel6.Controls.Add(this.label34);
+            this.panel6.Controls.Add(this.colorDepthCombox);
+            this.panel6.Controls.Add(this.applyColorDepthBtn);
+            this.panel6.Controls.Add(this.label33);
+            this.panel6.Location = new System.Drawing.Point(6, 80);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(690, 31);
+            this.panel6.TabIndex = 13;
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(285, 8);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(39, 13);
+            this.label34.TabIndex = 35;
+            this.label34.Text = "Colors:";
+            // 
+            // colorDepthCombox
+            // 
+            this.colorDepthCombox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.colorDepthCombox.FormattingEnabled = true;
+            this.colorDepthCombox.Items.AddRange(new object[] {
+            "24 bits (>16m colors)",
+            "16 bits (>65k colors)",
+            "12 bits (4096 colors)",
+            "8 bits (256 colors)",
+            "7 bits (128 colors)",
+            "6 bits (64 colors)",
+            "5 bits (32 colors)",
+            "4 bits (16 colors)"});
+            this.colorDepthCombox.Location = new System.Drawing.Point(330, 4);
+            this.colorDepthCombox.Name = "colorDepthCombox";
+            this.colorDepthCombox.Size = new System.Drawing.Size(150, 21);
+            this.colorDepthCombox.TabIndex = 20;
+            // 
+            // applyColorDepthBtn
+            // 
+            this.applyColorDepthBtn.Location = new System.Drawing.Point(485, 3);
+            this.applyColorDepthBtn.Name = "applyColorDepthBtn";
+            this.applyColorDepthBtn.Size = new System.Drawing.Size(200, 23);
+            this.applyColorDepthBtn.TabIndex = 12;
+            this.applyColorDepthBtn.Text = "Apply Color Depth";
+            this.applyColorDepthBtn.UseVisualStyleBackColor = true;
+            this.applyColorDepthBtn.Click += new System.EventHandler(this.applyColorDepthBtn_Click);
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label33.Location = new System.Drawing.Point(3, 8);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(122, 13);
+            this.label33.TabIndex = 8;
+            this.label33.Text = "Reduce Color Depth";
             // 
             // panel2
             // 
@@ -758,9 +910,9 @@
             // 
             // remAlphaBlack
             // 
-            this.remAlphaBlack.Location = new System.Drawing.Point(472, 3);
+            this.remAlphaBlack.Location = new System.Drawing.Point(485, 3);
             this.remAlphaBlack.Name = "remAlphaBlack";
-            this.remAlphaBlack.Size = new System.Drawing.Size(213, 23);
+            this.remAlphaBlack.Size = new System.Drawing.Size(200, 23);
             this.remAlphaBlack.TabIndex = 13;
             this.remAlphaBlack.Text = "Remove Alpha (Black Background)";
             this.remAlphaBlack.UseVisualStyleBackColor = true;
@@ -768,9 +920,9 @@
             // 
             // remAlphaWhite
             // 
-            this.remAlphaWhite.Location = new System.Drawing.Point(253, 3);
+            this.remAlphaWhite.Location = new System.Drawing.Point(279, 3);
             this.remAlphaWhite.Name = "remAlphaWhite";
-            this.remAlphaWhite.Size = new System.Drawing.Size(213, 23);
+            this.remAlphaWhite.Size = new System.Drawing.Size(200, 23);
             this.remAlphaWhite.TabIndex = 12;
             this.remAlphaWhite.Text = "Remove Alpha (White Background)";
             this.remAlphaWhite.UseVisualStyleBackColor = true;
@@ -799,9 +951,9 @@
             // 
             // autoLevelBtn
             // 
-            this.autoLevelBtn.Location = new System.Drawing.Point(472, 3);
+            this.autoLevelBtn.Location = new System.Drawing.Point(485, 3);
             this.autoLevelBtn.Name = "autoLevelBtn";
-            this.autoLevelBtn.Size = new System.Drawing.Size(213, 23);
+            this.autoLevelBtn.Size = new System.Drawing.Size(200, 23);
             this.autoLevelBtn.TabIndex = 12;
             this.autoLevelBtn.Text = "Auto-Level";
             this.autoLevelBtn.UseVisualStyleBackColor = true;
@@ -813,9 +965,9 @@
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.Location = new System.Drawing.Point(3, 8);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(102, 13);
+            this.label21.Size = new System.Drawing.Size(72, 13);
             this.label21.TabIndex = 8;
-            this.label21.Text = "Color Processing";
+            this.label21.Text = "Auto Adjust";
             // 
             // recursiveCbox
             // 
@@ -847,92 +999,6 @@
             this.logTbox.Size = new System.Drawing.Size(710, 168);
             this.logTbox.TabIndex = 7;
             this.logTbox.Text = "Ready...";
-            // 
-            // crunchDdsCbox
-            // 
-            this.crunchDdsCbox.AutoSize = true;
-            this.crunchDdsCbox.Location = new System.Drawing.Point(153, 6);
-            this.crunchDdsCbox.Name = "crunchDdsCbox";
-            this.crunchDdsCbox.Size = new System.Drawing.Size(15, 14);
-            this.crunchDdsCbox.TabIndex = 8;
-            this.crunchDdsCbox.UseVisualStyleBackColor = true;
-            this.crunchDdsCbox.CheckedChanged += new System.EventHandler(this.crunchDdsCbox_CheckedChanged);
-            // 
-            // dxtQualCombox
-            // 
-            this.dxtQualCombox.FormattingEnabled = true;
-            this.dxtQualCombox.Items.AddRange(new object[] {
-            "superfast",
-            "fast",
-            "normal",
-            "better",
-            "uber"});
-            this.dxtQualCombox.Location = new System.Drawing.Point(149, 7);
-            this.dxtQualCombox.Name = "dxtQualCombox";
-            this.dxtQualCombox.Size = new System.Drawing.Size(83, 24);
-            this.dxtQualCombox.TabIndex = 19;
-            this.dxtQualCombox.SelectedIndexChanged += new System.EventHandler(this.dxtQualCombox_SelectedIndexChanged);
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(3, 10);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(103, 13);
-            this.label30.TabIndex = 20;
-            this.label30.Text = "DXT Quality/Speed:";
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(3, 6);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(120, 13);
-            this.label31.TabIndex = 21;
-            this.label31.Text = "Use Crunch compressor";
-            // 
-            // crunchPanel
-            // 
-            this.crunchPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.crunchPanel.Controls.Add(this.label32);
-            this.crunchPanel.Controls.Add(this.useMipsCbox);
-            this.crunchPanel.Controls.Add(this.dxtQualCombox);
-            this.crunchPanel.Controls.Add(this.label30);
-            this.crunchPanel.Enabled = false;
-            this.crunchPanel.Location = new System.Drawing.Point(3, 26);
-            this.crunchPanel.Name = "crunchPanel";
-            this.crunchPanel.Size = new System.Drawing.Size(240, 58);
-            this.crunchPanel.TabIndex = 22;
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(3, 37);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(132, 13);
-            this.label32.TabIndex = 23;
-            this.label32.Text = "Generate/Reuse Mipmaps";
-            // 
-            // useMipsCbox
-            // 
-            this.useMipsCbox.AutoSize = true;
-            this.useMipsCbox.Location = new System.Drawing.Point(149, 37);
-            this.useMipsCbox.Name = "useMipsCbox";
-            this.useMipsCbox.Size = new System.Drawing.Size(15, 14);
-            this.useMipsCbox.TabIndex = 22;
-            this.useMipsCbox.UseVisualStyleBackColor = true;
-            this.useMipsCbox.CheckedChanged += new System.EventHandler(this.useMipsCbox_CheckedChanged);
-            // 
-            // ddsOptionsPanel
-            // 
-            this.ddsOptionsPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ddsOptionsPanel.Controls.Add(this.crunchPanel);
-            this.ddsOptionsPanel.Controls.Add(this.label31);
-            this.ddsOptionsPanel.Controls.Add(this.crunchDdsCbox);
-            this.ddsOptionsPanel.Location = new System.Drawing.Point(448, 129);
-            this.ddsOptionsPanel.Name = "ddsOptionsPanel";
-            this.ddsOptionsPanel.Size = new System.Drawing.Size(248, 89);
-            this.ddsOptionsPanel.TabIndex = 23;
             // 
             // ignoreIncompatCbox
             // 
@@ -969,6 +1035,10 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.ddsOptionsPanel.ResumeLayout(false);
+            this.ddsOptionsPanel.PerformLayout();
+            this.crunchPanel.ResumeLayout(false);
+            this.crunchPanel.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
@@ -979,14 +1049,12 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.crunchPanel.ResumeLayout(false);
-            this.crunchPanel.PerformLayout();
-            this.ddsOptionsPanel.ResumeLayout(false);
-            this.ddsOptionsPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1068,5 +1136,10 @@
         private System.Windows.Forms.CheckBox useMipsCbox;
         private System.Windows.Forms.Panel ddsOptionsPanel;
         private System.Windows.Forms.CheckBox ignoreIncompatCbox;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Button applyColorDepthBtn;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.ComboBox colorDepthCombox;
+        private System.Windows.Forms.Label label34;
     }
 }

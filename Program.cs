@@ -113,5 +113,14 @@ namespace MagickUtils
             }
             return true;
         }
+
+        public static int GetDefaultQuality (MagickImage img)
+        {
+            if(img.Format == MagickFormat.Jpg || img.Format == MagickFormat.Jpeg)
+                return 95;
+            if(img.Format == MagickFormat.Png)
+                return 50;
+            return 100;
+        }
     }
 }

@@ -25,7 +25,6 @@ namespace MagickUtils
         public async static void ConvertDirToPng (string path, string ext, int q, bool recursive, bool delSrc)
         {
             int counter = 1;
-            int iterationsUntilWait = 150;
             FileInfo[] files = IOUtils.GetFiles(path, ext, recursive);
 
             Program.PreProcessing();
@@ -34,8 +33,7 @@ namespace MagickUtils
                 Program.ShowProgress("Converting Image ", counter, files.Length);
                 ConvertUtils.ConvertToPng(file.FullName, q, delSrc);
                 counter++;
-
-                if(counter % 10 == 0) await Program.PutTaskDelay();
+                if(counter % 5 == 0) await Program.PutTaskDelay();
             }
             Program.PostProcessing(true);
         }

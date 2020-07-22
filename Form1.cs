@@ -33,6 +33,7 @@ namespace MagickUtils
 
             InitCombox(formatCombox, 0);
             InitCombox(dxtQualCombox, 1);
+            InitCombox(colorDepthCombox, 3);
 
             Program.exclIncompatible = ignoreIncompatCbox.Checked;
         }
@@ -197,6 +198,18 @@ namespace MagickUtils
         private void ignoreIncompatCbox_CheckedChanged (object sender, EventArgs e)
         {
             Program.exclIncompatible = ignoreIncompatCbox.Checked;
+        }
+
+        private void applyColorDepthBtn_Click (object sender, EventArgs e)
+        {
+            if(colorDepthCombox.SelectedIndex == 0) OtherUtilsUI.SetColorDepth(recursiveCbox.Checked, 24);
+            if(colorDepthCombox.SelectedIndex == 1) OtherUtilsUI.SetColorDepth(recursiveCbox.Checked, 16);
+            if(colorDepthCombox.SelectedIndex == 2) OtherUtilsUI.SetColorDepth(recursiveCbox.Checked, 12);
+            if(colorDepthCombox.SelectedIndex == 3) OtherUtilsUI.SetColorDepth(recursiveCbox.Checked, 8);
+            if(colorDepthCombox.SelectedIndex == 4) OtherUtilsUI.SetColorDepth(recursiveCbox.Checked, 7);
+            if(colorDepthCombox.SelectedIndex == 5) OtherUtilsUI.SetColorDepth(recursiveCbox.Checked, 6);
+            if(colorDepthCombox.SelectedIndex == 6) OtherUtilsUI.SetColorDepth(recursiveCbox.Checked, 5);
+            if(colorDepthCombox.SelectedIndex == 7) OtherUtilsUI.SetColorDepth(recursiveCbox.Checked, 4);
         }
     }
 }

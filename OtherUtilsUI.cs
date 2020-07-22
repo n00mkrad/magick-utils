@@ -84,6 +84,20 @@ namespace MagickUtils
             Program.PostProcessing();
         }
 
+        public static void SetColorDepth (bool recursive, int bits)
+        {
+            int counter = 1;
+            FileInfo[] files = IOUtils.GetFiles(Program.currentDir, Program.currentExt, recursive);
+            Program.PreProcessing();
+            foreach(FileInfo file in files)
+            {
+                Program.ShowProgress("Setting color depth to " + bits + " on ", counter, files.Length);
+                counter++;
+                OtherUtils.SetColorDepth(file.FullName, bits);
+            }
+            Program.PostProcessing();
+        }
+
         public static void DelSmallImgsDir (bool recursive, int minAxisLength)
         {
             /*

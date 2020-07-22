@@ -34,6 +34,17 @@ namespace MagickUtils
             img.Write(fname + ".png");
         }
 
+        public static void SetColorDepth (string path, int bits)
+        {
+            MagickImage img = new MagickImage(path);
+            img.BitDepth(bits);
+            img.Depth = bits;
+            img.Quality = Program.GetDefaultQuality(img);
+            string fname = Path.ChangeExtension(path, null);
+            Program.Print("-> " + fname);
+            img.Write(path);
+        }
+
         public static void GroupNormalsWithTex (string ext, string[] normalSuffixList, string[] diffuseSuffixList, string setPrefix, bool renLower)
         {
             string copyDiffuseDir = Path.Combine(Program.currentDir, "..", setPrefix + "GroupedDiffuse");
