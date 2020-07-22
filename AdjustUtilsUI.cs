@@ -33,7 +33,7 @@ namespace MagickUtils
                 */
 
 
-            FileInfo[] files = IOUtils.GetFiles(path, ext, recursive);
+            FileInfo[] files = IOUtils.GetFiles();
             int counter = 1;
             Program.PreProcessing();
             foreach(FileInfo file in files)

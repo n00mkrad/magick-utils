@@ -64,6 +64,26 @@ namespace MagickUtils
             PostProcessing(img, path, outPath, delSource);
         }
 
+        public static void ConvertToWebp (string path, int q, bool delSource = false)
+        {
+            MagickImage img = new MagickImage(path) { Format = MagickFormat.WebP };
+            string outPath = Path.ChangeExtension(path, null) + ".webp";
+            img.Quality = q;
+            PreProcessing(path);
+            img.Write(outPath);
+            PostProcessing(img, path, outPath, delSource);
+        }
+
+        public static void ConvertToJpeg2000 (string path, int q, bool delSource = false)
+        {
+            MagickImage img = new MagickImage(path) { Format = MagickFormat.Jp2 };
+            string outPath = Path.ChangeExtension(path, null) + ".jp2";
+            img.Quality = q;
+            PreProcessing(path);
+            img.Write(outPath);
+            PostProcessing(img, path, outPath, delSource);
+        }
+
         static void PreProcessing (string path, string infoSuffix = null)
         {
             bytesPre = 0;

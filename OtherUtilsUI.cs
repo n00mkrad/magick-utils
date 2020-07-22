@@ -70,10 +70,10 @@ namespace MagickUtils
             }
         }
 
-        public static void RemTransparency (bool recursive, bool whiteBg)
+        public static void RemTransparency (bool whiteBg)
         {
             int counter = 1;
-            FileInfo[] files = IOUtils.GetFiles(Program.currentDir, Program.currentExt, recursive);
+            FileInfo[] files = IOUtils.GetFiles();
             Program.PreProcessing();
             foreach(FileInfo file in files)
             {
@@ -84,10 +84,10 @@ namespace MagickUtils
             Program.PostProcessing();
         }
 
-        public static void SetColorDepth (bool recursive, int bits)
+        public static void SetColorDepth (int bits)
         {
             int counter = 1;
-            FileInfo[] files = IOUtils.GetFiles(Program.currentDir, Program.currentExt, recursive);
+            FileInfo[] files = IOUtils.GetFiles();
             Program.PreProcessing();
             foreach(FileInfo file in files)
             {
@@ -98,7 +98,7 @@ namespace MagickUtils
             Program.PostProcessing();
         }
 
-        public static void DelSmallImgsDir (bool recursive, int minAxisLength)
+        public static void DelSmallImgsDir (int minAxisLength)
         {
             /*
             string minAxisLength = "128";
@@ -109,7 +109,7 @@ namespace MagickUtils
             */
 
             int counter = 1;
-            FileInfo[] Files = IOUtils.GetFiles(Program.currentDir, Program.currentExt, recursive);
+            FileInfo[] Files = IOUtils.GetFiles();
             Program.Print("Checking " + Files.Length + " images...");
             Program.PreProcessing();
             foreach(FileInfo file in Files)

@@ -36,6 +36,7 @@ namespace MagickUtils
             InitCombox(colorDepthCombox, 3);
 
             Program.exclIncompatible = ignoreIncompatCbox.Checked;
+            Program.recursive = recursiveCbox.Checked;
         }
 
         void InitCombox (ComboBox cbox, int index)
@@ -56,25 +57,31 @@ namespace MagickUtils
 
         private void convertStartBtn_Click (object sender, EventArgs e)
         {
-            int qMin = int.Parse(qualityCombox.Text);
+            int qMin = int.Parse(qualityCombox.Text.Trim());
             int qMax = qMin;
             if(!string.IsNullOrWhiteSpace(qualityMaxCombox.Text.Trim()))
-                qMax = int.Parse(qualityMaxCombox.Text);
+                qMax = int.Parse(qualityMaxCombox.Text.Trim());
 
             if(selectedFormat == Program.ImageFormat.JPG)
-                ConvertUtilsUI.ConvertDirToJpeg(pathTextbox.Text, extTbox.Text, qMin, qMax, recursiveCbox.Checked, delSrcCbox.Checked);
+                ConvertUtilsUI.ConvertDirToJpeg(qMin, qMax, delSrcCbox.Checked);
 
             if(selectedFormat == Program.ImageFormat.PNG)
-                ConvertUtilsUI.ConvertDirToPng(pathTextbox.Text, extTbox.Text, qMin, recursiveCbox.Checked, delSrcCbox.Checked);
+                ConvertUtilsUI.ConvertDirToPng(qMin, delSrcCbox.Checked);
 
             if(selectedFormat == Program.ImageFormat.DDS)
             {
-                if(crunchDdsCbox.Checked) ConvertUtilsUI.ConvertDirToDdsCrunch(recursiveCbox.Checked, qMin, qMax, delSrcCbox.Checked);
-                else ConvertUtilsUI.ConvertDirToDds(pathTextbox.Text, extTbox.Text, recursiveCbox.Checked, delSrcCbox.Checked);
+                if(crunchDdsCbox.Checked) ConvertUtilsUI.ConvertDirToDdsCrunch(qMin, qMax, delSrcCbox.Checked);
+                else ConvertUtilsUI.ConvertDirToDds(delSrcCbox.Checked);
             }
                 
             if(selectedFormat == Program.ImageFormat.TGA)
-                ConvertUtilsUI.ConvertDirToTga(pathTextbox.Text, extTbox.Text, recursiveCbox.Checked, delSrcCbox.Checked);
+                ConvertUtilsUI.ConvertDirToTga(delSrcCbox.Checked);
+
+            if(selectedFormat == Program.ImageFormat.WEBP)
+                ConvertUtilsUI.ConvertDirToWebp(qMin, delSrcCbox.Checked);
+
+            if(selectedFormat == Program.ImageFormat.J2K)
+                ConvertUtilsUI.ConvertDirToJpeg2000(qMin, delSrcCbox.Checked);
         }
 
         private void pathTextbox_TextChanged (object sender, EventArgs e)
@@ -115,6 +122,16 @@ namespace MagickUtils
                 qualityCombox.Enabled = false;
             }
 
+            if(formatStrTrim == "WEBP")
+            {
+                selectedFormat = Program.ImageFormat.WEBP;
+            }
+
+            if(formatStrTrim == "JPEG 2000")
+            {
+                selectedFormat = Program.ImageFormat.J2K;
+            }
+
             CheckDelSourceFormat();
         }
 
@@ -152,18 +169,18 @@ namespace MagickUtils
 
         private void remAlphaWhite_Click (object sender, EventArgs e)
         {
-            OtherUtilsUI.RemTransparency(recursiveCbox.Checked, true);
+            OtherUtilsUI.RemTransparency(true);
         }
 
         private void remAlphaBlack_Click (object sender, EventArgs e)
         {
-            OtherUtilsUI.RemTransparency(recursiveCbox.Checked, false);
+            OtherUtilsUI.RemTransparency(false);
         }
 
         private void delSmallImagesBtn_Click (object sender, EventArgs e)
         {
             int minSize = int.Parse(delSmallImagesSizeCombox.Text);
-            OtherUtilsUI.DelSmallImgsDir(recursiveCbox.Checked, minSize);
+            OtherUtilsUI.DelSmallImgsDir(minSize);
         }
 
         private void delFilesNotMatchingExtBtn_Click (object sender, EventArgs e)
@@ -202,14 +219,19 @@ namespace MagickUtils
 
         private void applyColorDepthBtn_Click (object sender, EventArgs e)
         {
-            if(colorDepthCombox.SelectedIndex == 0) OtherUtilsUI.SetColorDepth(recursiveCbox.Checked, 24);
-            if(colorDepthCombox.SelectedIndex == 1) OtherUtilsUI.SetColorDepth(recursiveCbox.Checked, 16);
-            if(colorDepthCombox.SelectedIndex == 2) OtherUtilsUI.SetColorDepth(recursiveCbox.Checked, 12);
-            if(colorDepthCombox.SelectedIndex == 3) OtherUtilsUI.SetColorDepth(recursiveCbox.Checked, 8);
-            if(colorDepthCombox.SelectedIndex == 4) OtherUtilsUI.SetColorDepth(recursiveCbox.Checked, 7);
-            if(colorDepthCombox.SelectedIndex == 5) OtherUtilsUI.SetColorDepth(recursiveCbox.Checked, 6);
-            if(colorDepthCombox.SelectedIndex == 6) OtherUtilsUI.SetColorDepth(recursiveCbox.Checked, 5);
-            if(colorDepthCombox.SelectedIndex == 7) OtherUtilsUI.SetColorDepth(recursiveCbox.Checked, 4);
+            if(colorDepthCombox.SelectedIndex == 0) OtherUtilsUI.SetColorDepth(24);
+            if(colorDepthCombox.SelectedIndex == 1) OtherUtilsUI.SetColorDepth(16);
+            if(colorDepthCombox.SelectedIndex == 2) OtherUtilsUI.SetColorDepth(12);
+            if(colorDepthCombox.SelectedIndex == 3) OtherUtilsUI.SetColorDepth(8);
+            if(colorDepthCombox.SelectedIndex == 4) OtherUtilsUI.SetColorDepth(7);
+            if(colorDepthCombox.SelectedIndex == 5) OtherUtilsUI.SetColorDepth(6);
+            if(colorDepthCombox.SelectedIndex == 6) OtherUtilsUI.SetColorDepth(5);
+            if(colorDepthCombox.SelectedIndex == 7) OtherUtilsUI.SetColorDepth(4);
+        }
+
+        private void recursiveCbox_CheckedChanged (object sender, EventArgs e)
+        {
+            Program.recursive = recursiveCbox.Checked;
         }
     }
 }

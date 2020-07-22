@@ -27,11 +27,14 @@ namespace MagickUtils
             return size;
         }
 
-        public static FileInfo[] GetFiles (string path, string ext, bool recursive)
+        public static FileInfo[] GetFiles ()
         {
+            string path = Program.currentDir;
+            string ext = Program.currentExt;
+            bool recursive = Program.recursive;
             Stopwatch getFilesSw = new Stopwatch(); getFilesSw.Start();
             Program.Print("Getting file list...");
-            var exts = new[] { ".png", ".jpg", ".jpeg", ".dds", ".bmp", ".tga" };
+            var exts = new[] { ".png", ".jpg", ".jpeg", ".dds", ".bmp", ".tga", ".webp", ".heic", ".jp2" };
             if(!Program.IsPathValid(path))
             {
                 MessageBox.Show("Invalid path!", "Error");

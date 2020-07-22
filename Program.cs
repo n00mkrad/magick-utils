@@ -14,13 +14,15 @@ namespace MagickUtils
     {
         public static string currentDir;
         public static string currentExt;
+        public static bool recursive;
+
         public static bool exclIncompatible;
         public static Form mainForm;
         public static TextBox logTbox;
         public static ProgressBar progBar;
 
 
-        public enum ImageFormat { JPG, PNG, DDS, TGA }
+        public enum ImageFormat { JPG, PNG, DDS, TGA, WEBP, J2K }
 
         static void Main (string[] args)
         {

@@ -6,10 +6,10 @@ namespace MagickUtils
 {
     class ConvertUtilsUI
     {
-        public static void ConvertDirToJpeg (string path, string ext, int qMin, int qMax, bool recursive, bool delSrc)
+        public static async void ConvertDirToJpeg (int qMin, int qMax, bool delSrc)
         {
             int counter = 1;
-            FileInfo[] files = IOUtils.GetFiles(path, ext, recursive);
+            FileInfo[] files = IOUtils.GetFiles();
 
             Program.PreProcessing();
             foreach(FileInfo file in files)
@@ -17,15 +17,15 @@ namespace MagickUtils
                 Program.ShowProgress("Converting Image ", counter, files.Length);
                 ConvertUtils.ConvertToJpegRandomQuality(file.FullName, qMin, qMax, delSrc);
                 counter++;
-                Program.mainForm.Show();
+                if(counter % 20 == 0) await Program.PutTaskDelay();
             }
             Program.PostProcessing();
         }
 
-        public async static void ConvertDirToPng (string path, string ext, int q, bool recursive, bool delSrc)
+        public async static void ConvertDirToPng (int q, bool delSrc)
         {
             int counter = 1;
-            FileInfo[] files = IOUtils.GetFiles(path, ext, recursive);
+            FileInfo[] files = IOUtils.GetFiles();
 
             Program.PreProcessing();
             foreach(FileInfo file in files)
@@ -39,22 +39,10 @@ namespace MagickUtils
         }
 
 
-        public static void ConvertDirToDds (string path, string ext, bool recursive, bool delSrc)
+        public static void ConvertDirToDds (bool delSrc)
         {
-            /*
-            string recursive = "n";
-            Console.Write("[Default: n] Recursive (include all subfolders)? (y/n): ");
-            string recursiveInput = Console.ReadLine();
-            if(!string.IsNullOrWhiteSpace(recursiveInput.Trim())) recursive = recursiveInput;
-
-            string delSrc = "n";
-            Console.Write("[Default: n] Delete source file afterwards? (y/n): ");
-            string delSrcInput = Console.ReadLine();
-            if(!string.IsNullOrWhiteSpace(delSrcInput.Trim())) delSrc = delSrcInput;
-            */
-
             int counter = 1;
-            FileInfo[] files = IOUtils.GetFiles(path, ext, recursive);
+            FileInfo[] files = IOUtils.GetFiles();
 
             Program.PreProcessing();
             foreach(FileInfo file in files)
@@ -66,10 +54,10 @@ namespace MagickUtils
             Program.PostProcessing();
         }
 
-        public static void ConvertDirToDdsCrunch (bool recursive, int qMin, int qMax, bool delSrc)
+        public static void ConvertDirToDdsCrunch (int qMin, int qMax, bool delSrc)
         {
             int counter = 1;
-            FileInfo[] files = IOUtils.GetFiles(Program.currentDir, Program.currentExt, recursive);
+            FileInfo[] files = IOUtils.GetFiles();
 
             Program.PreProcessing();
             foreach(FileInfo file in files)
@@ -81,22 +69,10 @@ namespace MagickUtils
             Program.PostProcessing();
         }
 
-        public static void ConvertDirToTga (string path, string ext, bool recursive, bool delSrc)
+        public static void ConvertDirToTga (bool delSrc)
         {
-            /*
-            string recursive = "n";
-            Console.Write("[Default: n] Recursive (include all subfolders)? (y/n): ");
-            string recursiveInput = Console.ReadLine();
-            if(!string.IsNullOrWhiteSpace(recursiveInput.Trim())) recursive = recursiveInput;
-
-            string delSrc = "n";
-            Console.Write("[Default: n] Delete source file afterwards? (y/n): ");
-            string delSrcInput = Console.ReadLine();
-            if(!string.IsNullOrWhiteSpace(delSrcInput.Trim())) delSrc = delSrcInput;
-            */
-
             int counter = 1;
-            FileInfo[] files = IOUtils.GetFiles(path, ext, recursive);
+            FileInfo[] files = IOUtils.GetFiles();
 
             Program.PreProcessing();
             foreach(FileInfo file in files)
@@ -104,6 +80,38 @@ namespace MagickUtils
                 Program.ShowProgress("Converting Image ", counter, files.Length);
                 counter++;
                 ConvertUtils.ConvertToTga(file.FullName, delSrc);
+            }
+            Program.PostProcessing();
+        }
+
+        public static async void ConvertDirToWebp (int q, bool delSrc)
+        {
+            int counter = 1;
+            FileInfo[] files = IOUtils.GetFiles();
+
+            Program.PreProcessing();
+            foreach(FileInfo file in files)
+            {
+                Program.ShowProgress("Converting Image ", counter, files.Length);
+                counter++;
+                ConvertUtils.ConvertToWebp(file.FullName, q, delSrc);
+                if(counter % 5 == 0) await Program.PutTaskDelay();
+            }
+            Program.PostProcessing();
+        }
+
+        public static async void ConvertDirToJpeg2000 (int q, bool delSrc)
+        {
+            int counter = 1;
+            FileInfo[] files = IOUtils.GetFiles();
+
+            Program.PreProcessing();
+            foreach(FileInfo file in files)
+            {
+                Program.ShowProgress("Converting Image ", counter, files.Length);
+                counter++;
+                ConvertUtils.ConvertToJpeg2000(file.FullName, q, delSrc);
+                if(counter % 2 == 0) await Program.PutTaskDelay();
             }
             Program.PostProcessing();
         }

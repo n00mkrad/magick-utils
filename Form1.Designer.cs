@@ -241,6 +241,7 @@
             // 
             // dxtQualCombox
             // 
+            this.dxtQualCombox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.dxtQualCombox.FormattingEnabled = true;
             this.dxtQualCombox.Items.AddRange(new object[] {
             "superfast",
@@ -415,7 +416,9 @@
             "JPEG",
             "PNG",
             "DDS",
-            "TGA"});
+            "TGA",
+            "WEBP",
+            "JPEG 2000"});
             this.formatCombox.Location = new System.Drawing.Point(103, 6);
             this.formatCombox.Name = "formatCombox";
             this.formatCombox.Size = new System.Drawing.Size(111, 21);
@@ -980,6 +983,7 @@
             this.recursiveCbox.TabIndex = 5;
             this.recursiveCbox.Text = "Recursive (Include Subfolders)";
             this.recursiveCbox.UseVisualStyleBackColor = true;
+            this.recursiveCbox.CheckedChanged += new System.EventHandler(this.recursiveCbox_CheckedChanged);
             // 
             // progressBar1
             // 
