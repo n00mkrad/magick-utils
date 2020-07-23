@@ -115,5 +115,20 @@ namespace MagickUtils
             }
             Program.PostProcessing();
         }
+
+        public static void ConvertDirToFlif (int q, bool delSrc)
+        {
+            int counter = 1;
+            FileInfo[] files = IOUtils.GetFiles();
+
+            Program.PreProcessing();
+            foreach(FileInfo file in files)
+            {
+                Program.ShowProgress("Encoding Image ", counter, files.Length);
+                counter++;
+                FlifInterface.EncodeImage(file.FullName, q, delSrc);
+            }
+            Program.PostProcessing();
+        }
     }
 }

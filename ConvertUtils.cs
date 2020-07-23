@@ -15,7 +15,8 @@ namespace MagickUtils
 
         public static void ConvertToJpeg (string path, int q = 95, bool delSource = false)
         {
-            MagickImage img = new MagickImage(path) { Format = MagickFormat.Jpeg };
+            MagickImage img = IOUtils.ReadImage(path);
+            img.Format = MagickFormat.Jpeg;
             img.Quality = q;
             string outPath = Path.ChangeExtension(path, null) + ".jpg";
             PreProcessing(path);

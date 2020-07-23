@@ -22,7 +22,7 @@ namespace MagickUtils
         public static ProgressBar progBar;
 
 
-        public enum ImageFormat { JPG, PNG, DDS, TGA, WEBP, J2K }
+        public enum ImageFormat { JPG, PNG, DDS, TGA, WEBP, J2K, FLIF }
 
         static void Main (string[] args)
         {
@@ -122,7 +122,9 @@ namespace MagickUtils
                 return 95;
             if(img.Format == MagickFormat.Png)
                 return 50;
-            return 100;
+            if(img.Format == MagickFormat.WebP)
+                return 92;
+            return 99;
         }
     }
 }

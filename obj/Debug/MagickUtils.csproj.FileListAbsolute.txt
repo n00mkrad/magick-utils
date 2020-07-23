@@ -13,3 +13,5 @@ C:\Users\NMKD\source\repos\MagickUtils\obj\Debug\MagickUtils.csprojAssemblyRefer
 C:\Users\NMKD\source\repos\MagickUtils\obj\Debug\MagickUtils.MainForm.resources
 C:\Users\NMKD\source\repos\MagickUtils\obj\Debug\MagickUtils.csproj.GenerateResource.cache
 C:\Users\NMKD\source\repos\MagickUtils\obj\Debug\MagickUtils.Properties.Resources.resources
+C:\Users\NMKD\source\repos\MagickUtils\obj\Debug\MagickUtils.DdsOptionsWindow.resources
+C:\Users\NMKD\source\repos\MagickUtils\obj\Debug\MagickUtils.FlifOptionsWindow.resources

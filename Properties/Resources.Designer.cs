@@ -69,5 +69,15 @@ namespace MagickUtils.Properties {
                 return ((byte[])(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] flif {
+            get {
+                object obj = ResourceManager.GetObject("flif", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

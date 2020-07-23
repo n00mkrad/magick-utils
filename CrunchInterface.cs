@@ -17,12 +17,9 @@ namespace MagickUtils
         {
             GetExePath();
             if(File.Exists(crunchExePath))
-            {
-                //Program.Print("[CrunchInterface] crunch.exe already exists at " + crunchExePath);
                 return;
-            }  
             File.WriteAllBytes(crunchExePath, Resources.crunch);
-            Program.Print("[CrunchInterface] Extraced crunch.exe to " + crunchExePath);
+            Program.Print("[CrunchInterface] Extracted crunch.exe to " + crunchExePath);
         }
 
         public static void DeleteExe ()
@@ -33,8 +30,7 @@ namespace MagickUtils
 
         static void GetExePath ()
         {
-            string exeFolder = AppDomain.CurrentDomain.BaseDirectory;
-            crunchExePath = Path.Combine(exeFolder, "crunch.exe");
+            crunchExePath = Path.Combine(IOUtils.GetAppDataDir(), "crunch.exe");
         }
 
         public static void CrunchImage (string path, int qMin, int qMax, bool deleteSrc)
@@ -50,7 +46,7 @@ namespace MagickUtils
                 + " -dxtQuality " + currentQual.ToString();
             psi = new ProcessStartInfo { FileName = crunchExePath, Arguments = args1 + args2 };
             Program.Print("Crunch args:" + args2);
-            /* if(hideCmd) */ psi.WindowStyle = ProcessWindowStyle.Hidden;
+            psi.WindowStyle = ProcessWindowStyle.Hidden;
             Process crunchProcess = new Process { StartInfo = psi };
             crunchProcess.Start();
             crunchProcess.WaitForExit();

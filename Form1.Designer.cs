@@ -35,15 +35,7 @@
             this.extTbox = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.ddsOptionsPanel = new System.Windows.Forms.Panel();
-            this.crunchPanel = new System.Windows.Forms.Panel();
-            this.label32 = new System.Windows.Forms.Label();
-            this.useMipsCbox = new System.Windows.Forms.CheckBox();
-            this.dxtQualCombox = new System.Windows.Forms.ComboBox();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.crunchDdsCbox = new System.Windows.Forms.CheckBox();
-            this.label10 = new System.Windows.Forms.Label();
+            this.formatOptionsBtn = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.qualityMaxCombox = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -110,8 +102,6 @@
             this.ignoreIncompatCbox = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.ddsOptionsPanel.SuspendLayout();
-            this.crunchPanel.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -173,8 +163,7 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.ddsOptionsPanel);
-            this.tabPage1.Controls.Add(this.label10);
+            this.tabPage1.Controls.Add(this.formatOptionsBtn);
             this.tabPage1.Controls.Add(this.label8);
             this.tabPage1.Controls.Add(this.qualityMaxCombox);
             this.tabPage1.Controls.Add(this.label9);
@@ -196,102 +185,15 @@
             this.tabPage1.Text = "Convert, Compress";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // ddsOptionsPanel
+            // formatOptionsBtn
             // 
-            this.ddsOptionsPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ddsOptionsPanel.Controls.Add(this.crunchPanel);
-            this.ddsOptionsPanel.Controls.Add(this.label31);
-            this.ddsOptionsPanel.Controls.Add(this.crunchDdsCbox);
-            this.ddsOptionsPanel.Location = new System.Drawing.Point(448, 129);
-            this.ddsOptionsPanel.Name = "ddsOptionsPanel";
-            this.ddsOptionsPanel.Size = new System.Drawing.Size(248, 89);
-            this.ddsOptionsPanel.TabIndex = 23;
-            // 
-            // crunchPanel
-            // 
-            this.crunchPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.crunchPanel.Controls.Add(this.label32);
-            this.crunchPanel.Controls.Add(this.useMipsCbox);
-            this.crunchPanel.Controls.Add(this.dxtQualCombox);
-            this.crunchPanel.Controls.Add(this.label30);
-            this.crunchPanel.Enabled = false;
-            this.crunchPanel.Location = new System.Drawing.Point(3, 26);
-            this.crunchPanel.Name = "crunchPanel";
-            this.crunchPanel.Size = new System.Drawing.Size(240, 58);
-            this.crunchPanel.TabIndex = 22;
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(3, 37);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(132, 13);
-            this.label32.TabIndex = 23;
-            this.label32.Text = "Generate/Reuse Mipmaps";
-            // 
-            // useMipsCbox
-            // 
-            this.useMipsCbox.AutoSize = true;
-            this.useMipsCbox.Location = new System.Drawing.Point(149, 37);
-            this.useMipsCbox.Name = "useMipsCbox";
-            this.useMipsCbox.Size = new System.Drawing.Size(15, 14);
-            this.useMipsCbox.TabIndex = 22;
-            this.useMipsCbox.UseVisualStyleBackColor = true;
-            this.useMipsCbox.CheckedChanged += new System.EventHandler(this.useMipsCbox_CheckedChanged);
-            // 
-            // dxtQualCombox
-            // 
-            this.dxtQualCombox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.dxtQualCombox.FormattingEnabled = true;
-            this.dxtQualCombox.Items.AddRange(new object[] {
-            "superfast",
-            "fast",
-            "normal",
-            "better",
-            "uber"});
-            this.dxtQualCombox.Location = new System.Drawing.Point(149, 7);
-            this.dxtQualCombox.Name = "dxtQualCombox";
-            this.dxtQualCombox.Size = new System.Drawing.Size(83, 21);
-            this.dxtQualCombox.TabIndex = 19;
-            this.dxtQualCombox.SelectedIndexChanged += new System.EventHandler(this.dxtQualCombox_SelectedIndexChanged);
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(3, 10);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(103, 13);
-            this.label30.TabIndex = 20;
-            this.label30.Text = "DXT Quality/Speed:";
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(3, 6);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(120, 13);
-            this.label31.TabIndex = 21;
-            this.label31.Text = "Use Crunch compressor";
-            // 
-            // crunchDdsCbox
-            // 
-            this.crunchDdsCbox.AutoSize = true;
-            this.crunchDdsCbox.Location = new System.Drawing.Point(153, 6);
-            this.crunchDdsCbox.Name = "crunchDdsCbox";
-            this.crunchDdsCbox.Size = new System.Drawing.Size(15, 14);
-            this.crunchDdsCbox.TabIndex = 8;
-            this.crunchDdsCbox.UseVisualStyleBackColor = true;
-            this.crunchDdsCbox.CheckedChanged += new System.EventHandler(this.crunchDdsCbox_CheckedChanged);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label10.Location = new System.Drawing.Point(220, 9);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(102, 13);
-            this.label10.TabIndex = 18;
-            this.label10.Text = "Output image format";
+            this.formatOptionsBtn.Location = new System.Drawing.Point(223, 6);
+            this.formatOptionsBtn.Name = "formatOptionsBtn";
+            this.formatOptionsBtn.Size = new System.Drawing.Size(100, 21);
+            this.formatOptionsBtn.TabIndex = 18;
+            this.formatOptionsBtn.Text = "Format Options";
+            this.formatOptionsBtn.UseVisualStyleBackColor = true;
+            this.formatOptionsBtn.Click += new System.EventHandler(this.formatOptionsBtn_Click);
             // 
             // label8
             // 
@@ -418,7 +320,8 @@
             "DDS",
             "TGA",
             "WEBP",
-            "JPEG 2000"});
+            "JPEG 2000",
+            "FLIF"});
             this.formatCombox.Location = new System.Drawing.Point(103, 6);
             this.formatCombox.Name = "formatCombox";
             this.formatCombox.Size = new System.Drawing.Size(111, 21);
@@ -1021,6 +924,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(734, 561);
             this.Controls.Add(this.ignoreIncompatCbox);
             this.Controls.Add(this.logTbox);
@@ -1033,16 +937,14 @@
             this.Controls.Add(this.pathTextbox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "NMKD\'s MagickUtils";
+            this.Activated += new System.EventHandler(this.MainForm_Activated);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.ddsOptionsPanel.ResumeLayout(false);
-            this.ddsOptionsPanel.PerformLayout();
-            this.crunchPanel.ResumeLayout(false);
-            this.crunchPanel.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
@@ -1090,7 +992,6 @@
         private System.Windows.Forms.ComboBox qualityMaxCombox;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox logTbox;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox scaleResampleCombox;
@@ -1131,19 +1032,12 @@
         private System.Windows.Forms.CheckBox lowercaseCbox;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.ComboBox diffSuffixCombox;
-        private System.Windows.Forms.CheckBox crunchDdsCbox;
-        private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.ComboBox dxtQualCombox;
-        private System.Windows.Forms.Panel crunchPanel;
-        private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.CheckBox useMipsCbox;
-        private System.Windows.Forms.Panel ddsOptionsPanel;
         private System.Windows.Forms.CheckBox ignoreIncompatCbox;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Button applyColorDepthBtn;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.ComboBox colorDepthCombox;
         private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Button formatOptionsBtn;
     }
 }

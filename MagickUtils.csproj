@@ -65,13 +65,27 @@
     <Compile Include="ConvertUtils.cs" />
     <Compile Include="ConvertUtilsUI.cs" />
     <Compile Include="CrunchInterface.cs" />
+    <Compile Include="DdsOptionsWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DdsOptionsWindow.Designer.cs">
+      <DependentUpon>DdsOptionsWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="EffectUtils.cs" />
+    <Compile Include="FlifInterface.cs" />
+    <Compile Include="FlifOptionsWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FlifOptionsWindow.Designer.cs">
+      <DependentUpon>FlifOptionsWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormatOptions.cs" />
     <Compile Include="FormatUtils.cs" />
     <Compile Include="IOUtils.cs" />
     <Compile Include="OtherUtils.cs" />
@@ -92,12 +106,19 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="crunch.exe" />
+    <None Include="flif.exe" />
     <Content Include="NMKD2020-nonly1-smoothed.ico" />
     <Content Include="NMKD2020-nonly1-smoothed2.ico" />
     <Content Include="NMKD2020-nonly1.ico" />
     <Content Include="NMKD2020-pb2.ico" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="DdsOptionsWindow.resx">
+      <DependentUpon>DdsOptionsWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FlifOptionsWindow.resx">
+      <DependentUpon>FlifOptionsWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

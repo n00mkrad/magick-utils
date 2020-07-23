@@ -22,6 +22,8 @@ namespace MagickUtils
 
         private void MainForm_Load (object sender, EventArgs e)
         {
+            CenterToScreen();
+
             Program.logTbox = logTbox;
             Program.progBar = progressBar1;
 
@@ -32,7 +34,6 @@ namespace MagickUtils
             Program.currentExt = extTbox.Text.Trim();
 
             InitCombox(formatCombox, 0);
-            InitCombox(dxtQualCombox, 1);
             InitCombox(colorDepthCombox, 3);
 
             Program.exclIncompatible = ignoreIncompatCbox.Checked;
@@ -70,7 +71,7 @@ namespace MagickUtils
 
             if(selectedFormat == Program.ImageFormat.DDS)
             {
-                if(crunchDdsCbox.Checked) ConvertUtilsUI.ConvertDirToDdsCrunch(qMin, qMax, delSrcCbox.Checked);
+                if(FormatOptions.ddsUseCrunch) ConvertUtilsUI.ConvertDirToDdsCrunch(qMin, qMax, delSrcCbox.Checked);
                 else ConvertUtilsUI.ConvertDirToDds(delSrcCbox.Checked);
             }
                 
@@ -82,6 +83,9 @@ namespace MagickUtils
 
             if(selectedFormat == Program.ImageFormat.J2K)
                 ConvertUtilsUI.ConvertDirToJpeg2000(qMin, delSrcCbox.Checked);
+
+            if(selectedFormat == Program.ImageFormat.FLIF)
+                ConvertUtilsUI.ConvertDirToFlif(qMin, delSrcCbox.Checked);
         }
 
         private void pathTextbox_TextChanged (object sender, EventArgs e)
@@ -94,7 +98,7 @@ namespace MagickUtils
             string formatStrTrim = formatCombox.Text.Trim();
             qualityCombox.Enabled = true;
             qualityMaxCombox.Enabled = false;
-            ddsOptionsPanel.Visible = false;
+            formatOptionsBtn.Visible = false;
 
             if(formatStrTrim == "JPEG")
             {
@@ -110,10 +114,9 @@ namespace MagickUtils
             if(formatStrTrim == "DDS")
             {
                 selectedFormat = Program.ImageFormat.DDS;
-                qualityCombox.Enabled = crunchDdsCbox.Checked;
+                qualityCombox.Enabled = FormatOptions.ddsUseCrunch;
                 qualityMaxCombox.Enabled = qualityCombox.Enabled;
-                ddsOptionsPanel.Visible = true;
-                crunchPanel.Enabled = crunchDdsCbox.Checked;
+                formatOptionsBtn.Visible = true;
             }
                 
             if(formatStrTrim == "TGA")
@@ -130,6 +133,12 @@ namespace MagickUtils
             if(formatStrTrim == "JPEG 2000")
             {
                 selectedFormat = Program.ImageFormat.J2K;
+            }
+
+            if(formatStrTrim == "FLIF")
+            {
+                selectedFormat = Program.ImageFormat.FLIF;
+                formatOptionsBtn.Visible = true;
             }
 
             CheckDelSourceFormat();
@@ -193,25 +202,6 @@ namespace MagickUtils
             OtherUtilsUI.GroupNormalsWithTex(normalSuffixCombox.Text, diffSuffixCombox.Text, lowercaseCbox.Checked);
         }
 
-        private void crunchDdsCbox_CheckedChanged (object sender, EventArgs e)
-        {
-            formatCombox_SelectedIndexChanged(null, null);
-        }
-
-        private void dxtQualCombox_SelectedIndexChanged (object sender, EventArgs e)
-        {
-            if(dxtQualCombox.SelectedIndex == 0) CrunchInterface.currentQual = CrunchInterface.DXTQuality.superfast;
-            if(dxtQualCombox.SelectedIndex == 1) CrunchInterface.currentQual = CrunchInterface.DXTQuality.fast;
-            if(dxtQualCombox.SelectedIndex == 2) CrunchInterface.currentQual = CrunchInterface.DXTQuality.normal;
-            if(dxtQualCombox.SelectedIndex == 3) CrunchInterface.currentQual = CrunchInterface.DXTQuality.better;
-            if(dxtQualCombox.SelectedIndex == 4) CrunchInterface.currentQual = CrunchInterface.DXTQuality.uber;
-        }
-
-        private void useMipsCbox_CheckedChanged (object sender, EventArgs e)
-        {
-            CrunchInterface.currentMipMode = useMipsCbox.Checked;
-        }
-
         private void ignoreIncompatCbox_CheckedChanged (object sender, EventArgs e)
         {
             Program.exclIncompatible = ignoreIncompatCbox.Checked;
@@ -232,6 +222,21 @@ namespace MagickUtils
         private void recursiveCbox_CheckedChanged (object sender, EventArgs e)
         {
             Program.recursive = recursiveCbox.Checked;
+        }
+
+        private void formatOptionsBtn_Click (object sender, EventArgs e)
+        {
+            var ddsForm = new DdsOptionsWindow();
+            var flifForm = new FlifOptionsWindow();
+            if(selectedFormat == Program.ImageFormat.DDS)
+                ddsForm.Show();
+            if(selectedFormat == Program.ImageFormat.FLIF)
+                flifForm.Show();
+        }
+
+        private void MainForm_Activated (object sender, EventArgs e)
+        {
+            formatCombox_SelectedIndexChanged(null, null);
         }
     }
 }
