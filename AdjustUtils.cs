@@ -12,7 +12,7 @@ namespace MagickUtils
     {
         public static void AutoGamma (string path)
         {
-            MagickImage img = new MagickImage(path);
+            MagickImage img = IOUtils.ReadImage(path);
             string fname = Path.ChangeExtension(path, null);
             Print("-> " + fname + "\n");
             img.AutoGamma();
@@ -21,7 +21,7 @@ namespace MagickUtils
 
         public static void AutoLevel (string path)
         {
-            MagickImage img = new MagickImage(path);
+            MagickImage img = IOUtils.ReadImage(path);
             string fname = Path.ChangeExtension(path, null);
             Print("-> " + fname + "\n");
             img.AutoLevel();
@@ -30,7 +30,7 @@ namespace MagickUtils
 
         public static void AutoThreshold (string path)
         {
-            MagickImage img = new MagickImage(path);
+            MagickImage img = IOUtils.ReadImage(path);
             string fname = Path.ChangeExtension(path, null);
             Print("-> " + fname + "\n");
             img.AutoThreshold(AutoThresholdMethod.Kapur);

@@ -12,7 +12,7 @@ namespace MagickUtils
     {
         public static void DeleteSmallImages (string path, int minPixels)
         {
-            MagickImage img = new MagickImage(path);
+            MagickImage img = IOUtils.ReadImage(path);
             if(img.Width < minPixels || img.Height < minPixels)
             {
                 string fname = Path.ChangeExtension(path, null);
@@ -23,7 +23,7 @@ namespace MagickUtils
 
         public static void RemoveTransparency (string path, bool whiteBg)
         {
-            MagickImage img = new MagickImage(path);
+            MagickImage img = IOUtils.ReadImage(path);
             if(whiteBg)
                 img.ColorAlpha(MagickColors.White);
             else
@@ -36,7 +36,7 @@ namespace MagickUtils
 
         public static void SetColorDepth (string path, int bits)
         {
-            MagickImage img = new MagickImage(path);
+            MagickImage img = IOUtils.ReadImage(path);
             img.BitDepth(bits);
             img.Depth = bits;
             img.Quality = Program.GetDefaultQuality(img);

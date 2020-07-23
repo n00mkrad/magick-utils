@@ -12,7 +12,7 @@ namespace MagickUtils
     {
         public static void RandomResample (string path, int minScale, int maxScale, int randFilterMode)
         {
-            MagickImage img = new MagickImage(path);
+            MagickImage img = IOUtils.ReadImage(path);
             string fname = Path.ChangeExtension(path, null);
             Program.Print("-> " + fname + " (" + img.Width + "x" + img.Height + ")");
             FT filter = GetFilter(randFilterMode);
@@ -42,7 +42,7 @@ namespace MagickUtils
 
         public static void Scale (string path, int minScale, int maxScale, int randFilterMode, bool useHeight)
         {
-            MagickImage img = new MagickImage(path);
+            MagickImage img = IOUtils.ReadImage(path);
             string fname = Path.ChangeExtension(path, null);
             Program.Print("-> " + fname + " (" + img.Width + "x" + img.Height + ")");
             FT filter = GetFilter(randFilterMode);
