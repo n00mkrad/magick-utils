@@ -54,7 +54,7 @@ namespace MagickUtils
             Program.PostProcessing();
         }
 
-        public static void ConvertDirToDdsCrunch (int qMin, int qMax, bool delSrc)
+        public static async void ConvertDirToDdsCrunch (int qMin, int qMax, bool delSrc)
         {
             int counter = 1;
             FileInfo[] files = IOUtils.GetFiles();
@@ -65,6 +65,7 @@ namespace MagickUtils
                 Program.ShowProgress("Crunching Image ", counter, files.Length);
                 counter++;
                 CrunchInterface.CrunchImage(file.FullName, qMin, qMax, delSrc);
+                if(counter % 2 == 0) await Program.PutTaskDelay();
             }
             Program.PostProcessing();
         }
@@ -116,7 +117,7 @@ namespace MagickUtils
             Program.PostProcessing();
         }
 
-        public static void ConvertDirToFlif (int q, bool delSrc)
+        public static async void ConvertDirToFlif (int q, bool delSrc)
         {
             int counter = 1;
             FileInfo[] files = IOUtils.GetFiles();
@@ -127,6 +128,7 @@ namespace MagickUtils
                 Program.ShowProgress("Encoding Image ", counter, files.Length);
                 counter++;
                 FlifInterface.EncodeImage(file.FullName, q, delSrc);
+                await Program.PutTaskDelay();
             }
             Program.PostProcessing();
         }

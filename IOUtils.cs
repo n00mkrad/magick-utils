@@ -48,7 +48,7 @@ namespace MagickUtils
             bool recursive = Program.recursive;
             Stopwatch getFilesSw = new Stopwatch(); getFilesSw.Start();
             Program.Print("Getting file list...");
-            var exts = new[] { ".png", ".jpg", ".jpeg", ".dds", ".bmp", ".tga", ".webp", ".heic", ".jp2" };
+            var exts = new[] { ".png", ".jpg", ".jpeg", ".dds", ".bmp", ".tga", ".webp", ".heic", ".jp2", ".flif" };
             if(!Program.IsPathValid(path))
             {
                 MessageBox.Show("Invalid path!", "Error");
