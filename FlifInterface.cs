@@ -52,10 +52,11 @@ namespace MagickUtils
                 File.Delete(path);
             return outPath;
         }
-        public static string DecodeImage (string path, bool deleteSrc)
+        public static string DecodeImage (string path, bool deleteSrc, bool tempExtension = false)
         {
             ExtractExe();
             string outPath = Path.ChangeExtension(path, null) + ".png";
+            if(tempExtension) outPath = Path.ChangeExtension(path, null) + ".pngtmp";
             ProcessStartInfo psi;
             string args = " -d \"" + path + "\" \"" + outPath + "\"";
             psi = new ProcessStartInfo { FileName = flifExePath, Arguments = args };
@@ -72,7 +73,7 @@ namespace MagickUtils
 
         public static MagickImage DecodeToMagickImage (string path, bool deleteSrc)
         {
-            string outPath = DecodeImage(path, deleteSrc);
+            string outPath = DecodeImage(path, deleteSrc, true);
             MagickImage image = new MagickImage(File.ReadAllBytes(outPath));  // Store images as bytes so we can delete the actual file
             File.Delete(outPath);
             return image;
