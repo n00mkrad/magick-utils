@@ -21,17 +21,14 @@ namespace MagickUtils
             }
         }
 
-        public static void RemoveTransparency (string path, bool whiteBg)
+        public static void RemoveTransparency (string path, byte mode)
         {
             MagickImage img = IOUtils.ReadImage(path);
-            if(whiteBg)
-                img.ColorAlpha(MagickColors.White);
-            else
-                img.ColorAlpha(MagickColors.Black);
-            img.Format = MagickFormat.Png;
-            string fname = Path.ChangeExtension(path, null);
-            Program.Print("-> " + fname);
-            img.Write(fname + ".png");
+            if(mode == 0) img.ColorAlpha(MagickColors.Black);
+            if(mode == 1) img.ColorAlpha(MagickColors.White);
+            if(mode == 2) img.Alpha(AlphaOption.Off);
+            Program.Print("-> " + Path.GetFileNameWithoutExtension(path));
+            img.Write(path);
         }
 
         public static void SetColorDepth (string path, int bits)

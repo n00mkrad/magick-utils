@@ -10,36 +10,9 @@ namespace MagickUtils
 {
     class OtherUtilsUI
     {
-        public static void OtherUtilChooser (string ext)
-        {
-            Console.Write("Available commands:\n");
-            Console.Write("1 Delete Small Images\n2 Delete Images Not In Both Folders [!!!]\n3 Delete Files Not Matching Wildcard/Extension");
-            Console.Write("\n\n");
-
-            Console.Write("Enter your command number: ");
-            string cmd = Console.ReadLine();
-
-
-            /*
-            if(int.Parse(cmd) == 1)
-                DelSmallImgsDir(ext);
-            if(int.Parse(cmd) == 2)
-                DelMissing(ext);
-            if(int.Parse(cmd) == 3)
-                DelNotMatchingWildcard(ext);
-                */
-        }
 
         public static void DelNotMatchingWildcard (bool recursive)
         {
-
-            /*
-            string recursive = "n";
-            Console.Write("[Default: n] Recursive (include all subfolders)? (y/n): ");
-            string recursiveInput = Console.ReadLine();
-            if(!string.IsNullOrWhiteSpace(recursiveInput.Trim())) recursive = recursiveInput;
-            */
-
             DirectoryInfo d = new DirectoryInfo(Program.currentDir);
             FileInfo[] whitelist;
             FileInfo[] allFiles;
@@ -70,7 +43,7 @@ namespace MagickUtils
             }
         }
 
-        public static void RemTransparency (bool whiteBg)
+        public static void RemTransparencyDir (byte mode)
         {
             int counter = 1;
             FileInfo[] files = IOUtils.GetFiles();
@@ -79,9 +52,64 @@ namespace MagickUtils
             {
                 Program.ShowProgress("Removing Alpha on Image ", counter, files.Length);
                 counter++;
-                OtherUtils.RemoveTransparency(file.FullName, whiteBg);
+                OtherUtils.RemoveTransparency(file.FullName, mode);
             }
             Program.PostProcessing();
+        }
+
+        public static void AddSuffixPrefixDir (string text, bool suffix)
+        {
+            int counter = 1;
+            FileInfo[] files = IOUtils.GetFiles();
+            Program.PreProcessing(true, false);
+            foreach(FileInfo file in files)
+            {
+                AddSuffixPrefix(file.FullName, text, suffix);
+                Program.ShowProgress("", counter, files.Length);
+                counter++;
+                if(counter % 100 == 0) Program.Print("Renamed " + counter + " files...");
+            }
+            Program.PostProcessing(true, false);
+        }
+
+        public static void AddSuffixPrefix (string path, string text, bool suffix)
+        {
+            string pathNoExt = Path.ChangeExtension(path, null);
+            string ext = Path.GetExtension(path);
+
+            if(suffix)
+                File.Move(path, pathNoExt + text + ext);
+            else
+                File.Move(path, Path.Combine(Path.GetDirectoryName(path), (text + Path.GetFileNameWithoutExtension(path) + ext)));
+        }
+
+        public static void ReplaceInFilenamesDir (string textToFind, string textToReplace)
+        {
+            int counter = 1;
+            FileInfo[] files = IOUtils.GetFiles();
+            Program.PreProcessing(true, false);
+            foreach(FileInfo file in files)
+            {
+                ReplaceInFilename(file.FullName, textToFind, textToReplace);
+                Program.ShowProgress("", counter, files.Length);
+                counter++;
+                if(counter % 100 == 0) Program.Print("Renamed " + counter + " files...");
+            }
+            Program.PostProcessing(true, false);
+        }
+
+        public static void ReplaceInFilename (string path, string textToFind, string textToReplace)
+        {
+            //string pathNoExt = Path.ChangeExtension(path, null);
+            string ext = Path.GetExtension(path);
+            string newFilename = Path.GetFileNameWithoutExtension(path).Replace(textToFind, textToReplace);
+            string targetPath = Path.Combine(Path.GetDirectoryName(path), newFilename + ext);
+            if(File.Exists(targetPath))
+            {
+                Program.Print("Skipped " + path + " because a file with the target name already exists.");
+                return;
+            }
+            File.Move(path, targetPath);
         }
 
         public static void SetColorDepth (int bits)

@@ -65,7 +65,6 @@
   <ItemGroup>
     <Compile Include="AdjustUtils.cs" />
     <Compile Include="AdjustUtilsUI.cs" />
-    <Compile Include="ConsoleUtils.cs" />
     <Compile Include="ConvertUtils.cs" />
     <Compile Include="ConvertUtilsUI.cs" />
     <Compile Include="CrunchInterface.cs" />
@@ -75,6 +74,7 @@
     <Compile Include="DdsOptionsWindow.Designer.cs">
       <DependentUpon>DdsOptionsWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="EffectsUtils.cs" />
     <Compile Include="EffectUtils.cs" />
     <Compile Include="FlifInterface.cs" />
     <Compile Include="FlifOptionsWindow.cs">
@@ -91,6 +91,12 @@
     </Compile>
     <Compile Include="FormatOptions.cs" />
     <Compile Include="FormatUtils.cs" />
+    <Compile Include="ImagePreviewPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImagePreviewPopup.Designer.cs">
+      <DependentUpon>ImagePreviewPopup.cs</DependentUpon>
+    </Compile>
     <Compile Include="IOUtils.cs" />
     <Compile Include="OtherUtils.cs" />
     <Compile Include="OtherUtilsUI.cs" />
@@ -125,6 +131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImagePreviewPopup.resx">
+      <DependentUpon>ImagePreviewPopup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

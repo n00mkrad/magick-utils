@@ -17,7 +17,7 @@ namespace MagickUtils
                 Program.ShowProgress("Converting Image ", counter, files.Length);
                 ConvertUtils.ConvertToJpegRandomQuality(file.FullName, qMin, qMax, delSrc);
                 counter++;
-                if(counter % 20 == 0) await Program.PutTaskDelay();
+                if(counter % 10 == 0) await Program.PutTaskDelay();
             }
             Program.PostProcessing();
         }
@@ -33,7 +33,7 @@ namespace MagickUtils
                 Program.ShowProgress("Converting Image ", counter, files.Length);
                 ConvertUtils.ConvertToPng(file.FullName, q, delSrc);
                 counter++;
-                if(counter % 5 == 0) await Program.PutTaskDelay();
+                if(counter % 2 == 0) await Program.PutTaskDelay();
             }
             Program.PostProcessing(true);
         }

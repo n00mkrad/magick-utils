@@ -20,6 +20,11 @@ namespace MagickUtils
         {
             crunchDdsCbox.Checked = FormatOptions.ddsUseCrunch;
             crunchPanel.Enabled = FormatOptions.ddsUseCrunch;
+            if(CrunchInterface.currentQual == CrunchInterface.DXTQuality.superfast) dxtQualCombox.SelectedIndex = 0;
+            if(CrunchInterface.currentQual == CrunchInterface.DXTQuality.fast) dxtQualCombox.SelectedIndex = 1;
+            if(CrunchInterface.currentQual == CrunchInterface.DXTQuality.normal) dxtQualCombox.SelectedIndex = 2;
+            if(CrunchInterface.currentQual == CrunchInterface.DXTQuality.better) dxtQualCombox.SelectedIndex = 3;
+            if(CrunchInterface.currentQual == CrunchInterface.DXTQuality.uber) dxtQualCombox.SelectedIndex = 4;
         }
 
         private void dxtQualCombox_SelectedIndexChanged (object sender, EventArgs e)

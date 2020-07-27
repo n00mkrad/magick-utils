@@ -6,7 +6,6 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Linq;
-using System.Collections;
 
 namespace MagickUtils
 {
@@ -14,16 +13,17 @@ namespace MagickUtils
     {
         public static string currentDir;
         public static string currentExt;
-        public static bool recursive;
 
-        public static bool exclIncompatible;
         public static Form mainForm;
         public static TextBox logTbox;
         public static ProgressBar progBar;
 
+        public static string previewImgPath;
+
 
         public enum ImageFormat { JPG, PNG, DDS, TGA, WEBP, J2K, FLIF }
 
+        [STAThread]
         static void Main (string[] args)
         {
             Application.EnableVisualStyles();
@@ -36,6 +36,8 @@ namespace MagickUtils
         private static void OnFormClose (Object sender, FormClosingEventArgs e)
         {
             CrunchInterface.DeleteExe();
+            string tempImgPath = Path.Combine(IOUtils.GetAppDataDir(), "previewImg.png");
+            if(File.Exists(tempImgPath)) File.Delete(tempImgPath);
         }
 
         static void PrintFilesInDir (string ext)
@@ -64,22 +66,28 @@ namespace MagickUtils
             progBar.Value = (int)Math.Round((float)current / amount * 100);
         }
 
-        public static void PreProcessing ()
+        public static void PreProcessing (bool startStopwatch = false, bool showSize = true)
         {
             dirSizePre = 0;
             dirSizePre = IOUtils.GetDirSize(new DirectoryInfo(currentDir));
-            Print("\nFolder size before processing: " + Format.Filesize(dirSizePre) + "\n");
+            if(showSize)
+                Print("\nFolder size before processing: " + Format.Filesize(dirSizePre) + "\n");
             sw.Reset();
+            if(startStopwatch) sw.Start();
         }
 
-        public static void PostProcessing (bool showStopwatch = false)
+        public static void PostProcessing (bool showStopwatch = false, bool showSize = true)
         {
+            sw.Stop();
             dirSizeAfter = 0;
             dirSizeAfter = IOUtils.GetDirSize(new DirectoryInfo(currentDir));
-            Print("\nFolder size after processing: " + Format.Filesize(dirSizeAfter) + " from " + Format.Filesize(dirSizePre));
-            Print("Size ratio: " + Format.Ratio(dirSizePre, dirSizeAfter) + " of original size");
             if(showStopwatch)
                 Print("Processing time (no I/O or other overhead counted): " + Format.TimeSw(sw));
+            if(showSize)
+            {
+                Print("\nFolder size after processing: " + Format.Filesize(dirSizeAfter) + " from " + Format.Filesize(dirSizePre));
+                Print("Size ratio: " + Format.Ratio(dirSizePre, dirSizeAfter) + " of original size");
+            }
             progBar.Value = 0;
         }
 

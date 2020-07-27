@@ -14,3 +14,4 @@ C:\Users\NMKD\source\repos\MagickUtils\obj\Debug\MagickUtils.Properties.Resource
 C:\Users\NMKD\source\repos\MagickUtils\obj\Debug\MagickUtils.DdsOptionsWindow.resources
 C:\Users\NMKD\source\repos\MagickUtils\obj\Debug\MagickUtils.FlifOptionsWindow.resources
 C:\Users\NMKD\source\repos\MagickUtils\obj\Debug\MagickUtils.csproj.Fody.CopyLocal.cache
+C:\Users\NMKD\source\repos\MagickUtils\obj\Debug\MagickUtils.ImagePreviewPopup.resources
