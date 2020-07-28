@@ -23,5 +23,20 @@ namespace MagickUtils
             WindowState = FormWindowState.Maximized;
             previewPicbox.ImageLocation = Program.previewImgPath;
         }
+
+        private void previewPicbox_Click (object sender, EventArgs e)
+        {
+            if(previewPicbox.SizeMode == PictureBoxSizeMode.CenterImage)
+            {
+                previewPicbox.SizeMode = PictureBoxSizeMode.Zoom;
+                return;
+            }
+
+            if(previewPicbox.SizeMode == PictureBoxSizeMode.Zoom)
+            {
+                previewPicbox.SizeMode = PictureBoxSizeMode.CenterImage;
+                return;
+            }
+        }
     }
 }

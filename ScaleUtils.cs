@@ -1,11 +1,11 @@
 ﻿using System;
 using System.IO;
 using ImageMagick;
-using FT = ImageMagick.FilterType;
 
 namespace MagickUtils
 {
     using SM = ScaleUtils.ScaleMode;
+    using FT = ImageMagick.FilterType;
 
     class ScaleUtils
     {

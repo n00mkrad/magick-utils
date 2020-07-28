@@ -137,6 +137,8 @@
             this.nameMustNotContainTbox = new System.Windows.Forms.TextBox();
             this.noisePreviewBtn = new System.Windows.Forms.Button();
             this.monoChrCbox = new System.Windows.Forms.CheckBox();
+            this.label41 = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -205,6 +207,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.AllowDrop = true;
+            this.tabPage1.Controls.Add(this.label41);
             this.tabPage1.Controls.Add(this.formatOptionsBtn);
             this.tabPage1.Controls.Add(this.label8);
             this.tabPage1.Controls.Add(this.qualityMaxCombox);
@@ -226,6 +230,8 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Convert";
             this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPage1.DragDrop += new System.Windows.Forms.DragEventHandler(this.tabPage1_DragDrop);
+            this.tabPage1.DragEnter += new System.Windows.Forms.DragEventHandler(this.tabPage1_DragEnter);
             // 
             // formatOptionsBtn
             // 
@@ -372,6 +378,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.AllowDrop = true;
+            this.tabPage2.Controls.Add(this.label42);
             this.tabPage2.Controls.Add(this.label13);
             this.tabPage2.Controls.Add(this.label14);
             this.tabPage2.Controls.Add(this.noOverwriteCbox);
@@ -400,6 +408,8 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Scale";
             this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPage2.DragDrop += new System.Windows.Forms.DragEventHandler(this.tabPage2_DragDrop);
+            this.tabPage2.DragEnter += new System.Windows.Forms.DragEventHandler(this.tabPage2_DragEnter);
             // 
             // label13
             // 
@@ -1331,6 +1341,28 @@
             this.monoChrCbox.Text = "Monochrome";
             this.monoChrCbox.UseVisualStyleBackColor = true;
             // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label41.Location = new System.Drawing.Point(103, 200);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(442, 13);
+            this.label41.TabIndex = 19;
+            this.label41.Text = "You can also drag and drop files into this area to process them instead of using " +
+    "a folder path.";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label42.Location = new System.Drawing.Point(103, 200);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(442, 13);
+            this.label42.TabIndex = 42;
+            this.label42.Text = "You can also drag and drop files into this area to process them instead of using " +
+    "a folder path.";
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -1499,5 +1531,7 @@
         private System.Windows.Forms.Button alphaOffBtn;
         private System.Windows.Forms.Button noisePreviewBtn;
         private System.Windows.Forms.CheckBox monoChrCbox;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Label label42;
     }
 }

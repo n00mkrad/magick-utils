@@ -53,34 +53,7 @@ namespace MagickUtils
 
         private void convertStartBtn_Click (object sender, EventArgs e)
         {
-            int qMin = int.Parse(qualityCombox.Text.Trim());
-            int qMax = qMin;
-            if(!string.IsNullOrWhiteSpace(qualityMaxCombox.Text.Trim()))
-                qMax = int.Parse(qualityMaxCombox.Text.Trim());
-
-            if(selectedFormat == Program.ImageFormat.JPG)
-                ConvertUtilsUI.ConvertDirToJpeg(qMin, qMax, delSrcCbox.Checked);
-
-            if(selectedFormat == Program.ImageFormat.PNG)
-                ConvertUtilsUI.ConvertDirToPng(qMin, delSrcCbox.Checked);
-
-            if(selectedFormat == Program.ImageFormat.DDS)
-            {
-                if(FormatOptions.ddsUseCrunch) ConvertUtilsUI.ConvertDirToDdsCrunch(qMin, qMax, delSrcCbox.Checked);
-                else ConvertUtilsUI.ConvertDirToDds(delSrcCbox.Checked);
-            }
-                
-            if(selectedFormat == Program.ImageFormat.TGA)
-                ConvertUtilsUI.ConvertDirToTga(delSrcCbox.Checked);
-
-            if(selectedFormat == Program.ImageFormat.WEBP)
-                ConvertUtilsUI.ConvertDirToWebp(qMin, delSrcCbox.Checked);
-
-            if(selectedFormat == Program.ImageFormat.J2K)
-                ConvertUtilsUI.ConvertDirToJpeg2000(qMin, delSrcCbox.Checked);
-
-            if(selectedFormat == Program.ImageFormat.FLIF)
-                ConvertUtilsUI.ConvertDirToFlif(qMin, delSrcCbox.Checked);
+            ConvertTabHelper.ConvertUsingPath(qualityCombox, qualityMaxCombox, selectedFormat, delSrcCbox);
         }
 
         private void pathTextbox_TextChanged (object sender, EventArgs e)
@@ -157,12 +130,7 @@ namespace MagickUtils
 
         private void DoScaleBtn_Click (object sender, EventArgs e)
         {
-            int sMin = int.Parse(minScaleCombox.Text);
-            int sMax = sMin;
-            if(!string.IsNullOrWhiteSpace(maxScaleCombox.Text.Trim()))
-                sMax = int.Parse(maxScaleCombox.Text);
-            int filterMode = filterModeCombox.SelectedIndex;
-            ScaleUtilsUI.ScaleDir(sMin, sMax, filterMode);
+            ScaleTabHelper.ScaleUsingPath(minScaleCombox, maxScaleCombox, filterModeCombox);
         }
 
         private void autoLevelBtn_Click (object sender, EventArgs e)
@@ -268,7 +236,6 @@ namespace MagickUtils
 
         private void MainForm_DragEnter (object sender, DragEventArgs e)
         {
-            Console.WriteLine("DragEnter!");
             e.Effect = DragDropEffects.Copy;
         }
 
@@ -359,6 +326,28 @@ namespace MagickUtils
             File.Copy(firstImg.FullName, tempImgPath);
             EffectsUtils.AddNoise(tempImgPath, GetNoiseTypeList(), int.Parse(attenuateCombox.Text.Trim()), monoChrCbox.Checked);
             PreviewImage(tempImgPath);
+        }
+
+        private void tabPage1_DragEnter (object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.Copy;
+        }
+
+        private void tabPage1_DragDrop (object sender, DragEventArgs e)
+        {
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            ConvertTabHelper.ConvertFileList(files, qualityCombox, qualityMaxCombox, selectedFormat, delSrcCbox);
+        }
+
+        private void tabPage2_DragEnter (object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.Copy;
+        }
+
+        private void tabPage2_DragDrop (object sender, DragEventArgs e)
+        {
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            ScaleTabHelper.ScaleFileList(files, minScaleCombox, maxScaleCombox, filterModeCombox);
         }
     }
 }
