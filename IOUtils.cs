@@ -117,5 +117,17 @@ namespace MagickUtils
             // if has extension then its a file; directory otherwise
             return string.IsNullOrWhiteSpace(Path.GetExtension(path));
         }
+
+        public static bool IsFileValid (string path)
+        {
+            if(path == null)
+                return false;
+            if(!File.Exists(path))
+                return false;
+            //if(new FileInfo(path).Length < 128)  <-- too much of an overhead for small files? maybe benchmark?
+                //return false;
+
+            return true;
+        }
     }
 }

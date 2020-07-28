@@ -9,7 +9,7 @@ namespace MagickUtils
 {
     class EffectsUtils
     {
-        public async static void AddNoiseDir (List<NoiseType> noiseTypes, double attenuate)
+        public async static void AddNoiseDir (List<NoiseType> noiseTypes, double attenuate, bool monoChrome)
         {
             int counter = 1;
             FileInfo[] files = IOUtils.GetFiles();
@@ -18,29 +18,31 @@ namespace MagickUtils
             foreach(FileInfo file in files)
             {
                 Program.ShowProgress("Adding Noise to Image ", counter, files.Length);
-                AddNoise(file.FullName, noiseTypes, attenuate);
+                AddNoise(file.FullName, noiseTypes, attenuate, monoChrome);
                 counter++;
                 if(counter % 2 == 0) await Program.PutTaskDelay();
             }
             Program.PostProcessing(true);
         }
 
-        public static void AddNoise (string path, List<NoiseType> noiseTypes, double attenuate)
+        public static void AddNoise (string path, List<NoiseType> noiseTypes, double attenuate, bool monoChrome)
         {
+            if(noiseTypes.Count < 1) return;
             MagickImage img = IOUtils.ReadImage(path);
             NoiseType chosenNoiseType = GetRandomNoiseType(noiseTypes);
-            img.AddNoise(chosenNoiseType, attenuate);
             PreProcessing(path, "- Noise Type: " + chosenNoiseType.ToString());
-            img.Write(path);
-            PostProcessing(img, path, path);
-        }
-
-        public static void AddNoiseMonochrome (string path, List<NoiseType> noiseTypes, double attenuate)
-        {
-            MagickImage img = IOUtils.ReadImage(path);
-            NoiseType chosenNoiseType = GetRandomNoiseType(noiseTypes);
-            img.AddNoise(chosenNoiseType, attenuate);
-            PreProcessing(path, "- Noise Type: " + chosenNoiseType.ToString());
+            if(monoChrome)
+            {
+                MagickImage noiseImg = new MagickImage(MagickColors.White, img.Width, img.Height);
+                noiseImg.AddNoise(chosenNoiseType, attenuate);
+                noiseImg.ColorSpace = ColorSpace.LinearGray;
+                noiseImg.Write(Path.Combine(IOUtils.GetAppDataDir(), "lastnoiseimg.png"));
+                img.Composite(noiseImg, CompositeOperator.Multiply);
+            }
+            else
+            {
+                img.AddNoise(chosenNoiseType, attenuate);
+            }
             img.Write(path);
             PostProcessing(img, path, path);
         }

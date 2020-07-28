@@ -20,6 +20,7 @@ namespace MagickUtils
         private void ImagePreviewPopup_Load (object sender, EventArgs e)
         {
             CenterToScreen();
+            WindowState = FormWindowState.Maximized;
             previewPicbox.ImageLocation = Program.previewImgPath;
         }
     }

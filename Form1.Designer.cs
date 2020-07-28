@@ -72,6 +72,13 @@
             this.label12 = new System.Windows.Forms.Label();
             this.scaleResampleCombox = new System.Windows.Forms.ComboBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.replaceOutputTbox = new System.Windows.Forms.TextBox();
+            this.label40 = new System.Windows.Forms.Label();
+            this.replaceInputTbox = new System.Windows.Forms.TextBox();
+            this.label38 = new System.Windows.Forms.Label();
+            this.replaceBtn = new System.Windows.Forms.Button();
+            this.label39 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
             this.suffixPrefixCombox = new System.Windows.Forms.ComboBox();
             this.suffixPrefixTbox = new System.Windows.Forms.TextBox();
@@ -102,6 +109,7 @@
             this.applyColorDepthBtn = new System.Windows.Forms.Button();
             this.label33 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.alphaOffBtn = new System.Windows.Forms.Button();
             this.remAlphaBlack = new System.Windows.Forms.Button();
             this.remAlphaWhite = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
@@ -124,21 +132,16 @@
             this.logTbox = new System.Windows.Forms.TextBox();
             this.extensionWildcardTip = new System.Windows.Forms.ToolTip(this.components);
             this.label36 = new System.Windows.Forms.Label();
-            this.nameMustContainTbox = new System.Windows.Forms.TextBox();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.replaceInputTbox = new System.Windows.Forms.TextBox();
-            this.label38 = new System.Windows.Forms.Label();
-            this.replaceBtn = new System.Windows.Forms.Button();
-            this.label39 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
-            this.replaceOutputTbox = new System.Windows.Forms.TextBox();
-            this.nameMustNotContainTbox = new System.Windows.Forms.TextBox();
             this.label36v2 = new System.Windows.Forms.Label();
-            this.alphaOffBtn = new System.Windows.Forms.Button();
+            this.nameMustContainTbox = new System.Windows.Forms.TextBox();
+            this.nameMustNotContainTbox = new System.Windows.Forms.TextBox();
+            this.noisePreviewBtn = new System.Windows.Forms.Button();
+            this.monoChrCbox = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.panel9.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -149,7 +152,6 @@
             this.panel1.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.panel7.SuspendLayout();
-            this.panel9.SuspendLayout();
             this.SuspendLayout();
             // 
             // pathTextbox
@@ -643,6 +645,73 @@
             this.tabPage3.Text = "File Handling";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // panel9
+            // 
+            this.panel9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel9.Controls.Add(this.replaceOutputTbox);
+            this.panel9.Controls.Add(this.label40);
+            this.panel9.Controls.Add(this.replaceInputTbox);
+            this.panel9.Controls.Add(this.label38);
+            this.panel9.Controls.Add(this.replaceBtn);
+            this.panel9.Controls.Add(this.label39);
+            this.panel9.Location = new System.Drawing.Point(6, 183);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(690, 31);
+            this.panel9.TabIndex = 35;
+            // 
+            // replaceOutputTbox
+            // 
+            this.replaceOutputTbox.Location = new System.Drawing.Point(380, 5);
+            this.replaceOutputTbox.Name = "replaceOutputTbox";
+            this.replaceOutputTbox.Size = new System.Drawing.Size(100, 20);
+            this.replaceOutputTbox.TabIndex = 34;
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(348, 8);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(26, 13);
+            this.label40.TabIndex = 33;
+            this.label40.Text = "with";
+            // 
+            // replaceInputTbox
+            // 
+            this.replaceInputTbox.Location = new System.Drawing.Point(242, 5);
+            this.replaceInputTbox.Name = "replaceInputTbox";
+            this.replaceInputTbox.Size = new System.Drawing.Size(100, 20);
+            this.replaceInputTbox.TabIndex = 9;
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.BackColor = System.Drawing.Color.Transparent;
+            this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label38.Location = new System.Drawing.Point(3, 8);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(122, 13);
+            this.label38.TabIndex = 8;
+            this.label38.Text = "Replace in Filename";
+            // 
+            // replaceBtn
+            // 
+            this.replaceBtn.Location = new System.Drawing.Point(485, 3);
+            this.replaceBtn.Name = "replaceBtn";
+            this.replaceBtn.Size = new System.Drawing.Size(200, 23);
+            this.replaceBtn.TabIndex = 32;
+            this.replaceBtn.Text = "Replace in Filenames";
+            this.replaceBtn.UseVisualStyleBackColor = true;
+            this.replaceBtn.Click += new System.EventHandler(this.replaceBtn_Click);
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(189, 8);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(47, 13);
+            this.label39.TabIndex = 20;
+            this.label39.Text = "Replace";
+            // 
             // panel8
             // 
             this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -977,6 +1046,16 @@
             this.panel2.Size = new System.Drawing.Size(690, 31);
             this.panel2.TabIndex = 13;
             // 
+            // alphaOffBtn
+            // 
+            this.alphaOffBtn.Location = new System.Drawing.Point(223, 3);
+            this.alphaOffBtn.Name = "alphaOffBtn";
+            this.alphaOffBtn.Size = new System.Drawing.Size(150, 23);
+            this.alphaOffBtn.TabIndex = 14;
+            this.alphaOffBtn.Text = "Alpha Off";
+            this.alphaOffBtn.UseVisualStyleBackColor = true;
+            this.alphaOffBtn.Click += new System.EventHandler(this.alphaOffBtn_Click);
+            // 
             // remAlphaBlack
             // 
             this.remAlphaBlack.Location = new System.Drawing.Point(535, 3);
@@ -1052,6 +1131,8 @@
             // panel7
             // 
             this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel7.Controls.Add(this.monoChrCbox);
+            this.panel7.Controls.Add(this.noisePreviewBtn);
             this.panel7.Controls.Add(this.label31);
             this.panel7.Controls.Add(this.attenuateCombox);
             this.panel7.Controls.Add(this.uniNoiseCbox);
@@ -1204,89 +1285,6 @@
             this.label36.Text = "Must Contain:";
             this.extensionWildcardTip.SetToolTip(this.label36, "Enter extension (not case sensitive). Example: \"png\"");
             // 
-            // nameMustContainTbox
-            // 
-            this.nameMustContainTbox.Location = new System.Drawing.Point(221, 43);
-            this.nameMustContainTbox.Name = "nameMustContainTbox";
-            this.nameMustContainTbox.Size = new System.Drawing.Size(100, 20);
-            this.nameMustContainTbox.TabIndex = 10;
-            this.nameMustContainTbox.TextChanged += new System.EventHandler(this.nameMustContainTbox_TextChanged);
-            // 
-            // panel9
-            // 
-            this.panel9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel9.Controls.Add(this.replaceOutputTbox);
-            this.panel9.Controls.Add(this.label40);
-            this.panel9.Controls.Add(this.replaceInputTbox);
-            this.panel9.Controls.Add(this.label38);
-            this.panel9.Controls.Add(this.replaceBtn);
-            this.panel9.Controls.Add(this.label39);
-            this.panel9.Location = new System.Drawing.Point(6, 183);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(690, 31);
-            this.panel9.TabIndex = 35;
-            // 
-            // replaceInputTbox
-            // 
-            this.replaceInputTbox.Location = new System.Drawing.Point(242, 5);
-            this.replaceInputTbox.Name = "replaceInputTbox";
-            this.replaceInputTbox.Size = new System.Drawing.Size(100, 20);
-            this.replaceInputTbox.TabIndex = 9;
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.BackColor = System.Drawing.Color.Transparent;
-            this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(3, 8);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(122, 13);
-            this.label38.TabIndex = 8;
-            this.label38.Text = "Replace in Filename";
-            // 
-            // replaceBtn
-            // 
-            this.replaceBtn.Location = new System.Drawing.Point(485, 3);
-            this.replaceBtn.Name = "replaceBtn";
-            this.replaceBtn.Size = new System.Drawing.Size(200, 23);
-            this.replaceBtn.TabIndex = 32;
-            this.replaceBtn.Text = "Replace in Filenames";
-            this.replaceBtn.UseVisualStyleBackColor = true;
-            this.replaceBtn.Click += new System.EventHandler(this.replaceBtn_Click);
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(189, 8);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(47, 13);
-            this.label39.TabIndex = 20;
-            this.label39.Text = "Replace";
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(348, 8);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(26, 13);
-            this.label40.TabIndex = 33;
-            this.label40.Text = "with";
-            // 
-            // replaceOutputTbox
-            // 
-            this.replaceOutputTbox.Location = new System.Drawing.Point(380, 5);
-            this.replaceOutputTbox.Name = "replaceOutputTbox";
-            this.replaceOutputTbox.Size = new System.Drawing.Size(100, 20);
-            this.replaceOutputTbox.TabIndex = 34;
-            // 
-            // nameMustNotContainTbox
-            // 
-            this.nameMustNotContainTbox.Location = new System.Drawing.Point(425, 43);
-            this.nameMustNotContainTbox.Name = "nameMustNotContainTbox";
-            this.nameMustNotContainTbox.Size = new System.Drawing.Size(100, 20);
-            this.nameMustNotContainTbox.TabIndex = 12;
-            this.nameMustNotContainTbox.TextChanged += new System.EventHandler(this.nameMustNotContainTbox_TextChanged);
-            // 
             // label36v2
             // 
             this.label36v2.AutoSize = true;
@@ -1297,15 +1295,41 @@
             this.label36v2.Text = "Must Not Contain:";
             this.extensionWildcardTip.SetToolTip(this.label36v2, "Enter extension (not case sensitive). Example: \"png\"");
             // 
-            // alphaOffBtn
+            // nameMustContainTbox
             // 
-            this.alphaOffBtn.Location = new System.Drawing.Point(223, 3);
-            this.alphaOffBtn.Name = "alphaOffBtn";
-            this.alphaOffBtn.Size = new System.Drawing.Size(150, 23);
-            this.alphaOffBtn.TabIndex = 14;
-            this.alphaOffBtn.Text = "Alpha Off";
-            this.alphaOffBtn.UseVisualStyleBackColor = true;
-            this.alphaOffBtn.Click += new System.EventHandler(this.alphaOffBtn_Click);
+            this.nameMustContainTbox.Location = new System.Drawing.Point(221, 43);
+            this.nameMustContainTbox.Name = "nameMustContainTbox";
+            this.nameMustContainTbox.Size = new System.Drawing.Size(100, 20);
+            this.nameMustContainTbox.TabIndex = 10;
+            this.nameMustContainTbox.TextChanged += new System.EventHandler(this.nameMustContainTbox_TextChanged);
+            // 
+            // nameMustNotContainTbox
+            // 
+            this.nameMustNotContainTbox.Location = new System.Drawing.Point(425, 43);
+            this.nameMustNotContainTbox.Name = "nameMustNotContainTbox";
+            this.nameMustNotContainTbox.Size = new System.Drawing.Size(100, 20);
+            this.nameMustNotContainTbox.TabIndex = 12;
+            this.nameMustNotContainTbox.TextChanged += new System.EventHandler(this.nameMustNotContainTbox_TextChanged);
+            // 
+            // noisePreviewBtn
+            // 
+            this.noisePreviewBtn.Location = new System.Drawing.Point(379, 3);
+            this.noisePreviewBtn.Name = "noisePreviewBtn";
+            this.noisePreviewBtn.Size = new System.Drawing.Size(100, 23);
+            this.noisePreviewBtn.TabIndex = 42;
+            this.noisePreviewBtn.Text = "Preview";
+            this.noisePreviewBtn.UseVisualStyleBackColor = true;
+            this.noisePreviewBtn.Click += new System.EventHandler(this.noisePreviewBtn_Click);
+            // 
+            // monoChrCbox
+            // 
+            this.monoChrCbox.AutoSize = true;
+            this.monoChrCbox.Location = new System.Drawing.Point(455, 34);
+            this.monoChrCbox.Name = "monoChrCbox";
+            this.monoChrCbox.Size = new System.Drawing.Size(88, 17);
+            this.monoChrCbox.TabIndex = 43;
+            this.monoChrCbox.Text = "Monochrome";
+            this.monoChrCbox.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -1341,6 +1365,8 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
             this.panel5.ResumeLayout(false);
@@ -1359,8 +1385,6 @@
             this.tabPage5.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
-            this.panel9.ResumeLayout(false);
-            this.panel9.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1473,5 +1497,7 @@
         private System.Windows.Forms.TextBox nameMustNotContainTbox;
         private System.Windows.Forms.Label label36v2;
         private System.Windows.Forms.Button alphaOffBtn;
+        private System.Windows.Forms.Button noisePreviewBtn;
+        private System.Windows.Forms.CheckBox monoChrCbox;
     }
 }

@@ -15,7 +15,7 @@ namespace MagickUtils
             MagickImage img = IOUtils.ReadImage(path);
             if(img.Width < minPixels || img.Height < minPixels)
             {
-                string fname = Path.ChangeExtension(path, null);
+                string fname = Path.GetFileName(path);
                 Program.Print("-> " + fname + " has a resolution of " + img.Width + "x" + img.Height + ", deleting...");
                 File.Delete(img.FileName);
             }
@@ -37,7 +37,7 @@ namespace MagickUtils
             img.BitDepth(bits);
             img.Depth = bits;
             img.Quality = Program.GetDefaultQuality(img);
-            string fname = Path.ChangeExtension(path, null);
+            string fname = Path.GetFileName(path);
             Program.Print("-> " + fname);
             img.Write(path);
         }

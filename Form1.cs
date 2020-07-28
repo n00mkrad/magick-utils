@@ -305,13 +305,18 @@ namespace MagickUtils
 
         private void addNoiseBtn_Click (object sender, EventArgs e)
         {
+            EffectsUtils.AddNoiseDir(GetNoiseTypeList(), int.Parse(attenuateCombox.Text.Trim()), monoChrCbox.Checked);
+        }
+
+        List<NoiseType> GetNoiseTypeList ()
+        {
             List<NoiseType> noiseTypes = new List<NoiseType>();
             if(gaussNoiseCbox.Checked) noiseTypes.Add(NoiseType.Gaussian);
             if(lapNoiseCbox.Checked) noiseTypes.Add(NoiseType.Laplacian);
             if(multGaussNoiseCbox.Checked) noiseTypes.Add(NoiseType.MultiplicativeGaussian);
             if(poiNoiseCbox.Checked) noiseTypes.Add(NoiseType.Poisson);
             if(uniNoiseCbox.Checked) noiseTypes.Add(NoiseType.Uniform);
-            EffectsUtils.AddNoiseDir(noiseTypes, int.Parse(attenuateCombox.Text.Trim()));
+            return noiseTypes;
         }
 
         private void button2_Click (object sender, EventArgs e)
@@ -338,12 +343,22 @@ namespace MagickUtils
 
         private void nameMustNotContainTbox_TextChanged (object sender, EventArgs e)
         {
-            IOUtils.nameMustContain = nameMustContainTbox.Text;
+            IOUtils.nameMustNotContain = nameMustNotContainTbox.Text;
         }
 
         private void alphaOffBtn_Click (object sender, EventArgs e)
         {
             OtherUtilsUI.RemTransparencyDir(2);
+        }
+
+        private void noisePreviewBtn_Click (object sender, EventArgs e)
+        {
+            FileInfo firstImg = IOUtils.GetFiles()[0];
+            string tempImgPath = Path.Combine(IOUtils.GetAppDataDir(), "noisepreview" + firstImg.Extension);
+            if(File.Exists(tempImgPath)) File.Delete(tempImgPath);
+            File.Copy(firstImg.FullName, tempImgPath);
+            EffectsUtils.AddNoise(tempImgPath, GetNoiseTypeList(), int.Parse(attenuateCombox.Text.Trim()), monoChrCbox.Checked);
+            PreviewImage(tempImgPath);
         }
     }
 }
