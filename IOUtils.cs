@@ -54,10 +54,7 @@ namespace MagickUtils
             Program.Print("Getting file list...");
             var exts = new[] { ".png", ".jpg", ".jpeg", ".dds", ".bmp", ".tga", ".webp", ".heic", ".jp2", ".flif" };
             if(!Program.IsPathValid(path))
-            {
-                MessageBox.Show("Invalid path!", "Error");
                 return new FileInfo[0];
-            }
             IEnumerable<string> filePaths;
             SearchOption rec = SearchOption.AllDirectories;
             SearchOption top = SearchOption.TopDirectoryOnly;

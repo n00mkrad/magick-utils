@@ -111,7 +111,7 @@ namespace MagickUtils
             logTbox.AppendText(Environment.NewLine + s);
         }
 
-        public static bool IsPathValid (string path)
+        public static bool IsPathValid (string path, bool showError = true)
         {
             try
             {
@@ -119,6 +119,8 @@ namespace MagickUtils
             }
             catch
             {
+                if(showError)
+                    MessageBox.Show("Invalid path!", "Error");
                 return false;
             }
             return true;

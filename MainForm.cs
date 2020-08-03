@@ -52,6 +52,7 @@ namespace MagickUtils
 
         private void convertStartBtn_Click (object sender, EventArgs e)
         {
+            if(!Program.IsPathValid(Program.currentDir)) return;
             ConvertTabHelper.ConvertUsingPath(qualityCombox, qualityMaxCombox, selectedFormat, delSrcCbox);
         }
 
@@ -129,42 +130,50 @@ namespace MagickUtils
 
         private void DoScaleBtn_Click (object sender, EventArgs e)
         {
+            if(!Program.IsPathValid(Program.currentDir)) return;
             ScaleTabHelper.ScaleUsingPath(minScaleCombox, maxScaleCombox, filterModeCombox);
         }
 
         private void autoLevelBtn_Click (object sender, EventArgs e)
         {
+            if(!Program.IsPathValid(Program.currentDir)) return;
             AdjustUtilsUI.AutoLevel(Program.currentDir, Program.currentExt, recursiveCbox.Checked);
         }
 
         private void remAlphaWhite_Click (object sender, EventArgs e)
         {
+            if(!Program.IsPathValid(Program.currentDir)) return;
             OtherUtilsUI.RemTransparencyDir(1);
         }
 
         private void remAlphaBlack_Click (object sender, EventArgs e)
         {
+            if(!Program.IsPathValid(Program.currentDir)) return;
             OtherUtilsUI.RemTransparencyDir(0);
         }
 
         private void delSmallImagesBtn_Click (object sender, EventArgs e)
         {
+            if(!Program.IsPathValid(Program.currentDir)) return;
             int minSize = int.Parse(delSmallImagesSizeCombox.Text);
             OtherUtilsUI.DelSmallImgsDir(minSize);
         }
 
         private void delFilesNotMatchingExtBtn_Click (object sender, EventArgs e)
         {
+            if(!Program.IsPathValid(Program.currentDir)) return;
             OtherUtilsUI.DelNotMatchingWildcard(recursiveCbox.Checked);
         }
 
         private void groupNormalsBtn_Click (object sender, EventArgs e)
         {
+            if(!Program.IsPathValid(Program.currentDir)) return;
             OtherUtilsUI.GroupNormalsWithTex(normalSuffixCombox.Text, diffSuffixCombox.Text, lowercaseCbox.Checked);
         }
 
         private void applyColorDepthBtn_Click (object sender, EventArgs e)
         {
+            if(!Program.IsPathValid(Program.currentDir)) return;
             if(colorDepthCombox.SelectedIndex == 0) OtherUtilsUI.SetColorDepth(24);
             if(colorDepthCombox.SelectedIndex == 1) OtherUtilsUI.SetColorDepth(16);
             if(colorDepthCombox.SelectedIndex == 2) OtherUtilsUI.SetColorDepth(12);
@@ -271,7 +280,8 @@ namespace MagickUtils
 
         private void addNoiseBtn_Click (object sender, EventArgs e)
         {
-            EffectsTabHelper.NoiseApply();
+            if(Program.IsPathValid(Program.currentDir))
+                EffectsTabHelper.NoiseApply();
         }
 
         private void button2_Click (object sender, EventArgs e)
@@ -345,7 +355,8 @@ namespace MagickUtils
 
         private void blurPrevBtn_Click (object sender, EventArgs e)
         {
-            EffectsTabHelper.BlurPreview();
+            if(Program.IsPathValid(Program.currentDir))
+                EffectsTabHelper.BlurPreview();
         }
 
         public void SetNoiseVars ()
@@ -373,22 +384,26 @@ namespace MagickUtils
 
         private void blurBtn_Click (object sender, EventArgs e)
         {
-            EffectsTabHelper.BlurApply();
+            if(Program.IsPathValid(Program.currentDir))
+                EffectsTabHelper.BlurApply();
         }
 
         private void noisePreviewBtn_Click (object sender, EventArgs e)
         {
-            EffectsTabHelper.NoisePreview();
+            if(Program.IsPathValid(Program.currentDir))
+                EffectsTabHelper.NoisePreview();
         }
 
         private void delMissingBtn_Click (object sender, EventArgs e)
         {
-            OtherUtilsUI.DelMissing(checkDirTbox.Text.Trim(), false);
+            if(Program.IsPathValid(Program.currentDir))
+                OtherUtilsUI.DelMissing(checkDirTbox.Text.Trim(), false);
         }
 
         private void delMissingTestBtn_Click (object sender, EventArgs e)
         {
-            OtherUtilsUI.DelMissing(checkDirTbox.Text.Trim(), true);
+            if(Program.IsPathValid(Program.currentDir))
+                OtherUtilsUI.DelMissing(checkDirTbox.Text.Trim(), true);
         }
     }
 }
