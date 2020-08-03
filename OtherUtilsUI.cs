@@ -43,7 +43,7 @@ namespace MagickUtils
             }
         }
 
-        public static void RemTransparencyDir (byte mode)
+        public static async void RemTransparencyDir (byte mode)
         {
             int counter = 1;
             FileInfo[] files = IOUtils.GetFiles();
@@ -53,6 +53,7 @@ namespace MagickUtils
                 Program.ShowProgress("Removing Alpha on Image ", counter, files.Length);
                 counter++;
                 OtherUtils.RemoveTransparency(file.FullName, mode);
+                if(counter % 5 == 0) await Program.PutTaskDelay();
             }
             Program.PostProcessing();
         }
@@ -60,7 +61,7 @@ namespace MagickUtils
         public static void AddSuffixPrefixDir (string text, bool suffix)
         {
             int counter = 1;
-            FileInfo[] files = IOUtils.GetFiles();
+            FileInfo[] files = IOUtils.GetFiles(Config.fileOperationsNoExtFilter);
             Program.PreProcessing(true, false);
             foreach(FileInfo file in files)
             {
@@ -86,7 +87,7 @@ namespace MagickUtils
         public static void ReplaceInFilenamesDir (string textToFind, string textToReplace)
         {
             int counter = 1;
-            FileInfo[] files = IOUtils.GetFiles();
+            FileInfo[] files = IOUtils.GetFiles(Config.fileOperationsNoExtFilter);
             Program.PreProcessing(true, false);
             foreach(FileInfo file in files)
             {
@@ -100,7 +101,6 @@ namespace MagickUtils
 
         public static void ReplaceInFilename (string path, string textToFind, string textToReplace)
         {
-            //string pathNoExt = Path.ChangeExtension(path, null);
             string ext = Path.GetExtension(path);
             string newFilename = Path.GetFileNameWithoutExtension(path).Replace(textToFind, textToReplace);
             string targetPath = Path.Combine(Path.GetDirectoryName(path), newFilename + ext);
@@ -112,7 +112,7 @@ namespace MagickUtils
             File.Move(path, targetPath);
         }
 
-        public static void SetColorDepth (int bits)
+        public static async void SetColorDepth (int bits)
         {
             int counter = 1;
             FileInfo[] files = IOUtils.GetFiles();
@@ -122,20 +122,13 @@ namespace MagickUtils
                 Program.ShowProgress("Setting color depth to " + bits + " on ", counter, files.Length);
                 counter++;
                 OtherUtils.SetColorDepth(file.FullName, bits);
+                if(counter % 2 == 0) await Program.PutTaskDelay();
             }
             Program.PostProcessing();
         }
 
         public static void DelSmallImgsDir (int minAxisLength)
         {
-            /*
-            string minAxisLength = "128";
-            Console.Write("[Default: 128] Set minimum length of shorter axis: ");
-            string minAxisLengthInput = Console.ReadLine();
-            if(!string.IsNullOrWhiteSpace(minAxisLengthInput.Trim())) minAxisLength = minAxisLengthInput;
-
-            */
-
             int counter = 1;
             FileInfo[] Files = IOUtils.GetFiles();
             Program.Print("Checking " + Files.Length + " images...");
@@ -151,28 +144,6 @@ namespace MagickUtils
 
         public static void GroupNormalsWithTex (string normalSuffixList, string diffuseSuffixList, bool lowercase)
         {
-            /*
-            string setPrefix = "unnamed";
-            Console.Write("[Default: 'unnamed'] Suffix for this texture set (e.g. game name): ");
-            string setSuffixInput = Console.ReadLine();
-            if(!string.IsNullOrWhiteSpace(setSuffixInput.Trim())) setPrefix = setSuffixInput;
-
-            string lowercase = "y";
-            Console.Write("[Default: y] Rename all files to lowercase first? (y/n): ");
-            string lowercaseInput = Console.ReadLine();
-            if(!string.IsNullOrWhiteSpace(lowercaseInput.Trim())) lowercase = lowercaseInput;
-
-            string normalSuffix = "_n";
-            Console.Write("[Default: '_n'] Suffixes of normal map textures, comma-separated: ");
-            string normalSuffixInput = Console.ReadLine();
-            if(!string.IsNullOrWhiteSpace(normalSuffixInput.Trim())) normalSuffix = normalSuffixInput
-
-            string albedoSuffix = "";
-            Console.Write("[Default: ''] Suffixes of albedo/base textures (can be empty for no suffix), comma-separated: ");
-            string albedoSuffixInput = Console.ReadLine();
-            if(!string.IsNullOrWhiteSpace(albedoSuffixInput.Trim())) albedoSuffix = albedoSuffixInput;
-            */
-
             string[] nrmSuffixes = normalSuffixList.Split(',');
             string[] albSuffixes = diffuseSuffixList.Split(',');
 
@@ -181,21 +152,24 @@ namespace MagickUtils
             OtherUtils.GroupNormalsWithTex(Program.currentExt, nrmSuffixes, albSuffixes, setPrefix, lowercase);
         }
 
-        public static void DelMissing ()
+        public static void DelMissing (string checkDir, bool testRun)
         {
-            string checkDir = "";
-            Console.Write("Enter second directory to check for paired files: ");
-            string dir2Input = Console.ReadLine();
-            if(!string.IsNullOrWhiteSpace(dir2Input.Trim())) checkDir = dir2Input;
+            RemoveMissingFiles(Program.currentDir, checkDir, testRun);
+        }
 
-            /*
-            string matchSize = "y";
-            Console.Write("[Default: y] Also match image size? (y/n): NOT IMPLEMENTED YET");
-            string matchSizeInput = Console.ReadLine();
-            if(!string.IsNullOrWhiteSpace(matchSizeInput.Trim())) matchSize = matchSizeInput;
-            */
-
-            OtherUtils.RemoveMissingFiles(Program.currentExt, checkDir);
+        public static void RemoveMissingFiles (string path, string checkDir, bool testRun)
+        {
+            FileInfo[] Files = IOUtils.GetFiles(Config.fileOperationsNoExtFilter);
+            Program.Print("Checking " + Files.Length + " files...");
+            foreach(FileInfo file in Files)
+            {
+                if(!File.Exists(Path.Combine(checkDir, file.Name)))
+                {
+                    Program.Print(" -> " + file.Name + " doesn't exist in second dir, will delete");
+                    if(!testRun)
+                        File.Delete(file.FullName);
+                }
+            }
         }
     }
 }

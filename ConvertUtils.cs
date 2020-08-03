@@ -104,15 +104,20 @@ namespace MagickUtils
             Program.sw.Stop();
             img.Dispose();
             long bytesPost = new FileInfo(outPath).Length;
-            Program.Print("  -> Done. Size pre: " + Format.Filesize(bytesPre) + " - Size post: " + Format.Filesize(bytesPost) + " - Ratio: " + Format.Ratio(bytesPre, bytesPost));
+            Program.Print("-> Done. Size pre: " + Format.Filesize(bytesPre) + " - Size post: " + Format.Filesize(bytesPost) + " - Ratio: " + Format.Ratio(bytesPre, bytesPost));
             if(delSource)
-                DelSource(sourcePath);
+                DelSource(sourcePath, outPath);
         }
 
-        static void DelSource (string path)
+        static void DelSource (string sourcePath, string newPath)
         {
-            Program.Print("  -> Deleting source file: " + Path.GetFileName(path) + "...\n");
-            File.Delete(path);
+            if(Path.GetExtension(sourcePath) == Path.GetExtension(newPath))
+            {
+                Program.Print("-> Not deleting " + Path.GetFileName(sourcePath) + " as it was overwritten");
+                return;
+            }
+            Program.Print("-> Deleting source file: " + Path.GetFileName(sourcePath) + "...");
+            File.Delete(sourcePath);
         }
     }
 }

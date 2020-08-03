@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,7 +12,7 @@ namespace MagickUtils
 {
     class EffectsUtils
     {
-        public async static void AddNoiseDir (List<NoiseType> noiseTypes, double attenuate, bool monoChrome)
+        public async static void AddNoiseDir (List<NoiseType> noiseTypes, double attenMin, double attenMax, bool monoChrome)
         {
             int counter = 1;
             FileInfo[] files = IOUtils.GetFiles();
@@ -18,30 +21,33 @@ namespace MagickUtils
             foreach(FileInfo file in files)
             {
                 Program.ShowProgress("Adding Noise to Image ", counter, files.Length);
-                AddNoise(file.FullName, noiseTypes, attenuate, monoChrome);
+                AddNoise(file.FullName, noiseTypes, attenMin, attenMax, monoChrome);
                 counter++;
                 if(counter % 2 == 0) await Program.PutTaskDelay();
             }
             Program.PostProcessing(true);
         }
 
-        public static void AddNoise (string path, List<NoiseType> noiseTypes, double attenuate, bool monoChrome)
+        public static void AddNoise (string path, List<NoiseType> noiseTypes, double attenMin, double attenMax, bool monoChrome)
         {
             if(noiseTypes.Count < 1) return;
             MagickImage img = IOUtils.ReadImage(path);
             NoiseType chosenNoiseType = GetRandomNoiseType(noiseTypes);
             PreProcessing(path, "- Noise Type: " + chosenNoiseType.ToString());
+            Random rand = new Random();
+            double att = (double)rand.Next((int)attenMin, (int)attenMax + 1);
+            Program.Print("-> Using attenuate factor " + att);
             if(monoChrome)
             {
                 MagickImage noiseImg = new MagickImage(MagickColors.White, img.Width, img.Height);
-                noiseImg.AddNoise(chosenNoiseType, attenuate);
+                noiseImg.AddNoise(chosenNoiseType, att);
                 noiseImg.ColorSpace = ColorSpace.LinearGray;
                 noiseImg.Write(Path.Combine(IOUtils.GetAppDataDir(), "lastnoiseimg.png"));
                 img.Composite(noiseImg, CompositeOperator.Multiply);
             }
             else
             {
-                img.AddNoise(chosenNoiseType, attenuate);
+                img.AddNoise(chosenNoiseType, att);
             }
             img.Write(path);
             PostProcessing(img, path, path);
@@ -54,6 +60,42 @@ namespace MagickUtils
             return typesList[index];
         }
 
+        public static async void BlurDir (int radiusMin, int radiusMax)
+        {
+            int counter = 1;
+            FileInfo[] files = IOUtils.GetFiles();
+
+            Program.PreProcessing();
+            foreach(FileInfo file in files)
+            {
+                Program.ShowProgress("Blurring Image ", counter, files.Length);
+                Blur(file.FullName, radiusMin, radiusMax);
+                counter++;
+                if(counter % 2 == 0) await Program.PutTaskDelay();
+            }
+            Program.PostProcessing(true);
+        }
+
+        public static void Blur (string path, int radiusMin, int radiusMax)
+        {
+            PreProcessing(path);
+            MagickImage sourceImg = new MagickImage(path);
+            var image = Image.FromFile(path);
+            var blur = new SuperfastBlur.GaussianBlur(image as Bitmap);
+            Random rand = new Random();
+            int blurRad = rand.Next(radiusMin, radiusMax + 1);
+            Program.Print("-> Using radius " + blurRad);
+            var result = blur.Process(blurRad);
+            string tempPath = Path.Combine(IOUtils.GetAppDataDir(), "blur-out.png");
+            result.Save(tempPath, ImageFormat.Png);
+            result.Dispose();
+            image.Dispose();
+            MagickImage outImg = new MagickImage(tempPath);
+            outImg.Format = sourceImg.Format;
+            outImg.Write(path);
+            PostProcessing(null, path, path);
+        }
+
         static void PreProcessing (string path, string infoSuffix = null)
         {
             Program.Print("-> Processing " + Path.GetFileName(path) + " " + infoSuffix);
@@ -63,7 +105,8 @@ namespace MagickUtils
         static void PostProcessing (MagickImage img, string sourcePath, string outPath, bool delSource = false)
         {
             Program.sw.Stop();
-            img.Dispose();
+            if(img != null)
+                img.Dispose();
             long bytesPost = new FileInfo(outPath).Length;
             //Program.Print("  -> Done. Size pre: " + Format.Filesize(bytesPre) + " - Size post: " + Format.Filesize(bytesPost) + " - Ratio: " + Format.Ratio(bytesPre, bytesPost));
             Program.Print("  -> Done.");

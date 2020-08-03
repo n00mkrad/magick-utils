@@ -14,7 +14,7 @@ namespace MagickUtils
         public static string currentDir;
         public static string currentExt;
 
-        public static Form mainForm;
+        public static MainForm mainForm;
         public static TextBox logTbox;
         public static ProgressBar progBar;
 

@@ -46,7 +46,7 @@ namespace MagickUtils
             return size;
         }
 
-        public static FileInfo[] GetFiles ()
+        public static FileInfo[] GetFiles (bool allFiles = false)
         {
             string path = Program.currentDir;
             string ext = Program.currentExt;
@@ -65,7 +65,7 @@ namespace MagickUtils
             if(recursive)
             {
                 // Get files recursively and check if the extension is compatible
-                if(IOUtils.exclIncompatible)
+                if(!allFiles)
                     filePaths = Directory.GetFiles(path, "*." + ext, rec).Where(file => exts.Any(x => file.EndsWith(x, ignCase)));
                 else
                     filePaths = Directory.GetFiles(path, "*." + ext, rec);
@@ -73,7 +73,7 @@ namespace MagickUtils
             else
             {
                 // Get files (path root only) and check if the extension is compatible
-                if(IOUtils.exclIncompatible)
+                if(!allFiles)
                     filePaths = Directory.GetFiles(path, "*." + ext, top).Where(file => exts.Any(x => file.EndsWith(x, ignCase)));
                 else
                     filePaths = Directory.GetFiles(path, "*." + ext, top);

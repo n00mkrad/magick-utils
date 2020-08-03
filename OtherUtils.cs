@@ -93,22 +93,6 @@ namespace MagickUtils
             }
         }
 
-        public static void RemoveMissingFiles (string ext, string checkDir)
-        {
-            DirectoryInfo d = new DirectoryInfo(Program.currentDir);
-            FileInfo[] Files = d.GetFiles("*." + ext);
-            int i = 1;
-            foreach(FileInfo file in Files)
-            {
-                Program.Print("Checking " + Path.Combine(checkDir, file.Name));
-                if(!File.Exists(Path.Combine(checkDir, file.Name)))
-                {
-                    Program.Print(" -> " + file.Name + " doesn't exist in second dir, deleting...");
-                    File.Delete(file.FullName);
-                }
-            }
-        }
-
         static bool DimensionsMatch (string imgPath1, string imgPath2)
         {
             MagickImage img1 = new MagickImage(imgPath1);
