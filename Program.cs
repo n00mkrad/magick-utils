@@ -82,7 +82,7 @@ namespace MagickUtils
             dirSizeAfter = 0;
             dirSizeAfter = IOUtils.GetDirSize(new DirectoryInfo(currentDir));
             if(showStopwatch)
-                Print("Processing time (no I/O or other overhead counted): " + Format.TimeSw(sw));
+                Print("Processing time: " + Format.TimeSw(sw));
             if(showSize)
             {
                 Print("\nFolder size after processing: " + Format.Filesize(dirSizeAfter) + " from " + Format.Filesize(dirSizePre));

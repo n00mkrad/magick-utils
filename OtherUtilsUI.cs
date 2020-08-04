@@ -94,8 +94,9 @@ namespace MagickUtils
                 ReplaceInFilename(file.FullName, textToFind, textToReplace);
                 Program.ShowProgress("", counter, files.Length);
                 counter++;
-                if(counter % 100 == 0) Program.Print("Renamed " + counter + " files...");
+                if(counter % 100 == 0) Program.Print("Processed " + counter + " files...");
             }
+            Program.Print("Done - Processed " + counter + " files.");
             Program.PostProcessing(true, false);
         }
 
