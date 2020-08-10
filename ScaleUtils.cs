@@ -72,7 +72,7 @@ namespace MagickUtils
             }
             if(currMode == SM.Width || (currMode == SM.LongerSide && widthIsLonger) || (currMode == SM.ShorterSide && heightIsLonger))
             {
-                if(onlyDownscale && (img.Height <= targetScale))
+                if(onlyDownscale && (img.Width <= targetScale))
                     return;
                 Program.Print("  -> Scaling to " + targetScale + "px width with filter " + filter + "...");
                 MagickGeometry geom = new MagickGeometry(targetScale + "x");
