@@ -38,10 +38,15 @@ namespace MagickUtils
             InitCombox(formatCombox, 0);
             InitCombox(colorDepthCombox, 3);
             InitCombox(suffixPrefixCombox, 0);
+            InitCombox(inpaintColorCombox, 0);
+            InitCombox(inpaintScaleCombox, 1);
 
             IOUtils.recursive = recursiveCbox.Checked;
 
             ScaleUtils.onlyDownscale = onlyDownscaleCbox.Checked;
+
+            Program.Print(ImageMagick.ResourceLimits.Area.ToString());
+            Program.Print(ImageMagick.ResourceLimits.Height.ToString());
         }
 
         void InitCombox (ComboBox cbox, int index)
@@ -404,6 +409,20 @@ namespace MagickUtils
         {
             if(Program.IsPathValid(Program.currentDir))
                 OtherUtilsUI.DelMissing(checkDirTbox.Text.Trim(), true);
+        }
+
+        private void inpaintEraseBtn_Click(object sender, EventArgs e)
+        {
+            List<InpaintUtils.PatternType> patternsToUse = new List<InpaintUtils.PatternType>();
+            if (inpaintThinLines.Checked) patternsToUse.Add(InpaintUtils.PatternType.ThinLines);
+            if (inpaintThickLines.Checked) patternsToUse.Add(InpaintUtils.PatternType.ThickLines);
+            if (inpaintCircles.Checked) patternsToUse.Add(InpaintUtils.PatternType.Circles);
+            if (inpaintGrid.Checked) patternsToUse.Add(InpaintUtils.PatternType.Grid);
+            MagickColor color = new MagickColor("#00FF00");
+            if (inpaintColorCombox.SelectedIndex == 1) /* Pink */ color = new MagickColor("#FF00AA");
+            if (inpaintColorCombox.SelectedIndex == 2) /* Black */ color = MagickColors.Black;
+            if (inpaintColorCombox.SelectedIndex == 3) /* White */ color = MagickColors.White;
+            InpaintUtils.EraseDir(patternsToUse, inpaintScaleCombox.SelectedIndex, color);
         }
     }
 }

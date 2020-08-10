@@ -80,7 +80,6 @@
     </Compile>
     <Compile Include="EffectsTabHelper.cs" />
     <Compile Include="EffectsUtils.cs" />
-    <Compile Include="EffectUtils.cs" />
     <Compile Include="FlifInterface.cs" />
     <Compile Include="FlifOptionsWindow.cs">
       <SubType>Form</SubType>
@@ -88,6 +87,7 @@
     <Compile Include="FlifOptionsWindow.Designer.cs">
       <DependentUpon>FlifOptionsWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="InpaintUtils.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +104,7 @@
       <DependentUpon>ImagePreviewPopup.cs</DependentUpon>
     </Compile>
     <Compile Include="IOUtils.cs" />
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="OtherUtils.cs" />
     <Compile Include="OtherUtilsUI.cs" />
     <Compile Include="Program.cs" />
@@ -119,9 +120,33 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="inpaint-imgs\res\inpaint-circles-1024px.pngfile" />
+    <None Include="inpaint-imgs\res\inpaint-circles-2048px.pngfile" />
+    <None Include="inpaint-imgs\res\inpaint-circles-512px.pngfile" />
+    <None Include="inpaint-imgs\res\inpaint-grid-1024px.pngfile" />
+    <None Include="inpaint-imgs\res\inpaint-grid-2048px.pngfile" />
+    <None Include="inpaint-imgs\res\inpaint-grid-512px.pngfile" />
+    <None Include="inpaint-imgs\res\inpaint-thicklines1-1024px.pngfile" />
+    <None Include="inpaint-imgs\res\inpaint-thicklines1-2048px.pngfile" />
+    <None Include="inpaint-imgs\res\inpaint-thicklines1-512px.pngfile" />
+    <None Include="inpaint-imgs\res\inpaint-thinlines1-1024px.pngfile" />
+    <None Include="inpaint-imgs\res\inpaint-thinlines1-2048px.pngfile" />
+    <None Include="inpaint-imgs\res\inpaint-thinlines1-512px.pngfile" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\inpaint-thinlines1-2048px.png" />
+    <None Include="Resources\inpaint-thinlines1-1024px.png" />
+    <None Include="Resources\inpaint-thinlines1-512px.png" />
+    <None Include="Resources\inpaint-thicklines1-2048px.png" />
+    <None Include="Resources\inpaint-thicklines1-1024px.png" />
+    <None Include="Resources\inpaint-thicklines1-512px.png" />
+    <None Include="Resources\inpaint-grid-2048px.png" />
+    <None Include="Resources\inpaint-grid-1024px.png" />
+    <None Include="Resources\inpaint-grid-512px.png" />
+    <None Include="Resources\inpaint-circles-2048px.png" />
+    <None Include="Resources\inpaint-circles-1024px.png" />
+    <None Include="Resources\inpaint-circles-512px.png" />
     <None Include="crunch.exe" />
     <None Include="flif.exe" />
     <Content Include="NMKD2020-nonly1-smoothed.ico" />

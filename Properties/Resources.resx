@@ -124,4 +124,40 @@
   <data name="flif" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\flif.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="inpaint_circles_1024px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\inpaint-imgs\res\inpaint-circles-1024px.pngfile;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="inpaint_circles_2048px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\inpaint-imgs\res\inpaint-circles-2048px.pngfile;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="inpaint_circles_512px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\inpaint-imgs\res\inpaint-circles-512px.pngfile;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="inpaint_grid_1024px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\inpaint-imgs\res\inpaint-grid-1024px.pngfile;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="inpaint_grid_2048px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\inpaint-imgs\res\inpaint-grid-2048px.pngfile;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="inpaint_grid_512px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\inpaint-imgs\res\inpaint-grid-512px.pngfile;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="inpaint_thicklines1_1024px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\inpaint-imgs\res\inpaint-thicklines1-1024px.pngfile;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="inpaint_thicklines1_2048px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\inpaint-imgs\res\inpaint-thicklines1-2048px.pngfile;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="inpaint_thicklines1_512px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\inpaint-imgs\res\inpaint-thicklines1-512px.pngfile;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="inpaint_thinlines1_1024px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\inpaint-imgs\res\inpaint-thinlines1-1024px.pngfile;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="inpaint_thinlines1_2048px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\inpaint-imgs\res\inpaint-thinlines1-2048px.pngfile;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="inpaint_thinlines1_512px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\inpaint-imgs\res\inpaint-thinlines1-512px.pngfile;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

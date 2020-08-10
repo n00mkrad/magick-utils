@@ -79,5 +79,125 @@ namespace MagickUtils.Properties {
                 return ((byte[])(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] inpaint_circles_1024px {
+            get {
+                object obj = ResourceManager.GetObject("inpaint_circles_1024px", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] inpaint_circles_2048px {
+            get {
+                object obj = ResourceManager.GetObject("inpaint_circles_2048px", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] inpaint_circles_512px {
+            get {
+                object obj = ResourceManager.GetObject("inpaint_circles_512px", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] inpaint_grid_1024px {
+            get {
+                object obj = ResourceManager.GetObject("inpaint_grid_1024px", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] inpaint_grid_2048px {
+            get {
+                object obj = ResourceManager.GetObject("inpaint_grid_2048px", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] inpaint_grid_512px {
+            get {
+                object obj = ResourceManager.GetObject("inpaint_grid_512px", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] inpaint_thicklines1_1024px {
+            get {
+                object obj = ResourceManager.GetObject("inpaint_thicklines1_1024px", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] inpaint_thicklines1_2048px {
+            get {
+                object obj = ResourceManager.GetObject("inpaint_thicklines1_2048px", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] inpaint_thicklines1_512px {
+            get {
+                object obj = ResourceManager.GetObject("inpaint_thicklines1_512px", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] inpaint_thinlines1_1024px {
+            get {
+                object obj = ResourceManager.GetObject("inpaint_thinlines1_1024px", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] inpaint_thinlines1_2048px {
+            get {
+                object obj = ResourceManager.GetObject("inpaint_thinlines1_2048px", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] inpaint_thinlines1_512px {
+            get {
+                object obj = ResourceManager.GetObject("inpaint_thinlines1_512px", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }
