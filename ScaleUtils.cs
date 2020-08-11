@@ -59,10 +59,11 @@ namespace MagickUtils
             int targetScale = rand.Next(minScale, maxScale + 1);
             img.FilterType = filter;
 
-            bool heightIsLonger = img.Height > img.Width;
-            bool widthIsLonger = img.Width > img.Height;
+            bool heightLonger = img.Height > img.Width;
+            bool widthLonger = img.Width > img.Height;
+            bool square = (img.Height == img.Width);
 
-            if(currMode == SM.Height || (currMode == SM.LongerSide && heightIsLonger) || (currMode == SM.ShorterSide && widthIsLonger))
+            if(square || currMode == SM.Height || (currMode == SM.LongerSide && heightLonger) || (currMode == SM.ShorterSide && widthLonger))
             {
                 if(onlyDownscale && (img.Height <= targetScale))
                     return;
@@ -70,7 +71,7 @@ namespace MagickUtils
                 MagickGeometry geom = new MagickGeometry("x" + targetScale);
                 img.Resize(geom);
             }
-            if(currMode == SM.Width || (currMode == SM.LongerSide && widthIsLonger) || (currMode == SM.ShorterSide && heightIsLonger))
+            if(currMode == SM.Width || (currMode == SM.LongerSide && widthLonger) || (currMode == SM.ShorterSide && heightLonger))
             {
                 if(onlyDownscale && (img.Width <= targetScale))
                     return;
