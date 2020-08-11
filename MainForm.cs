@@ -40,13 +40,13 @@ namespace MagickUtils
             InitCombox(suffixPrefixCombox, 0);
             InitCombox(inpaintColorCombox, 0);
             InitCombox(inpaintScaleCombox, 1);
+            InitCombox(delImgsMode, 0);
+            InitCombox(delImgOperator, 0);
+            InitCombox(cropDivision, 1);
 
             IOUtils.recursive = recursiveCbox.Checked;
 
             ScaleUtils.onlyDownscale = onlyDownscaleCbox.Checked;
-
-            Program.Print(ImageMagick.ResourceLimits.Area.ToString());
-            Program.Print(ImageMagick.ResourceLimits.Height.ToString());
         }
 
         void InitCombox (ComboBox cbox, int index)
@@ -161,7 +161,19 @@ namespace MagickUtils
         {
             if(!Program.IsPathValid(Program.currentDir)) return;
             int minSize = int.Parse(delSmallImagesSizeCombox.Text);
-            OtherUtilsUI.DelSmallImgsDir(minSize);
+            ImageSizeFilterUtils.SizeMode sizeMode = ImageSizeFilterUtils.SizeMode.Height;
+            if (delImgsMode.SelectedIndex == 1) sizeMode = ImageSizeFilterUtils.SizeMode.Width;
+            if (delImgsMode.SelectedIndex == 2) sizeMode = ImageSizeFilterUtils.SizeMode.LongerSide;
+            if (delImgsMode.SelectedIndex == 3) sizeMode = ImageSizeFilterUtils.SizeMode.ShorterSide;
+            if (delImgsMode.SelectedIndex == 4) sizeMode = ImageSizeFilterUtils.SizeMode.EitherSide;
+            if (delImgsMode.SelectedIndex == 5) sizeMode = ImageSizeFilterUtils.SizeMode.BothSides;
+            ImageSizeFilterUtils.Operator op = ImageSizeFilterUtils.Operator.IsNot;
+            if (delImgOperator.SelectedIndex == 1) op = ImageSizeFilterUtils.Operator.Is;
+            if (delImgOperator.SelectedIndex == 2) op = ImageSizeFilterUtils.Operator.IsSmaller;
+            if (delImgOperator.SelectedIndex == 3) op = ImageSizeFilterUtils.Operator.IsBigger;
+            if (delImgOperator.SelectedIndex == 4) op = ImageSizeFilterUtils.Operator.Divisible;
+            if (delImgOperator.SelectedIndex == 5) op = ImageSizeFilterUtils.Operator.NotDivisible;
+            OtherUtilsUI.DelSmallImgsDir(minSize, sizeMode, op);
         }
 
         private void delFilesNotMatchingExtBtn_Click (object sender, EventArgs e)
@@ -423,6 +435,14 @@ namespace MagickUtils
             if (inpaintColorCombox.SelectedIndex == 2) /* Black */ color = MagickColors.Black;
             if (inpaintColorCombox.SelectedIndex == 3) /* White */ color = MagickColors.White;
             InpaintUtils.EraseDir(patternsToUse, inpaintScaleCombox.SelectedIndex, color);
+        }
+
+        private void cropBtn_Click(object sender, EventArgs e)
+        {
+            if(cropTabControl.SelectedIndex == 2)
+            {
+                CropUtils.CropDivisibleDir(cropDivision.GetInt());
+            }
         }
     }
 }

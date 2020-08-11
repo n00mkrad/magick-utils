@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace MagickUtils
 {
@@ -62,6 +64,22 @@ namespace MagickUtils
             // choose -149 instead of -126 to also generate subnormal floats (*)
             double exponent = Math.Pow(2.0, random.Next(-126, 127));
             return (float)(mantissa * exponent);
+        }
+
+        public static string TrimNumbers(this string s)
+        {
+            s = Regex.Replace(s, "[^.0-9]", "");
+            return s.Trim();
+        }
+
+        public static int GetInt(this TextBox textbox)
+        {
+            return int.Parse(textbox.Text.TrimNumbers());
+        }
+
+        public static int GetInt(this ComboBox combobox)
+        {
+            return int.Parse(combobox.Text.TrimNumbers());
         }
     }
 }

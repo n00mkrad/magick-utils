@@ -71,6 +71,7 @@
     <Compile Include="ConvertTabHelper.cs" />
     <Compile Include="ConvertUtils.cs" />
     <Compile Include="ConvertUtilsUI.cs" />
+    <Compile Include="CropUtils.cs" />
     <Compile Include="CrunchInterface.cs" />
     <Compile Include="DdsOptionsWindow.cs">
       <SubType>Form</SubType>
@@ -87,6 +88,7 @@
     <Compile Include="FlifOptionsWindow.Designer.cs">
       <DependentUpon>FlifOptionsWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="ImageSizeFilterUtils.cs" />
     <Compile Include="InpaintUtils.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>

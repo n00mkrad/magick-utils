@@ -128,7 +128,7 @@ namespace MagickUtils
             Program.PostProcessing();
         }
 
-        public static void DelSmallImgsDir (int minAxisLength)
+        public static async void DelSmallImgsDir (int minSize, ImageSizeFilterUtils.SizeMode scaleMode, ImageSizeFilterUtils.Operator op)
         {
             int counter = 1;
             FileInfo[] Files = IOUtils.GetFiles();
@@ -138,7 +138,8 @@ namespace MagickUtils
             {
                 Program.ShowProgress("", counter, Files.Length);
                 counter++;
-                OtherUtils.DeleteSmallImages(file.FullName, minAxisLength);
+                ImageSizeFilterUtils.DeleteSmallImages(file.FullName, scaleMode, op, minSize);
+                if (counter % 10 == 0) await Program.PutTaskDelay();
             }
             Program.PostProcessing();
         }

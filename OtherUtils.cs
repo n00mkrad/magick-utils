@@ -10,17 +10,6 @@ namespace MagickUtils
 {
     class OtherUtils
     {
-        public static void DeleteSmallImages (string path, int minPixels)
-        {
-            MagickImage img = IOUtils.ReadImage(path);
-            if(img.Width < minPixels || img.Height < minPixels)
-            {
-                string fname = Path.GetFileName(path);
-                Program.Print("-> " + fname + " has a resolution of " + img.Width + "x" + img.Height + ", deleting...");
-                File.Delete(img.FileName);
-            }
-        }
-
         public static void RemoveTransparency (string path, byte mode)
         {
             MagickImage img = IOUtils.ReadImage(path);
