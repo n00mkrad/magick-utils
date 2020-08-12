@@ -425,16 +425,7 @@ namespace MagickUtils
 
         private void inpaintEraseBtn_Click(object sender, EventArgs e)
         {
-            List<InpaintUtils.PatternType> patternsToUse = new List<InpaintUtils.PatternType>();
-            if (inpaintThinLines.Checked) patternsToUse.Add(InpaintUtils.PatternType.ThinLines);
-            if (inpaintThickLines.Checked) patternsToUse.Add(InpaintUtils.PatternType.ThickLines);
-            if (inpaintCircles.Checked) patternsToUse.Add(InpaintUtils.PatternType.Circles);
-            if (inpaintGrid.Checked) patternsToUse.Add(InpaintUtils.PatternType.Grid);
-            MagickColor color = new MagickColor("#00FF00");
-            if (inpaintColorCombox.SelectedIndex == 1) /* Pink */ color = new MagickColor("#FF00AA");
-            if (inpaintColorCombox.SelectedIndex == 2) /* Black */ color = MagickColors.Black;
-            if (inpaintColorCombox.SelectedIndex == 3) /* White */ color = MagickColors.White;
-            InpaintUtils.EraseDir(patternsToUse, inpaintScaleCombox.SelectedIndex, color);
+            InpaintTabHelper.EraseDir(inpaintThinLines, inpaintThickLines, inpaintCircles, inpaintGrid, inpaintColorCombox, inpaintScaleCombox);
         }
 
         private void cropBtn_Click(object sender, EventArgs e)
@@ -443,6 +434,17 @@ namespace MagickUtils
             {
                 CropUtils.CropDivisibleDir(cropDivision.GetInt());
             }
+        }
+
+        private void tabPage7_DragEnter (object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.Copy;
+        }
+
+        private void tabPage7_DragDrop (object sender, DragEventArgs e)
+        {
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            InpaintTabHelper.EraseFileList(files, inpaintThinLines, inpaintThickLines, inpaintCircles, inpaintGrid, inpaintColorCombox, inpaintScaleCombox);
         }
     }
 }

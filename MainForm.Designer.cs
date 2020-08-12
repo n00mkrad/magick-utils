@@ -73,6 +73,14 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.scaleResampleCombox = new System.Windows.Forms.ComboBox();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.cropTabControl = new System.Windows.Forms.TabControl();
+            this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.tabPage10 = new System.Windows.Forms.TabPage();
+            this.tabPage11 = new System.Windows.Forms.TabPage();
+            this.cropDivision = new System.Windows.Forms.ComboBox();
+            this.label58 = new System.Windows.Forms.Label();
+            this.cropBtn = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.panel11 = new System.Windows.Forms.Panel();
             this.delMissingTestBtn = new System.Windows.Forms.Button();
@@ -176,17 +184,13 @@
             this.label36v2 = new System.Windows.Forms.Label();
             this.nameMustContainTbox = new System.Windows.Forms.TextBox();
             this.nameMustNotContainTbox = new System.Windows.Forms.TextBox();
-            this.tabPage8 = new System.Windows.Forms.TabPage();
-            this.cropBtn = new System.Windows.Forms.Button();
-            this.cropTabControl = new System.Windows.Forms.TabControl();
-            this.tabPage9 = new System.Windows.Forms.TabPage();
-            this.tabPage10 = new System.Windows.Forms.TabPage();
-            this.tabPage11 = new System.Windows.Forms.TabPage();
-            this.cropDivision = new System.Windows.Forms.ComboBox();
-            this.label58 = new System.Windows.Forms.Label();
+            this.label59 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage8.SuspendLayout();
+            this.cropTabControl.SuspendLayout();
+            this.tabPage11.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.panel11.SuspendLayout();
             this.panel9.SuspendLayout();
@@ -203,9 +207,6 @@
             this.panel7.SuspendLayout();
             this.tabPage7.SuspendLayout();
             this.tabPage6.SuspendLayout();
-            this.tabPage8.SuspendLayout();
-            this.cropTabControl.SuspendLayout();
-            this.tabPage11.SuspendLayout();
             this.SuspendLayout();
             // 
             // pathTextbox
@@ -717,6 +718,93 @@
             this.scaleResampleCombox.TabIndex = 19;
             this.scaleResampleCombox.Text = "Scale";
             // 
+            // tabPage8
+            // 
+            this.tabPage8.Controls.Add(this.cropTabControl);
+            this.tabPage8.Controls.Add(this.cropBtn);
+            this.tabPage8.Location = new System.Drawing.Point(4, 22);
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage8.Size = new System.Drawing.Size(702, 224);
+            this.tabPage8.TabIndex = 7;
+            this.tabPage8.Text = "Crop";
+            this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // cropTabControl
+            // 
+            this.cropTabControl.Controls.Add(this.tabPage9);
+            this.cropTabControl.Controls.Add(this.tabPage10);
+            this.cropTabControl.Controls.Add(this.tabPage11);
+            this.cropTabControl.Location = new System.Drawing.Point(6, 6);
+            this.cropTabControl.Name = "cropTabControl";
+            this.cropTabControl.SelectedIndex = 0;
+            this.cropTabControl.Size = new System.Drawing.Size(690, 183);
+            this.cropTabControl.TabIndex = 33;
+            // 
+            // tabPage9
+            // 
+            this.tabPage9.Location = new System.Drawing.Point(4, 22);
+            this.tabPage9.Name = "tabPage9";
+            this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage9.Size = new System.Drawing.Size(682, 157);
+            this.tabPage9.TabIndex = 0;
+            this.tabPage9.Text = "Crop To Resolution";
+            this.tabPage9.UseVisualStyleBackColor = true;
+            // 
+            // tabPage10
+            // 
+            this.tabPage10.Location = new System.Drawing.Point(4, 22);
+            this.tabPage10.Name = "tabPage10";
+            this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage10.Size = new System.Drawing.Size(682, 157);
+            this.tabPage10.TabIndex = 1;
+            this.tabPage10.Text = "Crop To Aspect Ratio";
+            this.tabPage10.UseVisualStyleBackColor = true;
+            // 
+            // tabPage11
+            // 
+            this.tabPage11.Controls.Add(this.cropDivision);
+            this.tabPage11.Controls.Add(this.label58);
+            this.tabPage11.Location = new System.Drawing.Point(4, 22);
+            this.tabPage11.Name = "tabPage11";
+            this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage11.Size = new System.Drawing.Size(682, 157);
+            this.tabPage11.TabIndex = 2;
+            this.tabPage11.Text = "Crop To Divisble Resolution";
+            this.tabPage11.UseVisualStyleBackColor = true;
+            // 
+            // cropDivision
+            // 
+            this.cropDivision.FormattingEnabled = true;
+            this.cropDivision.Items.AddRange(new object[] {
+            "2",
+            "4",
+            "8",
+            "16"});
+            this.cropDivision.Location = new System.Drawing.Point(271, 6);
+            this.cropDivision.Name = "cropDivision";
+            this.cropDivision.Size = new System.Drawing.Size(61, 21);
+            this.cropDivision.TabIndex = 21;
+            // 
+            // label58
+            // 
+            this.label58.AutoSize = true;
+            this.label58.Location = new System.Drawing.Point(6, 9);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(175, 13);
+            this.label58.TabIndex = 22;
+            this.label58.Text = "Crop Until Resolution Is Divisble By:";
+            // 
+            // cropBtn
+            // 
+            this.cropBtn.Location = new System.Drawing.Point(6, 195);
+            this.cropBtn.Name = "cropBtn";
+            this.cropBtn.Size = new System.Drawing.Size(91, 23);
+            this.cropBtn.TabIndex = 32;
+            this.cropBtn.Text = "Crop";
+            this.cropBtn.UseVisualStyleBackColor = true;
+            this.cropBtn.Click += new System.EventHandler(this.cropBtn_Click);
+            // 
             // tabPage3
             // 
             this.tabPage3.AutoScroll = true;
@@ -780,7 +868,7 @@
             this.label51.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label51.Location = new System.Drawing.Point(3, 8);
             this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(285, 16);
+            this.label51.Size = new System.Drawing.Size(235, 13);
             this.label51.TabIndex = 8;
             this.label51.Text = "Delete Files Not Present In Both Folders";
             // 
@@ -838,7 +926,7 @@
             this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label38.Location = new System.Drawing.Point(3, 8);
             this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(151, 16);
+            this.label38.Size = new System.Drawing.Size(122, 13);
             this.label38.TabIndex = 8;
             this.label38.Text = "Replace in Filename";
             // 
@@ -900,7 +988,7 @@
             this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label32.Location = new System.Drawing.Point(3, 8);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(157, 16);
+            this.label32.Size = new System.Drawing.Size(131, 13);
             this.label32.TabIndex = 8;
             this.label32.Text = "Filename Prefix/Suffix";
             // 
@@ -999,7 +1087,7 @@
             this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label27.Location = new System.Drawing.Point(3, 8);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(296, 16);
+            this.label27.Size = new System.Drawing.Size(245, 13);
             this.label27.TabIndex = 8;
             this.label27.Text = "Group Normal Maps With Diffuse Textures";
             // 
@@ -1040,7 +1128,7 @@
             this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label26.Location = new System.Drawing.Point(3, 8);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(323, 16);
+            this.label26.Size = new System.Drawing.Size(267, 13);
             this.label26.TabIndex = 8;
             this.label26.Text = "Delete Files Not Matching Extension Wildcard";
             // 
@@ -1108,7 +1196,7 @@
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label25.Location = new System.Drawing.Point(3, 8);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(165, 16);
+            this.label25.Size = new System.Drawing.Size(134, 13);
             this.label25.TabIndex = 8;
             this.label25.Text = "Delete Images By Size";
             // 
@@ -1223,7 +1311,7 @@
             this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label33.Location = new System.Drawing.Point(3, 8);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(148, 16);
+            this.label33.Size = new System.Drawing.Size(122, 13);
             this.label33.TabIndex = 8;
             this.label33.Text = "Reduce Color Depth";
             // 
@@ -1276,7 +1364,7 @@
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.Location = new System.Drawing.Point(3, 8);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(166, 16);
+            this.label22.Size = new System.Drawing.Size(134, 13);
             this.label22.TabIndex = 8;
             this.label22.Text = "Remove Transparency";
             // 
@@ -1306,7 +1394,7 @@
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.Location = new System.Drawing.Point(3, 8);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(86, 16);
+            this.label21.Size = new System.Drawing.Size(72, 13);
             this.label21.TabIndex = 8;
             this.label21.Text = "Auto Adjust";
             // 
@@ -1403,7 +1491,7 @@
             this.label46.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label46.Location = new System.Drawing.Point(3, 8);
             this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(104, 16);
+            this.label46.Size = new System.Drawing.Size(85, 13);
             this.label46.TabIndex = 8;
             this.label46.Text = "Gaussian Blur";
             // 
@@ -1551,7 +1639,7 @@
             this.label35.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label35.Location = new System.Drawing.Point(3, 8);
             this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(81, 16);
+            this.label35.Size = new System.Drawing.Size(65, 13);
             this.label35.TabIndex = 8;
             this.label35.Text = "Add Noise";
             // 
@@ -1567,6 +1655,8 @@
             // 
             // tabPage7
             // 
+            this.tabPage7.AllowDrop = true;
+            this.tabPage7.Controls.Add(this.label59);
             this.tabPage7.Controls.Add(this.inpaintEraseBtn);
             this.tabPage7.Controls.Add(this.label56);
             this.tabPage7.Controls.Add(this.inpaintThickLines);
@@ -1587,6 +1677,8 @@
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "Inpainting";
             this.tabPage7.UseVisualStyleBackColor = true;
+            this.tabPage7.DragDrop += new System.Windows.Forms.DragEventHandler(this.tabPage7_DragDrop);
+            this.tabPage7.DragEnter += new System.Windows.Forms.DragEventHandler(this.tabPage7_DragEnter);
             // 
             // inpaintEraseBtn
             // 
@@ -1847,92 +1939,16 @@
             this.nameMustNotContainTbox.TabIndex = 12;
             this.nameMustNotContainTbox.TextChanged += new System.EventHandler(this.nameMustNotContainTbox_TextChanged);
             // 
-            // tabPage8
+            // label59
             // 
-            this.tabPage8.Controls.Add(this.cropTabControl);
-            this.tabPage8.Controls.Add(this.cropBtn);
-            this.tabPage8.Location = new System.Drawing.Point(4, 22);
-            this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage8.Size = new System.Drawing.Size(702, 224);
-            this.tabPage8.TabIndex = 7;
-            this.tabPage8.Text = "Crop";
-            this.tabPage8.UseVisualStyleBackColor = true;
-            // 
-            // cropBtn
-            // 
-            this.cropBtn.Location = new System.Drawing.Point(6, 195);
-            this.cropBtn.Name = "cropBtn";
-            this.cropBtn.Size = new System.Drawing.Size(91, 23);
-            this.cropBtn.TabIndex = 32;
-            this.cropBtn.Text = "Crop";
-            this.cropBtn.UseVisualStyleBackColor = true;
-            this.cropBtn.Click += new System.EventHandler(this.cropBtn_Click);
-            // 
-            // cropTabControl
-            // 
-            this.cropTabControl.Controls.Add(this.tabPage9);
-            this.cropTabControl.Controls.Add(this.tabPage10);
-            this.cropTabControl.Controls.Add(this.tabPage11);
-            this.cropTabControl.Location = new System.Drawing.Point(6, 6);
-            this.cropTabControl.Name = "cropTabControl";
-            this.cropTabControl.SelectedIndex = 0;
-            this.cropTabControl.Size = new System.Drawing.Size(690, 183);
-            this.cropTabControl.TabIndex = 33;
-            // 
-            // tabPage9
-            // 
-            this.tabPage9.Location = new System.Drawing.Point(4, 22);
-            this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage9.Size = new System.Drawing.Size(682, 157);
-            this.tabPage9.TabIndex = 0;
-            this.tabPage9.Text = "Crop To Resolution";
-            this.tabPage9.UseVisualStyleBackColor = true;
-            // 
-            // tabPage10
-            // 
-            this.tabPage10.Location = new System.Drawing.Point(4, 22);
-            this.tabPage10.Name = "tabPage10";
-            this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage10.Size = new System.Drawing.Size(682, 157);
-            this.tabPage10.TabIndex = 1;
-            this.tabPage10.Text = "Crop To Aspect Ratio";
-            this.tabPage10.UseVisualStyleBackColor = true;
-            // 
-            // tabPage11
-            // 
-            this.tabPage11.Controls.Add(this.cropDivision);
-            this.tabPage11.Controls.Add(this.label58);
-            this.tabPage11.Location = new System.Drawing.Point(4, 22);
-            this.tabPage11.Name = "tabPage11";
-            this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage11.Size = new System.Drawing.Size(682, 157);
-            this.tabPage11.TabIndex = 2;
-            this.tabPage11.Text = "Crop To Divisble Resolution";
-            this.tabPage11.UseVisualStyleBackColor = true;
-            // 
-            // cropDivision
-            // 
-            this.cropDivision.FormattingEnabled = true;
-            this.cropDivision.Items.AddRange(new object[] {
-            "2",
-            "4",
-            "8",
-            "16"});
-            this.cropDivision.Location = new System.Drawing.Point(271, 6);
-            this.cropDivision.Name = "cropDivision";
-            this.cropDivision.Size = new System.Drawing.Size(61, 21);
-            this.cropDivision.TabIndex = 21;
-            // 
-            // label58
-            // 
-            this.label58.AutoSize = true;
-            this.label58.Location = new System.Drawing.Point(6, 9);
-            this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(175, 13);
-            this.label58.TabIndex = 22;
-            this.label58.Text = "Crop Until Resolution Is Divisble By:";
+            this.label59.AutoSize = true;
+            this.label59.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label59.Location = new System.Drawing.Point(103, 200);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(442, 13);
+            this.label59.TabIndex = 33;
+            this.label59.Text = "You can also drag and drop files into this area to process them instead of using " +
+    "a folder path.";
             // 
             // MainForm
             // 
@@ -1967,6 +1983,10 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabPage8.ResumeLayout(false);
+            this.cropTabControl.ResumeLayout(false);
+            this.tabPage11.ResumeLayout(false);
+            this.tabPage11.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
@@ -1996,10 +2016,6 @@
             this.tabPage7.PerformLayout();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
-            this.tabPage8.ResumeLayout(false);
-            this.cropTabControl.ResumeLayout(false);
-            this.tabPage11.ResumeLayout(false);
-            this.tabPage11.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2161,5 +2177,6 @@
         private System.Windows.Forms.TabPage tabPage11;
         private System.Windows.Forms.ComboBox cropDivision;
         private System.Windows.Forms.Label label58;
+        private System.Windows.Forms.Label label59;
     }
 }
