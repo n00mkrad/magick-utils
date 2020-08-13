@@ -191,11 +191,29 @@
             this.colorLayerBtn = new System.Windows.Forms.Button();
             this.label61 = new System.Windows.Forms.Label();
             this.colorLayerTbox = new System.Windows.Forms.TextBox();
+            this.tabPage12 = new System.Windows.Forms.TabPage();
+            this.label62 = new System.Windows.Forms.Label();
+            this.cropRelSizeMode = new System.Windows.Forms.ComboBox();
+            this.label63 = new System.Windows.Forms.Label();
+            this.label64 = new System.Windows.Forms.Label();
+            this.label65 = new System.Windows.Forms.Label();
+            this.label66 = new System.Windows.Forms.Label();
+            this.cropRelGrav = new System.Windows.Forms.ComboBox();
+            this.cropRelSizeMin = new System.Windows.Forms.TextBox();
+            this.cropRelSizeMax = new System.Windows.Forms.TextBox();
+            this.label67 = new System.Windows.Forms.Label();
+            this.cropAbsW = new System.Windows.Forms.TextBox();
+            this.cropAbsH = new System.Windows.Forms.TextBox();
+            this.cropAbsGravity = new System.Windows.Forms.ComboBox();
+            this.label68 = new System.Windows.Forms.Label();
+            this.label69 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage8.SuspendLayout();
             this.cropTabControl.SuspendLayout();
+            this.tabPage9.SuspendLayout();
+            this.tabPage10.SuspendLayout();
             this.tabPage11.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.panel11.SuspendLayout();
@@ -214,6 +232,7 @@
             this.tabPage7.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.panel12.SuspendLayout();
+            this.tabPage12.SuspendLayout();
             this.SuspendLayout();
             // 
             // pathTextbox
@@ -381,6 +400,7 @@
             // 
             // startBtn
             // 
+            this.startBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.startBtn.Location = new System.Drawing.Point(6, 195);
             this.startBtn.Name = "startBtn";
             this.startBtn.Size = new System.Drawing.Size(91, 23);
@@ -605,6 +625,7 @@
             // 
             // button1
             // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(6, 195);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(91, 23);
@@ -667,9 +688,9 @@
             this.label15.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label15.Location = new System.Drawing.Point(260, 63);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(310, 13);
+            this.label15.Size = new System.Drawing.Size(351, 13);
             this.label15.TabIndex = 24;
-            this.label15.Text = "Scale range. Leave the second box blank for non-random scale.";
+            this.label15.Text = "Random scale range. Leave the second box blank for non-random scale.";
             // 
             // minScaleCombox
             // 
@@ -740,6 +761,7 @@
             // cropTabControl
             // 
             this.cropTabControl.Controls.Add(this.tabPage9);
+            this.cropTabControl.Controls.Add(this.tabPage12);
             this.cropTabControl.Controls.Add(this.tabPage10);
             this.cropTabControl.Controls.Add(this.tabPage11);
             this.cropTabControl.Location = new System.Drawing.Point(6, 6);
@@ -750,16 +772,26 @@
             // 
             // tabPage9
             // 
+            this.tabPage9.Controls.Add(this.cropRelSizeMax);
+            this.tabPage9.Controls.Add(this.cropRelSizeMin);
+            this.tabPage9.Controls.Add(this.cropRelGrav);
+            this.tabPage9.Controls.Add(this.label66);
+            this.tabPage9.Controls.Add(this.label64);
+            this.tabPage9.Controls.Add(this.label65);
+            this.tabPage9.Controls.Add(this.label63);
+            this.tabPage9.Controls.Add(this.label62);
+            this.tabPage9.Controls.Add(this.cropRelSizeMode);
             this.tabPage9.Location = new System.Drawing.Point(4, 22);
             this.tabPage9.Name = "tabPage9";
             this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage9.Size = new System.Drawing.Size(682, 157);
             this.tabPage9.TabIndex = 0;
-            this.tabPage9.Text = "Crop To Resolution";
+            this.tabPage9.Text = "Crop With Original Aspect Ratio";
             this.tabPage9.UseVisualStyleBackColor = true;
             // 
             // tabPage10
             // 
+            this.tabPage10.Controls.Add(this.label67);
             this.tabPage10.Location = new System.Drawing.Point(4, 22);
             this.tabPage10.Name = "tabPage10";
             this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
@@ -804,6 +836,7 @@
             // 
             // cropBtn
             // 
+            this.cropBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cropBtn.Location = new System.Drawing.Point(6, 195);
             this.cropBtn.Name = "cropBtn";
             this.cropBtn.Size = new System.Drawing.Size(91, 23);
@@ -844,9 +877,9 @@
             // 
             // delMissingTestBtn
             // 
-            this.delMissingTestBtn.Location = new System.Drawing.Point(389, 5);
+            this.delMissingTestBtn.Location = new System.Drawing.Point(409, 4);
             this.delMissingTestBtn.Name = "delMissingTestBtn";
-            this.delMissingTestBtn.Size = new System.Drawing.Size(180, 23);
+            this.delMissingTestBtn.Size = new System.Drawing.Size(150, 23);
             this.delMissingTestBtn.TabIndex = 35;
             this.delMissingTestBtn.Text = "Test Run (Only List Files)";
             this.delMissingTestBtn.UseVisualStyleBackColor = true;
@@ -881,9 +914,10 @@
             // 
             // delMissingBtn
             // 
-            this.delMissingBtn.Location = new System.Drawing.Point(575, 5);
+            this.delMissingBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.delMissingBtn.Location = new System.Drawing.Point(565, 4);
             this.delMissingBtn.Name = "delMissingBtn";
-            this.delMissingBtn.Size = new System.Drawing.Size(90, 23);
+            this.delMissingBtn.Size = new System.Drawing.Size(100, 23);
             this.delMissingBtn.TabIndex = 32;
             this.delMissingBtn.Text = "Run";
             this.delMissingBtn.UseVisualStyleBackColor = true;
@@ -905,7 +939,7 @@
             // 
             // replaceOutputTbox
             // 
-            this.replaceOutputTbox.Location = new System.Drawing.Point(380, 5);
+            this.replaceOutputTbox.Location = new System.Drawing.Point(459, 5);
             this.replaceOutputTbox.Name = "replaceOutputTbox";
             this.replaceOutputTbox.Size = new System.Drawing.Size(100, 20);
             this.replaceOutputTbox.TabIndex = 34;
@@ -913,7 +947,7 @@
             // label40
             // 
             this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(348, 8);
+            this.label40.Location = new System.Drawing.Point(427, 8);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(26, 13);
             this.label40.TabIndex = 33;
@@ -921,7 +955,7 @@
             // 
             // replaceInputTbox
             // 
-            this.replaceInputTbox.Location = new System.Drawing.Point(242, 5);
+            this.replaceInputTbox.Location = new System.Drawing.Point(321, 5);
             this.replaceInputTbox.Name = "replaceInputTbox";
             this.replaceInputTbox.Size = new System.Drawing.Size(100, 20);
             this.replaceInputTbox.TabIndex = 9;
@@ -939,9 +973,10 @@
             // 
             // replaceBtn
             // 
-            this.replaceBtn.Location = new System.Drawing.Point(575, 3);
+            this.replaceBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.replaceBtn.Location = new System.Drawing.Point(565, 3);
             this.replaceBtn.Name = "replaceBtn";
-            this.replaceBtn.Size = new System.Drawing.Size(90, 23);
+            this.replaceBtn.Size = new System.Drawing.Size(100, 23);
             this.replaceBtn.TabIndex = 32;
             this.replaceBtn.Text = "Run";
             this.replaceBtn.UseVisualStyleBackColor = true;
@@ -950,7 +985,7 @@
             // label39
             // 
             this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(189, 8);
+            this.label39.Location = new System.Drawing.Point(268, 8);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(47, 13);
             this.label39.TabIndex = 20;
@@ -976,14 +1011,14 @@
             this.suffixPrefixCombox.Items.AddRange(new object[] {
             "Before Filename (Prefix)",
             "After Filename (Suffix)"});
-            this.suffixPrefixCombox.Location = new System.Drawing.Point(330, 4);
+            this.suffixPrefixCombox.Location = new System.Drawing.Point(409, 5);
             this.suffixPrefixCombox.Name = "suffixPrefixCombox";
             this.suffixPrefixCombox.Size = new System.Drawing.Size(150, 21);
             this.suffixPrefixCombox.TabIndex = 33;
             // 
             // suffixPrefixTbox
             // 
-            this.suffixPrefixTbox.Location = new System.Drawing.Point(224, 5);
+            this.suffixPrefixTbox.Location = new System.Drawing.Point(303, 6);
             this.suffixPrefixTbox.Name = "suffixPrefixTbox";
             this.suffixPrefixTbox.Size = new System.Drawing.Size(100, 20);
             this.suffixPrefixTbox.TabIndex = 9;
@@ -1001,9 +1036,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(575, 3);
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(565, 3);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(90, 23);
+            this.button2.Size = new System.Drawing.Size(100, 23);
             this.button2.TabIndex = 32;
             this.button2.Text = "Run";
             this.button2.UseVisualStyleBackColor = true;
@@ -1012,7 +1048,7 @@
             // label37
             // 
             this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(187, 8);
+            this.label37.Location = new System.Drawing.Point(266, 9);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(31, 13);
             this.label37.TabIndex = 20;
@@ -1100,9 +1136,10 @@
             // 
             // groupNormalsBtn
             // 
-            this.groupNormalsBtn.Location = new System.Drawing.Point(575, 3);
+            this.groupNormalsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupNormalsBtn.Location = new System.Drawing.Point(565, 3);
             this.groupNormalsBtn.Name = "groupNormalsBtn";
-            this.groupNormalsBtn.Size = new System.Drawing.Size(90, 23);
+            this.groupNormalsBtn.Size = new System.Drawing.Size(100, 23);
             this.groupNormalsBtn.TabIndex = 32;
             this.groupNormalsBtn.Text = "Run";
             this.groupNormalsBtn.UseVisualStyleBackColor = true;
@@ -1122,7 +1159,7 @@
             // label57
             // 
             this.label57.AutoSize = true;
-            this.label57.Location = new System.Drawing.Point(332, 8);
+            this.label57.Location = new System.Drawing.Point(276, 8);
             this.label57.Name = "label57";
             this.label57.Size = new System.Drawing.Size(101, 13);
             this.label57.TabIndex = 35;
@@ -1141,9 +1178,10 @@
             // 
             // delFilesNotMatchingExtBtn
             // 
-            this.delFilesNotMatchingExtBtn.Location = new System.Drawing.Point(575, 3);
+            this.delFilesNotMatchingExtBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.delFilesNotMatchingExtBtn.Location = new System.Drawing.Point(565, 3);
             this.delFilesNotMatchingExtBtn.Name = "delFilesNotMatchingExtBtn";
-            this.delFilesNotMatchingExtBtn.Size = new System.Drawing.Size(90, 23);
+            this.delFilesNotMatchingExtBtn.Size = new System.Drawing.Size(100, 23);
             this.delFilesNotMatchingExtBtn.TabIndex = 32;
             this.delFilesNotMatchingExtBtn.Text = "Delete Files";
             this.delFilesNotMatchingExtBtn.UseVisualStyleBackColor = true;
@@ -1175,7 +1213,7 @@
             "is bigger than",
             "is divisible by",
             "is not divisible by"});
-            this.delImgOperator.Location = new System.Drawing.Point(379, 4);
+            this.delImgOperator.Location = new System.Drawing.Point(372, 4);
             this.delImgOperator.Name = "delImgOperator";
             this.delImgOperator.Size = new System.Drawing.Size(100, 21);
             this.delImgOperator.TabIndex = 34;
@@ -1191,7 +1229,7 @@
             "Shorter Side",
             "Either Side",
             "Both Sides"});
-            this.delImgsMode.Location = new System.Drawing.Point(273, 4);
+            this.delImgsMode.Location = new System.Drawing.Point(266, 4);
             this.delImgsMode.Name = "delImgsMode";
             this.delImgsMode.Size = new System.Drawing.Size(100, 21);
             this.delImgsMode.TabIndex = 33;
@@ -1209,9 +1247,10 @@
             // 
             // delSmallImagesBtn
             // 
-            this.delSmallImagesBtn.Location = new System.Drawing.Point(575, 3);
+            this.delSmallImagesBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.delSmallImagesBtn.Location = new System.Drawing.Point(565, 3);
             this.delSmallImagesBtn.Name = "delSmallImagesBtn";
-            this.delSmallImagesBtn.Size = new System.Drawing.Size(90, 23);
+            this.delSmallImagesBtn.Size = new System.Drawing.Size(100, 23);
             this.delSmallImagesBtn.TabIndex = 32;
             this.delSmallImagesBtn.Text = "Delete Images";
             this.delSmallImagesBtn.UseVisualStyleBackColor = true;
@@ -1226,7 +1265,7 @@
             "256",
             "128",
             "64"});
-            this.delSmallImagesSizeCombox.Location = new System.Drawing.Point(485, 4);
+            this.delSmallImagesSizeCombox.Location = new System.Drawing.Point(478, 4);
             this.delSmallImagesSizeCombox.Name = "delSmallImagesSizeCombox";
             this.delSmallImagesSizeCombox.Size = new System.Drawing.Size(61, 21);
             this.delSmallImagesSizeCombox.TabIndex = 19;
@@ -1235,7 +1274,7 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(548, 8);
+            this.label24.Location = new System.Drawing.Point(541, 8);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(18, 13);
             this.label24.TabIndex = 22;
@@ -1244,7 +1283,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(221, 9);
+            this.label23.Location = new System.Drawing.Point(214, 9);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(46, 13);
             this.label23.TabIndex = 20;
@@ -1305,6 +1344,7 @@
             // 
             // applyColorDepthBtn
             // 
+            this.applyColorDepthBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.applyColorDepthBtn.Location = new System.Drawing.Point(485, 3);
             this.applyColorDepthBtn.Name = "applyColorDepthBtn";
             this.applyColorDepthBtn.Size = new System.Drawing.Size(200, 23);
@@ -1337,6 +1377,7 @@
             // 
             // alphaOffBtn
             // 
+            this.alphaOffBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.alphaOffBtn.Location = new System.Drawing.Point(223, 3);
             this.alphaOffBtn.Name = "alphaOffBtn";
             this.alphaOffBtn.Size = new System.Drawing.Size(150, 23);
@@ -1347,6 +1388,7 @@
             // 
             // remAlphaBlack
             // 
+            this.remAlphaBlack.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.remAlphaBlack.Location = new System.Drawing.Point(535, 3);
             this.remAlphaBlack.Name = "remAlphaBlack";
             this.remAlphaBlack.Size = new System.Drawing.Size(150, 23);
@@ -1357,6 +1399,7 @@
             // 
             // remAlphaWhite
             // 
+            this.remAlphaWhite.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.remAlphaWhite.Location = new System.Drawing.Point(379, 3);
             this.remAlphaWhite.Name = "remAlphaWhite";
             this.remAlphaWhite.Size = new System.Drawing.Size(150, 23);
@@ -1388,6 +1431,7 @@
             // 
             // autoLevelBtn
             // 
+            this.autoLevelBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.autoLevelBtn.Location = new System.Drawing.Point(485, 3);
             this.autoLevelBtn.Name = "autoLevelBtn";
             this.autoLevelBtn.Size = new System.Drawing.Size(200, 23);
@@ -1443,7 +1487,7 @@
             "6",
             "8",
             "10"});
-            this.blurRadiusMaxCombox.Location = new System.Drawing.Point(323, 5);
+            this.blurRadiusMaxCombox.Location = new System.Drawing.Point(423, 5);
             this.blurRadiusMaxCombox.Name = "blurRadiusMaxCombox";
             this.blurRadiusMaxCombox.Size = new System.Drawing.Size(50, 21);
             this.blurRadiusMaxCombox.TabIndex = 44;
@@ -1451,7 +1495,7 @@
             // label47
             // 
             this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(301, 8);
+            this.label47.Location = new System.Drawing.Point(401, 8);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(16, 13);
             this.label47.TabIndex = 43;
@@ -1459,7 +1503,7 @@
             // 
             // blurPrevBtn
             // 
-            this.blurPrevBtn.Location = new System.Drawing.Point(379, 3);
+            this.blurPrevBtn.Location = new System.Drawing.Point(479, 3);
             this.blurPrevBtn.Name = "blurPrevBtn";
             this.blurPrevBtn.Size = new System.Drawing.Size(100, 23);
             this.blurPrevBtn.TabIndex = 42;
@@ -1470,7 +1514,7 @@
             // label45
             // 
             this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(196, 8);
+            this.label45.Location = new System.Drawing.Point(296, 8);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(43, 13);
             this.label45.TabIndex = 41;
@@ -1486,7 +1530,7 @@
             "6",
             "8",
             "10"});
-            this.blurRadiusCombox.Location = new System.Drawing.Point(245, 5);
+            this.blurRadiusCombox.Location = new System.Drawing.Point(345, 5);
             this.blurRadiusCombox.Name = "blurRadiusCombox";
             this.blurRadiusCombox.Size = new System.Drawing.Size(50, 21);
             this.blurRadiusCombox.TabIndex = 40;
@@ -1505,9 +1549,10 @@
             // 
             // blurBtn
             // 
-            this.blurBtn.Location = new System.Drawing.Point(485, 3);
+            this.blurBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.blurBtn.Location = new System.Drawing.Point(585, 3);
             this.blurBtn.Name = "blurBtn";
-            this.blurBtn.Size = new System.Drawing.Size(200, 23);
+            this.blurBtn.Size = new System.Drawing.Size(100, 23);
             this.blurBtn.TabIndex = 32;
             this.blurBtn.Text = "Blur";
             this.blurBtn.UseVisualStyleBackColor = true;
@@ -1567,7 +1612,7 @@
             // 
             // noisePreviewBtn
             // 
-            this.noisePreviewBtn.Location = new System.Drawing.Point(379, 3);
+            this.noisePreviewBtn.Location = new System.Drawing.Point(479, 3);
             this.noisePreviewBtn.Name = "noisePreviewBtn";
             this.noisePreviewBtn.Size = new System.Drawing.Size(100, 23);
             this.noisePreviewBtn.TabIndex = 42;
@@ -1653,9 +1698,10 @@
             // 
             // addNoiseBtn
             // 
-            this.addNoiseBtn.Location = new System.Drawing.Point(485, 3);
+            this.addNoiseBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addNoiseBtn.Location = new System.Drawing.Point(585, 3);
             this.addNoiseBtn.Name = "addNoiseBtn";
-            this.addNoiseBtn.Size = new System.Drawing.Size(200, 23);
+            this.addNoiseBtn.Size = new System.Drawing.Size(100, 23);
             this.addNoiseBtn.TabIndex = 32;
             this.addNoiseBtn.Text = "Add Noise";
             this.addNoiseBtn.UseVisualStyleBackColor = true;
@@ -1712,6 +1758,7 @@
             // 
             // inpaintEraseBtn
             // 
+            this.inpaintEraseBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.inpaintEraseBtn.Location = new System.Drawing.Point(6, 195);
             this.inpaintEraseBtn.Name = "inpaintEraseBtn";
             this.inpaintEraseBtn.Size = new System.Drawing.Size(91, 23);
@@ -1793,9 +1840,10 @@
             // 
             this.inpaintScaleCombox.FormattingEnabled = true;
             this.inpaintScaleCombox.Items.AddRange(new object[] {
-            "0.5x (For 512x256 and similar)",
-            "1x (For 1024x512 and similar)",
-            "2x (For 2048x1024 and similar)"});
+            "0.5x (Small)",
+            "1x (Normal)",
+            "1.5x (Big)",
+            "2x (Huge)"});
             this.inpaintScaleCombox.Location = new System.Drawing.Point(103, 33);
             this.inpaintScaleCombox.Name = "inpaintScaleCombox";
             this.inpaintScaleCombox.Size = new System.Drawing.Size(150, 21);
@@ -1893,6 +1941,7 @@
             // 
             // saveCfgBtn
             // 
+            this.saveCfgBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveCfgBtn.Location = new System.Drawing.Point(6, 195);
             this.saveCfgBtn.Name = "saveCfgBtn";
             this.saveCfgBtn.Size = new System.Drawing.Size(91, 23);
@@ -1992,6 +2041,7 @@
             // 
             // colorLayerBtn
             // 
+            this.colorLayerBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.colorLayerBtn.Location = new System.Drawing.Point(485, 3);
             this.colorLayerBtn.Name = "colorLayerBtn";
             this.colorLayerBtn.Size = new System.Drawing.Size(200, 23);
@@ -2016,6 +2066,176 @@
             this.colorLayerTbox.Name = "colorLayerTbox";
             this.colorLayerTbox.Size = new System.Drawing.Size(100, 20);
             this.colorLayerTbox.TabIndex = 13;
+            // 
+            // tabPage12
+            // 
+            this.tabPage12.Controls.Add(this.cropAbsW);
+            this.tabPage12.Controls.Add(this.cropAbsH);
+            this.tabPage12.Controls.Add(this.cropAbsGravity);
+            this.tabPage12.Controls.Add(this.label68);
+            this.tabPage12.Controls.Add(this.label69);
+            this.tabPage12.Location = new System.Drawing.Point(4, 22);
+            this.tabPage12.Name = "tabPage12";
+            this.tabPage12.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage12.Size = new System.Drawing.Size(682, 157);
+            this.tabPage12.TabIndex = 3;
+            this.tabPage12.Text = "Crop To Exact Size";
+            this.tabPage12.UseVisualStyleBackColor = true;
+            // 
+            // label62
+            // 
+            this.label62.AutoSize = true;
+            this.label62.Location = new System.Drawing.Point(6, 9);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(60, 13);
+            this.label62.TabIndex = 31;
+            this.label62.Text = "Size Mode:";
+            // 
+            // cropRelSizeMode
+            // 
+            this.cropRelSizeMode.FormattingEnabled = true;
+            this.cropRelSizeMode.Items.AddRange(new object[] {
+            "Percentage",
+            "Height (Pixels)",
+            "Width (Pixels)",
+            "Longer Side (Pixels)",
+            "Shorter Side (Pixels)"});
+            this.cropRelSizeMode.Location = new System.Drawing.Point(103, 6);
+            this.cropRelSizeMode.Name = "cropRelSizeMode";
+            this.cropRelSizeMode.Size = new System.Drawing.Size(150, 21);
+            this.cropRelSizeMode.TabIndex = 30;
+            this.cropRelSizeMode.Text = "Percentage";
+            // 
+            // label63
+            // 
+            this.label63.AutoSize = true;
+            this.label63.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label63.Location = new System.Drawing.Point(259, 9);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(186, 13);
+            this.label63.TabIndex = 32;
+            this.label63.Text = "The image will be cropped to this size.";
+            // 
+            // label64
+            // 
+            this.label64.AutoSize = true;
+            this.label64.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label64.Location = new System.Drawing.Point(260, 36);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(337, 13);
+            this.label64.TabIndex = 35;
+            this.label64.Text = "Random size range. Leave the second box blank for non-random size.";
+            // 
+            // label65
+            // 
+            this.label65.AutoSize = true;
+            this.label65.Location = new System.Drawing.Point(6, 36);
+            this.label65.Name = "label65";
+            this.label65.Size = new System.Drawing.Size(75, 13);
+            this.label65.TabIndex = 33;
+            this.label65.Text = "Size Min/Max:";
+            // 
+            // label66
+            // 
+            this.label66.AutoSize = true;
+            this.label66.Location = new System.Drawing.Point(6, 63);
+            this.label66.Name = "label66";
+            this.label66.Size = new System.Drawing.Size(43, 13);
+            this.label66.TabIndex = 37;
+            this.label66.Text = "Gravity:";
+            // 
+            // cropRelGrav
+            // 
+            this.cropRelGrav.FormattingEnabled = true;
+            this.cropRelGrav.Items.AddRange(new object[] {
+            "Center Left",
+            "Center",
+            "Center Right",
+            "Top Left",
+            "Top Center",
+            "Top Right",
+            "Bottom Left",
+            "Bottom Middle",
+            "Bottom Right"});
+            this.cropRelGrav.Location = new System.Drawing.Point(103, 60);
+            this.cropRelGrav.Name = "cropRelGrav";
+            this.cropRelGrav.Size = new System.Drawing.Size(150, 21);
+            this.cropRelGrav.TabIndex = 38;
+            // 
+            // cropRelSizeMin
+            // 
+            this.cropRelSizeMin.Location = new System.Drawing.Point(103, 33);
+            this.cropRelSizeMin.Name = "cropRelSizeMin";
+            this.cropRelSizeMin.Size = new System.Drawing.Size(72, 20);
+            this.cropRelSizeMin.TabIndex = 39;
+            // 
+            // cropRelSizeMax
+            // 
+            this.cropRelSizeMax.Location = new System.Drawing.Point(181, 33);
+            this.cropRelSizeMax.Name = "cropRelSizeMax";
+            this.cropRelSizeMax.Size = new System.Drawing.Size(72, 20);
+            this.cropRelSizeMax.TabIndex = 40;
+            // 
+            // label67
+            // 
+            this.label67.AutoSize = true;
+            this.label67.Location = new System.Drawing.Point(6, 9);
+            this.label67.Name = "label67";
+            this.label67.Size = new System.Drawing.Size(118, 13);
+            this.label67.TabIndex = 13;
+            this.label67.Text = "WORK IN PROGRESS";
+            this.extensionWildcardTip.SetToolTip(this.label67, "Enter extension (not case sensitive). Example: \"png\"");
+            // 
+            // cropAbsW
+            // 
+            this.cropAbsW.Location = new System.Drawing.Point(181, 6);
+            this.cropAbsW.Name = "cropAbsW";
+            this.cropAbsW.Size = new System.Drawing.Size(72, 20);
+            this.cropAbsW.TabIndex = 45;
+            // 
+            // cropAbsH
+            // 
+            this.cropAbsH.Location = new System.Drawing.Point(103, 6);
+            this.cropAbsH.Name = "cropAbsH";
+            this.cropAbsH.Size = new System.Drawing.Size(72, 20);
+            this.cropAbsH.TabIndex = 44;
+            // 
+            // cropAbsGravity
+            // 
+            this.cropAbsGravity.FormattingEnabled = true;
+            this.cropAbsGravity.Items.AddRange(new object[] {
+            "Center Left",
+            "Center",
+            "Center Right",
+            "Top Left",
+            "Top Center",
+            "Top Right",
+            "Bottom Left",
+            "Bottom Middle",
+            "Bottom Right"});
+            this.cropAbsGravity.Location = new System.Drawing.Point(103, 33);
+            this.cropAbsGravity.Name = "cropAbsGravity";
+            this.cropAbsGravity.Size = new System.Drawing.Size(150, 21);
+            this.cropAbsGravity.TabIndex = 43;
+            this.cropAbsGravity.Text = "Percentage";
+            // 
+            // label68
+            // 
+            this.label68.AutoSize = true;
+            this.label68.Location = new System.Drawing.Point(6, 36);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(43, 13);
+            this.label68.TabIndex = 42;
+            this.label68.Text = "Gravity:";
+            // 
+            // label69
+            // 
+            this.label69.AutoSize = true;
+            this.label69.Location = new System.Drawing.Point(6, 9);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(74, 13);
+            this.label69.TabIndex = 41;
+            this.label69.Text = "Height/Width:";
             // 
             // MainForm
             // 
@@ -2052,6 +2272,10 @@
             this.tabPage2.PerformLayout();
             this.tabPage8.ResumeLayout(false);
             this.cropTabControl.ResumeLayout(false);
+            this.tabPage9.ResumeLayout(false);
+            this.tabPage9.PerformLayout();
+            this.tabPage10.ResumeLayout(false);
+            this.tabPage10.PerformLayout();
             this.tabPage11.ResumeLayout(false);
             this.tabPage11.PerformLayout();
             this.tabPage3.ResumeLayout(false);
@@ -2085,6 +2309,8 @@
             this.tabPage6.PerformLayout();
             this.panel12.ResumeLayout(false);
             this.panel12.PerformLayout();
+            this.tabPage12.ResumeLayout(false);
+            this.tabPage12.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2253,5 +2479,21 @@
         private System.Windows.Forms.Label label60;
         private System.Windows.Forms.Button colorLayerBtn;
         private System.Windows.Forms.Label label61;
+        private System.Windows.Forms.Label label64;
+        private System.Windows.Forms.Label label65;
+        private System.Windows.Forms.Label label63;
+        private System.Windows.Forms.Label label62;
+        private System.Windows.Forms.ComboBox cropRelSizeMode;
+        private System.Windows.Forms.TabPage tabPage12;
+        private System.Windows.Forms.ComboBox cropRelGrav;
+        private System.Windows.Forms.Label label66;
+        private System.Windows.Forms.TextBox cropRelSizeMax;
+        private System.Windows.Forms.TextBox cropRelSizeMin;
+        private System.Windows.Forms.Label label67;
+        private System.Windows.Forms.TextBox cropAbsW;
+        private System.Windows.Forms.TextBox cropAbsH;
+        private System.Windows.Forms.ComboBox cropAbsGravity;
+        private System.Windows.Forms.Label label68;
+        private System.Windows.Forms.Label label69;
     }
 }

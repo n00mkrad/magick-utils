@@ -71,6 +71,7 @@
     <Compile Include="ConvertTabHelper.cs" />
     <Compile Include="ConvertUtils.cs" />
     <Compile Include="ConvertUtilsUI.cs" />
+    <Compile Include="CropTabHelper.cs" />
     <Compile Include="CropUtils.cs" />
     <Compile Include="CrunchInterface.cs" />
     <Compile Include="DdsOptionsWindow.cs">
@@ -119,7 +120,6 @@
     </Compile>
     <Compile Include="ScaleTabHelper.cs" />
     <Compile Include="ScaleUtils.cs" />
-    <Compile Include="ScaleUtilsUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

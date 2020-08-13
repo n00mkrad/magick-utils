@@ -66,7 +66,8 @@ namespace MagickUtils
         {
             if(scale == 0) return 0.5f;
             if(scale == 1) return 1.0f;
-            if(scale == 2) return 2.0f;
+            if(scale == 2) return 1.5f;
+            if(scale == 3) return 2.0f;
             return 1.0f;
         }
 

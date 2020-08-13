@@ -43,6 +43,8 @@ namespace MagickUtils
             InitCombox(delImgsMode, 0);
             InitCombox(delImgOperator, 0);
             InitCombox(cropDivision, 1);
+            InitCombox(cropRelGrav, 1);
+            InitCombox(cropRelSizeMode, 0);
 
             IOUtils.recursive = recursiveCbox.Checked;
 
@@ -438,10 +440,12 @@ namespace MagickUtils
 
         private void cropBtn_Click(object sender, EventArgs e)
         {
+            if(cropTabControl.SelectedIndex == 0)
+                CropTabHelper.CropRelative(cropRelSizeMin, cropRelSizeMax, cropRelSizeMode, cropRelGrav);
+            if(cropTabControl.SelectedIndex == 1)
+                CropTabHelper.CropAbsolute(cropAbsH, cropAbsW, cropAbsGravity);
             if(cropTabControl.SelectedIndex == 2)
-            {
                 CropUtils.CropDivisibleDir(cropDivision.GetInt());
-            }
         }
 
         private void tabPage7_DragEnter (object sender, DragEventArgs e)

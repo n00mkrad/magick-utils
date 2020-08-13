@@ -16,7 +16,7 @@ namespace MagickUtils
             if(!string.IsNullOrWhiteSpace(maxScaleCombox.Text.Trim()))
                 sMax = int.Parse(maxScaleCombox.Text);
             int filterMode = filterModeCombox.SelectedIndex;
-            ScaleUtilsUI.ScaleDir(sMin, sMax, filterMode);
+            ScaleUtils.ScaleDir(sMin, sMax, filterMode);
         }
 
         public static void ScaleFileList (string[] files, ComboBox minScaleCombox, ComboBox maxScaleCombox, ComboBox filterModeCombox)
@@ -40,7 +40,7 @@ namespace MagickUtils
             if(!string.IsNullOrWhiteSpace(maxScaleCombox.Text.Trim()))
                 sMax = int.Parse(maxScaleCombox.Text);
             int filterMode = filterModeCombox.SelectedIndex;
-            ScaleUtilsUI.ResampleDirRand(sMin, sMax, filterMode);
+            ScaleUtils.ResampleDirRand(sMin, sMax, filterMode);
         }
 
         public static void ResampleFileList (string[] files, ComboBox minScaleCombox, ComboBox maxScaleCombox, ComboBox filterModeCombox)
