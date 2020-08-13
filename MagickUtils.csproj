@@ -109,6 +109,7 @@
     </Compile>
     <Compile Include="IOUtils.cs" />
     <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="OSUtils.cs" />
     <Compile Include="OtherUtils.cs" />
     <Compile Include="OtherUtilsUI.cs" />
     <Compile Include="Program.cs" />
