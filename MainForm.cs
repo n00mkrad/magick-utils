@@ -24,7 +24,7 @@ namespace MagickUtils
         private void MainForm_Load (object sender, EventArgs e)
         {
             if(OSUtils.IsUserAdministrator())
-                MessageBox.Show("ASU is running as administrator. This will break Drag-n-Drop functionality.", "Warning");
+                MessageBox.Show("MagickUtils is running as administrator. This will break Drag-n-Drop functionality.", "Warning");
 
             CenterToScreen();
             Config.ReadConfig();
