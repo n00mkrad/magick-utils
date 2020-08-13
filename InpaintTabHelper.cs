@@ -10,13 +10,13 @@ namespace MagickUtils
 {
     class InpaintTabHelper
     {
-        public static void EraseDir (CheckBox thinLines, CheckBox thickLines, CheckBox rings, CheckBox circles, CheckBox grid, ComboBox colorSelect, ComboBox scale)
+        public static void EraseDir (CheckBox thinLines, CheckBox thickLines, CheckBox rings, CheckBox bubbles, CheckBox grid, ComboBox colorSelect, ComboBox scale)
         {
             List<InpaintUtils.PatternType> patternsToUse = new List<InpaintUtils.PatternType>();
             if(thinLines.Checked) patternsToUse.Add(InpaintUtils.PatternType.ThinLines);
             if(thickLines.Checked) patternsToUse.Add(InpaintUtils.PatternType.ThickLines);
             if(rings.Checked) patternsToUse.Add(InpaintUtils.PatternType.Rings);
-            if(circles.Checked) patternsToUse.Add(InpaintUtils.PatternType.Bubbles);
+            if(bubbles.Checked) patternsToUse.Add(InpaintUtils.PatternType.Bubbles);
             if(grid.Checked) patternsToUse.Add(InpaintUtils.PatternType.Grid);
             MagickColor color = new MagickColor("#00FF00");
             if(colorSelect.SelectedIndex == 1) /* Pink */ color = new MagickColor("#FF00AA");
@@ -25,12 +25,13 @@ namespace MagickUtils
             InpaintUtils.EraseDir(patternsToUse, scale.SelectedIndex, color);
         }
 
-        public static void EraseFileList (string[] files, CheckBox thinLines, CheckBox thickLines, CheckBox circles, CheckBox grid, ComboBox colorSelect, ComboBox scale)
+        public static void EraseFileList (string[] files, CheckBox thinLines, CheckBox thickLines, CheckBox rings, CheckBox bubbles, CheckBox grid, ComboBox colorSelect, ComboBox scale)
         {
             List<InpaintUtils.PatternType> patternsToUse = new List<InpaintUtils.PatternType>();
             if(thinLines.Checked) patternsToUse.Add(InpaintUtils.PatternType.ThinLines);
             if(thickLines.Checked) patternsToUse.Add(InpaintUtils.PatternType.ThickLines);
-            if(circles.Checked) patternsToUse.Add(InpaintUtils.PatternType.Bubbles);
+            if(rings.Checked) patternsToUse.Add(InpaintUtils.PatternType.Rings);
+            if(bubbles.Checked) patternsToUse.Add(InpaintUtils.PatternType.Bubbles);
             if(grid.Checked) patternsToUse.Add(InpaintUtils.PatternType.Grid);
             MagickColor color = new MagickColor("#00FF00");
             if(colorSelect.SelectedIndex == 1) /* Pink */ color = new MagickColor("#FF00AA");

@@ -456,7 +456,7 @@ namespace MagickUtils
         private void tabPage7_DragDrop (object sender, DragEventArgs e)
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-            InpaintTabHelper.EraseFileList(files, inpaintThinLines, inpaintThickLines, inpaintRings, inpaintGrid, inpaintColorCombox, inpaintScaleCombox);
+            InpaintTabHelper.EraseFileList(files, inpaintThinLines, inpaintThickLines, inpaintRings, inpaintBubbles, inpaintGrid, inpaintColorCombox, inpaintScaleCombox);
         }
 
         private void colorLayerBtn_Click (object sender, EventArgs e)

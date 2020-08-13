@@ -34,15 +34,15 @@ namespace MagickUtils
         {
             switch(selectedIndex)
             {
-                case 0: return Gravity.West; break;
-                case 1: return Gravity.Center; break;
-                case 2: return Gravity.East; break;
-                case 3: return Gravity.Northwest; break;
-                case 4: return Gravity.North; break;
-                case 5: return Gravity.Northeast; break;
-                case 6: return Gravity.Southwest; break;
-                case 7: return Gravity.South; break;
-                case 8: return Gravity.Southeast; break;
+                case 0: return Gravity.West;
+                case 1: return Gravity.Center;
+                case 2: return Gravity.East;
+                case 3: return Gravity.Northwest;
+                case 4: return Gravity.North;
+                case 5: return Gravity.Northeast;
+                case 6: return Gravity.Southwest;
+                case 7: return Gravity.South;
+                case 8: return Gravity.Southeast;
             }
             return Gravity.Center;
         }
