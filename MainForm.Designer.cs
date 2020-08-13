@@ -158,10 +158,12 @@
             this.label35 = new System.Windows.Forms.Label();
             this.addNoiseBtn = new System.Windows.Forms.Button();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.inpaintBubbles = new System.Windows.Forms.CheckBox();
+            this.label59 = new System.Windows.Forms.Label();
             this.inpaintEraseBtn = new System.Windows.Forms.Button();
             this.label56 = new System.Windows.Forms.Label();
             this.inpaintThickLines = new System.Windows.Forms.CheckBox();
-            this.inpaintCircles = new System.Windows.Forms.CheckBox();
+            this.inpaintRings = new System.Windows.Forms.CheckBox();
             this.inpaintGrid = new System.Windows.Forms.CheckBox();
             this.inpaintThinLines = new System.Windows.Forms.CheckBox();
             this.label55 = new System.Windows.Forms.Label();
@@ -184,7 +186,11 @@
             this.label36v2 = new System.Windows.Forms.Label();
             this.nameMustContainTbox = new System.Windows.Forms.TextBox();
             this.nameMustNotContainTbox = new System.Windows.Forms.TextBox();
-            this.label59 = new System.Windows.Forms.Label();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.label60 = new System.Windows.Forms.Label();
+            this.colorLayerBtn = new System.Windows.Forms.Button();
+            this.label61 = new System.Windows.Forms.Label();
+            this.colorLayerTbox = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -207,6 +213,7 @@
             this.panel7.SuspendLayout();
             this.tabPage7.SuspendLayout();
             this.tabPage6.SuspendLayout();
+            this.panel12.SuspendLayout();
             this.SuspendLayout();
             // 
             // pathTextbox
@@ -1245,6 +1252,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.panel12);
             this.tabPage4.Controls.Add(this.panel6);
             this.tabPage4.Controls.Add(this.panel2);
             this.tabPage4.Controls.Add(this.panel1);
@@ -1656,11 +1664,12 @@
             // tabPage7
             // 
             this.tabPage7.AllowDrop = true;
+            this.tabPage7.Controls.Add(this.inpaintBubbles);
             this.tabPage7.Controls.Add(this.label59);
             this.tabPage7.Controls.Add(this.inpaintEraseBtn);
             this.tabPage7.Controls.Add(this.label56);
             this.tabPage7.Controls.Add(this.inpaintThickLines);
-            this.tabPage7.Controls.Add(this.inpaintCircles);
+            this.tabPage7.Controls.Add(this.inpaintRings);
             this.tabPage7.Controls.Add(this.inpaintGrid);
             this.tabPage7.Controls.Add(this.inpaintThinLines);
             this.tabPage7.Controls.Add(this.label55);
@@ -1680,6 +1689,27 @@
             this.tabPage7.DragDrop += new System.Windows.Forms.DragEventHandler(this.tabPage7_DragDrop);
             this.tabPage7.DragEnter += new System.Windows.Forms.DragEventHandler(this.tabPage7_DragEnter);
             // 
+            // inpaintBubbles
+            // 
+            this.inpaintBubbles.AutoSize = true;
+            this.inpaintBubbles.Location = new System.Drawing.Point(330, 62);
+            this.inpaintBubbles.Name = "inpaintBubbles";
+            this.inpaintBubbles.Size = new System.Drawing.Size(64, 17);
+            this.inpaintBubbles.TabIndex = 34;
+            this.inpaintBubbles.Text = "Bubbles";
+            this.inpaintBubbles.UseVisualStyleBackColor = true;
+            // 
+            // label59
+            // 
+            this.label59.AutoSize = true;
+            this.label59.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label59.Location = new System.Drawing.Point(103, 200);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(442, 13);
+            this.label59.TabIndex = 33;
+            this.label59.Text = "You can also drag and drop files into this area to process them instead of using " +
+    "a folder path.";
+            // 
             // inpaintEraseBtn
             // 
             this.inpaintEraseBtn.Location = new System.Drawing.Point(6, 195);
@@ -1694,11 +1724,11 @@
             // 
             this.label56.AutoSize = true;
             this.label56.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label56.Location = new System.Drawing.Point(385, 63);
+            this.label56.Location = new System.Drawing.Point(451, 63);
             this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(184, 13);
+            this.label56.Size = new System.Drawing.Size(169, 13);
             this.label56.TabIndex = 22;
-            this.label56.Text = "Type of patterns to use. Randomized.";
+            this.label56.Text = "Pattern types to use. Randomized.";
             // 
             // inpaintThickLines
             // 
@@ -1710,20 +1740,20 @@
             this.inpaintThickLines.Text = "Thick Lines";
             this.inpaintThickLines.UseVisualStyleBackColor = true;
             // 
-            // inpaintCircles
+            // inpaintRings
             // 
-            this.inpaintCircles.AutoSize = true;
-            this.inpaintCircles.Location = new System.Drawing.Point(271, 62);
-            this.inpaintCircles.Name = "inpaintCircles";
-            this.inpaintCircles.Size = new System.Drawing.Size(57, 17);
-            this.inpaintCircles.TabIndex = 20;
-            this.inpaintCircles.Text = "Circles";
-            this.inpaintCircles.UseVisualStyleBackColor = true;
+            this.inpaintRings.AutoSize = true;
+            this.inpaintRings.Location = new System.Drawing.Point(271, 62);
+            this.inpaintRings.Name = "inpaintRings";
+            this.inpaintRings.Size = new System.Drawing.Size(53, 17);
+            this.inpaintRings.TabIndex = 20;
+            this.inpaintRings.Text = "Rings";
+            this.inpaintRings.UseVisualStyleBackColor = true;
             // 
             // inpaintGrid
             // 
             this.inpaintGrid.AutoSize = true;
-            this.inpaintGrid.Location = new System.Drawing.Point(334, 62);
+            this.inpaintGrid.Location = new System.Drawing.Point(400, 62);
             this.inpaintGrid.Name = "inpaintGrid";
             this.inpaintGrid.Size = new System.Drawing.Size(45, 17);
             this.inpaintGrid.TabIndex = 19;
@@ -1939,16 +1969,53 @@
             this.nameMustNotContainTbox.TabIndex = 12;
             this.nameMustNotContainTbox.TextChanged += new System.EventHandler(this.nameMustNotContainTbox_TextChanged);
             // 
-            // label59
+            // panel12
             // 
-            this.label59.AutoSize = true;
-            this.label59.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label59.Location = new System.Drawing.Point(103, 200);
-            this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(442, 13);
-            this.label59.TabIndex = 33;
-            this.label59.Text = "You can also drag and drop files into this area to process them instead of using " +
-    "a folder path.";
+            this.panel12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel12.Controls.Add(this.colorLayerTbox);
+            this.panel12.Controls.Add(this.label60);
+            this.panel12.Controls.Add(this.colorLayerBtn);
+            this.panel12.Controls.Add(this.label61);
+            this.panel12.Location = new System.Drawing.Point(6, 117);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(690, 31);
+            this.panel12.TabIndex = 36;
+            // 
+            // label60
+            // 
+            this.label60.AutoSize = true;
+            this.label60.Location = new System.Drawing.Point(270, 8);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(103, 13);
+            this.label60.TabIndex = 35;
+            this.label60.Text = "Color Value (RGBA):";
+            // 
+            // colorLayerBtn
+            // 
+            this.colorLayerBtn.Location = new System.Drawing.Point(485, 3);
+            this.colorLayerBtn.Name = "colorLayerBtn";
+            this.colorLayerBtn.Size = new System.Drawing.Size(200, 23);
+            this.colorLayerBtn.TabIndex = 12;
+            this.colorLayerBtn.Text = "Apply Color Layer";
+            this.colorLayerBtn.UseVisualStyleBackColor = true;
+            this.colorLayerBtn.Click += new System.EventHandler(this.colorLayerBtn_Click);
+            // 
+            // label61
+            // 
+            this.label61.AutoSize = true;
+            this.label61.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label61.Location = new System.Drawing.Point(3, 8);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(117, 13);
+            this.label61.TabIndex = 8;
+            this.label61.Text = "Layer Color On Top";
+            // 
+            // colorLayerTbox
+            // 
+            this.colorLayerTbox.Location = new System.Drawing.Point(380, 5);
+            this.colorLayerTbox.Name = "colorLayerTbox";
+            this.colorLayerTbox.Size = new System.Drawing.Size(100, 20);
+            this.colorLayerTbox.TabIndex = 13;
             // 
             // MainForm
             // 
@@ -2016,6 +2083,8 @@
             this.tabPage7.PerformLayout();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
+            this.panel12.ResumeLayout(false);
+            this.panel12.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2160,7 +2229,7 @@
         private System.Windows.Forms.ComboBox inpaintScaleCombox;
         private System.Windows.Forms.Label label54;
         private System.Windows.Forms.CheckBox inpaintThickLines;
-        private System.Windows.Forms.CheckBox inpaintCircles;
+        private System.Windows.Forms.CheckBox inpaintRings;
         private System.Windows.Forms.CheckBox inpaintGrid;
         private System.Windows.Forms.CheckBox inpaintThinLines;
         private System.Windows.Forms.Label label55;
@@ -2178,5 +2247,11 @@
         private System.Windows.Forms.ComboBox cropDivision;
         private System.Windows.Forms.Label label58;
         private System.Windows.Forms.Label label59;
+        private System.Windows.Forms.CheckBox inpaintBubbles;
+        private System.Windows.Forms.Panel panel12;
+        private System.Windows.Forms.TextBox colorLayerTbox;
+        private System.Windows.Forms.Label label60;
+        private System.Windows.Forms.Button colorLayerBtn;
+        private System.Windows.Forms.Label label61;
     }
 }

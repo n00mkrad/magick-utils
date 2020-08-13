@@ -136,7 +136,10 @@ namespace MagickUtils
         private void DoScaleBtn_Click (object sender, EventArgs e)
         {
             if(!Program.IsPathValid(Program.currentDir)) return;
-            ScaleTabHelper.ScaleUsingPath(minScaleCombox, maxScaleCombox, filterModeCombox);
+            if(scaleResampleCombox.SelectedIndex == 0)
+                ScaleTabHelper.ScaleUsingPath(minScaleCombox, maxScaleCombox, filterModeCombox);
+            if(scaleResampleCombox.SelectedIndex == 1)
+                ScaleTabHelper.ResampleUsingPath(minScaleCombox, maxScaleCombox, filterModeCombox);
         }
 
         private void autoLevelBtn_Click (object sender, EventArgs e)
@@ -352,7 +355,11 @@ namespace MagickUtils
         private void tabPage2_DragDrop (object sender, DragEventArgs e)
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-            ScaleTabHelper.ScaleFileList(files, minScaleCombox, maxScaleCombox, filterModeCombox);
+            if(scaleResampleCombox.SelectedIndex == 0)
+                ScaleTabHelper.ScaleFileList(files, minScaleCombox, maxScaleCombox, filterModeCombox);
+            if(scaleResampleCombox.SelectedIndex == 1)
+                ScaleTabHelper.ResampleFileList(files, minScaleCombox, maxScaleCombox, filterModeCombox);
+
         }
 
         private void saveCfgBtn_Click (object sender, EventArgs e)
@@ -425,7 +432,8 @@ namespace MagickUtils
 
         private void inpaintEraseBtn_Click(object sender, EventArgs e)
         {
-            InpaintTabHelper.EraseDir(inpaintThinLines, inpaintThickLines, inpaintCircles, inpaintGrid, inpaintColorCombox, inpaintScaleCombox);
+            if(Program.IsPathValid(Program.currentDir)) if(Program.IsPathValid(Program.currentDir))
+                    InpaintTabHelper.EraseDir(inpaintThinLines, inpaintThickLines, inpaintRings, inpaintBubbles, inpaintGrid, inpaintColorCombox, inpaintScaleCombox);
         }
 
         private void cropBtn_Click(object sender, EventArgs e)
@@ -444,7 +452,13 @@ namespace MagickUtils
         private void tabPage7_DragDrop (object sender, DragEventArgs e)
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-            InpaintTabHelper.EraseFileList(files, inpaintThinLines, inpaintThickLines, inpaintCircles, inpaintGrid, inpaintColorCombox, inpaintScaleCombox);
+            InpaintTabHelper.EraseFileList(files, inpaintThinLines, inpaintThickLines, inpaintRings, inpaintGrid, inpaintColorCombox, inpaintScaleCombox);
+        }
+
+        private void colorLayerBtn_Click (object sender, EventArgs e)
+        {
+            if(Program.IsPathValid(Program.currentDir))
+                OtherUtilsUI.LayerColorDir(colorLayerTbox.Text.Trim().Replace("#", ""));
         }
     }
 }

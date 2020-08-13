@@ -113,6 +113,36 @@ namespace MagickUtils.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] inpaint_filledcircles_1024px {
+            get {
+                object obj = ResourceManager.GetObject("inpaint_filledcircles_1024px", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] inpaint_filledcircles_2048px {
+            get {
+                object obj = ResourceManager.GetObject("inpaint_filledcircles_2048px", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] inpaint_filledcircles_512px {
+            get {
+                object obj = ResourceManager.GetObject("inpaint_filledcircles_512px", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] inpaint_grid_1024px {
             get {
                 object obj = ResourceManager.GetObject("inpaint_grid_1024px", resourceCulture);

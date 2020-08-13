@@ -11,7 +11,7 @@ namespace MagickUtils
 {
     class InpaintUtils
     {
-        public enum PatternType { ThinLines, ThickLines, Circles, Grid }
+        public enum PatternType { ThinLines, ThickLines, Rings, Bubbles, Grid }
 
         public async static void EraseDir(List<PatternType> patterns, int scale, MagickColor color)
         {
@@ -36,12 +36,12 @@ namespace MagickUtils
             PatternType chosenPattern = GetRandomPatternType(patterns);
             PreProcessing(path, "- Pattern: " + chosenPattern.ToString());
             Random rand = new Random();
-            MagickImage patternImg = new MagickImage(GetInpaintImage(chosenPattern, scale));
+            MagickImage patternImg = new MagickImage(GetInpaintImage(chosenPattern));
             patternImg.FilterType = FilterType.Point;
             patternImg.Colorize(color, new Percentage(100));
             patternImg.BackgroundColor = MagickColors.Transparent;
             patternImg.Rotate(RandRange(0, 360));
-            MagickGeometry upscaleGeom = new MagickGeometry(Math.Round(img.Width * (float)RandRange(1.0f, 1.5f)) + "x" + Math.Round(img.Height * (float)RandRange(1.0f, 1.5f)) + "!");
+            MagickGeometry upscaleGeom = new MagickGeometry(Math.Round(img.Width * (float)RandRange(1.0f, 2.0f)) * GetScaleMultiplier(scale) + "x" + Math.Round(img.Height * (float)RandRange(1.0f, 2.0f)) * GetScaleMultiplier(scale) + "!");
             patternImg.Resize(upscaleGeom);
             patternImg.BitDepth(Channels.Alpha, 1);
             img.Composite(patternImg, Gravity.Center, CompositeOperator.Over);
@@ -62,31 +62,45 @@ namespace MagickUtils
             return typesList[index];
         }
 
-        static byte[] GetInpaintImage (PatternType pattern, int scale)
+        static float GetScaleMultiplier (int scale)
+        {
+            if(scale == 0) return 0.5f;
+            if(scale == 1) return 1.0f;
+            if(scale == 2) return 2.0f;
+            return 1.0f;
+        }
+
+        static byte[] GetInpaintImage (PatternType pattern, int res = 1)
         {
             if(pattern == PatternType.ThinLines)
             {
-                if (scale == 0) return Resources.inpaint_thinlines1_512px;
-                if (scale == 1) return Resources.inpaint_thinlines1_1024px;
-                if (scale == 2) return Resources.inpaint_thinlines1_2048px;
+                if (res == 0) return Resources.inpaint_thinlines1_512px;
+                if (res == 1) return Resources.inpaint_thinlines1_1024px;
+                if (res == 2) return Resources.inpaint_thinlines1_2048px;
             }
             if (pattern == PatternType.ThickLines)
             {
-                if (scale == 0) return Resources.inpaint_thicklines1_512px;
-                if (scale == 1) return Resources.inpaint_thicklines1_1024px;
-                if (scale == 2) return Resources.inpaint_thicklines1_2048px;
+                if (res == 0) return Resources.inpaint_thicklines1_512px;
+                if (res == 1) return Resources.inpaint_thicklines1_1024px;
+                if (res == 2) return Resources.inpaint_thicklines1_2048px;
             }
-            if (pattern == PatternType.Circles)
+            if(pattern == PatternType.Rings)
             {
-                if (scale == 0) return Resources.inpaint_circles_512px;
-                if (scale == 1) return Resources.inpaint_circles_1024px;
-                if (scale == 2) return Resources.inpaint_circles_2048px;
+                if(res == 0) return Resources.inpaint_circles_512px;
+                if(res == 1) return Resources.inpaint_circles_1024px;
+                if(res == 2) return Resources.inpaint_circles_2048px;
+            }
+            if (pattern == PatternType.Bubbles)
+            {
+                if (res == 0) return Resources.inpaint_filledcircles_512px;
+                if (res == 1) return Resources.inpaint_filledcircles_1024px;
+                if (res == 2) return Resources.inpaint_filledcircles_2048px;
             }
             if (pattern == PatternType.Grid)
             {
-                if (scale == 0) return Resources.inpaint_grid_512px;
-                if (scale == 1) return Resources.inpaint_grid_1024px;
-                if (scale == 2) return Resources.inpaint_grid_2048px;
+                if (res == 0) return Resources.inpaint_grid_512px;
+                if (res == 1) return Resources.inpaint_grid_1024px;
+                if (res == 2) return Resources.inpaint_grid_2048px;
             }
             return null;
         }

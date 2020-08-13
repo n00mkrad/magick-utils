@@ -126,6 +126,9 @@
     <None Include="inpaint-imgs\res\inpaint-circles-1024px.pngfile" />
     <None Include="inpaint-imgs\res\inpaint-circles-2048px.pngfile" />
     <None Include="inpaint-imgs\res\inpaint-circles-512px.pngfile" />
+    <None Include="inpaint-imgs\res\inpaint-filledcircles-1024px.pngfile" />
+    <None Include="inpaint-imgs\res\inpaint-filledcircles-2048px.pngfile" />
+    <None Include="inpaint-imgs\res\inpaint-filledcircles-512px.pngfile" />
     <None Include="inpaint-imgs\res\inpaint-grid-1024px.pngfile" />
     <None Include="inpaint-imgs\res\inpaint-grid-2048px.pngfile" />
     <None Include="inpaint-imgs\res\inpaint-grid-512px.pngfile" />

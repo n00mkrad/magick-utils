@@ -30,9 +30,9 @@ namespace MagickUtils
             Program.Print("  -> Scaling down to " + targetScale + "% with filter " + filter + "...");
             img.FilterType = filter;
             img.Resize(new Percentage(targetScale));
-            img.Write(img.FileName);
+            //img.Write(img.FileName);
             MagickGeometry upscaleGeom = new MagickGeometry(srcWidth + "x" + srcHeight + "!");
-            img.FilterType = filter;
+            img.FilterType = FT.Point;
             Program.Print("  -> Scaling back up...\n");
             img.Resize(upscaleGeom);
             PreProcessing(path);
@@ -129,7 +129,7 @@ namespace MagickUtils
         {
             bytesPre = 0;
             bytesPre = new FileInfo(path).Length;
-            Program.Print("-> Processing " + Path.GetFileName(path) + " " + infoSuffix);
+            //Program.Print("-> Processing TEST " + Path.GetFileName(path) + " " + infoSuffix);
             Program.sw.Start();
         }
 

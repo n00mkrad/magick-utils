@@ -133,6 +133,15 @@
   <data name="inpaint_circles_512px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\inpaint-imgs\res\inpaint-circles-512px.pngfile;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="inpaint_filledcircles_1024px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\inpaint-imgs\res\inpaint-filledcircles-1024px.pngfile;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="inpaint_filledcircles_2048px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\inpaint-imgs\res\inpaint-filledcircles-2048px.pngfile;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="inpaint_filledcircles_512px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\inpaint-imgs\res\inpaint-filledcircles-512px.pngfile;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="inpaint_grid_1024px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\inpaint-imgs\res\inpaint-grid-1024px.pngfile;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

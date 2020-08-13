@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Configuration;
+using ImageMagick;
 
 namespace MagickUtils
 {
@@ -172,6 +173,30 @@ namespace MagickUtils
                         File.Delete(file.FullName);
                 }
             }
+        }
+
+        public static async void LayerColorDir (string color)
+        {
+            int counter = 1;
+            FileInfo[] files = IOUtils.GetFiles();
+            Program.PreProcessing();
+            foreach(FileInfo file in files)
+            {
+                Program.ShowProgress("Overlaying color on image ", counter, files.Length);
+                counter++;
+                LayerColor(file.FullName, color);
+                if(counter % 2 == 0) await Program.PutTaskDelay();
+            }
+            Program.PostProcessing();
+        }
+
+        public static void LayerColor (string path, string color)
+        {
+            MagickImage img = new MagickImage(path);
+            MagickColor imgColor = new MagickColor("#" + color);
+            MagickImage overlay = new MagickImage(imgColor, img.Width, img.Height);
+            img.Composite(overlay, Gravity.Center, CompositeOperator.Over);
+            img.Write(path);
         }
     }
 }
