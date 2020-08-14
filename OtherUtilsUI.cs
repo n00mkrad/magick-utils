@@ -141,7 +141,7 @@ namespace MagickUtils
                 counter++;
                 ImageSizeFilterUtils.DeleteSmallImages(file.FullName, scaleMode, op, minSize);
                 if (counter % 10 == 0) await Program.PutTaskDelay();
-                if(counter % 50 == 0) Program.Print("Processed " + counter + " files...");
+                if(counter % 100 == 0) Program.Print("Processed " + counter + " files...");
             }
             Program.PostProcessing();
         }
@@ -163,15 +163,19 @@ namespace MagickUtils
 
         public static void RemoveMissingFiles (string path, string checkDir, bool testRun)
         {
+            int counter = 1;
             FileInfo[] Files = IOUtils.GetFiles(Config.fileOperationsNoExtFilter);
             Program.Print("Checking " + Files.Length + " files...");
             foreach(FileInfo file in Files)
             {
                 if(!File.Exists(Path.Combine(checkDir, file.Name)))
                 {
+                    Program.ShowProgress("", counter, Files.Length);
+                    counter++;
                     Program.Print(" -> " + file.Name + " doesn't exist in second dir, will delete");
                     if(!testRun)
                         File.Delete(file.FullName);
+                    if(counter % 50 == 0) Program.Print("Processed " + counter + " files...");
                 }
             }
         }
