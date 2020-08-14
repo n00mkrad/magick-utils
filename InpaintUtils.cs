@@ -41,7 +41,11 @@ namespace MagickUtils
             patternImg.Colorize(color, new Percentage(100));
             patternImg.BackgroundColor = MagickColors.Transparent;
             patternImg.Rotate(RandRange(0, 360));
-            MagickGeometry upscaleGeom = new MagickGeometry(Math.Round(img.Width * (float)RandRange(1.0f, 2.0f)) * GetScaleMultiplier(scale) + "x" + Math.Round(img.Height * (float)RandRange(1.0f, 2.0f)) * GetScaleMultiplier(scale) + "!");
+            double geomW = img.Width * RandRange(1.0f, 2.0f) * GetScaleMultiplier(scale);
+            double geomH = img.Height * RandRange(1.0f, 2.0f) * GetScaleMultiplier(scale);
+            //Program.Print("geomW: " + geomW + " - geomH: " + geomW);
+            MagickGeometry upscaleGeom = new MagickGeometry(Math.Round(geomW) + "x" + Math.Round(geomH) + "!");
+            Program.Print("Geom: " + upscaleGeom);
             patternImg.Resize(upscaleGeom);
             patternImg.BitDepth(Channels.Alpha, 1);
             img.Composite(patternImg, Gravity.Center, CompositeOperator.Over);

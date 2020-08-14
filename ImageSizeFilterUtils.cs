@@ -42,6 +42,7 @@ namespace MagickUtils
             }
 
             string fname = Path.GetFileName(path);
+            Program.Print("-> Deleted " + fname + " (" + img.Width + "x" + img.Height + ")");
             File.Delete(img.FileName);
         }
 

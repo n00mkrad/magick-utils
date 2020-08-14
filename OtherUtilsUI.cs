@@ -141,6 +141,7 @@ namespace MagickUtils
                 counter++;
                 ImageSizeFilterUtils.DeleteSmallImages(file.FullName, scaleMode, op, minSize);
                 if (counter % 10 == 0) await Program.PutTaskDelay();
+                if(counter % 50 == 0) Program.Print("Processed " + counter + " files...");
             }
             Program.PostProcessing();
         }
