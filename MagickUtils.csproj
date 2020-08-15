@@ -38,7 +38,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>NMKD2020-nonly1-smoothed2.ico</ApplicationIcon>
+    <ApplicationIcon>Images\Icons\NMKD2020-nonly1-smoothed2.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
@@ -65,53 +65,51 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdjustUtils.cs" />
-    <Compile Include="AdjustUtilsUI.cs" />
-    <Compile Include="Config.cs" />
-    <Compile Include="ConvertTabHelper.cs" />
-    <Compile Include="ConvertUtils.cs" />
-    <Compile Include="ConvertUtilsUI.cs" />
-    <Compile Include="CropTabHelper.cs" />
-    <Compile Include="CropUtils.cs" />
-    <Compile Include="CrunchInterface.cs" />
-    <Compile Include="DdsOptionsWindow.cs">
+    <Compile Include="MagickUtils\AdjustUtils.cs" />
+    <Compile Include="MagickUtils\TilingUtils.cs" />
+    <Compile Include="Utils\Config.cs" />
+    <Compile Include="FormsHelpers\ConvertTabHelper.cs" />
+    <Compile Include="MagickUtils\ConvertUtils.cs" />
+    <Compile Include="FormsHelpers\CropTabHelper.cs" />
+    <Compile Include="MagickUtils\CropUtils.cs" />
+    <Compile Include="Interfaces\CrunchInterface.cs" />
+    <Compile Include="Forms\DdsOptionsWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DdsOptionsWindow.Designer.cs">
+    <Compile Include="Forms\DdsOptionsWindow.Designer.cs">
       <DependentUpon>DdsOptionsWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="EffectsTabHelper.cs" />
-    <Compile Include="EffectsUtils.cs" />
-    <Compile Include="FlifInterface.cs" />
-    <Compile Include="FlifOptionsWindow.cs">
+    <Compile Include="FormsHelpers\EffectsTabHelper.cs" />
+    <Compile Include="MagickUtils\EffectsUtils.cs" />
+    <Compile Include="Interfaces\FlifInterface.cs" />
+    <Compile Include="Forms\FlifOptionsWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FlifOptionsWindow.Designer.cs">
+    <Compile Include="Forms\FlifOptionsWindow.Designer.cs">
       <DependentUpon>FlifOptionsWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="ImageSizeFilterUtils.cs" />
-    <Compile Include="InpaintTabHelper.cs" />
-    <Compile Include="InpaintUtils.cs" />
+    <Compile Include="MagickUtils\ImageSizeFilterUtils.cs" />
+    <Compile Include="FormsHelpers\InpaintTabHelper.cs" />
+    <Compile Include="MagickUtils\InpaintUtils.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormatOptions.cs" />
-    <Compile Include="FormatUtils.cs" />
-    <Compile Include="GaussianBlur.cs" />
-    <Compile Include="ImagePreviewPopup.cs">
+    <Compile Include="Utils\FormatOptions.cs" />
+    <Compile Include="MagickUtils\FormatUtils.cs" />
+    <Compile Include="ThirdParty\GaussianBlur.cs" />
+    <Compile Include="Forms\ImagePreviewPopup.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ImagePreviewPopup.Designer.cs">
+    <Compile Include="Forms\ImagePreviewPopup.Designer.cs">
       <DependentUpon>ImagePreviewPopup.cs</DependentUpon>
     </Compile>
-    <Compile Include="IOUtils.cs" />
-    <Compile Include="ExtensionMethods.cs" />
-    <Compile Include="OSUtils.cs" />
-    <Compile Include="OtherUtils.cs" />
-    <Compile Include="OtherUtilsUI.cs" />
+    <Compile Include="Utils\IOUtils.cs" />
+    <Compile Include="Utils\ExtensionMethods.cs" />
+    <Compile Include="Utils\OSUtils.cs" />
+    <Compile Include="MagickUtils\OtherUtils.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -119,29 +117,31 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="ScaleTabHelper.cs" />
-    <Compile Include="ScaleUtils.cs" />
+    <Compile Include="FormsHelpers\ScaleTabHelper.cs" />
+    <Compile Include="MagickUtils\ScaleUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="inpaint-imgs\res\inpaint-circles-1024px.pngfile" />
-    <None Include="inpaint-imgs\res\inpaint-circles-2048px.pngfile" />
-    <None Include="inpaint-imgs\res\inpaint-circles-512px.pngfile" />
-    <None Include="inpaint-imgs\res\inpaint-filledcircles-1024px.pngfile" />
-    <None Include="inpaint-imgs\res\inpaint-filledcircles-2048px.pngfile" />
-    <None Include="inpaint-imgs\res\inpaint-filledcircles-512px.pngfile" />
-    <None Include="inpaint-imgs\res\inpaint-grid-1024px.pngfile" />
-    <None Include="inpaint-imgs\res\inpaint-grid-2048px.pngfile" />
-    <None Include="inpaint-imgs\res\inpaint-grid-512px.pngfile" />
-    <None Include="inpaint-imgs\res\inpaint-thicklines1-1024px.pngfile" />
-    <None Include="inpaint-imgs\res\inpaint-thicklines1-2048px.pngfile" />
-    <None Include="inpaint-imgs\res\inpaint-thicklines1-512px.pngfile" />
-    <None Include="inpaint-imgs\res\inpaint-thinlines1-1024px.pngfile" />
-    <None Include="inpaint-imgs\res\inpaint-thinlines1-2048px.pngfile" />
-    <None Include="inpaint-imgs\res\inpaint-thinlines1-512px.pngfile" />
+    <None Include="Images\InpaintPatterns\res\inpaint-circles-1024px.pngfile" />
+    <None Include="Images\InpaintPatterns\res\inpaint-circles-2048px.pngfile" />
+    <None Include="Images\InpaintPatterns\res\inpaint-circles-512px.pngfile" />
+    <None Include="Images\InpaintPatterns\res\inpaint-filledcircles-1024px.pngfile" />
+    <None Include="Images\InpaintPatterns\res\inpaint-filledcircles-2048px.pngfile" />
+    <None Include="Images\InpaintPatterns\res\inpaint-filledcircles-512px.pngfile" />
+    <None Include="Images\InpaintPatterns\res\inpaint-grid-1024px.pngfile" />
+    <None Include="Images\InpaintPatterns\res\inpaint-grid-2048px.pngfile" />
+    <None Include="Images\InpaintPatterns\res\inpaint-grid-512px.pngfile" />
+    <None Include="Images\InpaintPatterns\res\inpaint-thicklines1-1024px.pngfile" />
+    <None Include="Images\InpaintPatterns\res\inpaint-thicklines1-2048px.pngfile" />
+    <None Include="Images\InpaintPatterns\res\inpaint-thicklines1-512px.pngfile" />
+    <None Include="Images\InpaintPatterns\res\inpaint-thinlines1-1024px.pngfile" />
+    <None Include="Images\InpaintPatterns\res\inpaint-thinlines1-2048px.pngfile" />
+    <None Include="Images\InpaintPatterns\res\inpaint-thinlines1-512px.pngfile" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\questmark-72px-bordeer.png" />
+    <None Include="Resources\questmark.png" />
     <None Include="Resources\inpaint-thinlines1-2048px.png" />
     <None Include="Resources\inpaint-thinlines1-1024px.png" />
     <None Include="Resources\inpaint-thinlines1-512px.png" />
@@ -154,31 +154,33 @@
     <None Include="Resources\inpaint-circles-2048px.png" />
     <None Include="Resources\inpaint-circles-1024px.png" />
     <None Include="Resources\inpaint-circles-512px.png" />
-    <None Include="crunch.exe" />
-    <None Include="flif.exe" />
-    <Content Include="NMKD2020-nonly1-smoothed.ico" />
-    <Content Include="NMKD2020-nonly1-smoothed2.ico" />
-    <Content Include="NMKD2020-nonly1.ico" />
-    <Content Include="NMKD2020-pb2.ico" />
+    <None Include="Interfaces\crunch.exe" />
+    <None Include="Interfaces\flif.exe" />
+    <Content Include="Images\Icons\NMKD2020-nonly1-smoothed.ico" />
+    <Content Include="Images\Icons\NMKD2020-nonly1-smoothed2.ico" />
+    <Content Include="Images\Icons\NMKD2020-nonly1.ico" />
+    <Content Include="Images\Icons\NMKD2020-pb2.ico" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="DdsOptionsWindow.resx">
+    <EmbeddedResource Include="Forms\DdsOptionsWindow.resx">
       <DependentUpon>DdsOptionsWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FlifOptionsWindow.resx">
+    <EmbeddedResource Include="Forms\FlifOptionsWindow.resx">
       <DependentUpon>FlifOptionsWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ImagePreviewPopup.resx">
+    <EmbeddedResource Include="Forms\ImagePreviewPopup.resx">
       <DependentUpon>ImagePreviewPopup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

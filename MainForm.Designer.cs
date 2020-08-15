@@ -76,7 +76,23 @@
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.cropTabControl = new System.Windows.Forms.TabControl();
             this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.cropRelSizeMax = new System.Windows.Forms.TextBox();
+            this.cropRelSizeMin = new System.Windows.Forms.TextBox();
+            this.cropRelGrav = new System.Windows.Forms.ComboBox();
+            this.label66 = new System.Windows.Forms.Label();
+            this.label64 = new System.Windows.Forms.Label();
+            this.label65 = new System.Windows.Forms.Label();
+            this.label63 = new System.Windows.Forms.Label();
+            this.label62 = new System.Windows.Forms.Label();
+            this.cropRelSizeMode = new System.Windows.Forms.ComboBox();
+            this.tabPage12 = new System.Windows.Forms.TabPage();
+            this.cropAbsW = new System.Windows.Forms.TextBox();
+            this.cropAbsH = new System.Windows.Forms.TextBox();
+            this.cropAbsGravity = new System.Windows.Forms.ComboBox();
+            this.label68 = new System.Windows.Forms.Label();
+            this.label69 = new System.Windows.Forms.Label();
             this.tabPage10 = new System.Windows.Forms.TabPage();
+            this.label67 = new System.Windows.Forms.Label();
             this.tabPage11 = new System.Windows.Forms.TabPage();
             this.cropDivision = new System.Windows.Forms.ComboBox();
             this.label58 = new System.Windows.Forms.Label();
@@ -122,6 +138,11 @@
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.colorLayerTbox = new System.Windows.Forms.TextBox();
+            this.label60 = new System.Windows.Forms.Label();
+            this.colorLayerBtn = new System.Windows.Forms.Button();
+            this.label61 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label34 = new System.Windows.Forms.Label();
             this.colorDepthCombox = new System.Windows.Forms.ComboBox();
@@ -186,33 +207,18 @@
             this.label36v2 = new System.Windows.Forms.Label();
             this.nameMustContainTbox = new System.Windows.Forms.TextBox();
             this.nameMustNotContainTbox = new System.Windows.Forms.TextBox();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.label60 = new System.Windows.Forms.Label();
-            this.colorLayerBtn = new System.Windows.Forms.Button();
-            this.label61 = new System.Windows.Forms.Label();
-            this.colorLayerTbox = new System.Windows.Forms.TextBox();
-            this.tabPage12 = new System.Windows.Forms.TabPage();
-            this.label62 = new System.Windows.Forms.Label();
-            this.cropRelSizeMode = new System.Windows.Forms.ComboBox();
-            this.label63 = new System.Windows.Forms.Label();
-            this.label64 = new System.Windows.Forms.Label();
-            this.label65 = new System.Windows.Forms.Label();
-            this.label66 = new System.Windows.Forms.Label();
-            this.cropRelGrav = new System.Windows.Forms.ComboBox();
-            this.cropRelSizeMin = new System.Windows.Forms.TextBox();
-            this.cropRelSizeMax = new System.Windows.Forms.TextBox();
-            this.label67 = new System.Windows.Forms.Label();
-            this.cropAbsW = new System.Windows.Forms.TextBox();
-            this.cropAbsH = new System.Windows.Forms.TextBox();
-            this.cropAbsGravity = new System.Windows.Forms.ComboBox();
-            this.label68 = new System.Windows.Forms.Label();
-            this.label69 = new System.Windows.Forms.Label();
+            this.defTip = new System.Windows.Forms.ToolTip(this.components);
+            this.tabPage13 = new System.Windows.Forms.TabPage();
+            this.tileBtn = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage8.SuspendLayout();
             this.cropTabControl.SuspendLayout();
             this.tabPage9.SuspendLayout();
+            this.tabPage12.SuspendLayout();
             this.tabPage10.SuspendLayout();
             this.tabPage11.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -223,6 +229,7 @@
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.panel12.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -231,8 +238,9 @@
             this.panel7.SuspendLayout();
             this.tabPage7.SuspendLayout();
             this.tabPage6.SuspendLayout();
-            this.panel12.SuspendLayout();
-            this.tabPage12.SuspendLayout();
+            this.tabPage13.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // pathTextbox
@@ -280,6 +288,7 @@
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage7);
+            this.tabControl1.Controls.Add(this.tabPage13);
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Location = new System.Drawing.Point(12, 96);
             this.tabControl1.Name = "tabControl1";
@@ -328,7 +337,7 @@
             // 
             // formatOptionsBtn
             // 
-            this.formatOptionsBtn.Location = new System.Drawing.Point(263, 6);
+            this.formatOptionsBtn.Location = new System.Drawing.Point(306, 6);
             this.formatOptionsBtn.Name = "formatOptionsBtn";
             this.formatOptionsBtn.Size = new System.Drawing.Size(100, 21);
             this.formatOptionsBtn.TabIndex = 18;
@@ -340,7 +349,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label8.Location = new System.Drawing.Point(260, 63);
+            this.label8.Location = new System.Drawing.Point(307, 63);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(194, 13);
             this.label8.TabIndex = 17;
@@ -356,7 +365,7 @@
             "30",
             "10",
             "0"});
-            this.qualityMaxCombox.Location = new System.Drawing.Point(103, 60);
+            this.qualityMaxCombox.Location = new System.Drawing.Point(150, 60);
             this.qualityMaxCombox.Name = "qualityMaxCombox";
             this.qualityMaxCombox.Size = new System.Drawing.Size(150, 21);
             this.qualityMaxCombox.TabIndex = 16;
@@ -374,7 +383,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label7.Location = new System.Drawing.Point(260, 90);
+            this.label7.Location = new System.Drawing.Point(307, 90);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(159, 13);
             this.label7.TabIndex = 14;
@@ -392,7 +401,7 @@
             // delSrcCbox
             // 
             this.delSrcCbox.AutoSize = true;
-            this.delSrcCbox.Location = new System.Drawing.Point(103, 90);
+            this.delSrcCbox.Location = new System.Drawing.Point(150, 90);
             this.delSrcCbox.Name = "delSrcCbox";
             this.delSrcCbox.Size = new System.Drawing.Size(15, 14);
             this.delSrcCbox.TabIndex = 12;
@@ -413,7 +422,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label5.Location = new System.Drawing.Point(260, 36);
+            this.label5.Location = new System.Drawing.Point(307, 36);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(168, 13);
             this.label5.TabIndex = 10;
@@ -429,7 +438,7 @@
             "30",
             "10",
             "0"});
-            this.qualityCombox.Location = new System.Drawing.Point(103, 33);
+            this.qualityCombox.Location = new System.Drawing.Point(150, 33);
             this.qualityCombox.Name = "qualityCombox";
             this.qualityCombox.Size = new System.Drawing.Size(150, 21);
             this.qualityCombox.TabIndex = 9;
@@ -464,7 +473,7 @@
             "WEBP",
             "JPEG 2000",
             "FLIF"});
-            this.formatCombox.Location = new System.Drawing.Point(103, 6);
+            this.formatCombox.Location = new System.Drawing.Point(150, 6);
             this.formatCombox.Name = "formatCombox";
             this.formatCombox.Size = new System.Drawing.Size(150, 21);
             this.formatCombox.TabIndex = 0;
@@ -520,7 +529,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label13.Location = new System.Drawing.Point(260, 144);
+            this.label13.Location = new System.Drawing.Point(307, 144);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(274, 13);
             this.label13.TabIndex = 41;
@@ -538,7 +547,7 @@
             // noOverwriteCbox
             // 
             this.noOverwriteCbox.AutoSize = true;
-            this.noOverwriteCbox.Location = new System.Drawing.Point(103, 144);
+            this.noOverwriteCbox.Location = new System.Drawing.Point(150, 144);
             this.noOverwriteCbox.Name = "noOverwriteCbox";
             this.noOverwriteCbox.Size = new System.Drawing.Size(15, 14);
             this.noOverwriteCbox.TabIndex = 39;
@@ -548,7 +557,7 @@
             // appendFilterCbox
             // 
             this.appendFilterCbox.AutoSize = true;
-            this.appendFilterCbox.Location = new System.Drawing.Point(263, 89);
+            this.appendFilterCbox.Location = new System.Drawing.Point(310, 89);
             this.appendFilterCbox.Name = "appendFilterCbox";
             this.appendFilterCbox.Size = new System.Drawing.Size(168, 17);
             this.appendFilterCbox.TabIndex = 38;
@@ -561,7 +570,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label10.Location = new System.Drawing.Point(260, 117);
+            this.label10.Location = new System.Drawing.Point(307, 117);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(245, 13);
             this.label10.TabIndex = 37;
@@ -581,7 +590,7 @@
             this.onlyDownscaleCbox.AutoSize = true;
             this.onlyDownscaleCbox.Checked = true;
             this.onlyDownscaleCbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.onlyDownscaleCbox.Location = new System.Drawing.Point(103, 117);
+            this.onlyDownscaleCbox.Location = new System.Drawing.Point(150, 117);
             this.onlyDownscaleCbox.Name = "onlyDownscaleCbox";
             this.onlyDownscaleCbox.Size = new System.Drawing.Size(15, 14);
             this.onlyDownscaleCbox.TabIndex = 35;
@@ -591,7 +600,7 @@
             // 
             this.label19.AutoSize = true;
             this.label19.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label19.Location = new System.Drawing.Point(260, 90);
+            this.label19.Location = new System.Drawing.Point(311, 90);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(96, 13);
             this.label19.TabIndex = 34;
@@ -607,7 +616,7 @@
             "Nearest (Point)",
             "Random (Box/Mitchell/Bicubic)",
             "Random (All)"});
-            this.filterModeCombox.Location = new System.Drawing.Point(103, 87);
+            this.filterModeCombox.Location = new System.Drawing.Point(150, 87);
             this.filterModeCombox.Name = "filterModeCombox";
             this.filterModeCombox.Size = new System.Drawing.Size(150, 21);
             this.filterModeCombox.TabIndex = 33;
@@ -638,7 +647,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label17.Location = new System.Drawing.Point(260, 36);
+            this.label17.Location = new System.Drawing.Point(307, 36);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(200, 13);
             this.label17.TabIndex = 30;
@@ -662,7 +671,7 @@
             "Width (Pixels)",
             "Longer Side (Pixels)",
             "Shorter Side (Pixels)"});
-            this.scaleModeCombox.Location = new System.Drawing.Point(103, 33);
+            this.scaleModeCombox.Location = new System.Drawing.Point(150, 33);
             this.scaleModeCombox.Name = "scaleModeCombox";
             this.scaleModeCombox.Size = new System.Drawing.Size(150, 21);
             this.scaleModeCombox.TabIndex = 28;
@@ -677,7 +686,7 @@
             "75",
             "50",
             "25"});
-            this.maxScaleCombox.Location = new System.Drawing.Point(181, 60);
+            this.maxScaleCombox.Location = new System.Drawing.Point(228, 60);
             this.maxScaleCombox.Name = "maxScaleCombox";
             this.maxScaleCombox.Size = new System.Drawing.Size(72, 21);
             this.maxScaleCombox.TabIndex = 26;
@@ -686,7 +695,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label15.Location = new System.Drawing.Point(260, 63);
+            this.label15.Location = new System.Drawing.Point(307, 63);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(351, 13);
             this.label15.TabIndex = 24;
@@ -700,7 +709,7 @@
             "75",
             "50",
             "25"});
-            this.minScaleCombox.Location = new System.Drawing.Point(103, 60);
+            this.minScaleCombox.Location = new System.Drawing.Point(150, 60);
             this.minScaleCombox.Name = "minScaleCombox";
             this.minScaleCombox.Size = new System.Drawing.Size(72, 21);
             this.minScaleCombox.TabIndex = 23;
@@ -719,7 +728,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label11.Location = new System.Drawing.Point(260, 9);
+            this.label11.Location = new System.Drawing.Point(306, 9);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(248, 13);
             this.label11.TabIndex = 21;
@@ -740,7 +749,7 @@
             this.scaleResampleCombox.Items.AddRange(new object[] {
             "Scale",
             "Resample"});
-            this.scaleResampleCombox.Location = new System.Drawing.Point(103, 6);
+            this.scaleResampleCombox.Location = new System.Drawing.Point(150, 6);
             this.scaleResampleCombox.Name = "scaleResampleCombox";
             this.scaleResampleCombox.Size = new System.Drawing.Size(150, 21);
             this.scaleResampleCombox.TabIndex = 19;
@@ -789,6 +798,166 @@
             this.tabPage9.Text = "Crop With Original Aspect Ratio";
             this.tabPage9.UseVisualStyleBackColor = true;
             // 
+            // cropRelSizeMax
+            // 
+            this.cropRelSizeMax.Location = new System.Drawing.Point(228, 33);
+            this.cropRelSizeMax.Name = "cropRelSizeMax";
+            this.cropRelSizeMax.Size = new System.Drawing.Size(72, 20);
+            this.cropRelSizeMax.TabIndex = 40;
+            // 
+            // cropRelSizeMin
+            // 
+            this.cropRelSizeMin.Location = new System.Drawing.Point(150, 33);
+            this.cropRelSizeMin.Name = "cropRelSizeMin";
+            this.cropRelSizeMin.Size = new System.Drawing.Size(72, 20);
+            this.cropRelSizeMin.TabIndex = 39;
+            // 
+            // cropRelGrav
+            // 
+            this.cropRelGrav.FormattingEnabled = true;
+            this.cropRelGrav.Items.AddRange(new object[] {
+            "Center Left",
+            "Center",
+            "Center Right",
+            "Top Left",
+            "Top Center",
+            "Top Right",
+            "Bottom Left",
+            "Bottom Middle",
+            "Bottom Right"});
+            this.cropRelGrav.Location = new System.Drawing.Point(150, 60);
+            this.cropRelGrav.Name = "cropRelGrav";
+            this.cropRelGrav.Size = new System.Drawing.Size(150, 21);
+            this.cropRelGrav.TabIndex = 38;
+            // 
+            // label66
+            // 
+            this.label66.AutoSize = true;
+            this.label66.Location = new System.Drawing.Point(6, 63);
+            this.label66.Name = "label66";
+            this.label66.Size = new System.Drawing.Size(43, 13);
+            this.label66.TabIndex = 37;
+            this.label66.Text = "Gravity:";
+            // 
+            // label64
+            // 
+            this.label64.AutoSize = true;
+            this.label64.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label64.Location = new System.Drawing.Point(307, 36);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(337, 13);
+            this.label64.TabIndex = 35;
+            this.label64.Text = "Random size range. Leave the second box blank for non-random size.";
+            // 
+            // label65
+            // 
+            this.label65.AutoSize = true;
+            this.label65.Location = new System.Drawing.Point(6, 36);
+            this.label65.Name = "label65";
+            this.label65.Size = new System.Drawing.Size(75, 13);
+            this.label65.TabIndex = 33;
+            this.label65.Text = "Size Min/Max:";
+            // 
+            // label63
+            // 
+            this.label63.AutoSize = true;
+            this.label63.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label63.Location = new System.Drawing.Point(306, 9);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(186, 13);
+            this.label63.TabIndex = 32;
+            this.label63.Text = "The image will be cropped to this size.";
+            // 
+            // label62
+            // 
+            this.label62.AutoSize = true;
+            this.label62.Location = new System.Drawing.Point(6, 9);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(60, 13);
+            this.label62.TabIndex = 31;
+            this.label62.Text = "Size Mode:";
+            // 
+            // cropRelSizeMode
+            // 
+            this.cropRelSizeMode.FormattingEnabled = true;
+            this.cropRelSizeMode.Items.AddRange(new object[] {
+            "Percentage",
+            "Height (Pixels)",
+            "Width (Pixels)",
+            "Longer Side (Pixels)",
+            "Shorter Side (Pixels)"});
+            this.cropRelSizeMode.Location = new System.Drawing.Point(150, 6);
+            this.cropRelSizeMode.Name = "cropRelSizeMode";
+            this.cropRelSizeMode.Size = new System.Drawing.Size(150, 21);
+            this.cropRelSizeMode.TabIndex = 30;
+            this.cropRelSizeMode.Text = "Percentage";
+            // 
+            // tabPage12
+            // 
+            this.tabPage12.Controls.Add(this.cropAbsW);
+            this.tabPage12.Controls.Add(this.cropAbsH);
+            this.tabPage12.Controls.Add(this.cropAbsGravity);
+            this.tabPage12.Controls.Add(this.label68);
+            this.tabPage12.Controls.Add(this.label69);
+            this.tabPage12.Location = new System.Drawing.Point(4, 22);
+            this.tabPage12.Name = "tabPage12";
+            this.tabPage12.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage12.Size = new System.Drawing.Size(682, 157);
+            this.tabPage12.TabIndex = 3;
+            this.tabPage12.Text = "Crop To Exact Size";
+            this.tabPage12.UseVisualStyleBackColor = true;
+            // 
+            // cropAbsW
+            // 
+            this.cropAbsW.Location = new System.Drawing.Point(228, 6);
+            this.cropAbsW.Name = "cropAbsW";
+            this.cropAbsW.Size = new System.Drawing.Size(72, 20);
+            this.cropAbsW.TabIndex = 45;
+            // 
+            // cropAbsH
+            // 
+            this.cropAbsH.Location = new System.Drawing.Point(150, 6);
+            this.cropAbsH.Name = "cropAbsH";
+            this.cropAbsH.Size = new System.Drawing.Size(72, 20);
+            this.cropAbsH.TabIndex = 44;
+            // 
+            // cropAbsGravity
+            // 
+            this.cropAbsGravity.FormattingEnabled = true;
+            this.cropAbsGravity.Items.AddRange(new object[] {
+            "Center Left",
+            "Center",
+            "Center Right",
+            "Top Left",
+            "Top Center",
+            "Top Right",
+            "Bottom Left",
+            "Bottom Middle",
+            "Bottom Right"});
+            this.cropAbsGravity.Location = new System.Drawing.Point(150, 33);
+            this.cropAbsGravity.Name = "cropAbsGravity";
+            this.cropAbsGravity.Size = new System.Drawing.Size(150, 21);
+            this.cropAbsGravity.TabIndex = 43;
+            this.cropAbsGravity.Text = "Percentage";
+            // 
+            // label68
+            // 
+            this.label68.AutoSize = true;
+            this.label68.Location = new System.Drawing.Point(6, 36);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(43, 13);
+            this.label68.TabIndex = 42;
+            this.label68.Text = "Gravity:";
+            // 
+            // label69
+            // 
+            this.label69.AutoSize = true;
+            this.label69.Location = new System.Drawing.Point(6, 9);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(74, 13);
+            this.label69.TabIndex = 41;
+            this.label69.Text = "Height/Width:";
+            // 
             // tabPage10
             // 
             this.tabPage10.Controls.Add(this.label67);
@@ -799,6 +968,16 @@
             this.tabPage10.TabIndex = 1;
             this.tabPage10.Text = "Crop To Aspect Ratio";
             this.tabPage10.UseVisualStyleBackColor = true;
+            // 
+            // label67
+            // 
+            this.label67.AutoSize = true;
+            this.label67.Location = new System.Drawing.Point(6, 9);
+            this.label67.Name = "label67";
+            this.label67.Size = new System.Drawing.Size(118, 13);
+            this.label67.TabIndex = 13;
+            this.label67.Text = "WORK IN PROGRESS";
+            this.extensionWildcardTip.SetToolTip(this.label67, "Enter extension (not case sensitive). Example: \"png\"");
             // 
             // tabPage11
             // 
@@ -1116,7 +1295,7 @@
             this.normalSuffixCombox.FormattingEnabled = true;
             this.normalSuffixCombox.Items.AddRange(new object[] {
             "_n",
-            "_n,_normal,_norm,_bump,_bumpmap,_normalmap,_normals"});
+            "_n,_normal,_norm,_nrm,_bump,_bumpmap,_normalmap,_normals"});
             this.normalSuffixCombox.Location = new System.Drawing.Point(96, 32);
             this.normalSuffixCombox.Name = "normalSuffixCombox";
             this.normalSuffixCombox.Size = new System.Drawing.Size(180, 21);
@@ -1303,6 +1482,56 @@
             this.tabPage4.Text = "Colors";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // panel12
+            // 
+            this.panel12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel12.Controls.Add(this.pictureBox2);
+            this.panel12.Controls.Add(this.colorLayerTbox);
+            this.panel12.Controls.Add(this.label60);
+            this.panel12.Controls.Add(this.colorLayerBtn);
+            this.panel12.Controls.Add(this.label61);
+            this.panel12.Location = new System.Drawing.Point(6, 117);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(690, 31);
+            this.panel12.TabIndex = 36;
+            // 
+            // colorLayerTbox
+            // 
+            this.colorLayerTbox.Location = new System.Drawing.Point(480, 5);
+            this.colorLayerTbox.Name = "colorLayerTbox";
+            this.colorLayerTbox.Size = new System.Drawing.Size(100, 20);
+            this.colorLayerTbox.TabIndex = 13;
+            // 
+            // label60
+            // 
+            this.label60.AutoSize = true;
+            this.label60.Location = new System.Drawing.Point(370, 8);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(103, 13);
+            this.label60.TabIndex = 35;
+            this.label60.Text = "Color Value (RGBA):";
+            // 
+            // colorLayerBtn
+            // 
+            this.colorLayerBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colorLayerBtn.Location = new System.Drawing.Point(585, 3);
+            this.colorLayerBtn.Name = "colorLayerBtn";
+            this.colorLayerBtn.Size = new System.Drawing.Size(100, 23);
+            this.colorLayerBtn.TabIndex = 12;
+            this.colorLayerBtn.Text = "Apply";
+            this.colorLayerBtn.UseVisualStyleBackColor = true;
+            this.colorLayerBtn.Click += new System.EventHandler(this.colorLayerBtn_Click);
+            // 
+            // label61
+            // 
+            this.label61.AutoSize = true;
+            this.label61.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label61.Location = new System.Drawing.Point(3, 8);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(117, 13);
+            this.label61.TabIndex = 8;
+            this.label61.Text = "Layer Color On Top";
+            // 
             // panel6
             // 
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -1318,7 +1547,7 @@
             // label34
             // 
             this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(285, 8);
+            this.label34.Location = new System.Drawing.Point(385, 8);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(39, 13);
             this.label34.TabIndex = 35;
@@ -1337,7 +1566,7 @@
             "6 bits (64 colors)",
             "5 bits (32 colors)",
             "4 bits (16 colors)"});
-            this.colorDepthCombox.Location = new System.Drawing.Point(330, 4);
+            this.colorDepthCombox.Location = new System.Drawing.Point(430, 4);
             this.colorDepthCombox.Name = "colorDepthCombox";
             this.colorDepthCombox.Size = new System.Drawing.Size(150, 21);
             this.colorDepthCombox.TabIndex = 20;
@@ -1345,11 +1574,11 @@
             // applyColorDepthBtn
             // 
             this.applyColorDepthBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.applyColorDepthBtn.Location = new System.Drawing.Point(485, 3);
+            this.applyColorDepthBtn.Location = new System.Drawing.Point(585, 3);
             this.applyColorDepthBtn.Name = "applyColorDepthBtn";
-            this.applyColorDepthBtn.Size = new System.Drawing.Size(200, 23);
+            this.applyColorDepthBtn.Size = new System.Drawing.Size(100, 23);
             this.applyColorDepthBtn.TabIndex = 12;
-            this.applyColorDepthBtn.Text = "Apply Color Depth";
+            this.applyColorDepthBtn.Text = "Apply";
             this.applyColorDepthBtn.UseVisualStyleBackColor = true;
             this.applyColorDepthBtn.Click += new System.EventHandler(this.applyColorDepthBtn_Click);
             // 
@@ -1366,6 +1595,7 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.alphaOffBtn);
             this.panel2.Controls.Add(this.remAlphaBlack);
             this.panel2.Controls.Add(this.remAlphaWhite);
@@ -1432,9 +1662,9 @@
             // autoLevelBtn
             // 
             this.autoLevelBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.autoLevelBtn.Location = new System.Drawing.Point(485, 3);
+            this.autoLevelBtn.Location = new System.Drawing.Point(585, 3);
             this.autoLevelBtn.Name = "autoLevelBtn";
-            this.autoLevelBtn.Size = new System.Drawing.Size(200, 23);
+            this.autoLevelBtn.Size = new System.Drawing.Size(100, 23);
             this.autoLevelBtn.TabIndex = 12;
             this.autoLevelBtn.Text = "Auto-Level";
             this.autoLevelBtn.UseVisualStyleBackColor = true;
@@ -1738,7 +1968,7 @@
             // inpaintBubbles
             // 
             this.inpaintBubbles.AutoSize = true;
-            this.inpaintBubbles.Location = new System.Drawing.Point(330, 62);
+            this.inpaintBubbles.Location = new System.Drawing.Point(377, 62);
             this.inpaintBubbles.Name = "inpaintBubbles";
             this.inpaintBubbles.Size = new System.Drawing.Size(64, 17);
             this.inpaintBubbles.TabIndex = 34;
@@ -1771,7 +2001,7 @@
             // 
             this.label56.AutoSize = true;
             this.label56.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label56.Location = new System.Drawing.Point(451, 63);
+            this.label56.Location = new System.Drawing.Point(498, 63);
             this.label56.Name = "label56";
             this.label56.Size = new System.Drawing.Size(169, 13);
             this.label56.TabIndex = 22;
@@ -1780,7 +2010,7 @@
             // inpaintThickLines
             // 
             this.inpaintThickLines.AutoSize = true;
-            this.inpaintThickLines.Location = new System.Drawing.Point(184, 62);
+            this.inpaintThickLines.Location = new System.Drawing.Point(231, 62);
             this.inpaintThickLines.Name = "inpaintThickLines";
             this.inpaintThickLines.Size = new System.Drawing.Size(81, 17);
             this.inpaintThickLines.TabIndex = 21;
@@ -1790,7 +2020,7 @@
             // inpaintRings
             // 
             this.inpaintRings.AutoSize = true;
-            this.inpaintRings.Location = new System.Drawing.Point(271, 62);
+            this.inpaintRings.Location = new System.Drawing.Point(318, 62);
             this.inpaintRings.Name = "inpaintRings";
             this.inpaintRings.Size = new System.Drawing.Size(53, 17);
             this.inpaintRings.TabIndex = 20;
@@ -1800,7 +2030,7 @@
             // inpaintGrid
             // 
             this.inpaintGrid.AutoSize = true;
-            this.inpaintGrid.Location = new System.Drawing.Point(400, 62);
+            this.inpaintGrid.Location = new System.Drawing.Point(447, 62);
             this.inpaintGrid.Name = "inpaintGrid";
             this.inpaintGrid.Size = new System.Drawing.Size(45, 17);
             this.inpaintGrid.TabIndex = 19;
@@ -1810,7 +2040,7 @@
             // inpaintThinLines
             // 
             this.inpaintThinLines.AutoSize = true;
-            this.inpaintThinLines.Location = new System.Drawing.Point(103, 62);
+            this.inpaintThinLines.Location = new System.Drawing.Point(150, 62);
             this.inpaintThinLines.Name = "inpaintThinLines";
             this.inpaintThinLines.Size = new System.Drawing.Size(75, 17);
             this.inpaintThinLines.TabIndex = 18;
@@ -1830,7 +2060,7 @@
             // 
             this.label53.AutoSize = true;
             this.label53.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label53.Location = new System.Drawing.Point(260, 36);
+            this.label53.Location = new System.Drawing.Point(307, 36);
             this.label53.Name = "label53";
             this.label53.Size = new System.Drawing.Size(119, 13);
             this.label53.TabIndex = 16;
@@ -1844,11 +2074,10 @@
             "1x (Normal)",
             "1.5x (Big)",
             "2x (Huge)"});
-            this.inpaintScaleCombox.Location = new System.Drawing.Point(103, 33);
+            this.inpaintScaleCombox.Location = new System.Drawing.Point(150, 33);
             this.inpaintScaleCombox.Name = "inpaintScaleCombox";
             this.inpaintScaleCombox.Size = new System.Drawing.Size(150, 21);
             this.inpaintScaleCombox.TabIndex = 15;
-            this.inpaintScaleCombox.Text = "50";
             // 
             // label54
             // 
@@ -1863,7 +2092,7 @@
             // 
             this.label49.AutoSize = true;
             this.label49.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label49.Location = new System.Drawing.Point(260, 9);
+            this.label49.Location = new System.Drawing.Point(306, 9);
             this.label49.Name = "label49";
             this.label49.Size = new System.Drawing.Size(107, 13);
             this.label49.TabIndex = 13;
@@ -1878,11 +2107,10 @@
             "Black",
             "White",
             "Transparent"});
-            this.inpaintColorCombox.Location = new System.Drawing.Point(103, 6);
+            this.inpaintColorCombox.Location = new System.Drawing.Point(150, 6);
             this.inpaintColorCombox.Name = "inpaintColorCombox";
             this.inpaintColorCombox.Size = new System.Drawing.Size(150, 21);
             this.inpaintColorCombox.TabIndex = 12;
-            this.inpaintColorCombox.Text = "50";
             // 
             // label52
             // 
@@ -2018,224 +2246,53 @@
             this.nameMustNotContainTbox.TabIndex = 12;
             this.nameMustNotContainTbox.TextChanged += new System.EventHandler(this.nameMustNotContainTbox_TextChanged);
             // 
-            // panel12
+            // tabPage13
             // 
-            this.panel12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel12.Controls.Add(this.colorLayerTbox);
-            this.panel12.Controls.Add(this.label60);
-            this.panel12.Controls.Add(this.colorLayerBtn);
-            this.panel12.Controls.Add(this.label61);
-            this.panel12.Location = new System.Drawing.Point(6, 117);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(690, 31);
-            this.panel12.TabIndex = 36;
+            this.tabPage13.Controls.Add(this.tileBtn);
+            this.tabPage13.Location = new System.Drawing.Point(4, 22);
+            this.tabPage13.Name = "tabPage13";
+            this.tabPage13.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage13.Size = new System.Drawing.Size(702, 224);
+            this.tabPage13.TabIndex = 8;
+            this.tabPage13.Text = "Tiling";
+            this.tabPage13.UseVisualStyleBackColor = true;
             // 
-            // label60
+            // tileBtn
             // 
-            this.label60.AutoSize = true;
-            this.label60.Location = new System.Drawing.Point(270, 8);
-            this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(103, 13);
-            this.label60.TabIndex = 35;
-            this.label60.Text = "Color Value (RGBA):";
+            this.tileBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tileBtn.Location = new System.Drawing.Point(6, 195);
+            this.tileBtn.Name = "tileBtn";
+            this.tileBtn.Size = new System.Drawing.Size(91, 23);
+            this.tileBtn.TabIndex = 33;
+            this.tileBtn.Text = "Tile";
+            this.tileBtn.UseVisualStyleBackColor = true;
+            this.tileBtn.Click += new System.EventHandler(this.tileBtn_Click);
             // 
-            // colorLayerBtn
+            // pictureBox2
             // 
-            this.colorLayerBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.colorLayerBtn.Location = new System.Drawing.Point(485, 3);
-            this.colorLayerBtn.Name = "colorLayerBtn";
-            this.colorLayerBtn.Size = new System.Drawing.Size(200, 23);
-            this.colorLayerBtn.TabIndex = 12;
-            this.colorLayerBtn.Text = "Apply Color Layer";
-            this.colorLayerBtn.UseVisualStyleBackColor = true;
-            this.colorLayerBtn.Click += new System.EventHandler(this.colorLayerBtn_Click);
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox2.Image = global::MagickUtils.Properties.Resources.questmark_72px_bordeer;
+            this.pictureBox2.Location = new System.Drawing.Point(126, 3);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(23, 23);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 38;
+            this.pictureBox2.TabStop = false;
+            this.defTip.SetToolTip(this.pictureBox2, "Enter a color, for example 00FF0080 will be green with 50% transparency (0x80 = 1" +
+        "28).");
             // 
-            // label61
+            // pictureBox1
             // 
-            this.label61.AutoSize = true;
-            this.label61.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label61.Location = new System.Drawing.Point(3, 8);
-            this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(117, 13);
-            this.label61.TabIndex = 8;
-            this.label61.Text = "Layer Color On Top";
-            // 
-            // colorLayerTbox
-            // 
-            this.colorLayerTbox.Location = new System.Drawing.Point(380, 5);
-            this.colorLayerTbox.Name = "colorLayerTbox";
-            this.colorLayerTbox.Size = new System.Drawing.Size(100, 20);
-            this.colorLayerTbox.TabIndex = 13;
-            // 
-            // tabPage12
-            // 
-            this.tabPage12.Controls.Add(this.cropAbsW);
-            this.tabPage12.Controls.Add(this.cropAbsH);
-            this.tabPage12.Controls.Add(this.cropAbsGravity);
-            this.tabPage12.Controls.Add(this.label68);
-            this.tabPage12.Controls.Add(this.label69);
-            this.tabPage12.Location = new System.Drawing.Point(4, 22);
-            this.tabPage12.Name = "tabPage12";
-            this.tabPage12.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage12.Size = new System.Drawing.Size(682, 157);
-            this.tabPage12.TabIndex = 3;
-            this.tabPage12.Text = "Crop To Exact Size";
-            this.tabPage12.UseVisualStyleBackColor = true;
-            // 
-            // label62
-            // 
-            this.label62.AutoSize = true;
-            this.label62.Location = new System.Drawing.Point(6, 9);
-            this.label62.Name = "label62";
-            this.label62.Size = new System.Drawing.Size(60, 13);
-            this.label62.TabIndex = 31;
-            this.label62.Text = "Size Mode:";
-            // 
-            // cropRelSizeMode
-            // 
-            this.cropRelSizeMode.FormattingEnabled = true;
-            this.cropRelSizeMode.Items.AddRange(new object[] {
-            "Percentage",
-            "Height (Pixels)",
-            "Width (Pixels)",
-            "Longer Side (Pixels)",
-            "Shorter Side (Pixels)"});
-            this.cropRelSizeMode.Location = new System.Drawing.Point(103, 6);
-            this.cropRelSizeMode.Name = "cropRelSizeMode";
-            this.cropRelSizeMode.Size = new System.Drawing.Size(150, 21);
-            this.cropRelSizeMode.TabIndex = 30;
-            this.cropRelSizeMode.Text = "Percentage";
-            // 
-            // label63
-            // 
-            this.label63.AutoSize = true;
-            this.label63.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label63.Location = new System.Drawing.Point(259, 9);
-            this.label63.Name = "label63";
-            this.label63.Size = new System.Drawing.Size(186, 13);
-            this.label63.TabIndex = 32;
-            this.label63.Text = "The image will be cropped to this size.";
-            // 
-            // label64
-            // 
-            this.label64.AutoSize = true;
-            this.label64.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label64.Location = new System.Drawing.Point(260, 36);
-            this.label64.Name = "label64";
-            this.label64.Size = new System.Drawing.Size(337, 13);
-            this.label64.TabIndex = 35;
-            this.label64.Text = "Random size range. Leave the second box blank for non-random size.";
-            // 
-            // label65
-            // 
-            this.label65.AutoSize = true;
-            this.label65.Location = new System.Drawing.Point(6, 36);
-            this.label65.Name = "label65";
-            this.label65.Size = new System.Drawing.Size(75, 13);
-            this.label65.TabIndex = 33;
-            this.label65.Text = "Size Min/Max:";
-            // 
-            // label66
-            // 
-            this.label66.AutoSize = true;
-            this.label66.Location = new System.Drawing.Point(6, 63);
-            this.label66.Name = "label66";
-            this.label66.Size = new System.Drawing.Size(43, 13);
-            this.label66.TabIndex = 37;
-            this.label66.Text = "Gravity:";
-            // 
-            // cropRelGrav
-            // 
-            this.cropRelGrav.FormattingEnabled = true;
-            this.cropRelGrav.Items.AddRange(new object[] {
-            "Center Left",
-            "Center",
-            "Center Right",
-            "Top Left",
-            "Top Center",
-            "Top Right",
-            "Bottom Left",
-            "Bottom Middle",
-            "Bottom Right"});
-            this.cropRelGrav.Location = new System.Drawing.Point(103, 60);
-            this.cropRelGrav.Name = "cropRelGrav";
-            this.cropRelGrav.Size = new System.Drawing.Size(150, 21);
-            this.cropRelGrav.TabIndex = 38;
-            // 
-            // cropRelSizeMin
-            // 
-            this.cropRelSizeMin.Location = new System.Drawing.Point(103, 33);
-            this.cropRelSizeMin.Name = "cropRelSizeMin";
-            this.cropRelSizeMin.Size = new System.Drawing.Size(72, 20);
-            this.cropRelSizeMin.TabIndex = 39;
-            // 
-            // cropRelSizeMax
-            // 
-            this.cropRelSizeMax.Location = new System.Drawing.Point(181, 33);
-            this.cropRelSizeMax.Name = "cropRelSizeMax";
-            this.cropRelSizeMax.Size = new System.Drawing.Size(72, 20);
-            this.cropRelSizeMax.TabIndex = 40;
-            // 
-            // label67
-            // 
-            this.label67.AutoSize = true;
-            this.label67.Location = new System.Drawing.Point(6, 9);
-            this.label67.Name = "label67";
-            this.label67.Size = new System.Drawing.Size(118, 13);
-            this.label67.TabIndex = 13;
-            this.label67.Text = "WORK IN PROGRESS";
-            this.extensionWildcardTip.SetToolTip(this.label67, "Enter extension (not case sensitive). Example: \"png\"");
-            // 
-            // cropAbsW
-            // 
-            this.cropAbsW.Location = new System.Drawing.Point(181, 6);
-            this.cropAbsW.Name = "cropAbsW";
-            this.cropAbsW.Size = new System.Drawing.Size(72, 20);
-            this.cropAbsW.TabIndex = 45;
-            // 
-            // cropAbsH
-            // 
-            this.cropAbsH.Location = new System.Drawing.Point(103, 6);
-            this.cropAbsH.Name = "cropAbsH";
-            this.cropAbsH.Size = new System.Drawing.Size(72, 20);
-            this.cropAbsH.TabIndex = 44;
-            // 
-            // cropAbsGravity
-            // 
-            this.cropAbsGravity.FormattingEnabled = true;
-            this.cropAbsGravity.Items.AddRange(new object[] {
-            "Center Left",
-            "Center",
-            "Center Right",
-            "Top Left",
-            "Top Center",
-            "Top Right",
-            "Bottom Left",
-            "Bottom Middle",
-            "Bottom Right"});
-            this.cropAbsGravity.Location = new System.Drawing.Point(103, 33);
-            this.cropAbsGravity.Name = "cropAbsGravity";
-            this.cropAbsGravity.Size = new System.Drawing.Size(150, 21);
-            this.cropAbsGravity.TabIndex = 43;
-            this.cropAbsGravity.Text = "Percentage";
-            // 
-            // label68
-            // 
-            this.label68.AutoSize = true;
-            this.label68.Location = new System.Drawing.Point(6, 36);
-            this.label68.Name = "label68";
-            this.label68.Size = new System.Drawing.Size(43, 13);
-            this.label68.TabIndex = 42;
-            this.label68.Text = "Gravity:";
-            // 
-            // label69
-            // 
-            this.label69.AutoSize = true;
-            this.label69.Location = new System.Drawing.Point(6, 9);
-            this.label69.Name = "label69";
-            this.label69.Size = new System.Drawing.Size(74, 13);
-            this.label69.TabIndex = 41;
-            this.label69.Text = "Height/Width:";
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Image = global::MagickUtils.Properties.Resources.questmark_72px_bordeer;
+            this.pictureBox1.Location = new System.Drawing.Point(143, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(23, 23);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 37;
+            this.pictureBox1.TabStop = false;
+            this.defTip.SetToolTip(this.pictureBox1, "Tip: Use \"Alpha Off\" for images that use the Alpha channel to store additional in" +
+        "formation, like Skyrim\'s normal maps.");
             // 
             // MainForm
             // 
@@ -2274,6 +2331,8 @@
             this.cropTabControl.ResumeLayout(false);
             this.tabPage9.ResumeLayout(false);
             this.tabPage9.PerformLayout();
+            this.tabPage12.ResumeLayout(false);
+            this.tabPage12.PerformLayout();
             this.tabPage10.ResumeLayout(false);
             this.tabPage10.PerformLayout();
             this.tabPage11.ResumeLayout(false);
@@ -2292,6 +2351,8 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
+            this.panel12.ResumeLayout(false);
+            this.panel12.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -2307,10 +2368,9 @@
             this.tabPage7.PerformLayout();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
-            this.panel12.ResumeLayout(false);
-            this.panel12.PerformLayout();
-            this.tabPage12.ResumeLayout(false);
-            this.tabPage12.PerformLayout();
+            this.tabPage13.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2495,5 +2555,10 @@
         private System.Windows.Forms.ComboBox cropAbsGravity;
         private System.Windows.Forms.Label label68;
         private System.Windows.Forms.Label label69;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ToolTip defTip;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.TabPage tabPage13;
+        private System.Windows.Forms.Button tileBtn;
     }
 }

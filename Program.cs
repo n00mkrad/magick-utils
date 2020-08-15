@@ -60,10 +60,12 @@ namespace MagickUtils
 
         public static void ShowProgress (string text, int current, int amount)
         {
-
             if(text.Trim().Length > 1)
                 Print("\n" + text + current + "/" + amount);
-            progBar.Value = (int)Math.Round((float)current / amount * 100);
+            int targetValue = (int)Math.Round((float)current / amount * 100);
+            if(targetValue > 100) targetValue = 100;
+            if(targetValue < 0) targetValue = 0;
+            progBar.Value = targetValue;
         }
 
         public static void PreProcessing (bool startStopwatch = false, bool showSize = true)
@@ -89,6 +91,7 @@ namespace MagickUtils
                 Print("Size ratio: " + Format.Ratio(dirSizePre, dirSizeAfter) + " of original size");
             }
             progBar.Value = 0;
+            Print("Done.");
         }
 
         public static async Task PutTaskDelay ()

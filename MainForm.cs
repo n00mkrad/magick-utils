@@ -150,19 +150,19 @@ namespace MagickUtils
         private void autoLevelBtn_Click (object sender, EventArgs e)
         {
             if(!Program.IsPathValid(Program.currentDir)) return;
-            AdjustUtilsUI.AutoLevel(Program.currentDir, Program.currentExt, recursiveCbox.Checked);
+            AdjustUtils.AutoLevel(Program.currentDir, Program.currentExt, recursiveCbox.Checked);
         }
 
         private void remAlphaWhite_Click (object sender, EventArgs e)
         {
             if(!Program.IsPathValid(Program.currentDir)) return;
-            OtherUtilsUI.RemTransparencyDir(1);
+            OtherUtils.RemTransparencyDir(1);
         }
 
         private void remAlphaBlack_Click (object sender, EventArgs e)
         {
             if(!Program.IsPathValid(Program.currentDir)) return;
-            OtherUtilsUI.RemTransparencyDir(0);
+            OtherUtils.RemTransparencyDir(0);
         }
 
         private void delSmallImagesBtn_Click (object sender, EventArgs e)
@@ -181,32 +181,32 @@ namespace MagickUtils
             if (delImgOperator.SelectedIndex == 3) op = ImageSizeFilterUtils.Operator.IsBigger;
             if (delImgOperator.SelectedIndex == 4) op = ImageSizeFilterUtils.Operator.Divisible;
             if (delImgOperator.SelectedIndex == 5) op = ImageSizeFilterUtils.Operator.NotDivisible;
-            OtherUtilsUI.DelSmallImgsDir(minSize, sizeMode, op);
+            OtherUtils.DelSmallImgsDir(minSize, sizeMode, op);
         }
 
         private void delFilesNotMatchingExtBtn_Click (object sender, EventArgs e)
         {
             if(!Program.IsPathValid(Program.currentDir)) return;
-            OtherUtilsUI.DelNotMatchingWildcard(recursiveCbox.Checked);
+            OtherUtils.DelNotMatchingWildcard(recursiveCbox.Checked);
         }
 
         private void groupNormalsBtn_Click (object sender, EventArgs e)
         {
             if(!Program.IsPathValid(Program.currentDir)) return;
-            OtherUtilsUI.GroupNormalsWithTex(normalSuffixCombox.Text, diffSuffixCombox.Text, lowercaseCbox.Checked);
+            OtherUtils.GroupNormalsWithTex(normalSuffixCombox.Text, diffSuffixCombox.Text, lowercaseCbox.Checked);
         }
 
         private void applyColorDepthBtn_Click (object sender, EventArgs e)
         {
             if(!Program.IsPathValid(Program.currentDir)) return;
-            if(colorDepthCombox.SelectedIndex == 0) OtherUtilsUI.SetColorDepth(24);
-            if(colorDepthCombox.SelectedIndex == 1) OtherUtilsUI.SetColorDepth(16);
-            if(colorDepthCombox.SelectedIndex == 2) OtherUtilsUI.SetColorDepth(12);
-            if(colorDepthCombox.SelectedIndex == 3) OtherUtilsUI.SetColorDepth(8);
-            if(colorDepthCombox.SelectedIndex == 4) OtherUtilsUI.SetColorDepth(7);
-            if(colorDepthCombox.SelectedIndex == 5) OtherUtilsUI.SetColorDepth(6);
-            if(colorDepthCombox.SelectedIndex == 6) OtherUtilsUI.SetColorDepth(5);
-            if(colorDepthCombox.SelectedIndex == 7) OtherUtilsUI.SetColorDepth(4);
+            if(colorDepthCombox.SelectedIndex == 0) OtherUtils.SetColorDepth(24);
+            if(colorDepthCombox.SelectedIndex == 1) OtherUtils.SetColorDepth(16);
+            if(colorDepthCombox.SelectedIndex == 2) OtherUtils.SetColorDepth(12);
+            if(colorDepthCombox.SelectedIndex == 3) OtherUtils.SetColorDepth(8);
+            if(colorDepthCombox.SelectedIndex == 4) OtherUtils.SetColorDepth(7);
+            if(colorDepthCombox.SelectedIndex == 5) OtherUtils.SetColorDepth(6);
+            if(colorDepthCombox.SelectedIndex == 6) OtherUtils.SetColorDepth(5);
+            if(colorDepthCombox.SelectedIndex == 7) OtherUtils.SetColorDepth(4);
         }
 
         private void recursiveCbox_CheckedChanged (object sender, EventArgs e)
@@ -315,7 +315,7 @@ namespace MagickUtils
             if(String.IsNullOrWhiteSpace(suffixPrefixTbox.Text))
                 Program.Print("Can't add empty text to filenames!");
             else
-                OtherUtilsUI.AddSuffixPrefixDir(suffixPrefixTbox.Text, suffix);
+                OtherUtils.AddSuffixPrefixDir(suffixPrefixTbox.Text, suffix);
         }
 
         private void replaceBtn_Click (object sender, EventArgs e)
@@ -323,7 +323,7 @@ namespace MagickUtils
             if(String.IsNullOrWhiteSpace(replaceInputTbox.Text))
                 Program.Print("Can't replace an empty string!");
             else
-                OtherUtilsUI.ReplaceInFilenamesDir(replaceInputTbox.Text, replaceOutputTbox.Text);
+                OtherUtils.ReplaceInFilenamesDir(replaceInputTbox.Text, replaceOutputTbox.Text);
         }
 
         private void nameMustContainTbox_TextChanged (object sender, EventArgs e)
@@ -338,7 +338,7 @@ namespace MagickUtils
 
         private void alphaOffBtn_Click (object sender, EventArgs e)
         {
-            OtherUtilsUI.RemTransparencyDir(2);
+            OtherUtils.RemTransparencyDir(2);
         }
 
         private void tabPage1_DragEnter (object sender, DragEventArgs e)
@@ -426,13 +426,13 @@ namespace MagickUtils
         private void delMissingBtn_Click (object sender, EventArgs e)
         {
             if(Program.IsPathValid(Program.currentDir))
-                OtherUtilsUI.DelMissing(checkDirTbox.Text.Trim(), false);
+                OtherUtils.DelMissing(checkDirTbox.Text.Trim(), false);
         }
 
         private void delMissingTestBtn_Click (object sender, EventArgs e)
         {
             if(Program.IsPathValid(Program.currentDir))
-                OtherUtilsUI.DelMissing(checkDirTbox.Text.Trim(), true);
+                OtherUtils.DelMissing(checkDirTbox.Text.Trim(), true);
         }
 
         private void inpaintEraseBtn_Click(object sender, EventArgs e)
@@ -465,7 +465,12 @@ namespace MagickUtils
         private void colorLayerBtn_Click (object sender, EventArgs e)
         {
             if(Program.IsPathValid(Program.currentDir))
-                OtherUtilsUI.LayerColorDir(colorLayerTbox.Text.Trim().Replace("#", ""));
+                OtherUtils.LayerColorDir(colorLayerTbox.Text.Trim().Replace("#", ""));
+        }
+
+        private void tileBtn_Click (object sender, EventArgs e)
+        {
+
         }
     }
 }
