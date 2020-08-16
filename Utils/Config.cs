@@ -12,13 +12,16 @@ namespace MagickUtils
     {
         static string filename = "magickutils.ini";
         public static bool fileOperationsNoExtFilter = true;
+        public static string backgroundColor = "000000FF";
 
-        public static void WriteConfig ()
+        public static void WriteConfig (bool showMessage = true)
         {
             string cfgString = "";
             cfgString += "fileOperationsNoExtFilter" + "=" + fileOperationsNoExtFilter.ToString() + "\n";
+            cfgString += "backgroundColor" + "=" + backgroundColor + "\n";
             File.WriteAllText(Path.Combine(IOUtils.GetAppDataDir(), filename), cfgString);
-            MessageBox.Show("Config saved.", "Message");
+            if(showMessage)
+                MessageBox.Show("Config saved.", "Message");
         }
 
         public static void ReadConfig ()
@@ -28,6 +31,10 @@ namespace MagickUtils
                 return;
             string cfgString = File.ReadAllText(cfgPath);
             fileOperationsNoExtFilter = GetBool("fileOperationsNoExtFilter", cfgString);
+
+            string bgColorStr = GetString("backgroundColor", cfgString);
+            if(!string.IsNullOrWhiteSpace(bgColorStr))
+                backgroundColor = bgColorStr;
         }
 
         public static bool GetBool (string boolname, string cfgContent)
@@ -42,6 +49,17 @@ namespace MagickUtils
                 }
             }
             return false;
+        }
+
+        public static string GetString (string stringname, string cfgContent)
+        {
+            string[] lines = cfgContent.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+            foreach(string line in lines)
+            {
+                if(line.Contains(stringname))
+                    return line.Trim().Replace(stringname, "").Replace("=", "");
+            }
+            return "";
         }
     }
 }

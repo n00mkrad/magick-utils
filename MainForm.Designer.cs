@@ -88,12 +88,17 @@
             this.tabPage12 = new System.Windows.Forms.TabPage();
             this.cropAbsW = new System.Windows.Forms.TextBox();
             this.cropAbsH = new System.Windows.Forms.TextBox();
-            this.cropAbsGravity = new System.Windows.Forms.ComboBox();
+            this.cropAbsGrav = new System.Windows.Forms.ComboBox();
             this.label68 = new System.Windows.Forms.Label();
             this.label69 = new System.Windows.Forms.Label();
             this.tabPage10 = new System.Windows.Forms.TabPage();
             this.label67 = new System.Windows.Forms.Label();
             this.tabPage11 = new System.Windows.Forms.TabPage();
+            this.label78 = new System.Windows.Forms.Label();
+            this.label77 = new System.Windows.Forms.Label();
+            this.cropDivisibleExpand = new System.Windows.Forms.CheckBox();
+            this.cropDivisibleGrav = new System.Windows.Forms.ComboBox();
+            this.label74 = new System.Windows.Forms.Label();
             this.cropDivision = new System.Windows.Forms.ComboBox();
             this.label58 = new System.Windows.Forms.Label();
             this.cropBtn = new System.Windows.Forms.Button();
@@ -139,6 +144,7 @@
             this.label23 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.panel12 = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.colorLayerTbox = new System.Windows.Forms.TextBox();
             this.label60 = new System.Windows.Forms.Label();
             this.colorLayerBtn = new System.Windows.Forms.Button();
@@ -149,6 +155,7 @@
             this.applyColorDepthBtn = new System.Windows.Forms.Button();
             this.label33 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.alphaOffBtn = new System.Windows.Forms.Button();
             this.remAlphaBlack = new System.Windows.Forms.Button();
             this.remAlphaWhite = new System.Windows.Forms.Button();
@@ -194,7 +201,21 @@
             this.label49 = new System.Windows.Forms.Label();
             this.inpaintColorCombox = new System.Windows.Forms.ComboBox();
             this.label52 = new System.Windows.Forms.Label();
+            this.tabPage13 = new System.Windows.Forms.TabPage();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.label70 = new System.Windows.Forms.Label();
+            this.geomFlipAxis = new System.Windows.Forms.ComboBox();
+            this.label73 = new System.Windows.Forms.Label();
+            this.flipBtn = new System.Windows.Forms.Button();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.label71 = new System.Windows.Forms.Label();
+            this.geomRotationCombox = new System.Windows.Forms.ComboBox();
+            this.label72 = new System.Windows.Forms.Label();
+            this.rotateBtn = new System.Windows.Forms.Button();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.label76 = new System.Windows.Forms.Label();
+            this.confBgColor = new System.Windows.Forms.TextBox();
+            this.label75 = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
             this.label44 = new System.Windows.Forms.Label();
             this.noExtFilterForFileOpsCbox = new System.Windows.Forms.CheckBox();
@@ -208,10 +229,14 @@
             this.nameMustContainTbox = new System.Windows.Forms.TextBox();
             this.nameMustNotContainTbox = new System.Windows.Forms.TextBox();
             this.defTip = new System.Windows.Forms.ToolTip(this.components);
-            this.tabPage13 = new System.Windows.Forms.TabPage();
-            this.tileBtn = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.tabPage14 = new System.Windows.Forms.TabPage();
+            this.padPixMax = new System.Windows.Forms.TextBox();
+            this.padPixMin = new System.Windows.Forms.TextBox();
+            this.label79 = new System.Windows.Forms.Label();
+            this.label80 = new System.Windows.Forms.Label();
+            this.label81 = new System.Windows.Forms.Label();
+            this.label82 = new System.Windows.Forms.Label();
+            this.padMode = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -230,17 +255,20 @@
             this.panel3.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.panel12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel6.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.panel10.SuspendLayout();
             this.panel7.SuspendLayout();
             this.tabPage7.SuspendLayout();
-            this.tabPage6.SuspendLayout();
             this.tabPage13.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel14.SuspendLayout();
+            this.panel13.SuspendLayout();
+            this.tabPage6.SuspendLayout();
+            this.tabPage14.SuspendLayout();
             this.SuspendLayout();
             // 
             // pathTextbox
@@ -764,7 +792,7 @@
             this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage8.Size = new System.Drawing.Size(702, 224);
             this.tabPage8.TabIndex = 7;
-            this.tabPage8.Text = "Crop";
+            this.tabPage8.Text = "Crop/Expand";
             this.tabPage8.UseVisualStyleBackColor = true;
             // 
             // cropTabControl
@@ -773,6 +801,7 @@
             this.cropTabControl.Controls.Add(this.tabPage12);
             this.cropTabControl.Controls.Add(this.tabPage10);
             this.cropTabControl.Controls.Add(this.tabPage11);
+            this.cropTabControl.Controls.Add(this.tabPage14);
             this.cropTabControl.Location = new System.Drawing.Point(6, 6);
             this.cropTabControl.Name = "cropTabControl";
             this.cropTabControl.SelectedIndex = 0;
@@ -795,7 +824,7 @@
             this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage9.Size = new System.Drawing.Size(682, 157);
             this.tabPage9.TabIndex = 0;
-            this.tabPage9.Text = "Crop With Original Aspect Ratio";
+            this.tabPage9.Text = "Original Aspect Ratio";
             this.tabPage9.UseVisualStyleBackColor = true;
             // 
             // cropRelSizeMax
@@ -896,7 +925,7 @@
             // 
             this.tabPage12.Controls.Add(this.cropAbsW);
             this.tabPage12.Controls.Add(this.cropAbsH);
-            this.tabPage12.Controls.Add(this.cropAbsGravity);
+            this.tabPage12.Controls.Add(this.cropAbsGrav);
             this.tabPage12.Controls.Add(this.label68);
             this.tabPage12.Controls.Add(this.label69);
             this.tabPage12.Location = new System.Drawing.Point(4, 22);
@@ -904,7 +933,7 @@
             this.tabPage12.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage12.Size = new System.Drawing.Size(682, 157);
             this.tabPage12.TabIndex = 3;
-            this.tabPage12.Text = "Crop To Exact Size";
+            this.tabPage12.Text = "Exact Size";
             this.tabPage12.UseVisualStyleBackColor = true;
             // 
             // cropAbsW
@@ -921,10 +950,10 @@
             this.cropAbsH.Size = new System.Drawing.Size(72, 20);
             this.cropAbsH.TabIndex = 44;
             // 
-            // cropAbsGravity
+            // cropAbsGrav
             // 
-            this.cropAbsGravity.FormattingEnabled = true;
-            this.cropAbsGravity.Items.AddRange(new object[] {
+            this.cropAbsGrav.FormattingEnabled = true;
+            this.cropAbsGrav.Items.AddRange(new object[] {
             "Center Left",
             "Center",
             "Center Right",
@@ -934,11 +963,10 @@
             "Bottom Left",
             "Bottom Middle",
             "Bottom Right"});
-            this.cropAbsGravity.Location = new System.Drawing.Point(150, 33);
-            this.cropAbsGravity.Name = "cropAbsGravity";
-            this.cropAbsGravity.Size = new System.Drawing.Size(150, 21);
-            this.cropAbsGravity.TabIndex = 43;
-            this.cropAbsGravity.Text = "Percentage";
+            this.cropAbsGrav.Location = new System.Drawing.Point(150, 33);
+            this.cropAbsGrav.Name = "cropAbsGrav";
+            this.cropAbsGrav.Size = new System.Drawing.Size(150, 21);
+            this.cropAbsGrav.TabIndex = 43;
             // 
             // label68
             // 
@@ -966,7 +994,7 @@
             this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage10.Size = new System.Drawing.Size(682, 157);
             this.tabPage10.TabIndex = 1;
-            this.tabPage10.Text = "Crop To Aspect Ratio";
+            this.tabPage10.Text = "Exact Aspect Ratio";
             this.tabPage10.UseVisualStyleBackColor = true;
             // 
             // label67
@@ -981,6 +1009,11 @@
             // 
             // tabPage11
             // 
+            this.tabPage11.Controls.Add(this.label78);
+            this.tabPage11.Controls.Add(this.label77);
+            this.tabPage11.Controls.Add(this.cropDivisibleExpand);
+            this.tabPage11.Controls.Add(this.cropDivisibleGrav);
+            this.tabPage11.Controls.Add(this.label74);
             this.tabPage11.Controls.Add(this.cropDivision);
             this.tabPage11.Controls.Add(this.label58);
             this.tabPage11.Location = new System.Drawing.Point(4, 22);
@@ -988,8 +1021,65 @@
             this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage11.Size = new System.Drawing.Size(682, 157);
             this.tabPage11.TabIndex = 2;
-            this.tabPage11.Text = "Crop To Divisble Resolution";
+            this.tabPage11.Text = "Divisble Resolution";
             this.tabPage11.UseVisualStyleBackColor = true;
+            // 
+            // label78
+            // 
+            this.label78.AutoSize = true;
+            this.label78.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label78.Location = new System.Drawing.Point(427, 63);
+            this.label78.Name = "label78";
+            this.label78.Size = new System.Drawing.Size(178, 13);
+            this.label78.TabIndex = 48;
+            this.label78.Text = "See Config tab for background color";
+            // 
+            // label77
+            // 
+            this.label77.AutoSize = true;
+            this.label77.Location = new System.Drawing.Point(6, 63);
+            this.label77.Name = "label77";
+            this.label77.Size = new System.Drawing.Size(140, 13);
+            this.label77.TabIndex = 47;
+            this.label77.Text = "Expand Instead Of Cropping";
+            // 
+            // cropDivisibleExpand
+            // 
+            this.cropDivisibleExpand.AutoSize = true;
+            this.cropDivisibleExpand.Checked = true;
+            this.cropDivisibleExpand.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cropDivisibleExpand.Location = new System.Drawing.Point(271, 63);
+            this.cropDivisibleExpand.Name = "cropDivisibleExpand";
+            this.cropDivisibleExpand.Size = new System.Drawing.Size(15, 14);
+            this.cropDivisibleExpand.TabIndex = 46;
+            this.cropDivisibleExpand.UseVisualStyleBackColor = true;
+            // 
+            // cropDivisibleGrav
+            // 
+            this.cropDivisibleGrav.FormattingEnabled = true;
+            this.cropDivisibleGrav.Items.AddRange(new object[] {
+            "Center Left",
+            "Center",
+            "Center Right",
+            "Top Left",
+            "Top Center",
+            "Top Right",
+            "Bottom Left",
+            "Bottom Middle",
+            "Bottom Right"});
+            this.cropDivisibleGrav.Location = new System.Drawing.Point(271, 33);
+            this.cropDivisibleGrav.Name = "cropDivisibleGrav";
+            this.cropDivisibleGrav.Size = new System.Drawing.Size(150, 21);
+            this.cropDivisibleGrav.TabIndex = 45;
+            // 
+            // label74
+            // 
+            this.label74.AutoSize = true;
+            this.label74.Location = new System.Drawing.Point(6, 36);
+            this.label74.Name = "label74";
+            this.label74.Size = new System.Drawing.Size(43, 13);
+            this.label74.TabIndex = 44;
+            this.label74.Text = "Gravity:";
             // 
             // cropDivision
             // 
@@ -1020,7 +1110,7 @@
             this.cropBtn.Name = "cropBtn";
             this.cropBtn.Size = new System.Drawing.Size(91, 23);
             this.cropBtn.TabIndex = 32;
-            this.cropBtn.Text = "Crop";
+            this.cropBtn.Text = "Crop/Expand";
             this.cropBtn.UseVisualStyleBackColor = true;
             this.cropBtn.Click += new System.EventHandler(this.cropBtn_Click);
             // 
@@ -1495,6 +1585,19 @@
             this.panel12.Size = new System.Drawing.Size(690, 31);
             this.panel12.TabIndex = 36;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox2.Image = global::MagickUtils.Properties.Resources.questmark_72px_bordeer;
+            this.pictureBox2.Location = new System.Drawing.Point(126, 3);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(23, 23);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 38;
+            this.pictureBox2.TabStop = false;
+            this.defTip.SetToolTip(this.pictureBox2, "Enter a color, for example 00FF0080 will be green with 50% transparency (0x80 = 1" +
+        "28).");
+            // 
             // colorLayerTbox
             // 
             this.colorLayerTbox.Location = new System.Drawing.Point(480, 5);
@@ -1604,6 +1707,19 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(690, 31);
             this.panel2.TabIndex = 13;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Image = global::MagickUtils.Properties.Resources.questmark_72px_bordeer;
+            this.pictureBox1.Location = new System.Drawing.Point(143, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(23, 23);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 37;
+            this.pictureBox1.TabStop = false;
+            this.defTip.SetToolTip(this.pictureBox1, "Tip: Use \"Alpha Off\" for images that use the Alpha channel to store additional in" +
+        "formation, like Skyrim\'s normal maps.");
             // 
             // alphaOffBtn
             // 
@@ -2121,8 +2237,137 @@
             this.label52.TabIndex = 11;
             this.label52.Text = "Marker Color:";
             // 
+            // tabPage13
+            // 
+            this.tabPage13.Controls.Add(this.panel14);
+            this.tabPage13.Controls.Add(this.panel13);
+            this.tabPage13.Location = new System.Drawing.Point(4, 22);
+            this.tabPage13.Name = "tabPage13";
+            this.tabPage13.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage13.Size = new System.Drawing.Size(702, 224);
+            this.tabPage13.TabIndex = 8;
+            this.tabPage13.Text = "Geometry";
+            this.tabPage13.UseVisualStyleBackColor = true;
+            // 
+            // panel14
+            // 
+            this.panel14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel14.Controls.Add(this.label70);
+            this.panel14.Controls.Add(this.geomFlipAxis);
+            this.panel14.Controls.Add(this.label73);
+            this.panel14.Controls.Add(this.flipBtn);
+            this.panel14.Location = new System.Drawing.Point(6, 43);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(690, 31);
+            this.panel14.TabIndex = 46;
+            // 
+            // label70
+            // 
+            this.label70.AutoSize = true;
+            this.label70.Location = new System.Drawing.Point(394, 7);
+            this.label70.Name = "label70";
+            this.label70.Size = new System.Drawing.Size(29, 13);
+            this.label70.TabIndex = 41;
+            this.label70.Text = "Axis:";
+            // 
+            // geomFlipAxis
+            // 
+            this.geomFlipAxis.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.geomFlipAxis.FormattingEnabled = true;
+            this.geomFlipAxis.Items.AddRange(new object[] {
+            "Horizontal",
+            "Vertical",
+            "Random"});
+            this.geomFlipAxis.Location = new System.Drawing.Point(429, 4);
+            this.geomFlipAxis.Name = "geomFlipAxis";
+            this.geomFlipAxis.Size = new System.Drawing.Size(150, 21);
+            this.geomFlipAxis.TabIndex = 40;
+            // 
+            // label73
+            // 
+            this.label73.AutoSize = true;
+            this.label73.BackColor = System.Drawing.Color.Transparent;
+            this.label73.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label73.Location = new System.Drawing.Point(3, 8);
+            this.label73.Name = "label73";
+            this.label73.Size = new System.Drawing.Size(27, 13);
+            this.label73.TabIndex = 8;
+            this.label73.Text = "Flip";
+            // 
+            // flipBtn
+            // 
+            this.flipBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.flipBtn.Location = new System.Drawing.Point(585, 3);
+            this.flipBtn.Name = "flipBtn";
+            this.flipBtn.Size = new System.Drawing.Size(100, 23);
+            this.flipBtn.TabIndex = 32;
+            this.flipBtn.Text = "Flip";
+            this.flipBtn.UseVisualStyleBackColor = true;
+            this.flipBtn.Click += new System.EventHandler(this.flipBtn_Click);
+            // 
+            // panel13
+            // 
+            this.panel13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel13.Controls.Add(this.label71);
+            this.panel13.Controls.Add(this.geomRotationCombox);
+            this.panel13.Controls.Add(this.label72);
+            this.panel13.Controls.Add(this.rotateBtn);
+            this.panel13.Location = new System.Drawing.Point(6, 6);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(690, 31);
+            this.panel13.TabIndex = 45;
+            // 
+            // label71
+            // 
+            this.label71.AutoSize = true;
+            this.label71.Location = new System.Drawing.Point(373, 8);
+            this.label71.Name = "label71";
+            this.label71.Size = new System.Drawing.Size(50, 13);
+            this.label71.TabIndex = 41;
+            this.label71.Text = "Rotation:";
+            // 
+            // geomRotationCombox
+            // 
+            this.geomRotationCombox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.geomRotationCombox.FormattingEnabled = true;
+            this.geomRotationCombox.Items.AddRange(new object[] {
+            "90° Clockwise",
+            "180° Clockwise",
+            "270° Clockwise",
+            "Random (90/180/270)",
+            "Random (0/90/180/270)"});
+            this.geomRotationCombox.Location = new System.Drawing.Point(429, 4);
+            this.geomRotationCombox.Name = "geomRotationCombox";
+            this.geomRotationCombox.Size = new System.Drawing.Size(150, 21);
+            this.geomRotationCombox.TabIndex = 40;
+            // 
+            // label72
+            // 
+            this.label72.AutoSize = true;
+            this.label72.BackColor = System.Drawing.Color.Transparent;
+            this.label72.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label72.Location = new System.Drawing.Point(3, 8);
+            this.label72.Name = "label72";
+            this.label72.Size = new System.Drawing.Size(45, 13);
+            this.label72.TabIndex = 8;
+            this.label72.Text = "Rotate";
+            // 
+            // rotateBtn
+            // 
+            this.rotateBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rotateBtn.Location = new System.Drawing.Point(585, 3);
+            this.rotateBtn.Name = "rotateBtn";
+            this.rotateBtn.Size = new System.Drawing.Size(100, 23);
+            this.rotateBtn.TabIndex = 32;
+            this.rotateBtn.Text = "Rotate";
+            this.rotateBtn.UseVisualStyleBackColor = true;
+            this.rotateBtn.Click += new System.EventHandler(this.rotateBtn_Click);
+            // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.label76);
+            this.tabPage6.Controls.Add(this.confBgColor);
+            this.tabPage6.Controls.Add(this.label75);
             this.tabPage6.Controls.Add(this.label43);
             this.tabPage6.Controls.Add(this.label44);
             this.tabPage6.Controls.Add(this.noExtFilterForFileOpsCbox);
@@ -2135,6 +2380,34 @@
             this.tabPage6.Text = "Config";
             this.tabPage6.UseVisualStyleBackColor = true;
             this.tabPage6.Enter += new System.EventHandler(this.tabPage6_Enter);
+            // 
+            // label76
+            // 
+            this.label76.AutoSize = true;
+            this.label76.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label76.Location = new System.Drawing.Point(311, 34);
+            this.label76.Name = "label76";
+            this.label76.Size = new System.Drawing.Size(352, 13);
+            this.label76.TabIndex = 38;
+            this.label76.Text = "For operations where a background gets filled, like expanding the canvas";
+            // 
+            // confBgColor
+            // 
+            this.confBgColor.Location = new System.Drawing.Point(203, 31);
+            this.confBgColor.Name = "confBgColor";
+            this.confBgColor.Size = new System.Drawing.Size(100, 20);
+            this.confBgColor.TabIndex = 36;
+            this.confBgColor.Text = "000000FF";
+            this.confBgColor.TextChanged += new System.EventHandler(this.confBgColor_TextChanged);
+            // 
+            // label75
+            // 
+            this.label75.AutoSize = true;
+            this.label75.Location = new System.Drawing.Point(6, 34);
+            this.label75.Name = "label75";
+            this.label75.Size = new System.Drawing.Size(170, 13);
+            this.label75.TabIndex = 37;
+            this.label75.Text = "Canvas Background Color (RGBA)";
             // 
             // label43
             // 
@@ -2246,53 +2519,86 @@
             this.nameMustNotContainTbox.TabIndex = 12;
             this.nameMustNotContainTbox.TextChanged += new System.EventHandler(this.nameMustNotContainTbox_TextChanged);
             // 
-            // tabPage13
+            // tabPage14
             // 
-            this.tabPage13.Controls.Add(this.tileBtn);
-            this.tabPage13.Location = new System.Drawing.Point(4, 22);
-            this.tabPage13.Name = "tabPage13";
-            this.tabPage13.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage13.Size = new System.Drawing.Size(702, 224);
-            this.tabPage13.TabIndex = 8;
-            this.tabPage13.Text = "Tiling";
-            this.tabPage13.UseVisualStyleBackColor = true;
+            this.tabPage14.Controls.Add(this.padPixMax);
+            this.tabPage14.Controls.Add(this.padPixMin);
+            this.tabPage14.Controls.Add(this.label79);
+            this.tabPage14.Controls.Add(this.label80);
+            this.tabPage14.Controls.Add(this.label81);
+            this.tabPage14.Controls.Add(this.label82);
+            this.tabPage14.Controls.Add(this.padMode);
+            this.tabPage14.Location = new System.Drawing.Point(4, 22);
+            this.tabPage14.Name = "tabPage14";
+            this.tabPage14.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage14.Size = new System.Drawing.Size(682, 157);
+            this.tabPage14.TabIndex = 4;
+            this.tabPage14.Text = "Add/Remove Pixels";
+            this.tabPage14.UseVisualStyleBackColor = true;
             // 
-            // tileBtn
+            // padPixMax
             // 
-            this.tileBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tileBtn.Location = new System.Drawing.Point(6, 195);
-            this.tileBtn.Name = "tileBtn";
-            this.tileBtn.Size = new System.Drawing.Size(91, 23);
-            this.tileBtn.TabIndex = 33;
-            this.tileBtn.Text = "Tile";
-            this.tileBtn.UseVisualStyleBackColor = true;
-            this.tileBtn.Click += new System.EventHandler(this.tileBtn_Click);
+            this.padPixMax.Location = new System.Drawing.Point(228, 33);
+            this.padPixMax.Name = "padPixMax";
+            this.padPixMax.Size = new System.Drawing.Size(72, 20);
+            this.padPixMax.TabIndex = 47;
             // 
-            // pictureBox2
+            // padPixMin
             // 
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Image = global::MagickUtils.Properties.Resources.questmark_72px_bordeer;
-            this.pictureBox2.Location = new System.Drawing.Point(126, 3);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(23, 23);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 38;
-            this.pictureBox2.TabStop = false;
-            this.defTip.SetToolTip(this.pictureBox2, "Enter a color, for example 00FF0080 will be green with 50% transparency (0x80 = 1" +
-        "28).");
+            this.padPixMin.Location = new System.Drawing.Point(150, 33);
+            this.padPixMin.Name = "padPixMin";
+            this.padPixMin.Size = new System.Drawing.Size(72, 20);
+            this.padPixMin.TabIndex = 46;
+            this.padPixMin.Text = "1";
             // 
-            // pictureBox1
+            // label79
             // 
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Image = global::MagickUtils.Properties.Resources.questmark_72px_bordeer;
-            this.pictureBox1.Location = new System.Drawing.Point(143, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(23, 23);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 37;
-            this.pictureBox1.TabStop = false;
-            this.defTip.SetToolTip(this.pictureBox1, "Tip: Use \"Alpha Off\" for images that use the Alpha channel to store additional in" +
-        "formation, like Skyrim\'s normal maps.");
+            this.label79.AutoSize = true;
+            this.label79.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label79.Location = new System.Drawing.Point(306, 36);
+            this.label79.Name = "label79";
+            this.label79.Size = new System.Drawing.Size(345, 13);
+            this.label79.TabIndex = 45;
+            this.label79.Text = "Pixels to add/remove. Leave second box blank for non-random number.";
+            // 
+            // label80
+            // 
+            this.label80.AutoSize = true;
+            this.label80.Location = new System.Drawing.Point(6, 36);
+            this.label80.Name = "label80";
+            this.label80.Size = new System.Drawing.Size(106, 13);
+            this.label80.TabIndex = 44;
+            this.label80.Text = "Pixels On Each Side:";
+            // 
+            // label81
+            // 
+            this.label81.AutoSize = true;
+            this.label81.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label81.Location = new System.Drawing.Point(306, 9);
+            this.label81.Name = "label81";
+            this.label81.Size = new System.Drawing.Size(172, 13);
+            this.label81.TabIndex = 43;
+            this.label81.Text = "Add or remove pixels on each side.";
+            // 
+            // label82
+            // 
+            this.label82.AutoSize = true;
+            this.label82.Location = new System.Drawing.Point(6, 9);
+            this.label82.Name = "label82";
+            this.label82.Size = new System.Drawing.Size(37, 13);
+            this.label82.TabIndex = 42;
+            this.label82.Text = "Mode:";
+            // 
+            // padMode
+            // 
+            this.padMode.FormattingEnabled = true;
+            this.padMode.Items.AddRange(new object[] {
+            "Add Pixels (Padding)",
+            "Remove Pixels"});
+            this.padMode.Location = new System.Drawing.Point(150, 6);
+            this.padMode.Name = "padMode";
+            this.padMode.Size = new System.Drawing.Size(150, 21);
+            this.padMode.TabIndex = 41;
             // 
             // MainForm
             // 
@@ -2353,10 +2659,12 @@
             this.tabPage4.ResumeLayout(false);
             this.panel12.ResumeLayout(false);
             this.panel12.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tabPage5.ResumeLayout(false);
@@ -2366,11 +2674,15 @@
             this.panel7.PerformLayout();
             this.tabPage7.ResumeLayout(false);
             this.tabPage7.PerformLayout();
+            this.tabPage13.ResumeLayout(false);
+            this.panel14.ResumeLayout(false);
+            this.panel14.PerformLayout();
+            this.panel13.ResumeLayout(false);
+            this.panel13.PerformLayout();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
-            this.tabPage13.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tabPage14.ResumeLayout(false);
+            this.tabPage14.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2552,13 +2864,38 @@
         private System.Windows.Forms.Label label67;
         private System.Windows.Forms.TextBox cropAbsW;
         private System.Windows.Forms.TextBox cropAbsH;
-        private System.Windows.Forms.ComboBox cropAbsGravity;
+        private System.Windows.Forms.ComboBox cropAbsGrav;
         private System.Windows.Forms.Label label68;
         private System.Windows.Forms.Label label69;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ToolTip defTip;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.TabPage tabPage13;
-        private System.Windows.Forms.Button tileBtn;
+        private System.Windows.Forms.Panel panel13;
+        private System.Windows.Forms.Label label71;
+        private System.Windows.Forms.ComboBox geomRotationCombox;
+        private System.Windows.Forms.Label label72;
+        private System.Windows.Forms.Button rotateBtn;
+        private System.Windows.Forms.Panel panel14;
+        private System.Windows.Forms.Label label70;
+        private System.Windows.Forms.ComboBox geomFlipAxis;
+        private System.Windows.Forms.Label label73;
+        private System.Windows.Forms.Button flipBtn;
+        private System.Windows.Forms.ComboBox cropDivisibleGrav;
+        private System.Windows.Forms.Label label74;
+        private System.Windows.Forms.Label label76;
+        private System.Windows.Forms.TextBox confBgColor;
+        private System.Windows.Forms.Label label75;
+        private System.Windows.Forms.Label label77;
+        private System.Windows.Forms.CheckBox cropDivisibleExpand;
+        private System.Windows.Forms.Label label78;
+        private System.Windows.Forms.TabPage tabPage14;
+        private System.Windows.Forms.TextBox padPixMax;
+        private System.Windows.Forms.TextBox padPixMin;
+        private System.Windows.Forms.Label label79;
+        private System.Windows.Forms.Label label80;
+        private System.Windows.Forms.Label label81;
+        private System.Windows.Forms.Label label82;
+        private System.Windows.Forms.ComboBox padMode;
     }
 }

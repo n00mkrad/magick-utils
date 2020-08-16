@@ -30,7 +30,8 @@ namespace MagickUtils.MagickUtils
             MagickImage img = new MagickImage(path);
             int currOffsetX = 0;
             int currOffsetY = 0;
-            while(true)
+            bool done = false;
+            while(!done)
             {
                 //MagickImage tile = new MagickImage(tilesize, tilesize);
             }

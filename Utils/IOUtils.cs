@@ -18,14 +18,24 @@ namespace MagickUtils
         // Returns a MagickImage but converts the file first if it's not compatible with IM.
         public static MagickImage ReadImage (string path)
         {
-            if(Path.GetExtension(path).ToLower() == "flif")   // IM does not support FLIF, so we convert it first
+            try
             {
-                return FlifInterface.DecodeToMagickImage(path, false);
+                if(Path.GetExtension(path).ToLower() == "flif")   // IM does not support FLIF, so we convert it first
+                {
+                    return FlifInterface.DecodeToMagickImage(path, false);
+                }
+                else
+                {
+                    MagickImage img = new MagickImage(path);
+                    Program.Print("-> Loaded image " + Path.GetFileName(path) + " (" + img.ToString() + ")");
+                    return img;
+                }
             }
-            else
+            catch
             {
-                return new MagickImage(path);
+                Program.Print("Error reading " + Path.GetFileName(path) + "!");
             }
+            return null;
         }
 
         public static long GetDirSize (DirectoryInfo d)

@@ -1,4 +1,5 @@
 ﻿using ImageMagick;
+using MagickUtils.MagickUtils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,7 +28,10 @@ namespace MagickUtils
                 MessageBox.Show("MagickUtils is running as administrator. This will break Drag-n-Drop functionality.", "Warning");
 
             CenterToScreen();
+            Config.fileOperationsNoExtFilter = noExtFilterForFileOpsCbox.Checked;
+            Config.backgroundColor = confBgColor.Text.Trim().Replace("#", "");
             Config.ReadConfig();
+            Config.WriteConfig(false);   // Write, in case we have new values that are not in the config yet
 
             Program.logTbox = logTbox;
             Program.progBar = progressBar1;
@@ -48,9 +52,13 @@ namespace MagickUtils
             InitCombox(cropDivision, 1);
             InitCombox(cropRelGrav, 1);
             InitCombox(cropRelSizeMode, 0);
+            InitCombox(geomRotationCombox, 0);
+            InitCombox(geomFlipAxis, 0);
+            InitCombox(cropDivisibleGrav, 1);
+            InitCombox(cropAbsGrav, 1);
+            InitCombox(padMode, 0);
 
             IOUtils.recursive = recursiveCbox.Checked;
-
             ScaleUtils.onlyDownscale = onlyDownscaleCbox.Checked;
         }
 
@@ -446,9 +454,11 @@ namespace MagickUtils
             if(cropTabControl.SelectedIndex == 0)
                 CropTabHelper.CropRelative(cropRelSizeMin, cropRelSizeMax, cropRelSizeMode, cropRelGrav);
             if(cropTabControl.SelectedIndex == 1)
-                CropTabHelper.CropAbsolute(cropAbsH, cropAbsW, cropAbsGravity);
-            if(cropTabControl.SelectedIndex == 2)
-                CropUtils.CropDivisibleDir(cropDivision.GetInt());
+                CropTabHelper.CropAbsolute(cropAbsH, cropAbsW, cropAbsGrav);
+            if(cropTabControl.SelectedIndex == 3)
+                CropTabHelper.CropDivisible(cropDivision, cropDivisibleGrav, cropDivisibleExpand);
+            if(cropTabControl.SelectedIndex == 4)
+                CropTabHelper.CropPadding(padPixMin, padPixMax, padMode);
         }
 
         private void tabPage7_DragEnter (object sender, DragEventArgs e)
@@ -471,6 +481,29 @@ namespace MagickUtils
         private void tileBtn_Click (object sender, EventArgs e)
         {
 
+        }
+
+        private void rotateBtn_Click (object sender, EventArgs e)
+        {
+            GeometryUtils.RotateMode rotateMode = GeometryUtils.RotateMode.Rot90;
+            if(geomRotationCombox.SelectedIndex == 1) rotateMode = GeometryUtils.RotateMode.Rot180;
+            if(geomRotationCombox.SelectedIndex == 2) rotateMode = GeometryUtils.RotateMode.Rot270;
+            if(geomRotationCombox.SelectedIndex == 3) rotateMode = GeometryUtils.RotateMode.Random;
+            if(geomRotationCombox.SelectedIndex == 4) rotateMode = GeometryUtils.RotateMode.RandomAll;
+            GeometryUtils.RotateDir(rotateMode);
+        }
+
+        private void flipBtn_Click (object sender, EventArgs e)
+        {
+            GeometryUtils.FlipMode flipMode = GeometryUtils.FlipMode.Hor;
+            if(geomFlipAxis.SelectedIndex == 1) flipMode = GeometryUtils.FlipMode.Vert;
+            if(geomFlipAxis.SelectedIndex == 2) flipMode = GeometryUtils.FlipMode.Random;
+            GeometryUtils.FlipDir(flipMode);
+        }
+
+        private void confBgColor_TextChanged (object sender, EventArgs e)
+        {
+            Config.backgroundColor = confBgColor.Text.Trim().Replace("#", "");
         }
     }
 }

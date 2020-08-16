@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MagickUtils\AdjustUtils.cs" />
+    <Compile Include="MagickUtils\GeometryUtils.cs" />
     <Compile Include="MagickUtils\TilingUtils.cs" />
     <Compile Include="Utils\Config.cs" />
     <Compile Include="FormsHelpers\ConvertTabHelper.cs" />

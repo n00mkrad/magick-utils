@@ -30,6 +30,20 @@ namespace MagickUtils
             CropUtils.CropAbsoluteDir(wBox.GetInt(), hBox.GetInt(), GetGravity(gravBox.SelectedIndex));
         }
 
+        public static void CropDivisible (ComboBox divisibleByBox, ComboBox gravBox, CheckBox expandBox)
+        {
+            CropUtils.CropDivisibleDir(divisibleByBox.GetInt(), GetGravity(gravBox.SelectedIndex), expandBox.Checked);
+        }
+
+        public static void CropPadding (TextBox pixMinBox, TextBox pixMaxBox, ComboBox modeBox)
+        {
+            int pixMin = pixMinBox.GetInt();
+            int pixMax = pixMin;
+            if(!string.IsNullOrWhiteSpace(pixMaxBox.Text))
+                pixMax = pixMaxBox.GetInt();
+            CropUtils.CropPaddingDir(pixMin, pixMax, modeBox.SelectedIndex == 1);
+        }
+
         public static Gravity GetGravity (int selectedIndex)
         {
             switch(selectedIndex)

@@ -57,13 +57,13 @@ namespace MagickUtils
             int srcHeight = img.Height;
             Random rand = new Random();
             int targetScale = rand.Next(minScale, maxScale + 1);
-            Program.Print("  -> Scaling down to " + targetScale + "% with filter " + filter + "...");
+            Program.Print("-> Scaling down to " + targetScale + "% with filter " + filter + "...");
             img.FilterType = filter;
             img.Resize(new Percentage(targetScale));
             //img.Write(img.FileName);
             MagickGeometry upscaleGeom = new MagickGeometry(srcWidth + "x" + srcHeight + "!");
             img.FilterType = FT.Point;
-            Program.Print("  -> Scaling back up...\n");
+            Program.Print("-> Scaling back up...\n");
             img.Resize(upscaleGeom);
             PreProcessing(path);
             Write(img, filter);
@@ -82,7 +82,7 @@ namespace MagickUtils
         public static void Scale (string path, int minScale, int maxScale, int randFilterMode)
         {
             MagickImage img = IOUtils.ReadImage(path);
-            string fname = Path.ChangeExtension(path, null);
+            string fname = Path.GetFileName(path);
             Program.Print("-> " + fname + " (" + img.Width + "x" + img.Height + ")");
             FT filter = GetFilter(randFilterMode);
             Random rand = new Random();
@@ -93,11 +93,11 @@ namespace MagickUtils
             bool widthLonger = img.Width > img.Height;
             bool square = (img.Height == img.Width);
 
-            if(square || currMode == SM.Height || (currMode == SM.LongerSide && heightLonger) || (currMode == SM.ShorterSide && widthLonger))
+            if((square && currMode != SM.Percentage) || currMode == SM.Height || (currMode == SM.LongerSide && heightLonger) || (currMode == SM.ShorterSide && widthLonger))
             {
                 if(onlyDownscale && (img.Height <= targetScale))
                     return;
-                Program.Print("  -> Scaling to " + targetScale + "px height with filter " + filter + "...");
+                Program.Print("-> Scaling to " + targetScale + "px height with filter " + filter + "...");
                 MagickGeometry geom = new MagickGeometry("x" + targetScale);
                 img.Resize(geom);
             }
@@ -105,13 +105,13 @@ namespace MagickUtils
             {
                 if(onlyDownscale && (img.Width <= targetScale))
                     return;
-                Program.Print("  -> Scaling to " + targetScale + "px width with filter " + filter + "...");
+                Program.Print("-> Scaling to " + targetScale + "px width with filter " + filter + "...");
                 MagickGeometry geom = new MagickGeometry(targetScale + "x");
                 img.Resize(geom);
             }
             if(currMode == SM.Percentage)
             {
-                Program.Print("  -> Scaling to " + targetScale + "% with filter " + filter + "...");
+                Program.Print("-> Scaling to " + targetScale + "% with filter " + filter + "...");
                 img.Resize(new Percentage(targetScale));
             }
             PreProcessing(path);
@@ -168,12 +168,12 @@ namespace MagickUtils
             Program.sw.Stop();
             img.Dispose();
             //long bytesPost = new FileInfo(outPath).Length;
-            //Program.Print("  -> Done. Size pre: " + Format.Filesize(bytesPre) + " - Size post: " + Format.Filesize(bytesPost) + " - Ratio: " + Format.Ratio(bytesPre, bytesPost));
+            //Program.Print("-> Done. Size pre: " + Format.Filesize(bytesPre) + " - Size post: " + Format.Filesize(bytesPost) + " - Ratio: " + Format.Ratio(bytesPre, bytesPost));
         }
 
         static void DelSource (string path)
         {
-            Program.Print("  -> Deleting source file: " + Path.GetFileName(path) + "...\n");
+            Program.Print("-> Deleting source file: " + Path.GetFileName(path) + "...\n");
             File.Delete(path);
         }
     }

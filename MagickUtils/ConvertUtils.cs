@@ -144,6 +144,7 @@ namespace MagickUtils
         public static void ConvertToJpeg (string path, int q = 95, bool delSource = false)
         {
             MagickImage img = IOUtils.ReadImage(path);
+            if(img == null) return;
             img.Format = MagickFormat.Jpeg;
             img.Quality = q;
             string outPath = Path.ChangeExtension(path, null) + ".jpg";
@@ -155,6 +156,7 @@ namespace MagickUtils
         public static void ConvertToJpegRandomQuality (string path, int qMin, int qMax, bool delSource = false)
         {
             MagickImage img = IOUtils.ReadImage(path);
+            if(img == null) return;
             img.Format = MagickFormat.Jpeg;
             Random rand = new Random();
             img.Quality = rand.Next(qMin, qMax + 1);
@@ -167,6 +169,7 @@ namespace MagickUtils
         public static void ConvertToPng (string path, int pngCompressLvl = 0, bool delSource = false)
         {
             MagickImage img = IOUtils.ReadImage(path);
+            if(img == null) return;
             img.Format = MagickFormat.Png;
             img.Quality = pngCompressLvl;
             string outPath = Path.ChangeExtension(path, null) + ".png";
@@ -178,6 +181,7 @@ namespace MagickUtils
         public static void ConvertToDds (string path, bool delSource = false)
         {
             MagickImage img = IOUtils.ReadImage(path);
+            if(img == null) return;
             img.Format = MagickFormat.Dds;
             var defines = new DdsWriteDefines { Compression = DdsCompression.Dxt1 };
             img.Settings.SetDefines(defines);
@@ -190,6 +194,7 @@ namespace MagickUtils
         public static void ConvertToTga (string path, bool delSource = false)
         {
             MagickImage img = IOUtils.ReadImage(path);
+            if(img == null) return;
             img.Format = MagickFormat.Tga;
             string outPath = Path.ChangeExtension(path, null) + ".tga";
             PreProcessing(path);
@@ -199,7 +204,7 @@ namespace MagickUtils
 
         public static void ConvertToWebp (string path, int q, bool delSource = false)
         {
-            MagickImage img = IOUtils.ReadImage(path);
+            MagickImage img = IOUtils.ReadImage(path);if(img == null) return;
             img.Format = MagickFormat.WebP;
             string outPath = Path.ChangeExtension(path, null) + ".webp";
             img.Quality = q;
@@ -211,6 +216,7 @@ namespace MagickUtils
         public static void ConvertToJpeg2000 (string path, int q, bool delSource = false)
         {
             MagickImage img = IOUtils.ReadImage(path);
+            if(img == null) return;
             img.Format = MagickFormat.Jp2;
             string outPath = Path.ChangeExtension(path, null) + ".jp2";
             img.Quality = q;
