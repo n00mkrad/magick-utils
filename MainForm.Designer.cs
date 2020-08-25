@@ -170,7 +170,6 @@
             this.label86 = new System.Windows.Forms.Label();
             this.ditherBtn = new System.Windows.Forms.Button();
             this.panel12 = new System.Windows.Forms.Panel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.colorLayerTbox = new System.Windows.Forms.TextBox();
             this.label60 = new System.Windows.Forms.Label();
             this.colorLayerBtn = new System.Windows.Forms.Button();
@@ -181,7 +180,6 @@
             this.applyColorDepthBtn = new System.Windows.Forms.Button();
             this.label33 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.alphaOffBtn = new System.Windows.Forms.Button();
             this.remAlphaBlack = new System.Windows.Forms.Button();
             this.remAlphaWhite = new System.Windows.Forms.Button();
@@ -259,6 +257,10 @@
             this.nameMustNotContainTbox = new System.Windows.Forms.TextBox();
             this.defTip = new System.Windows.Forms.ToolTip(this.components);
             this.label67 = new System.Windows.Forms.Label();
+            this.bgColorDialog = new System.Windows.Forms.ColorDialog();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.bgColorSelectBtn = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -280,10 +282,8 @@
             this.tabPage4.SuspendLayout();
             this.panel17.SuspendLayout();
             this.panel12.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel6.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.panel16.SuspendLayout();
@@ -294,6 +294,8 @@
             this.panel14.SuspendLayout();
             this.panel13.SuspendLayout();
             this.tabPage6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // pathTextbox
@@ -1895,19 +1897,6 @@
             this.panel12.Size = new System.Drawing.Size(690, 31);
             this.panel12.TabIndex = 36;
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Image = global::MagickUtils.Properties.Resources.questmark_72px_bordeer;
-            this.pictureBox2.Location = new System.Drawing.Point(126, 3);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(23, 23);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 38;
-            this.pictureBox2.TabStop = false;
-            this.defTip.SetToolTip(this.pictureBox2, "Enter a color, for example 00FF0080 will be green with 50% transparency (0x80 = 1" +
-        "28).");
-            // 
             // colorLayerTbox
             // 
             this.colorLayerTbox.Location = new System.Drawing.Point(480, 5);
@@ -2017,19 +2006,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(690, 31);
             this.panel2.TabIndex = 13;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Image = global::MagickUtils.Properties.Resources.questmark_72px_bordeer;
-            this.pictureBox1.Location = new System.Drawing.Point(143, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(23, 23);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 37;
-            this.pictureBox1.TabStop = false;
-            this.defTip.SetToolTip(this.pictureBox1, "Tip: Use \"Alpha Off\" for images that use the Alpha channel to store additional in" +
-        "formation, like Skyrim\'s normal maps.");
             // 
             // alphaOffBtn
             // 
@@ -2708,6 +2684,7 @@
             // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.bgColorSelectBtn);
             this.tabPage6.Controls.Add(this.label76);
             this.tabPage6.Controls.Add(this.confBgColor);
             this.tabPage6.Controls.Add(this.label75);
@@ -2738,7 +2715,7 @@
             // 
             this.confBgColor.Location = new System.Drawing.Point(203, 31);
             this.confBgColor.Name = "confBgColor";
-            this.confBgColor.Size = new System.Drawing.Size(100, 20);
+            this.confBgColor.Size = new System.Drawing.Size(70, 20);
             this.confBgColor.TabIndex = 36;
             this.confBgColor.Text = "000000FF";
             this.confBgColor.TextChanged += new System.EventHandler(this.confBgColor_TextChanged);
@@ -2758,9 +2735,9 @@
             this.label43.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label43.Location = new System.Drawing.Point(311, 9);
             this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(353, 13);
+            this.label43.Size = new System.Drawing.Size(350, 13);
             this.label43.TabIndex = 35;
-            this.label43.Text = "Apply file operations (renaming, etc) on all file types instead of just images.";
+            this.label43.Text = "Apply file operations (renaming, etc) on all file types instead of just images";
             // 
             // label44
             // 
@@ -2871,6 +2848,43 @@
             this.label67.TabIndex = 54;
             this.label67.Text = "Merge Tiles:";
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox2.Image = global::MagickUtils.Properties.Resources.questmark_72px_bordeer;
+            this.pictureBox2.Location = new System.Drawing.Point(126, 3);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(23, 23);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 38;
+            this.pictureBox2.TabStop = false;
+            this.defTip.SetToolTip(this.pictureBox2, "Enter a color, for example 00FF0080 will be green with 50% transparency (0x80 = 1" +
+        "28).");
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Image = global::MagickUtils.Properties.Resources.questmark_72px_bordeer;
+            this.pictureBox1.Location = new System.Drawing.Point(143, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(23, 23);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 37;
+            this.pictureBox1.TabStop = false;
+            this.defTip.SetToolTip(this.pictureBox1, "Tip: Use \"Alpha Off\" for images that use the Alpha channel to store additional in" +
+        "formation, like Skyrim\'s normal maps.");
+            // 
+            // bgColorSelectBtn
+            // 
+            this.bgColorSelectBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.bgColorSelectBtn.Location = new System.Drawing.Point(279, 31);
+            this.bgColorSelectBtn.Name = "bgColorSelectBtn";
+            this.bgColorSelectBtn.Size = new System.Drawing.Size(25, 20);
+            this.bgColorSelectBtn.TabIndex = 39;
+            this.bgColorSelectBtn.Text = "...";
+            this.bgColorSelectBtn.UseVisualStyleBackColor = true;
+            this.bgColorSelectBtn.Click += new System.EventHandler(this.bgColorSelectBtn_Click);
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -2936,12 +2950,10 @@
             this.panel17.PerformLayout();
             this.panel12.ResumeLayout(false);
             this.panel12.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tabPage5.ResumeLayout(false);
@@ -2960,6 +2972,8 @@
             this.panel13.PerformLayout();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3196,5 +3210,7 @@
         private System.Windows.Forms.Label label91;
         private System.Windows.Forms.ComboBox ditherColorsMin;
         private System.Windows.Forms.Label label67;
+        private System.Windows.Forms.Button bgColorSelectBtn;
+        private System.Windows.Forms.ColorDialog bgColorDialog;
     }
 }

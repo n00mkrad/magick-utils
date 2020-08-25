@@ -533,5 +533,13 @@ namespace MagickUtils
                 colorsMax = ditherColorsMax.GetInt();
             ColorUtils.DitherDir(colorsMin, colorsMax);
         }
+
+        private void bgColorSelectBtn_Click (object sender, EventArgs e)
+        {
+            bgColorDialog.ShowDialog();
+            string colorStr = ColorTranslator.ToHtml(Color.FromArgb(bgColorDialog.Color.ToArgb())).Replace("#", "") + "FF";
+            Config.backgroundColor = colorStr;
+            confBgColor.Text = colorStr;
+        }
     }
 }

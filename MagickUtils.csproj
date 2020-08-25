@@ -142,6 +142,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\gear.bmp" />
     <None Include="Resources\questmark-72px-bordeer.png" />
     <None Include="Resources\questmark.png" />
     <None Include="Resources\inpaint-thinlines1-2048px.png" />
