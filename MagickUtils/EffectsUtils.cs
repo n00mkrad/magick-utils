@@ -96,6 +96,32 @@ namespace MagickUtils
             PostProcessing(null, path, path);
         }
 
+        public async static void EdgeDetectDir ()
+        {
+            int counter = 1;
+            FileInfo[] files = IOUtils.GetFiles();
+
+            Program.PreProcessing();
+            foreach(FileInfo file in files)
+            {
+                Program.ShowProgress("Running Edge Detection on Image ", counter, files.Length);
+                EdgeDetect(file.FullName);
+                counter++;
+                if(counter % 2 == 0) await Program.PutTaskDelay();
+            }
+            Program.PostProcessing(true);
+        }
+
+        public static void EdgeDetect (string path)
+        {
+            PreProcessing(path);
+            MagickImage img = new MagickImage(path);
+            img.CannyEdge(0, 1, new Percentage(5), new Percentage(20));
+            img.Negate();
+            img.Write(path);
+            PostProcessing(null, path, path);
+        }
+
         static void PreProcessing (string path, string infoSuffix = null)
         {
             Program.Print("-> Processing " + Path.GetFileName(path) + " " + infoSuffix);
@@ -108,15 +134,15 @@ namespace MagickUtils
             if(img != null)
                 img.Dispose();
             long bytesPost = new FileInfo(outPath).Length;
-            //Program.Print("  -> Done. Size pre: " + Format.Filesize(bytesPre) + " - Size post: " + Format.Filesize(bytesPost) + " - Ratio: " + Format.Ratio(bytesPre, bytesPost));
-            Program.Print("  -> Done.");
+            //Program.Print("-> Done. Size pre: " + Format.Filesize(bytesPre) + " - Size post: " + Format.Filesize(bytesPost) + " - Ratio: " + Format.Ratio(bytesPre, bytesPost));
+            Program.Print("-> Done.");
             if(delSource)
                 DelSource(sourcePath);
         }
 
         static void DelSource (string path)
         {
-            Program.Print("  -> Deleting source file: " + Path.GetFileName(path) + "...\n");
+            Program.Print("-> Deleting source file: " + Path.GetFileName(path) + "...\n");
             File.Delete(path);
         }
     }

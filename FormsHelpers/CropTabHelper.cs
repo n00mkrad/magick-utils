@@ -44,6 +44,11 @@ namespace MagickUtils
             CropUtils.CropPaddingDir(pixMin, pixMax, modeBox.SelectedIndex == 1);
         }
 
+        public static void CropTiles (TextBox wBox, TextBox hBox, ComboBox modeBox)
+        {
+            CropUtils.TileDir(wBox.GetInt(), hBox.GetInt(), modeBox.SelectedIndex == 1);
+        }
+
         public static Gravity GetGravity (int selectedIndex)
         {
             switch(selectedIndex)

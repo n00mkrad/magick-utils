@@ -57,6 +57,8 @@ namespace MagickUtils
             InitCombox(cropDivisibleGrav, 1);
             InitCombox(cropAbsGrav, 1);
             InitCombox(padMode, 0);
+            InitCombox(renameCounterMode, 0);
+            InitCombox(tileMode, 0);
 
             IOUtils.recursive = recursiveCbox.Checked;
             ScaleUtils.onlyDownscale = onlyDownscaleCbox.Checked;
@@ -164,13 +166,13 @@ namespace MagickUtils
         private void remAlphaWhite_Click (object sender, EventArgs e)
         {
             if(!Program.IsPathValid(Program.currentDir)) return;
-            OtherUtils.RemTransparencyDir(1);
+            ColorUtils.RemTransparencyDir(1);
         }
 
         private void remAlphaBlack_Click (object sender, EventArgs e)
         {
             if(!Program.IsPathValid(Program.currentDir)) return;
-            OtherUtils.RemTransparencyDir(0);
+            ColorUtils.RemTransparencyDir(0);
         }
 
         private void delSmallImagesBtn_Click (object sender, EventArgs e)
@@ -207,14 +209,14 @@ namespace MagickUtils
         private void applyColorDepthBtn_Click (object sender, EventArgs e)
         {
             if(!Program.IsPathValid(Program.currentDir)) return;
-            if(colorDepthCombox.SelectedIndex == 0) OtherUtils.SetColorDepth(24);
-            if(colorDepthCombox.SelectedIndex == 1) OtherUtils.SetColorDepth(16);
-            if(colorDepthCombox.SelectedIndex == 2) OtherUtils.SetColorDepth(12);
-            if(colorDepthCombox.SelectedIndex == 3) OtherUtils.SetColorDepth(8);
-            if(colorDepthCombox.SelectedIndex == 4) OtherUtils.SetColorDepth(7);
-            if(colorDepthCombox.SelectedIndex == 5) OtherUtils.SetColorDepth(6);
-            if(colorDepthCombox.SelectedIndex == 6) OtherUtils.SetColorDepth(5);
-            if(colorDepthCombox.SelectedIndex == 7) OtherUtils.SetColorDepth(4);
+            if(colorDepthCombox.SelectedIndex == 0) ColorUtils.SetColorDepthDir(24);
+            if(colorDepthCombox.SelectedIndex == 1) ColorUtils.SetColorDepthDir(16);
+            if(colorDepthCombox.SelectedIndex == 2) ColorUtils.SetColorDepthDir(12);
+            if(colorDepthCombox.SelectedIndex == 3) ColorUtils.SetColorDepthDir(8);
+            if(colorDepthCombox.SelectedIndex == 4) ColorUtils.SetColorDepthDir(7);
+            if(colorDepthCombox.SelectedIndex == 5) ColorUtils.SetColorDepthDir(6);
+            if(colorDepthCombox.SelectedIndex == 6) ColorUtils.SetColorDepthDir(5);
+            if(colorDepthCombox.SelectedIndex == 7) ColorUtils.SetColorDepthDir(4);
         }
 
         private void recursiveCbox_CheckedChanged (object sender, EventArgs e)
@@ -346,7 +348,7 @@ namespace MagickUtils
 
         private void alphaOffBtn_Click (object sender, EventArgs e)
         {
-            OtherUtils.RemTransparencyDir(2);
+            ColorUtils.RemTransparencyDir(2);
         }
 
         private void tabPage1_DragEnter (object sender, DragEventArgs e)
@@ -454,11 +456,13 @@ namespace MagickUtils
             if(cropTabControl.SelectedIndex == 0)
                 CropTabHelper.CropRelative(cropRelSizeMin, cropRelSizeMax, cropRelSizeMode, cropRelGrav);
             if(cropTabControl.SelectedIndex == 1)
-                CropTabHelper.CropAbsolute(cropAbsH, cropAbsW, cropAbsGrav);
+                CropTabHelper.CropAbsolute(cropAbsW, cropAbsH, cropAbsGrav);
             if(cropTabControl.SelectedIndex == 3)
                 CropTabHelper.CropDivisible(cropDivision, cropDivisibleGrav, cropDivisibleExpand);
             if(cropTabControl.SelectedIndex == 4)
                 CropTabHelper.CropPadding(padPixMin, padPixMax, padMode);
+            if(cropTabControl.SelectedIndex == 5)
+                CropTabHelper.CropTiles(tilingW, tilingH, tileMode);
         }
 
         private void tabPage7_DragEnter (object sender, DragEventArgs e)
@@ -475,7 +479,7 @@ namespace MagickUtils
         private void colorLayerBtn_Click (object sender, EventArgs e)
         {
             if(Program.IsPathValid(Program.currentDir))
-                OtherUtils.LayerColorDir(colorLayerTbox.Text.Trim().Replace("#", ""));
+                ColorUtils.LayerColorDir(colorLayerTbox.Text.Trim().Replace("#", ""));
         }
 
         private void tileBtn_Click (object sender, EventArgs e)
@@ -504,6 +508,30 @@ namespace MagickUtils
         private void confBgColor_TextChanged (object sender, EventArgs e)
         {
             Config.backgroundColor = confBgColor.Text.Trim().Replace("#", "");
+        }
+
+        private void renameCounterBtn_Click (object sender, EventArgs e)
+        {
+            OtherUtils.RenameCounterDir(renameCounterMode.SelectedIndex);
+        }
+
+        private void mergeAllBtn_Click (object sender, EventArgs e)
+        {
+            CropUtils.MergeAllDir();
+        }
+
+        private void edgeDetectBtn_Click (object sender, EventArgs e)
+        {
+            EffectsUtils.EdgeDetectDir();
+        }
+
+        private void ditherBtn_Click (object sender, EventArgs e)
+        {
+            int colorsMin = ditherColorsMin.GetInt();
+            int colorsMax = colorsMin;
+            if(!string.IsNullOrWhiteSpace(ditherColorsMax.Text))
+                colorsMax = ditherColorsMax.GetInt();
+            ColorUtils.DitherDir(colorsMin, colorsMax);
         }
     }
 }

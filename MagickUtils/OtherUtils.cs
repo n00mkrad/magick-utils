@@ -44,21 +44,6 @@ namespace MagickUtils
             }
         }
 
-        public static async void RemTransparencyDir (byte mode)
-        {
-            int counter = 1;
-            FileInfo[] files = IOUtils.GetFiles();
-            Program.PreProcessing();
-            foreach(FileInfo file in files)
-            {
-                Program.ShowProgress("Removing Alpha on Image ", counter, files.Length);
-                counter++;
-                RemoveTransparency(file.FullName, mode);
-                if(counter % 5 == 0) await Program.PutTaskDelay();
-            }
-            Program.PostProcessing();
-        }
-
         public static void AddSuffixPrefixDir (string text, bool suffix)
         {
             int counter = 1;
@@ -114,21 +99,6 @@ namespace MagickUtils
             File.Move(path, targetPath);
         }
 
-        public static async void SetColorDepth (int bits)
-        {
-            int counter = 1;
-            FileInfo[] files = IOUtils.GetFiles();
-            Program.PreProcessing();
-            foreach(FileInfo file in files)
-            {
-                Program.ShowProgress("Setting color depth to " + bits + " on ", counter, files.Length);
-                counter++;
-                SetColorDepth(file.FullName, bits);
-                if(counter % 2 == 0) await Program.PutTaskDelay();
-            }
-            Program.PostProcessing();
-        }
-
         public static async void DelSmallImgsDir (int minSize, ImageSizeFilterUtils.SizeMode scaleMode, ImageSizeFilterUtils.Operator op)
         {
             int counter = 1;
@@ -174,7 +144,7 @@ namespace MagickUtils
                 {
                     Program.ShowProgress("", counter, files.Length);
                     counter++;
-                    Program.Print(" -> " + file.Name + " doesn't exist in second dir, will delete");
+                    Program.Print("-> " + file.Name + " doesn't exist in second dir, will delete");
                     if(!testRun) File.Delete(file.FullName);
                     if(counter % 50 == 0) Program.Print("Processed " + counter + " files...");
                 }
@@ -187,57 +157,12 @@ namespace MagickUtils
                 {
                     Program.ShowProgress("", counter, files.Length);
                     counter++;
-                    Program.Print(" -> " + file.Name + " doesn't exist in second dir, will delete");
+                    Program.Print("-> " + file.Name + " doesn't exist in second dir, will delete");
                     if(!testRun) File.Delete(file.FullName);
                     if(counter % 50 == 0) Program.Print("Processed " + counter + " files...");
                 }
             }
             Program.PostProcessing(false, false);
-        }
-
-        public static async void LayerColorDir (string color)
-        {
-            int counter = 1;
-            FileInfo[] files = IOUtils.GetFiles();
-            Program.PreProcessing();
-            foreach(FileInfo file in files)
-            {
-                Program.ShowProgress("Overlaying color on image ", counter, files.Length);
-                counter++;
-                LayerColor(file.FullName, color);
-                if(counter % 2 == 0) await Program.PutTaskDelay();
-            }
-            Program.PostProcessing();
-        }
-
-        public static void LayerColor (string path, string color)
-        {
-            MagickImage img = new MagickImage(path);
-            MagickColor imgColor = new MagickColor("#" + color);
-            MagickImage overlay = new MagickImage(imgColor, img.Width, img.Height);
-            img.Composite(overlay, Gravity.Center, CompositeOperator.Over);
-            img.Write(path);
-        }
-
-        public static void RemoveTransparency (string path, byte mode)
-        {
-            MagickImage img = IOUtils.ReadImage(path);
-            if(mode == 0) img.ColorAlpha(MagickColors.Black);
-            if(mode == 1) img.ColorAlpha(MagickColors.White);
-            if(mode == 2) img.Alpha(AlphaOption.Off);
-            Program.Print("-> " + Path.GetFileNameWithoutExtension(path));
-            img.Write(path);
-        }
-
-        public static void SetColorDepth (string path, int bits)
-        {
-            MagickImage img = IOUtils.ReadImage(path);
-            img.BitDepth(bits);
-            //img.Depth = bits;
-            img.Quality = Program.GetDefaultQuality(img);
-            string fname = Path.GetFileName(path);
-            Program.Print("-> " + fname);
-            img.Write(path);
         }
 
         public static async void GroupNormalsWithTex (string ext, string[] normalSuffixList, string[] diffuseSuffixList, string setPrefix, bool renLower)
@@ -275,7 +200,7 @@ namespace MagickUtils
                             string diffuseName = fnameNoExt.Replace(suffix, albSuffix);
                             diffuseName += file.Extension;
                             string diffuseTexPath = file.DirectoryName + "/" + diffuseName;
-                            Program.Print("  -> Looking for diffuse texture: " + diffuseTexPath);
+                            Program.Print("-> Looking for diffuse texture: " + diffuseTexPath);
                             if(File.Exists(diffuseTexPath) && DimensionsMatch(file.FullName, diffuseTexPath))
                             {
                                 Program.Print("    -> Found diffuse texture: " + Path.GetFileName(diffuseTexPath));
@@ -294,6 +219,26 @@ namespace MagickUtils
                 Program.ShowProgress("", counter, files.Length);
             }
             Program.PostProcessing(false, false);
+        }
+
+        public static void RenameCounterDir (int sortMode)
+        {
+            int counter = 1;
+            FileInfo[] files = IOUtils.GetFiles(Config.fileOperationsNoExtFilter);
+            var filesSorted = files.OrderBy(n => n);
+            if(sortMode == 1)
+                filesSorted.Reverse();
+            Program.PreProcessing(true, false);
+            foreach(FileInfo file in files)
+            {
+                string dir = new DirectoryInfo(file.FullName).Parent.FullName;
+                int filesDigits = (int)Math.Floor(Math.Log10((double)files.Length) + 1);
+                File.Move(file.FullName, Path.Combine(dir, counter.ToString().PadLeft(filesDigits, '0') + Path.GetExtension(file.FullName)));
+                Program.ShowProgress("", counter, files.Length);
+                counter++;
+                if(counter % 100 == 0) Program.Print("Renamed " + counter + " files...");
+            }
+            Program.PostProcessing(true, false);
         }
 
         static bool DimensionsMatch (string imgPath1, string imgPath2)

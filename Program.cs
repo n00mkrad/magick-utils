@@ -102,14 +102,15 @@ namespace MagickUtils
         public static bool IsTrue (string input)
         {
             string inStr = input.Trim();
-            if(inStr == "y") return true;
-            if(inStr == "Y") return true;
+            if(inStr == "y" || inStr == "Y") return true;
             return false;
         }
 
-        public static void Print(string s)
+        public static void Print(string s, bool replaceLastLine = false)
         {
             Console.WriteLine(s);
+            if(replaceLastLine)
+                logTbox.Text = logTbox.Text.Remove(logTbox.Text.LastIndexOf(Environment.NewLine));
             s = s.Replace("\n", Environment.NewLine);
             logTbox.AppendText(Environment.NewLine + s);
         }

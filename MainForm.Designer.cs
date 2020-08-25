@@ -91,8 +91,6 @@
             this.cropAbsGrav = new System.Windows.Forms.ComboBox();
             this.label68 = new System.Windows.Forms.Label();
             this.label69 = new System.Windows.Forms.Label();
-            this.tabPage10 = new System.Windows.Forms.TabPage();
-            this.label67 = new System.Windows.Forms.Label();
             this.tabPage11 = new System.Windows.Forms.TabPage();
             this.label78 = new System.Windows.Forms.Label();
             this.label77 = new System.Windows.Forms.Label();
@@ -101,8 +99,29 @@
             this.label74 = new System.Windows.Forms.Label();
             this.cropDivision = new System.Windows.Forms.ComboBox();
             this.label58 = new System.Windows.Forms.Label();
+            this.tabPage14 = new System.Windows.Forms.TabPage();
+            this.padPixMax = new System.Windows.Forms.TextBox();
+            this.padPixMin = new System.Windows.Forms.TextBox();
+            this.label79 = new System.Windows.Forms.Label();
+            this.label80 = new System.Windows.Forms.Label();
+            this.label81 = new System.Windows.Forms.Label();
+            this.label82 = new System.Windows.Forms.Label();
+            this.padMode = new System.Windows.Forms.ComboBox();
+            this.tabPage15 = new System.Windows.Forms.TabPage();
+            this.mergeAllBtn = new System.Windows.Forms.Button();
+            this.label87 = new System.Windows.Forms.Label();
+            this.tileMode = new System.Windows.Forms.ComboBox();
+            this.label85 = new System.Windows.Forms.Label();
+            this.tilingH = new System.Windows.Forms.TextBox();
+            this.tilingW = new System.Windows.Forms.TextBox();
+            this.label88 = new System.Windows.Forms.Label();
             this.cropBtn = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.panel15 = new System.Windows.Forms.Panel();
+            this.renameCounterMode = new System.Windows.Forms.ComboBox();
+            this.label83 = new System.Windows.Forms.Label();
+            this.renameCounterBtn = new System.Windows.Forms.Button();
+            this.label84 = new System.Windows.Forms.Label();
             this.panel11 = new System.Windows.Forms.Panel();
             this.delMissingTestBtn = new System.Windows.Forms.Button();
             this.checkDirTbox = new System.Windows.Forms.TextBox();
@@ -143,6 +162,13 @@
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.panel17 = new System.Windows.Forms.Panel();
+            this.ditherColorsMax = new System.Windows.Forms.ComboBox();
+            this.label89 = new System.Windows.Forms.Label();
+            this.label91 = new System.Windows.Forms.Label();
+            this.ditherColorsMin = new System.Windows.Forms.ComboBox();
+            this.label86 = new System.Windows.Forms.Label();
+            this.ditherBtn = new System.Windows.Forms.Button();
             this.panel12 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.colorLayerTbox = new System.Windows.Forms.TextBox();
@@ -164,6 +190,9 @@
             this.autoLevelBtn = new System.Windows.Forms.Button();
             this.label21 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.panel16 = new System.Windows.Forms.Panel();
+            this.label90 = new System.Windows.Forms.Label();
+            this.edgeDetectBtn = new System.Windows.Forms.Button();
             this.panel10 = new System.Windows.Forms.Panel();
             this.blurRadiusMaxCombox = new System.Windows.Forms.ComboBox();
             this.label47 = new System.Windows.Forms.Label();
@@ -229,14 +258,7 @@
             this.nameMustContainTbox = new System.Windows.Forms.TextBox();
             this.nameMustNotContainTbox = new System.Windows.Forms.TextBox();
             this.defTip = new System.Windows.Forms.ToolTip(this.components);
-            this.tabPage14 = new System.Windows.Forms.TabPage();
-            this.padPixMax = new System.Windows.Forms.TextBox();
-            this.padPixMin = new System.Windows.Forms.TextBox();
-            this.label79 = new System.Windows.Forms.Label();
-            this.label80 = new System.Windows.Forms.Label();
-            this.label81 = new System.Windows.Forms.Label();
-            this.label82 = new System.Windows.Forms.Label();
-            this.padMode = new System.Windows.Forms.ComboBox();
+            this.label67 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -244,9 +266,11 @@
             this.cropTabControl.SuspendLayout();
             this.tabPage9.SuspendLayout();
             this.tabPage12.SuspendLayout();
-            this.tabPage10.SuspendLayout();
             this.tabPage11.SuspendLayout();
+            this.tabPage14.SuspendLayout();
+            this.tabPage15.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.panel15.SuspendLayout();
             this.panel11.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel8.SuspendLayout();
@@ -254,6 +278,7 @@
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.panel17.SuspendLayout();
             this.panel12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel6.SuspendLayout();
@@ -261,6 +286,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.tabPage5.SuspendLayout();
+            this.panel16.SuspendLayout();
             this.panel10.SuspendLayout();
             this.panel7.SuspendLayout();
             this.tabPage7.SuspendLayout();
@@ -268,7 +294,6 @@
             this.panel14.SuspendLayout();
             this.panel13.SuspendLayout();
             this.tabPage6.SuspendLayout();
-            this.tabPage14.SuspendLayout();
             this.SuspendLayout();
             // 
             // pathTextbox
@@ -799,9 +824,9 @@
             // 
             this.cropTabControl.Controls.Add(this.tabPage9);
             this.cropTabControl.Controls.Add(this.tabPage12);
-            this.cropTabControl.Controls.Add(this.tabPage10);
             this.cropTabControl.Controls.Add(this.tabPage11);
             this.cropTabControl.Controls.Add(this.tabPage14);
+            this.cropTabControl.Controls.Add(this.tabPage15);
             this.cropTabControl.Location = new System.Drawing.Point(6, 6);
             this.cropTabControl.Name = "cropTabControl";
             this.cropTabControl.SelectedIndex = 0;
@@ -938,14 +963,14 @@
             // 
             // cropAbsW
             // 
-            this.cropAbsW.Location = new System.Drawing.Point(228, 6);
+            this.cropAbsW.Location = new System.Drawing.Point(150, 6);
             this.cropAbsW.Name = "cropAbsW";
             this.cropAbsW.Size = new System.Drawing.Size(72, 20);
             this.cropAbsW.TabIndex = 45;
             // 
             // cropAbsH
             // 
-            this.cropAbsH.Location = new System.Drawing.Point(150, 6);
+            this.cropAbsH.Location = new System.Drawing.Point(228, 6);
             this.cropAbsH.Name = "cropAbsH";
             this.cropAbsH.Size = new System.Drawing.Size(72, 20);
             this.cropAbsH.TabIndex = 44;
@@ -963,7 +988,7 @@
             "Bottom Left",
             "Bottom Middle",
             "Bottom Right"});
-            this.cropAbsGrav.Location = new System.Drawing.Point(150, 33);
+            this.cropAbsGrav.Location = new System.Drawing.Point(150, 32);
             this.cropAbsGrav.Name = "cropAbsGrav";
             this.cropAbsGrav.Size = new System.Drawing.Size(150, 21);
             this.cropAbsGrav.TabIndex = 43;
@@ -971,7 +996,7 @@
             // label68
             // 
             this.label68.AutoSize = true;
-            this.label68.Location = new System.Drawing.Point(6, 36);
+            this.label68.Location = new System.Drawing.Point(6, 35);
             this.label68.Name = "label68";
             this.label68.Size = new System.Drawing.Size(43, 13);
             this.label68.TabIndex = 42;
@@ -984,28 +1009,7 @@
             this.label69.Name = "label69";
             this.label69.Size = new System.Drawing.Size(74, 13);
             this.label69.TabIndex = 41;
-            this.label69.Text = "Height/Width:";
-            // 
-            // tabPage10
-            // 
-            this.tabPage10.Controls.Add(this.label67);
-            this.tabPage10.Location = new System.Drawing.Point(4, 22);
-            this.tabPage10.Name = "tabPage10";
-            this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage10.Size = new System.Drawing.Size(682, 157);
-            this.tabPage10.TabIndex = 1;
-            this.tabPage10.Text = "Exact Aspect Ratio";
-            this.tabPage10.UseVisualStyleBackColor = true;
-            // 
-            // label67
-            // 
-            this.label67.AutoSize = true;
-            this.label67.Location = new System.Drawing.Point(6, 9);
-            this.label67.Name = "label67";
-            this.label67.Size = new System.Drawing.Size(118, 13);
-            this.label67.TabIndex = 13;
-            this.label67.Text = "WORK IN PROGRESS";
-            this.extensionWildcardTip.SetToolTip(this.label67, "Enter extension (not case sensitive). Example: \"png\"");
+            this.label69.Text = "Width/Height:";
             // 
             // tabPage11
             // 
@@ -1103,6 +1107,169 @@
             this.label58.TabIndex = 22;
             this.label58.Text = "Crop Until Resolution Is Divisble By:";
             // 
+            // tabPage14
+            // 
+            this.tabPage14.Controls.Add(this.padPixMax);
+            this.tabPage14.Controls.Add(this.padPixMin);
+            this.tabPage14.Controls.Add(this.label79);
+            this.tabPage14.Controls.Add(this.label80);
+            this.tabPage14.Controls.Add(this.label81);
+            this.tabPage14.Controls.Add(this.label82);
+            this.tabPage14.Controls.Add(this.padMode);
+            this.tabPage14.Location = new System.Drawing.Point(4, 22);
+            this.tabPage14.Name = "tabPage14";
+            this.tabPage14.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage14.Size = new System.Drawing.Size(682, 157);
+            this.tabPage14.TabIndex = 4;
+            this.tabPage14.Text = "Add/Remove Pixels";
+            this.tabPage14.UseVisualStyleBackColor = true;
+            // 
+            // padPixMax
+            // 
+            this.padPixMax.Location = new System.Drawing.Point(228, 33);
+            this.padPixMax.Name = "padPixMax";
+            this.padPixMax.Size = new System.Drawing.Size(72, 20);
+            this.padPixMax.TabIndex = 47;
+            // 
+            // padPixMin
+            // 
+            this.padPixMin.Location = new System.Drawing.Point(150, 33);
+            this.padPixMin.Name = "padPixMin";
+            this.padPixMin.Size = new System.Drawing.Size(72, 20);
+            this.padPixMin.TabIndex = 46;
+            this.padPixMin.Text = "1";
+            // 
+            // label79
+            // 
+            this.label79.AutoSize = true;
+            this.label79.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label79.Location = new System.Drawing.Point(306, 36);
+            this.label79.Name = "label79";
+            this.label79.Size = new System.Drawing.Size(345, 13);
+            this.label79.TabIndex = 45;
+            this.label79.Text = "Pixels to add/remove. Leave second box blank for non-random number.";
+            // 
+            // label80
+            // 
+            this.label80.AutoSize = true;
+            this.label80.Location = new System.Drawing.Point(6, 36);
+            this.label80.Name = "label80";
+            this.label80.Size = new System.Drawing.Size(106, 13);
+            this.label80.TabIndex = 44;
+            this.label80.Text = "Pixels On Each Side:";
+            // 
+            // label81
+            // 
+            this.label81.AutoSize = true;
+            this.label81.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label81.Location = new System.Drawing.Point(306, 9);
+            this.label81.Name = "label81";
+            this.label81.Size = new System.Drawing.Size(172, 13);
+            this.label81.TabIndex = 43;
+            this.label81.Text = "Add or remove pixels on each side.";
+            // 
+            // label82
+            // 
+            this.label82.AutoSize = true;
+            this.label82.Location = new System.Drawing.Point(6, 9);
+            this.label82.Name = "label82";
+            this.label82.Size = new System.Drawing.Size(37, 13);
+            this.label82.TabIndex = 42;
+            this.label82.Text = "Mode:";
+            // 
+            // padMode
+            // 
+            this.padMode.FormattingEnabled = true;
+            this.padMode.Items.AddRange(new object[] {
+            "Add Pixels (Padding)",
+            "Remove Pixels"});
+            this.padMode.Location = new System.Drawing.Point(150, 6);
+            this.padMode.Name = "padMode";
+            this.padMode.Size = new System.Drawing.Size(150, 21);
+            this.padMode.TabIndex = 41;
+            // 
+            // tabPage15
+            // 
+            this.tabPage15.Controls.Add(this.label67);
+            this.tabPage15.Controls.Add(this.mergeAllBtn);
+            this.tabPage15.Controls.Add(this.label87);
+            this.tabPage15.Controls.Add(this.tileMode);
+            this.tabPage15.Controls.Add(this.label85);
+            this.tabPage15.Controls.Add(this.tilingH);
+            this.tabPage15.Controls.Add(this.tilingW);
+            this.tabPage15.Controls.Add(this.label88);
+            this.tabPage15.Location = new System.Drawing.Point(4, 22);
+            this.tabPage15.Name = "tabPage15";
+            this.tabPage15.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage15.Size = new System.Drawing.Size(682, 157);
+            this.tabPage15.TabIndex = 5;
+            this.tabPage15.Text = "Create Tiles";
+            this.tabPage15.UseVisualStyleBackColor = true;
+            // 
+            // mergeAllBtn
+            // 
+            this.mergeAllBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mergeAllBtn.Location = new System.Drawing.Point(150, 128);
+            this.mergeAllBtn.Name = "mergeAllBtn";
+            this.mergeAllBtn.Size = new System.Drawing.Size(150, 23);
+            this.mergeAllBtn.TabIndex = 53;
+            this.mergeAllBtn.Text = "Merge All Images Into One";
+            this.mergeAllBtn.UseVisualStyleBackColor = true;
+            this.mergeAllBtn.Click += new System.EventHandler(this.mergeAllBtn_Click);
+            // 
+            // label87
+            // 
+            this.label87.AutoSize = true;
+            this.label87.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label87.Location = new System.Drawing.Point(306, 36);
+            this.label87.Name = "label87";
+            this.label87.Size = new System.Drawing.Size(327, 13);
+            this.label87.TabIndex = 52;
+            this.label87.Text = "Either create tiles with a specific size, or create a set number of tiles.";
+            // 
+            // tileMode
+            // 
+            this.tileMode.FormattingEnabled = true;
+            this.tileMode.Items.AddRange(new object[] {
+            "Tile Size (Pixels)",
+            "Amount of Tiles"});
+            this.tileMode.Location = new System.Drawing.Point(150, 33);
+            this.tileMode.Name = "tileMode";
+            this.tileMode.Size = new System.Drawing.Size(150, 21);
+            this.tileMode.TabIndex = 51;
+            // 
+            // label85
+            // 
+            this.label85.AutoSize = true;
+            this.label85.Location = new System.Drawing.Point(6, 36);
+            this.label85.Name = "label85";
+            this.label85.Size = new System.Drawing.Size(104, 13);
+            this.label85.TabIndex = 50;
+            this.label85.Text = "Width/Height Mode:";
+            // 
+            // tilingH
+            // 
+            this.tilingH.Location = new System.Drawing.Point(228, 6);
+            this.tilingH.Name = "tilingH";
+            this.tilingH.Size = new System.Drawing.Size(72, 20);
+            this.tilingH.TabIndex = 48;
+            // 
+            // tilingW
+            // 
+            this.tilingW.Location = new System.Drawing.Point(150, 6);
+            this.tilingW.Name = "tilingW";
+            this.tilingW.Size = new System.Drawing.Size(72, 20);
+            this.tilingW.TabIndex = 47;
+            // 
+            // label88
+            // 
+            this.label88.AutoSize = true;
+            this.label88.Location = new System.Drawing.Point(6, 9);
+            this.label88.Name = "label88";
+            this.label88.Size = new System.Drawing.Size(74, 13);
+            this.label88.TabIndex = 46;
+            this.label88.Text = "Width/Height:";
+            // 
             // cropBtn
             // 
             this.cropBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1117,6 +1284,8 @@
             // tabPage3
             // 
             this.tabPage3.AutoScroll = true;
+            this.tabPage3.AutoScrollMargin = new System.Drawing.Size(0, 10);
+            this.tabPage3.Controls.Add(this.panel15);
             this.tabPage3.Controls.Add(this.panel11);
             this.tabPage3.Controls.Add(this.panel9);
             this.tabPage3.Controls.Add(this.panel8);
@@ -1131,6 +1300,61 @@
             this.tabPage3.Text = "File Handling";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // panel15
+            // 
+            this.panel15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel15.Controls.Add(this.renameCounterMode);
+            this.panel15.Controls.Add(this.label83);
+            this.panel15.Controls.Add(this.renameCounterBtn);
+            this.panel15.Controls.Add(this.label84);
+            this.panel15.Location = new System.Drawing.Point(6, 220);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(670, 31);
+            this.panel15.TabIndex = 35;
+            // 
+            // renameCounterMode
+            // 
+            this.renameCounterMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.renameCounterMode.FormattingEnabled = true;
+            this.renameCounterMode.Items.AddRange(new object[] {
+            "Alphabetically (A -> Z)",
+            "Alphabetically (Z -> A)"});
+            this.renameCounterMode.Location = new System.Drawing.Point(409, 5);
+            this.renameCounterMode.Name = "renameCounterMode";
+            this.renameCounterMode.Size = new System.Drawing.Size(150, 21);
+            this.renameCounterMode.TabIndex = 33;
+            // 
+            // label83
+            // 
+            this.label83.AutoSize = true;
+            this.label83.BackColor = System.Drawing.Color.Transparent;
+            this.label83.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label83.Location = new System.Drawing.Point(3, 8);
+            this.label83.Name = "label83";
+            this.label83.Size = new System.Drawing.Size(167, 13);
+            this.label83.TabIndex = 8;
+            this.label83.Text = "Rename Files Using Counter";
+            // 
+            // renameCounterBtn
+            // 
+            this.renameCounterBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.renameCounterBtn.Location = new System.Drawing.Point(565, 3);
+            this.renameCounterBtn.Name = "renameCounterBtn";
+            this.renameCounterBtn.Size = new System.Drawing.Size(100, 23);
+            this.renameCounterBtn.TabIndex = 32;
+            this.renameCounterBtn.Text = "Run";
+            this.renameCounterBtn.UseVisualStyleBackColor = true;
+            this.renameCounterBtn.Click += new System.EventHandler(this.renameCounterBtn_Click);
+            // 
+            // label84
+            // 
+            this.label84.AutoSize = true;
+            this.label84.Location = new System.Drawing.Point(360, 8);
+            this.label84.Name = "label84";
+            this.label84.Size = new System.Drawing.Size(43, 13);
+            this.label84.TabIndex = 20;
+            this.label84.Text = "Sorting:";
+            // 
             // panel11
             // 
             this.panel11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -1139,7 +1363,7 @@
             this.panel11.Controls.Add(this.label50);
             this.panel11.Controls.Add(this.label51);
             this.panel11.Controls.Add(this.delMissingBtn);
-            this.panel11.Location = new System.Drawing.Point(6, 220);
+            this.panel11.Location = new System.Drawing.Point(6, 257);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(670, 60);
             this.panel11.TabIndex = 36;
@@ -1560,6 +1784,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.panel17);
             this.tabPage4.Controls.Add(this.panel12);
             this.tabPage4.Controls.Add(this.panel6);
             this.tabPage4.Controls.Add(this.panel2);
@@ -1571,6 +1796,91 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Colors";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // panel17
+            // 
+            this.panel17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel17.Controls.Add(this.ditherColorsMax);
+            this.panel17.Controls.Add(this.label89);
+            this.panel17.Controls.Add(this.label91);
+            this.panel17.Controls.Add(this.ditherColorsMin);
+            this.panel17.Controls.Add(this.label86);
+            this.panel17.Controls.Add(this.ditherBtn);
+            this.panel17.Location = new System.Drawing.Point(6, 154);
+            this.panel17.Name = "panel17";
+            this.panel17.Size = new System.Drawing.Size(690, 31);
+            this.panel17.TabIndex = 47;
+            // 
+            // ditherColorsMax
+            // 
+            this.ditherColorsMax.FormattingEnabled = true;
+            this.ditherColorsMax.Items.AddRange(new object[] {
+            "8",
+            "16",
+            "32",
+            "64",
+            "128",
+            "256"});
+            this.ditherColorsMax.Location = new System.Drawing.Point(530, 4);
+            this.ditherColorsMax.Name = "ditherColorsMax";
+            this.ditherColorsMax.Size = new System.Drawing.Size(50, 21);
+            this.ditherColorsMax.TabIndex = 48;
+            // 
+            // label89
+            // 
+            this.label89.AutoSize = true;
+            this.label89.Location = new System.Drawing.Point(508, 7);
+            this.label89.Name = "label89";
+            this.label89.Size = new System.Drawing.Size(16, 13);
+            this.label89.TabIndex = 47;
+            this.label89.Text = "to";
+            // 
+            // label91
+            // 
+            this.label91.AutoSize = true;
+            this.label91.Location = new System.Drawing.Point(407, 8);
+            this.label91.Name = "label91";
+            this.label91.Size = new System.Drawing.Size(39, 13);
+            this.label91.TabIndex = 46;
+            this.label91.Text = "Colors:";
+            // 
+            // ditherColorsMin
+            // 
+            this.ditherColorsMin.FormattingEnabled = true;
+            this.ditherColorsMin.Items.AddRange(new object[] {
+            "8",
+            "16",
+            "32",
+            "64",
+            "128",
+            "256"});
+            this.ditherColorsMin.Location = new System.Drawing.Point(452, 4);
+            this.ditherColorsMin.Name = "ditherColorsMin";
+            this.ditherColorsMin.Size = new System.Drawing.Size(50, 21);
+            this.ditherColorsMin.TabIndex = 45;
+            this.ditherColorsMin.Text = "1";
+            // 
+            // label86
+            // 
+            this.label86.AutoSize = true;
+            this.label86.BackColor = System.Drawing.Color.Transparent;
+            this.label86.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label86.Location = new System.Drawing.Point(3, 8);
+            this.label86.Name = "label86";
+            this.label86.Size = new System.Drawing.Size(58, 13);
+            this.label86.TabIndex = 8;
+            this.label86.Text = "Dithering";
+            // 
+            // ditherBtn
+            // 
+            this.ditherBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ditherBtn.Location = new System.Drawing.Point(585, 3);
+            this.ditherBtn.Name = "ditherBtn";
+            this.ditherBtn.Size = new System.Drawing.Size(100, 23);
+            this.ditherBtn.TabIndex = 32;
+            this.ditherBtn.Text = "Apply";
+            this.ditherBtn.UseVisualStyleBackColor = true;
+            this.ditherBtn.Click += new System.EventHandler(this.ditherBtn_Click);
             // 
             // panel12
             // 
@@ -1798,6 +2108,7 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.panel16);
             this.tabPage5.Controls.Add(this.panel10);
             this.tabPage5.Controls.Add(this.panel7);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
@@ -1807,6 +2118,38 @@
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Effects";
             this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // panel16
+            // 
+            this.panel16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel16.Controls.Add(this.label90);
+            this.panel16.Controls.Add(this.edgeDetectBtn);
+            this.panel16.Location = new System.Drawing.Point(6, 109);
+            this.panel16.Name = "panel16";
+            this.panel16.Size = new System.Drawing.Size(690, 31);
+            this.panel16.TabIndex = 45;
+            // 
+            // label90
+            // 
+            this.label90.AutoSize = true;
+            this.label90.BackColor = System.Drawing.Color.Transparent;
+            this.label90.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label90.Location = new System.Drawing.Point(3, 8);
+            this.label90.Name = "label90";
+            this.label90.Size = new System.Drawing.Size(78, 13);
+            this.label90.TabIndex = 8;
+            this.label90.Text = "Edge Detect";
+            // 
+            // edgeDetectBtn
+            // 
+            this.edgeDetectBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.edgeDetectBtn.Location = new System.Drawing.Point(585, 3);
+            this.edgeDetectBtn.Name = "edgeDetectBtn";
+            this.edgeDetectBtn.Size = new System.Drawing.Size(100, 23);
+            this.edgeDetectBtn.TabIndex = 32;
+            this.edgeDetectBtn.Text = "Apply";
+            this.edgeDetectBtn.UseVisualStyleBackColor = true;
+            this.edgeDetectBtn.Click += new System.EventHandler(this.edgeDetectBtn_Click);
             // 
             // panel10
             // 
@@ -2519,86 +2862,14 @@
             this.nameMustNotContainTbox.TabIndex = 12;
             this.nameMustNotContainTbox.TextChanged += new System.EventHandler(this.nameMustNotContainTbox_TextChanged);
             // 
-            // tabPage14
+            // label67
             // 
-            this.tabPage14.Controls.Add(this.padPixMax);
-            this.tabPage14.Controls.Add(this.padPixMin);
-            this.tabPage14.Controls.Add(this.label79);
-            this.tabPage14.Controls.Add(this.label80);
-            this.tabPage14.Controls.Add(this.label81);
-            this.tabPage14.Controls.Add(this.label82);
-            this.tabPage14.Controls.Add(this.padMode);
-            this.tabPage14.Location = new System.Drawing.Point(4, 22);
-            this.tabPage14.Name = "tabPage14";
-            this.tabPage14.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage14.Size = new System.Drawing.Size(682, 157);
-            this.tabPage14.TabIndex = 4;
-            this.tabPage14.Text = "Add/Remove Pixels";
-            this.tabPage14.UseVisualStyleBackColor = true;
-            // 
-            // padPixMax
-            // 
-            this.padPixMax.Location = new System.Drawing.Point(228, 33);
-            this.padPixMax.Name = "padPixMax";
-            this.padPixMax.Size = new System.Drawing.Size(72, 20);
-            this.padPixMax.TabIndex = 47;
-            // 
-            // padPixMin
-            // 
-            this.padPixMin.Location = new System.Drawing.Point(150, 33);
-            this.padPixMin.Name = "padPixMin";
-            this.padPixMin.Size = new System.Drawing.Size(72, 20);
-            this.padPixMin.TabIndex = 46;
-            this.padPixMin.Text = "1";
-            // 
-            // label79
-            // 
-            this.label79.AutoSize = true;
-            this.label79.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label79.Location = new System.Drawing.Point(306, 36);
-            this.label79.Name = "label79";
-            this.label79.Size = new System.Drawing.Size(345, 13);
-            this.label79.TabIndex = 45;
-            this.label79.Text = "Pixels to add/remove. Leave second box blank for non-random number.";
-            // 
-            // label80
-            // 
-            this.label80.AutoSize = true;
-            this.label80.Location = new System.Drawing.Point(6, 36);
-            this.label80.Name = "label80";
-            this.label80.Size = new System.Drawing.Size(106, 13);
-            this.label80.TabIndex = 44;
-            this.label80.Text = "Pixels On Each Side:";
-            // 
-            // label81
-            // 
-            this.label81.AutoSize = true;
-            this.label81.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label81.Location = new System.Drawing.Point(306, 9);
-            this.label81.Name = "label81";
-            this.label81.Size = new System.Drawing.Size(172, 13);
-            this.label81.TabIndex = 43;
-            this.label81.Text = "Add or remove pixels on each side.";
-            // 
-            // label82
-            // 
-            this.label82.AutoSize = true;
-            this.label82.Location = new System.Drawing.Point(6, 9);
-            this.label82.Name = "label82";
-            this.label82.Size = new System.Drawing.Size(37, 13);
-            this.label82.TabIndex = 42;
-            this.label82.Text = "Mode:";
-            // 
-            // padMode
-            // 
-            this.padMode.FormattingEnabled = true;
-            this.padMode.Items.AddRange(new object[] {
-            "Add Pixels (Padding)",
-            "Remove Pixels"});
-            this.padMode.Location = new System.Drawing.Point(150, 6);
-            this.padMode.Name = "padMode";
-            this.padMode.Size = new System.Drawing.Size(150, 21);
-            this.padMode.TabIndex = 41;
+            this.label67.AutoSize = true;
+            this.label67.Location = new System.Drawing.Point(6, 133);
+            this.label67.Name = "label67";
+            this.label67.Size = new System.Drawing.Size(65, 13);
+            this.label67.TabIndex = 54;
+            this.label67.Text = "Merge Tiles:";
             // 
             // MainForm
             // 
@@ -2639,11 +2910,15 @@
             this.tabPage9.PerformLayout();
             this.tabPage12.ResumeLayout(false);
             this.tabPage12.PerformLayout();
-            this.tabPage10.ResumeLayout(false);
-            this.tabPage10.PerformLayout();
             this.tabPage11.ResumeLayout(false);
             this.tabPage11.PerformLayout();
+            this.tabPage14.ResumeLayout(false);
+            this.tabPage14.PerformLayout();
+            this.tabPage15.ResumeLayout(false);
+            this.tabPage15.PerformLayout();
             this.tabPage3.ResumeLayout(false);
+            this.panel15.ResumeLayout(false);
+            this.panel15.PerformLayout();
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
             this.panel9.ResumeLayout(false);
@@ -2657,6 +2932,8 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
+            this.panel17.ResumeLayout(false);
+            this.panel17.PerformLayout();
             this.panel12.ResumeLayout(false);
             this.panel12.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -2668,6 +2945,8 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tabPage5.ResumeLayout(false);
+            this.panel16.ResumeLayout(false);
+            this.panel16.PerformLayout();
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
             this.panel7.ResumeLayout(false);
@@ -2681,8 +2960,6 @@
             this.panel13.PerformLayout();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
-            this.tabPage14.ResumeLayout(false);
-            this.tabPage14.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2840,7 +3117,6 @@
         private System.Windows.Forms.Button cropBtn;
         private System.Windows.Forms.TabControl cropTabControl;
         private System.Windows.Forms.TabPage tabPage9;
-        private System.Windows.Forms.TabPage tabPage10;
         private System.Windows.Forms.TabPage tabPage11;
         private System.Windows.Forms.ComboBox cropDivision;
         private System.Windows.Forms.Label label58;
@@ -2861,7 +3137,6 @@
         private System.Windows.Forms.Label label66;
         private System.Windows.Forms.TextBox cropRelSizeMax;
         private System.Windows.Forms.TextBox cropRelSizeMin;
-        private System.Windows.Forms.Label label67;
         private System.Windows.Forms.TextBox cropAbsW;
         private System.Windows.Forms.TextBox cropAbsH;
         private System.Windows.Forms.ComboBox cropAbsGrav;
@@ -2897,5 +3172,29 @@
         private System.Windows.Forms.Label label81;
         private System.Windows.Forms.Label label82;
         private System.Windows.Forms.ComboBox padMode;
+        private System.Windows.Forms.Panel panel15;
+        private System.Windows.Forms.ComboBox renameCounterMode;
+        private System.Windows.Forms.Label label83;
+        private System.Windows.Forms.Button renameCounterBtn;
+        private System.Windows.Forms.Label label84;
+        private System.Windows.Forms.TabPage tabPage15;
+        private System.Windows.Forms.Label label87;
+        private System.Windows.Forms.ComboBox tileMode;
+        private System.Windows.Forms.Label label85;
+        private System.Windows.Forms.TextBox tilingH;
+        private System.Windows.Forms.TextBox tilingW;
+        private System.Windows.Forms.Label label88;
+        private System.Windows.Forms.Button mergeAllBtn;
+        private System.Windows.Forms.Panel panel16;
+        private System.Windows.Forms.Label label90;
+        private System.Windows.Forms.Button edgeDetectBtn;
+        private System.Windows.Forms.Panel panel17;
+        private System.Windows.Forms.Label label86;
+        private System.Windows.Forms.Button ditherBtn;
+        private System.Windows.Forms.ComboBox ditherColorsMax;
+        private System.Windows.Forms.Label label89;
+        private System.Windows.Forms.Label label91;
+        private System.Windows.Forms.ComboBox ditherColorsMin;
+        private System.Windows.Forms.Label label67;
     }
 }

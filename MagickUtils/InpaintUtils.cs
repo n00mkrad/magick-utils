@@ -45,7 +45,6 @@ namespace MagickUtils
             double geomH = img.Height * RandRange(1.0f, 2.0f) * GetScaleMultiplier(scale);
             //Program.Print("geomW: " + geomW + " - geomH: " + geomW);
             MagickGeometry upscaleGeom = new MagickGeometry(Math.Round(geomW) + "x" + Math.Round(geomH) + "!");
-            Program.Print("Geom: " + upscaleGeom);
             patternImg.Resize(upscaleGeom);
             patternImg.BitDepth(Channels.Alpha, 1);
             img.Composite(patternImg, Gravity.Center, CompositeOperator.Over);
@@ -122,14 +121,14 @@ namespace MagickUtils
             if (img != null)
                 img.Dispose();
             long bytesPost = new FileInfo(outPath).Length;
-            Program.Print("  -> Done.");
+            Program.Print("-> Done.");
             if (delSource)
                 DelSource(sourcePath);
         }
 
         static void DelSource(string path)
         {
-            Program.Print("  -> Deleting source file: " + Path.GetFileName(path) + "...\n");
+            Program.Print("-> Deleting source file: " + Path.GetFileName(path) + "...\n");
             File.Delete(path);
         }
     }

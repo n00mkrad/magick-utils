@@ -1,6 +1,8 @@
 ﻿using ImageMagick;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
@@ -114,6 +116,7 @@ namespace MagickUtils
                 Program.Print("-> Resizing to " + targetSize + "% (" + w + "x" + h + ")...");
                 geom = new MagickGeometry(w + "x" + h);
             }
+            img.BackgroundColor = new MagickColor("#" + Config.backgroundColor);
             img.Extent(geom, grav);
             img.Write(path);
             PostProcessing(img, path);
@@ -146,14 +149,15 @@ namespace MagickUtils
             int h = img.Height;
             if(!cut)
             {
-                w = img.Width + pix;
-                h = img.Height + pix;
+                w = img.Width + pix * 2;
+                h = img.Height + pix * 2;
             }
             else
             {
                 w = img.Width - pix;
                 h = img.Height - pix;
             }
+            img.BackgroundColor = new MagickColor("#" + Config.backgroundColor);
             MagickGeometry geom = new MagickGeometry(w + "x" + h + "!");
             img.Extent(geom, Gravity.Center);
 
@@ -182,10 +186,99 @@ namespace MagickUtils
             MagickImage img = IOUtils.ReadImage(path);
             PreProcessing(path);
 
+            img.BackgroundColor = new MagickColor("#" + Config.backgroundColor);
             img.Extent(newWidth, newHeight, grav);
 
             img.Write(path);
             PostProcessing(img, path);
+        }
+
+        public static async void TileDir (int w, int h, bool useTileAmount)
+        {
+            int counter = 1;
+            FileInfo[] Files = IOUtils.GetFiles();
+            Program.Print("Tiling " + Files.Length + " images...");
+            Program.PreProcessing();
+            foreach(FileInfo file in Files)
+            {
+                Program.ShowProgress("Tiling Image ", counter, Files.Length);
+                counter++;
+                Tile(file.FullName, w, h, useTileAmount);
+                if(counter % 2 == 0) await Program.PutTaskDelay();
+            }
+            Program.PostProcessing();
+        }
+
+        public static async void Tile (string path, int w, int h, bool useTileAmount)
+        {
+            MagickImage img = IOUtils.ReadImage(path);
+            PreProcessing(path);
+
+            string pathNoExt = Path.ChangeExtension(path, null);
+            string ext = Path.GetExtension(path);
+
+            if(useTileAmount)
+            {
+                w = (int)Math.Round(img.Width / (float)w);
+                h = (int)Math.Round(img.Height / (float)h);
+            }
+
+            int i = 1;
+            Program.Print("-> Tile size: " + w + "x" + h);
+            Program.Print("-> Creating tiles...");
+            var tiles = img.CropToTiles(w, h);
+            foreach(MagickImage tileImg in tiles)
+            {
+                tileImg.Write(pathNoExt + "-tile" + i + ext);
+                Program.Print("-> Saved tile " + i + "/" + tiles.Count(), true);
+                i++;
+                if(i % 2 == 0) await Program.PutTaskDelay();
+            }
+            await Program.PutTaskDelay();
+            PostProcessing(img, path);
+        }
+
+        public static async void MergeAllDir ()
+        {
+            int counter = 1;
+            FileInfo[] files = IOUtils.GetFiles();
+            Program.Print("-> Merging " + files.Length + " images...");
+            Program.PreProcessing();
+
+            int sqrt = (int)Math.Sqrt(files.Length);
+            //sqrt = 10;
+
+            MagickImageCollection row = new MagickImageCollection();
+            MagickImageCollection rows = new MagickImageCollection();
+
+            int currImg = 1;
+
+            foreach(FileInfo file in files)
+            {
+                Program.ShowProgress("", counter, files.Length);
+                counter++;
+                MagickImage currentImg = new MagickImage(file);
+                row.Add(currentImg);
+                
+                if(currImg >= sqrt)
+                {
+                    currImg = 0;    // Reset counter
+                    var mergedRow =  row.AppendHorizontally();  // Append
+                    rows.Add(mergedRow);
+                    row = new MagickImageCollection();  // Reset row
+                }
+
+                currImg++;
+                await Program.PutTaskDelay();
+            }
+            Program.Print("-> Creating output image... ");
+            var result = rows.AppendVertically();
+            result.BackgroundColor = new MagickColor("#" + Config.backgroundColor);
+            result.Format = MagickFormat.Png;
+            string outpath = Program.currentDir + "-merged.png";
+            result.Write(outpath);
+            Program.Print("-> Written merged image to " + outpath);
+            Program.PostProcessing();
         }
 
         static void PreProcessing (string path, string infoSuffix = null)

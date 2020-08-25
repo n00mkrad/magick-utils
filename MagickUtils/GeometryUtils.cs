@@ -41,8 +41,6 @@ namespace MagickUtils.MagickUtils
             if(mode == RotateMode.RandomAll)
                 img.Rotate(GetRandomRot(true));
 
-            string fname = Path.GetFileName(path);
-            Program.Print("-> " + fname);
             img.Write(path);
         }
 

@@ -16,7 +16,7 @@ namespace MagickUtils
         public enum Operator { IsNot, Is, IsSmaller, IsBigger, Divisible, NotDivisible }
         public static void DeleteSmallImages(string path, SM mode, Op op, int minPixels)
         {
-            MagickImage img = IOUtils.ReadImage(path);
+            MagickImage img = IOUtils.ReadImage(path, false);
             bool heightLonger = img.Height > img.Width;
             bool widthLonger = img.Width > img.Height;
             bool square = (img.Height == img.Width);
