@@ -65,7 +65,7 @@ namespace MagickUtils
             string ext = Program.currentExt;
             bool recursive = IOUtils.recursive;
             Program.Print("Getting file list for " + path + "...");
-            var exts = new[] { ".png", ".jpg", ".jpeg", ".dds", ".bmp", ".tga", ".webp", ".heic", ".jp2", ".flif" };
+            var exts = new[] { ".png", ".jpg", ".jpeg", ".dds", ".bmp", ".gif", ".tga", ".webp", ".heic", ".jp2", ".flif" };
             if(!Program.IsPathValid(path))
                 return new FileInfo[0];
             IEnumerable<string> filePaths;
