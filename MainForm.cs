@@ -59,6 +59,7 @@ namespace MagickUtils
             InitCombox(padMode, 0);
             InitCombox(renameCounterMode, 0);
             InitCombox(tileMode, 0);
+            InitCombox(zeroPaddingCombox, 0);
 
             IOUtils.recursive = recursiveCbox.Checked;
             ScaleUtils.onlyDownscale = onlyDownscaleCbox.Checked;
@@ -457,11 +458,11 @@ namespace MagickUtils
                 CropTabHelper.CropRelative(cropRelSizeMin, cropRelSizeMax, cropRelSizeMode, cropRelGrav);
             if(cropTabControl.SelectedIndex == 1)
                 CropTabHelper.CropAbsolute(cropAbsW, cropAbsH, cropAbsGrav);
-            if(cropTabControl.SelectedIndex == 3)
+            if(cropTabControl.SelectedIndex == 2)
                 CropTabHelper.CropDivisible(cropDivision, cropDivisibleGrav, cropDivisibleExpand);
-            if(cropTabControl.SelectedIndex == 4)
+            if(cropTabControl.SelectedIndex == 3)
                 CropTabHelper.CropPadding(padPixMin, padPixMax, padMode);
-            if(cropTabControl.SelectedIndex == 5)
+            if(cropTabControl.SelectedIndex == 4)
                 CropTabHelper.CropTiles(tilingW, tilingH, tileMode);
         }
 
@@ -540,6 +541,11 @@ namespace MagickUtils
             string colorStr = ColorTranslator.ToHtml(Color.FromArgb(bgColorDialog.Color.ToArgb())).Replace("#", "") + "FF";
             Config.backgroundColor = colorStr;
             confBgColor.Text = colorStr;
+        }
+
+        private void zeropadBtn_Click (object sender, EventArgs e)
+        {
+            OtherUtils.AddZeroPaddingDir(zeroPaddingCombox.GetInt());
         }
     }
 }

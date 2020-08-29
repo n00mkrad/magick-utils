@@ -241,6 +241,26 @@ namespace MagickUtils
             Program.PostProcessing(true, false);
         }
 
+        public static void AddZeroPaddingDir (int targetLength)
+        {
+            int counter = 1;
+            FileInfo[] files = IOUtils.GetFiles(Config.fileOperationsNoExtFilter);
+            Program.PreProcessing(true, false);
+            foreach(FileInfo file in files)
+            {
+                string fnameNoExt = Path.GetFileNameWithoutExtension(file.Name);
+                string ext = Path.GetExtension(file.Name);
+                //string dir = new DirectoryInfo(file.FullName).Parent.FullName;
+                //int filesDigits = (int)Math.Floor(Math.Log10((double)files.Length) + 1);
+                //File.Move(file.FullName, Path.Combine(fnameNoExt.PadLeft(targetLength, '0') + Path.GetExtension(file.FullName)));
+                File.Move(file.FullName, Path.Combine(Path.GetDirectoryName(file.FullName), fnameNoExt.PadLeft(targetLength, '0') + ext));
+                Program.ShowProgress("", counter, files.Length);
+                counter++;
+                if(counter % 100 == 0) Program.Print("Renamed " + counter + " files...");
+            }
+            Program.PostProcessing(true, false);
+        }
+
         static bool DimensionsMatch (string imgPath1, string imgPath2)
         {
             MagickImage img1 = new MagickImage(imgPath1);

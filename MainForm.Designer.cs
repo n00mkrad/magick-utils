@@ -108,6 +108,7 @@
             this.label82 = new System.Windows.Forms.Label();
             this.padMode = new System.Windows.Forms.ComboBox();
             this.tabPage15 = new System.Windows.Forms.TabPage();
+            this.label67 = new System.Windows.Forms.Label();
             this.mergeAllBtn = new System.Windows.Forms.Button();
             this.label87 = new System.Windows.Forms.Label();
             this.tileMode = new System.Windows.Forms.ComboBox();
@@ -170,6 +171,7 @@
             this.label86 = new System.Windows.Forms.Label();
             this.ditherBtn = new System.Windows.Forms.Button();
             this.panel12 = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.colorLayerTbox = new System.Windows.Forms.TextBox();
             this.label60 = new System.Windows.Forms.Label();
             this.colorLayerBtn = new System.Windows.Forms.Button();
@@ -180,6 +182,7 @@
             this.applyColorDepthBtn = new System.Windows.Forms.Button();
             this.label33 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.alphaOffBtn = new System.Windows.Forms.Button();
             this.remAlphaBlack = new System.Windows.Forms.Button();
             this.remAlphaWhite = new System.Windows.Forms.Button();
@@ -240,6 +243,7 @@
             this.label72 = new System.Windows.Forms.Label();
             this.rotateBtn = new System.Windows.Forms.Button();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.bgColorSelectBtn = new System.Windows.Forms.Button();
             this.label76 = new System.Windows.Forms.Label();
             this.confBgColor = new System.Windows.Forms.TextBox();
             this.label75 = new System.Windows.Forms.Label();
@@ -256,11 +260,12 @@
             this.nameMustContainTbox = new System.Windows.Forms.TextBox();
             this.nameMustNotContainTbox = new System.Windows.Forms.TextBox();
             this.defTip = new System.Windows.Forms.ToolTip(this.components);
-            this.label67 = new System.Windows.Forms.Label();
             this.bgColorDialog = new System.Windows.Forms.ColorDialog();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.bgColorSelectBtn = new System.Windows.Forms.Button();
+            this.panel18 = new System.Windows.Forms.Panel();
+            this.zeroPaddingCombox = new System.Windows.Forms.ComboBox();
+            this.label92 = new System.Windows.Forms.Label();
+            this.zeropadBtn = new System.Windows.Forms.Button();
+            this.label93 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -282,8 +287,10 @@
             this.tabPage4.SuspendLayout();
             this.panel17.SuspendLayout();
             this.panel12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel6.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.panel16.SuspendLayout();
@@ -294,8 +301,7 @@
             this.panel14.SuspendLayout();
             this.panel13.SuspendLayout();
             this.tabPage6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel18.SuspendLayout();
             this.SuspendLayout();
             // 
             // pathTextbox
@@ -1208,6 +1214,15 @@
             this.tabPage15.Text = "Create Tiles";
             this.tabPage15.UseVisualStyleBackColor = true;
             // 
+            // label67
+            // 
+            this.label67.AutoSize = true;
+            this.label67.Location = new System.Drawing.Point(6, 133);
+            this.label67.Name = "label67";
+            this.label67.Size = new System.Drawing.Size(65, 13);
+            this.label67.TabIndex = 54;
+            this.label67.Text = "Merge Tiles:";
+            // 
             // mergeAllBtn
             // 
             this.mergeAllBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1287,6 +1302,7 @@
             // 
             this.tabPage3.AutoScroll = true;
             this.tabPage3.AutoScrollMargin = new System.Drawing.Size(0, 10);
+            this.tabPage3.Controls.Add(this.panel18);
             this.tabPage3.Controls.Add(this.panel15);
             this.tabPage3.Controls.Add(this.panel11);
             this.tabPage3.Controls.Add(this.panel9);
@@ -1365,7 +1381,7 @@
             this.panel11.Controls.Add(this.label50);
             this.panel11.Controls.Add(this.label51);
             this.panel11.Controls.Add(this.delMissingBtn);
-            this.panel11.Location = new System.Drawing.Point(6, 257);
+            this.panel11.Location = new System.Drawing.Point(6, 294);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(670, 60);
             this.panel11.TabIndex = 36;
@@ -1897,6 +1913,19 @@
             this.panel12.Size = new System.Drawing.Size(690, 31);
             this.panel12.TabIndex = 36;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox2.Image = global::MagickUtils.Properties.Resources.questmark_72px_bordeer;
+            this.pictureBox2.Location = new System.Drawing.Point(126, 3);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(23, 23);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 38;
+            this.pictureBox2.TabStop = false;
+            this.defTip.SetToolTip(this.pictureBox2, "Enter a color, for example 00FF0080 will be green with 50% transparency (0x80 = 1" +
+        "28).");
+            // 
             // colorLayerTbox
             // 
             this.colorLayerTbox.Location = new System.Drawing.Point(480, 5);
@@ -2006,6 +2035,19 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(690, 31);
             this.panel2.TabIndex = 13;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Image = global::MagickUtils.Properties.Resources.questmark_72px_bordeer;
+            this.pictureBox1.Location = new System.Drawing.Point(143, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(23, 23);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 37;
+            this.pictureBox1.TabStop = false;
+            this.defTip.SetToolTip(this.pictureBox1, "Tip: Use \"Alpha Off\" for images that use the Alpha channel to store additional in" +
+        "formation, like Skyrim\'s normal maps.");
             // 
             // alphaOffBtn
             // 
@@ -2701,6 +2743,17 @@
             this.tabPage6.UseVisualStyleBackColor = true;
             this.tabPage6.Enter += new System.EventHandler(this.tabPage6_Enter);
             // 
+            // bgColorSelectBtn
+            // 
+            this.bgColorSelectBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.bgColorSelectBtn.Location = new System.Drawing.Point(279, 31);
+            this.bgColorSelectBtn.Name = "bgColorSelectBtn";
+            this.bgColorSelectBtn.Size = new System.Drawing.Size(25, 20);
+            this.bgColorSelectBtn.TabIndex = 39;
+            this.bgColorSelectBtn.Text = "...";
+            this.bgColorSelectBtn.UseVisualStyleBackColor = true;
+            this.bgColorSelectBtn.Click += new System.EventHandler(this.bgColorSelectBtn_Click);
+            // 
             // label76
             // 
             this.label76.AutoSize = true;
@@ -2839,51 +2892,62 @@
             this.nameMustNotContainTbox.TabIndex = 12;
             this.nameMustNotContainTbox.TextChanged += new System.EventHandler(this.nameMustNotContainTbox_TextChanged);
             // 
-            // label67
+            // panel18
             // 
-            this.label67.AutoSize = true;
-            this.label67.Location = new System.Drawing.Point(6, 133);
-            this.label67.Name = "label67";
-            this.label67.Size = new System.Drawing.Size(65, 13);
-            this.label67.TabIndex = 54;
-            this.label67.Text = "Merge Tiles:";
+            this.panel18.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel18.Controls.Add(this.zeroPaddingCombox);
+            this.panel18.Controls.Add(this.label92);
+            this.panel18.Controls.Add(this.zeropadBtn);
+            this.panel18.Controls.Add(this.label93);
+            this.panel18.Location = new System.Drawing.Point(6, 257);
+            this.panel18.Name = "panel18";
+            this.panel18.Size = new System.Drawing.Size(670, 31);
+            this.panel18.TabIndex = 36;
             // 
-            // pictureBox2
+            // zeroPaddingCombox
             // 
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Image = global::MagickUtils.Properties.Resources.questmark_72px_bordeer;
-            this.pictureBox2.Location = new System.Drawing.Point(126, 3);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(23, 23);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 38;
-            this.pictureBox2.TabStop = false;
-            this.defTip.SetToolTip(this.pictureBox2, "Enter a color, for example 00FF0080 will be green with 50% transparency (0x80 = 1" +
-        "28).");
+            this.zeroPaddingCombox.FormattingEnabled = true;
+            this.zeroPaddingCombox.Items.AddRange(new object[] {
+            "4",
+            "8",
+            "12",
+            "16",
+            "20"});
+            this.zeroPaddingCombox.Location = new System.Drawing.Point(484, 5);
+            this.zeroPaddingCombox.Name = "zeroPaddingCombox";
+            this.zeroPaddingCombox.Size = new System.Drawing.Size(75, 21);
+            this.zeroPaddingCombox.TabIndex = 33;
             // 
-            // pictureBox1
+            // label92
             // 
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Image = global::MagickUtils.Properties.Resources.questmark_72px_bordeer;
-            this.pictureBox1.Location = new System.Drawing.Point(143, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(23, 23);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 37;
-            this.pictureBox1.TabStop = false;
-            this.defTip.SetToolTip(this.pictureBox1, "Tip: Use \"Alpha Off\" for images that use the Alpha channel to store additional in" +
-        "formation, like Skyrim\'s normal maps.");
+            this.label92.AutoSize = true;
+            this.label92.BackColor = System.Drawing.Color.Transparent;
+            this.label92.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label92.Location = new System.Drawing.Point(3, 8);
+            this.label92.Name = "label92";
+            this.label92.Size = new System.Drawing.Size(188, 13);
+            this.label92.TabIndex = 8;
+            this.label92.Text = "Add Zero-Padding To Filenames";
             // 
-            // bgColorSelectBtn
+            // zeropadBtn
             // 
-            this.bgColorSelectBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.bgColorSelectBtn.Location = new System.Drawing.Point(279, 31);
-            this.bgColorSelectBtn.Name = "bgColorSelectBtn";
-            this.bgColorSelectBtn.Size = new System.Drawing.Size(25, 20);
-            this.bgColorSelectBtn.TabIndex = 39;
-            this.bgColorSelectBtn.Text = "...";
-            this.bgColorSelectBtn.UseVisualStyleBackColor = true;
-            this.bgColorSelectBtn.Click += new System.EventHandler(this.bgColorSelectBtn_Click);
+            this.zeropadBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.zeropadBtn.Location = new System.Drawing.Point(565, 3);
+            this.zeropadBtn.Name = "zeropadBtn";
+            this.zeropadBtn.Size = new System.Drawing.Size(100, 23);
+            this.zeropadBtn.TabIndex = 32;
+            this.zeropadBtn.Text = "Run";
+            this.zeropadBtn.UseVisualStyleBackColor = true;
+            this.zeropadBtn.Click += new System.EventHandler(this.zeropadBtn_Click);
+            // 
+            // label93
+            // 
+            this.label93.AutoSize = true;
+            this.label93.Location = new System.Drawing.Point(325, 8);
+            this.label93.Name = "label93";
+            this.label93.Size = new System.Drawing.Size(153, 13);
+            this.label93.TabIndex = 20;
+            this.label93.Text = "Target Filename Length/Digits:";
             // 
             // MainForm
             // 
@@ -2950,10 +3014,12 @@
             this.panel17.PerformLayout();
             this.panel12.ResumeLayout(false);
             this.panel12.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tabPage5.ResumeLayout(false);
@@ -2972,8 +3038,8 @@
             this.panel13.PerformLayout();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel18.ResumeLayout(false);
+            this.panel18.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3212,5 +3278,10 @@
         private System.Windows.Forms.Label label67;
         private System.Windows.Forms.Button bgColorSelectBtn;
         private System.Windows.Forms.ColorDialog bgColorDialog;
+        private System.Windows.Forms.Panel panel18;
+        private System.Windows.Forms.ComboBox zeroPaddingCombox;
+        private System.Windows.Forms.Label label92;
+        private System.Windows.Forms.Button zeropadBtn;
+        private System.Windows.Forms.Label label93;
     }
 }

@@ -209,7 +209,7 @@ namespace MagickUtils
             Program.PostProcessing();
         }
 
-        public static async void Tile (string path, int w, int h, bool useTileAmount)
+        public static async void Tile (string path, int tileW, int tileH, bool useTileAmount)
         {
             MagickImage img = IOUtils.ReadImage(path);
             PreProcessing(path);
@@ -219,17 +219,17 @@ namespace MagickUtils
 
             if(useTileAmount)
             {
-                w = (int)Math.Round(img.Width / (float)w);
-                h = (int)Math.Round(img.Height / (float)h);
+                tileW = (int)Math.Round(img.Width / (float)tileW);
+                tileH = (int)Math.Round(img.Height / (float)tileH);
             }
 
             int i = 1;
-            Program.Print("-> Tile size: " + w + "x" + h);
-            Program.Print("-> Creating tiles...");
-            var tiles = img.CropToTiles(w, h);
-            foreach(MagickImage tileImg in tiles)
+            Program.Print("-> Creating tiles... (CropToTiles(" + tileW + ", " + tileH + "))");
+            //Program.Print("-> Tile size: " + w + "x" + h);
+            var tiles = img.CropToTiles(tileW, tileH);
+            foreach(MagickImage tile in tiles)
             {
-                tileImg.Write(pathNoExt + "-tile" + i + ext);
+                tile.Write(pathNoExt + "-tile" + i + ext);
                 Program.Print("-> Saved tile " + i + "/" + tiles.Count(), true);
                 i++;
                 if(i % 2 == 0) await Program.PutTaskDelay();
@@ -253,11 +253,12 @@ namespace MagickUtils
 
             int currImg = 1;
 
+            Program.Print("Adding images to atlas...");
             foreach(FileInfo file in files)
             {
                 Program.ShowProgress("", counter, files.Length);
-                counter++;
                 MagickImage currentImg = new MagickImage(file);
+                Program.Print("Adding " + Path.GetFileName(currentImg.FileName) + "...", true);
                 row.Add(currentImg);
                 
                 if(currImg >= sqrt)
@@ -270,6 +271,13 @@ namespace MagickUtils
 
                 currImg++;
                 await Program.PutTaskDelay();
+                counter++;
+
+                if(counter > files.Length && currImg != 0) // Merge the remaining images if we are done, even if they don't fill a row
+                {
+                    var mergedRow = row.AppendHorizontally();  // Append
+                    rows.Add(mergedRow);
+                }
             }
             Program.Print("-> Creating output image... ");
             var result = rows.AppendVertically();
