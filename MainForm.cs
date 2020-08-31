@@ -550,5 +550,12 @@ namespace MagickUtils
         {
             OtherUtils.AddZeroPaddingDir(zeroPaddingCombox.GetInt());
         }
+
+        private void layerColorPickerBtn_Click (object sender, EventArgs e)
+        {
+            layerColorDialog.ShowDialog();
+            string colorStr = ColorTranslator.ToHtml(Color.FromArgb(layerColorDialog.Color.ToArgb())).Replace("#", "") + "FF";
+            colorLayerTbox.Text = colorStr;
+        }
     }
 }

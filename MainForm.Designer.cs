@@ -269,6 +269,8 @@
             this.label94 = new System.Windows.Forms.Label();
             this.ditherTypeCombox = new System.Windows.Forms.ComboBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.layerColorPickerBtn = new System.Windows.Forms.Button();
+            this.layerColorDialog = new System.Windows.Forms.ColorDialog();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -1967,6 +1969,7 @@
             // panel12
             // 
             this.panel12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel12.Controls.Add(this.layerColorPickerBtn);
             this.panel12.Controls.Add(this.pictureBox2);
             this.panel12.Controls.Add(this.colorLayerTbox);
             this.panel12.Controls.Add(this.label60);
@@ -1994,7 +1997,7 @@
             // 
             this.colorLayerTbox.Location = new System.Drawing.Point(480, 5);
             this.colorLayerTbox.Name = "colorLayerTbox";
-            this.colorLayerTbox.Size = new System.Drawing.Size(100, 20);
+            this.colorLayerTbox.Size = new System.Drawing.Size(70, 20);
             this.colorLayerTbox.TabIndex = 13;
             // 
             // label60
@@ -2990,6 +2993,17 @@
             this.defTip.SetToolTip(this.pictureBox3, "Choose the dithering method (Floyd-Steinberg is recommended due to the improved c" +
         "olor accuracy) and the minimum/maximum amount of colors.");
             // 
+            // layerColorPickerBtn
+            // 
+            this.layerColorPickerBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.layerColorPickerBtn.Location = new System.Drawing.Point(554, 5);
+            this.layerColorPickerBtn.Name = "layerColorPickerBtn";
+            this.layerColorPickerBtn.Size = new System.Drawing.Size(25, 20);
+            this.layerColorPickerBtn.TabIndex = 40;
+            this.layerColorPickerBtn.Text = "...";
+            this.layerColorPickerBtn.UseVisualStyleBackColor = true;
+            this.layerColorPickerBtn.Click += new System.EventHandler(this.layerColorPickerBtn_Click);
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -3328,5 +3342,7 @@
         private System.Windows.Forms.Label label94;
         private System.Windows.Forms.ComboBox ditherTypeCombox;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Button layerColorPickerBtn;
+        private System.Windows.Forms.ColorDialog layerColorDialog;
     }
 }
