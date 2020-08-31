@@ -60,6 +60,7 @@ namespace MagickUtils
             InitCombox(renameCounterMode, 0);
             InitCombox(tileMode, 0);
             InitCombox(zeroPaddingCombox, 0);
+            InitCombox(ditherTypeCombox, 0);
 
             IOUtils.recursive = recursiveCbox.Checked;
             ScaleUtils.onlyDownscale = onlyDownscaleCbox.Checked;
@@ -532,7 +533,9 @@ namespace MagickUtils
             int colorsMax = colorsMin;
             if(!string.IsNullOrWhiteSpace(ditherColorsMax.Text))
                 colorsMax = ditherColorsMax.GetInt();
-            ColorUtils.DitherDir(colorsMin, colorsMax);
+            if(ditherTypeCombox.SelectedIndex == 0) ColorUtils.DitherDir(colorsMin, colorsMax, ColorUtils.DitherType.FloydSteinberg);
+            if(ditherTypeCombox.SelectedIndex == 1) ColorUtils.DitherDir(colorsMin, colorsMax, ColorUtils.DitherType.Riemersma);
+            if(ditherTypeCombox.SelectedIndex == 2) ColorUtils.DitherDir(colorsMin, colorsMax, ColorUtils.DitherType.Random);
         }
 
         private void bgColorSelectBtn_Click (object sender, EventArgs e)

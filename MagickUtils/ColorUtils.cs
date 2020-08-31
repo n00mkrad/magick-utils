@@ -83,7 +83,8 @@ namespace MagickUtils.MagickUtils
             img.Write(path);
         }
 
-        public static async void DitherDir (int colorsMin, int colorsMax)
+        public enum DitherType { FloydSteinberg, Riemersma, Random }
+        public static async void DitherDir (int colorsMin, int colorsMax, DitherType type)
         {
             int counter = 1;
             FileInfo[] files = IOUtils.GetFiles();
@@ -92,23 +93,41 @@ namespace MagickUtils.MagickUtils
             {
                 Program.ShowProgress("Dithering Image ", counter, files.Length);
                 counter++;
-                Dither(file.FullName, colorsMin, colorsMax);
+                Dither(file.FullName, colorsMin, colorsMax, type);
                 if(counter % 2 == 0) await Program.PutTaskDelay();
             }
             Program.PostProcessing();
         }
 
-        public static void Dither (string path, int colorsMin, int colorsMax)
+        public static void Dither (string path, int colorsMin, int colorsMax, DitherType type)
         {
             MagickImage img = IOUtils.ReadImage(path);
             QuantizeSettings quantSettings = new QuantizeSettings();
             int colors = new Random().Next(colorsMin, colorsMax);
-            Program.Print("-> Colors: " + colors);
             quantSettings.Colors = colors;
-            quantSettings.DitherMethod = DitherMethod.FloydSteinberg;
+            quantSettings.DitherMethod = GetDitherMethod(type);
+            Program.Print("-> Colors: " + colors + ", Dither Method: " + quantSettings.DitherMethod.ToString());
             img.Quantize(quantSettings);
             img.Quality = Program.GetDefaultQuality(img);
             img.Write(path);
+        }
+
+        static DitherMethod GetDitherMethod (DitherType type)
+        {
+            if(type == DitherType.FloydSteinberg)
+                return DitherMethod.FloydSteinberg;
+
+            if(type == DitherType.Riemersma)
+                return DitherMethod.Riemersma;
+
+            var random = new Random();
+            int i = random.Next(0, 2);
+            if(i == 0)
+                return DitherMethod.FloydSteinberg;
+            if(i == 1)
+                return DitherMethod.Riemersma;
+
+            return DitherMethod.FloydSteinberg;
         }
     }
 }

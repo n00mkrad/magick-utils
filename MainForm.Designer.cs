@@ -118,6 +118,11 @@
             this.label88 = new System.Windows.Forms.Label();
             this.cropBtn = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.panel18 = new System.Windows.Forms.Panel();
+            this.zeroPaddingCombox = new System.Windows.Forms.ComboBox();
+            this.label92 = new System.Windows.Forms.Label();
+            this.zeropadBtn = new System.Windows.Forms.Button();
+            this.label93 = new System.Windows.Forms.Label();
             this.panel15 = new System.Windows.Forms.Panel();
             this.renameCounterMode = new System.Windows.Forms.ComboBox();
             this.label83 = new System.Windows.Forms.Label();
@@ -261,11 +266,9 @@
             this.nameMustNotContainTbox = new System.Windows.Forms.TextBox();
             this.defTip = new System.Windows.Forms.ToolTip(this.components);
             this.bgColorDialog = new System.Windows.Forms.ColorDialog();
-            this.panel18 = new System.Windows.Forms.Panel();
-            this.zeroPaddingCombox = new System.Windows.Forms.ComboBox();
-            this.label92 = new System.Windows.Forms.Label();
-            this.zeropadBtn = new System.Windows.Forms.Button();
-            this.label93 = new System.Windows.Forms.Label();
+            this.label94 = new System.Windows.Forms.Label();
+            this.ditherTypeCombox = new System.Windows.Forms.ComboBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -277,6 +280,7 @@
             this.tabPage14.SuspendLayout();
             this.tabPage15.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.panel18.SuspendLayout();
             this.panel15.SuspendLayout();
             this.panel11.SuspendLayout();
             this.panel9.SuspendLayout();
@@ -301,7 +305,7 @@
             this.panel14.SuspendLayout();
             this.panel13.SuspendLayout();
             this.tabPage6.SuspendLayout();
-            this.panel18.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // pathTextbox
@@ -1318,6 +1322,63 @@
             this.tabPage3.Text = "File Handling";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // panel18
+            // 
+            this.panel18.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel18.Controls.Add(this.zeroPaddingCombox);
+            this.panel18.Controls.Add(this.label92);
+            this.panel18.Controls.Add(this.zeropadBtn);
+            this.panel18.Controls.Add(this.label93);
+            this.panel18.Location = new System.Drawing.Point(6, 257);
+            this.panel18.Name = "panel18";
+            this.panel18.Size = new System.Drawing.Size(670, 31);
+            this.panel18.TabIndex = 36;
+            // 
+            // zeroPaddingCombox
+            // 
+            this.zeroPaddingCombox.FormattingEnabled = true;
+            this.zeroPaddingCombox.Items.AddRange(new object[] {
+            "4",
+            "8",
+            "12",
+            "16",
+            "20"});
+            this.zeroPaddingCombox.Location = new System.Drawing.Point(484, 5);
+            this.zeroPaddingCombox.Name = "zeroPaddingCombox";
+            this.zeroPaddingCombox.Size = new System.Drawing.Size(75, 21);
+            this.zeroPaddingCombox.TabIndex = 33;
+            // 
+            // label92
+            // 
+            this.label92.AutoSize = true;
+            this.label92.BackColor = System.Drawing.Color.Transparent;
+            this.label92.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label92.Location = new System.Drawing.Point(3, 8);
+            this.label92.Name = "label92";
+            this.label92.Size = new System.Drawing.Size(188, 13);
+            this.label92.TabIndex = 8;
+            this.label92.Text = "Add Zero-Padding To Filenames";
+            // 
+            // zeropadBtn
+            // 
+            this.zeropadBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.zeropadBtn.Location = new System.Drawing.Point(565, 3);
+            this.zeropadBtn.Name = "zeropadBtn";
+            this.zeropadBtn.Size = new System.Drawing.Size(100, 23);
+            this.zeropadBtn.TabIndex = 32;
+            this.zeropadBtn.Text = "Run";
+            this.zeropadBtn.UseVisualStyleBackColor = true;
+            this.zeropadBtn.Click += new System.EventHandler(this.zeropadBtn_Click);
+            // 
+            // label93
+            // 
+            this.label93.AutoSize = true;
+            this.label93.Location = new System.Drawing.Point(325, 8);
+            this.label93.Name = "label93";
+            this.label93.Size = new System.Drawing.Size(153, 13);
+            this.label93.TabIndex = 20;
+            this.label93.Text = "Target Filename Length/Digits:";
+            // 
             // panel15
             // 
             this.panel15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -1818,7 +1879,10 @@
             // panel17
             // 
             this.panel17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel17.Controls.Add(this.pictureBox3);
+            this.panel17.Controls.Add(this.label94);
             this.panel17.Controls.Add(this.ditherColorsMax);
+            this.panel17.Controls.Add(this.ditherTypeCombox);
             this.panel17.Controls.Add(this.label89);
             this.panel17.Controls.Add(this.label91);
             this.panel17.Controls.Add(this.ditherColorsMin);
@@ -2892,62 +2956,39 @@
             this.nameMustNotContainTbox.TabIndex = 12;
             this.nameMustNotContainTbox.TextChanged += new System.EventHandler(this.nameMustNotContainTbox_TextChanged);
             // 
-            // panel18
+            // label94
             // 
-            this.panel18.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel18.Controls.Add(this.zeroPaddingCombox);
-            this.panel18.Controls.Add(this.label92);
-            this.panel18.Controls.Add(this.zeropadBtn);
-            this.panel18.Controls.Add(this.label93);
-            this.panel18.Location = new System.Drawing.Point(6, 257);
-            this.panel18.Name = "panel18";
-            this.panel18.Size = new System.Drawing.Size(670, 31);
-            this.panel18.TabIndex = 36;
+            this.label94.AutoSize = true;
+            this.label94.Location = new System.Drawing.Point(261, 8);
+            this.label94.Name = "label94";
+            this.label94.Size = new System.Drawing.Size(34, 13);
+            this.label94.TabIndex = 37;
+            this.label94.Text = "Type:";
             // 
-            // zeroPaddingCombox
+            // ditherTypeCombox
             // 
-            this.zeroPaddingCombox.FormattingEnabled = true;
-            this.zeroPaddingCombox.Items.AddRange(new object[] {
-            "4",
-            "8",
-            "12",
-            "16",
-            "20"});
-            this.zeroPaddingCombox.Location = new System.Drawing.Point(484, 5);
-            this.zeroPaddingCombox.Name = "zeroPaddingCombox";
-            this.zeroPaddingCombox.Size = new System.Drawing.Size(75, 21);
-            this.zeroPaddingCombox.TabIndex = 33;
+            this.ditherTypeCombox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ditherTypeCombox.FormattingEnabled = true;
+            this.ditherTypeCombox.Items.AddRange(new object[] {
+            "Floyd-Steinberg",
+            "Riemersma"});
+            this.ditherTypeCombox.Location = new System.Drawing.Point(301, 4);
+            this.ditherTypeCombox.Name = "ditherTypeCombox";
+            this.ditherTypeCombox.Size = new System.Drawing.Size(100, 21);
+            this.ditherTypeCombox.TabIndex = 36;
             // 
-            // label92
+            // pictureBox3
             // 
-            this.label92.AutoSize = true;
-            this.label92.BackColor = System.Drawing.Color.Transparent;
-            this.label92.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label92.Location = new System.Drawing.Point(3, 8);
-            this.label92.Name = "label92";
-            this.label92.Size = new System.Drawing.Size(188, 13);
-            this.label92.TabIndex = 8;
-            this.label92.Text = "Add Zero-Padding To Filenames";
-            // 
-            // zeropadBtn
-            // 
-            this.zeropadBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.zeropadBtn.Location = new System.Drawing.Point(565, 3);
-            this.zeropadBtn.Name = "zeropadBtn";
-            this.zeropadBtn.Size = new System.Drawing.Size(100, 23);
-            this.zeropadBtn.TabIndex = 32;
-            this.zeropadBtn.Text = "Run";
-            this.zeropadBtn.UseVisualStyleBackColor = true;
-            this.zeropadBtn.Click += new System.EventHandler(this.zeropadBtn_Click);
-            // 
-            // label93
-            // 
-            this.label93.AutoSize = true;
-            this.label93.Location = new System.Drawing.Point(325, 8);
-            this.label93.Name = "label93";
-            this.label93.Size = new System.Drawing.Size(153, 13);
-            this.label93.TabIndex = 20;
-            this.label93.Text = "Target Filename Length/Digits:";
+            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox3.Image = global::MagickUtils.Properties.Resources.questmark_72px_bordeer;
+            this.pictureBox3.Location = new System.Drawing.Point(67, 3);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(23, 23);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 39;
+            this.pictureBox3.TabStop = false;
+            this.defTip.SetToolTip(this.pictureBox3, "Choose the dithering method (Floyd-Steinberg is recommended due to the improved c" +
+        "olor accuracy) and the minimum/maximum amount of colors.");
             // 
             // MainForm
             // 
@@ -2995,6 +3036,8 @@
             this.tabPage15.ResumeLayout(false);
             this.tabPage15.PerformLayout();
             this.tabPage3.ResumeLayout(false);
+            this.panel18.ResumeLayout(false);
+            this.panel18.PerformLayout();
             this.panel15.ResumeLayout(false);
             this.panel15.PerformLayout();
             this.panel11.ResumeLayout(false);
@@ -3038,8 +3081,7 @@
             this.panel13.PerformLayout();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
-            this.panel18.ResumeLayout(false);
-            this.panel18.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3283,5 +3325,8 @@
         private System.Windows.Forms.Label label92;
         private System.Windows.Forms.Button zeropadBtn;
         private System.Windows.Forms.Label label93;
+        private System.Windows.Forms.Label label94;
+        private System.Windows.Forms.ComboBox ditherTypeCombox;
+        private System.Windows.Forms.PictureBox pictureBox3;
     }
 }
