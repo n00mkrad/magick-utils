@@ -33,27 +33,29 @@ namespace MagickUtils
             }  
         }
 
-        public static void ResampleUsingPath (ComboBox minScaleCombox, ComboBox maxScaleCombox, ComboBox filterModeCombox)
+        public static void ResampleUsingPath (ComboBox minScaleCombox, ComboBox maxScaleCombox, ComboBox downFilterCombox, ComboBox upFilterCombox)
         {
             int sMin = int.Parse(minScaleCombox.Text);
             int sMax = sMin;
             if(!string.IsNullOrWhiteSpace(maxScaleCombox.Text.Trim()))
                 sMax = int.Parse(maxScaleCombox.Text);
-            int filterMode = filterModeCombox.SelectedIndex;
-            ScaleUtils.ResampleDirRand(sMin, sMax, filterMode);
+            int filterMode = downFilterCombox.SelectedIndex;
+            int reupFilterMode = upFilterCombox.SelectedIndex;
+            ScaleUtils.ResampleDirRand(sMin, sMax, filterMode, reupFilterMode);
         }
 
-        public static void ResampleFileList (string[] files, ComboBox minScaleCombox, ComboBox maxScaleCombox, ComboBox filterModeCombox)
+        public static void ResampleFileList (string[] files, ComboBox minScaleCombox, ComboBox maxScaleCombox, ComboBox filterModeCombox, ComboBox upFilterCombox)
         {
             int sMin = int.Parse(minScaleCombox.Text);
             int sMax = sMin;
             if(!string.IsNullOrWhiteSpace(maxScaleCombox.Text.Trim()))
                 sMax = int.Parse(maxScaleCombox.Text);
             int filterMode = filterModeCombox.SelectedIndex;
+            int reupFilterMode = upFilterCombox.SelectedIndex;
 
-            foreach(string file in files)
+            foreach (string file in files)
             {
-                ScaleUtils.RandomResample(file, sMin, sMax, filterMode);
+                ScaleUtils.RandomResample(file, sMin, sMax, filterMode, reupFilterMode);
             }
         }
     }

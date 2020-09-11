@@ -86,12 +86,16 @@ namespace MagickUtils
             Program.PostProcessing(true, false);
         }
 
-        public static void ReplaceInFilename (string path, string textToFind, string textToReplace)
+        public static void ReplaceInFilename (string path, string textToFind, string textToReplace, bool includeExtension = true)
         {
             string ext = Path.GetExtension(path);
             string newFilename = Path.GetFileNameWithoutExtension(path).Replace(textToFind, textToReplace);
-            string targetPath = Path.Combine(Path.GetDirectoryName(path), newFilename + ext);
-            if(File.Exists(targetPath))
+            if(includeExtension)
+                newFilename = Path.GetFileName(path).Replace(textToFind, textToReplace);
+            string targetPath = Path.Combine(Path.GetDirectoryName(path), newFilename);
+            if (!includeExtension)
+                targetPath += ext;
+            if (File.Exists(targetPath))
             {
                 Program.Print("Skipped " + path + " because a file with the target name already exists.");
                 return;

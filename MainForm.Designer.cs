@@ -51,6 +51,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.formatCombox = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.resampleReupscaleFilterLabel = new System.Windows.Forms.Label();
+            this.label95 = new System.Windows.Forms.Label();
+            this.resampleReupscaleFilterBox = new System.Windows.Forms.ComboBox();
             this.label42 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -169,13 +172,17 @@
             this.label23 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.panel17 = new System.Windows.Forms.Panel();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.label94 = new System.Windows.Forms.Label();
             this.ditherColorsMax = new System.Windows.Forms.ComboBox();
+            this.ditherTypeCombox = new System.Windows.Forms.ComboBox();
             this.label89 = new System.Windows.Forms.Label();
             this.label91 = new System.Windows.Forms.Label();
             this.ditherColorsMin = new System.Windows.Forms.ComboBox();
             this.label86 = new System.Windows.Forms.Label();
             this.ditherBtn = new System.Windows.Forms.Button();
             this.panel12 = new System.Windows.Forms.Panel();
+            this.layerColorPickerBtn = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.colorLayerTbox = new System.Windows.Forms.TextBox();
             this.label60 = new System.Windows.Forms.Label();
@@ -266,10 +273,6 @@
             this.nameMustNotContainTbox = new System.Windows.Forms.TextBox();
             this.defTip = new System.Windows.Forms.ToolTip(this.components);
             this.bgColorDialog = new System.Windows.Forms.ColorDialog();
-            this.label94 = new System.Windows.Forms.Label();
-            this.ditherTypeCombox = new System.Windows.Forms.ComboBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.layerColorPickerBtn = new System.Windows.Forms.Button();
             this.layerColorDialog = new System.Windows.Forms.ColorDialog();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -292,6 +295,7 @@
             this.panel3.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.panel17.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panel12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel6.SuspendLayout();
@@ -307,7 +311,6 @@
             this.panel14.SuspendLayout();
             this.panel13.SuspendLayout();
             this.tabPage6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // pathTextbox
@@ -549,6 +552,9 @@
             // tabPage2
             // 
             this.tabPage2.AllowDrop = true;
+            this.tabPage2.Controls.Add(this.resampleReupscaleFilterLabel);
+            this.tabPage2.Controls.Add(this.label95);
+            this.tabPage2.Controls.Add(this.resampleReupscaleFilterBox);
             this.tabPage2.Controls.Add(this.label42);
             this.tabPage2.Controls.Add(this.label13);
             this.tabPage2.Controls.Add(this.label14);
@@ -580,6 +586,42 @@
             this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.DragDrop += new System.Windows.Forms.DragEventHandler(this.tabPage2_DragDrop);
             this.tabPage2.DragEnter += new System.Windows.Forms.DragEventHandler(this.tabPage2_DragEnter);
+            // 
+            // resampleReupscaleFilterLabel
+            // 
+            this.resampleReupscaleFilterLabel.AutoSize = true;
+            this.resampleReupscaleFilterLabel.Location = new System.Drawing.Point(311, 90);
+            this.resampleReupscaleFilterLabel.Name = "resampleReupscaleFilterLabel";
+            this.resampleReupscaleFilterLabel.Size = new System.Drawing.Size(99, 13);
+            this.resampleReupscaleFilterLabel.TabIndex = 45;
+            this.resampleReupscaleFilterLabel.Text = "Re-Upscaling Filter:";
+            this.resampleReupscaleFilterLabel.Visible = false;
+            // 
+            // label95
+            // 
+            this.label95.AutoSize = true;
+            this.label95.Location = new System.Drawing.Point(6, 171);
+            this.label95.Name = "label95";
+            this.label95.Size = new System.Drawing.Size(130, 13);
+            this.label95.TabIndex = 44;
+            this.label95.Text = "Append Filter To Filename";
+            // 
+            // resampleReupscaleFilterBox
+            // 
+            this.resampleReupscaleFilterBox.FormattingEnabled = true;
+            this.resampleReupscaleFilterBox.Items.AddRange(new object[] {
+            "Mitchell",
+            "Lanczos",
+            "Bicubic",
+            "Nearest (Point)",
+            "Random (Box/Mitchell/Bicubic)",
+            "Random (All)"});
+            this.resampleReupscaleFilterBox.Location = new System.Drawing.Point(416, 87);
+            this.resampleReupscaleFilterBox.Name = "resampleReupscaleFilterBox";
+            this.resampleReupscaleFilterBox.Size = new System.Drawing.Size(150, 21);
+            this.resampleReupscaleFilterBox.TabIndex = 43;
+            this.resampleReupscaleFilterBox.Text = "Mitchell";
+            this.resampleReupscaleFilterBox.Visible = false;
             // 
             // label42
             // 
@@ -624,13 +666,11 @@
             // appendFilterCbox
             // 
             this.appendFilterCbox.AutoSize = true;
-            this.appendFilterCbox.Location = new System.Drawing.Point(310, 89);
+            this.appendFilterCbox.Location = new System.Drawing.Point(150, 171);
             this.appendFilterCbox.Name = "appendFilterCbox";
-            this.appendFilterCbox.Size = new System.Drawing.Size(168, 17);
+            this.appendFilterCbox.Size = new System.Drawing.Size(15, 14);
             this.appendFilterCbox.TabIndex = 38;
-            this.appendFilterCbox.Text = "Append filter name to filename";
             this.appendFilterCbox.UseVisualStyleBackColor = true;
-            this.appendFilterCbox.Visible = false;
             this.appendFilterCbox.CheckedChanged += new System.EventHandler(this.appendFilterCbox_CheckedChanged);
             // 
             // label10
@@ -688,16 +728,15 @@
             this.filterModeCombox.Size = new System.Drawing.Size(150, 21);
             this.filterModeCombox.TabIndex = 33;
             this.filterModeCombox.Text = "Mitchell";
-            this.filterModeCombox.SelectedIndexChanged += new System.EventHandler(this.filterModeCombox_SelectedIndexChanged);
             // 
             // label20
             // 
             this.label20.AutoSize = true;
             this.label20.Location = new System.Drawing.Point(6, 90);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(62, 13);
+            this.label20.Size = new System.Drawing.Size(96, 13);
             this.label20.TabIndex = 32;
-            this.label20.Text = "Filter Mode:";
+            this.label20.Text = "Downscaling Filter:";
             // 
             // button1
             // 
@@ -821,6 +860,7 @@
             this.scaleResampleCombox.Size = new System.Drawing.Size(150, 21);
             this.scaleResampleCombox.TabIndex = 19;
             this.scaleResampleCombox.Text = "Scale";
+            this.scaleResampleCombox.SelectedIndexChanged += new System.EventHandler(this.scaleResampleCombox_SelectedIndexChanged);
             // 
             // tabPage8
             // 
@@ -1895,6 +1935,28 @@
             this.panel17.Size = new System.Drawing.Size(690, 31);
             this.panel17.TabIndex = 47;
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox3.Image = global::MagickUtils.Properties.Resources.questmark_72px_bordeer;
+            this.pictureBox3.Location = new System.Drawing.Point(67, 3);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(23, 23);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 39;
+            this.pictureBox3.TabStop = false;
+            this.defTip.SetToolTip(this.pictureBox3, "Choose the dithering method (Floyd-Steinberg is recommended due to the improved c" +
+        "olor accuracy) and the minimum/maximum amount of colors.");
+            // 
+            // label94
+            // 
+            this.label94.AutoSize = true;
+            this.label94.Location = new System.Drawing.Point(261, 8);
+            this.label94.Name = "label94";
+            this.label94.Size = new System.Drawing.Size(34, 13);
+            this.label94.TabIndex = 37;
+            this.label94.Text = "Type:";
+            // 
             // ditherColorsMax
             // 
             this.ditherColorsMax.FormattingEnabled = true;
@@ -1909,6 +1971,18 @@
             this.ditherColorsMax.Name = "ditherColorsMax";
             this.ditherColorsMax.Size = new System.Drawing.Size(50, 21);
             this.ditherColorsMax.TabIndex = 48;
+            // 
+            // ditherTypeCombox
+            // 
+            this.ditherTypeCombox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ditherTypeCombox.FormattingEnabled = true;
+            this.ditherTypeCombox.Items.AddRange(new object[] {
+            "Floyd-Steinberg",
+            "Riemersma"});
+            this.ditherTypeCombox.Location = new System.Drawing.Point(301, 4);
+            this.ditherTypeCombox.Name = "ditherTypeCombox";
+            this.ditherTypeCombox.Size = new System.Drawing.Size(100, 21);
+            this.ditherTypeCombox.TabIndex = 36;
             // 
             // label89
             // 
@@ -1979,6 +2053,17 @@
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(690, 31);
             this.panel12.TabIndex = 36;
+            // 
+            // layerColorPickerBtn
+            // 
+            this.layerColorPickerBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.layerColorPickerBtn.Location = new System.Drawing.Point(554, 5);
+            this.layerColorPickerBtn.Name = "layerColorPickerBtn";
+            this.layerColorPickerBtn.Size = new System.Drawing.Size(25, 20);
+            this.layerColorPickerBtn.TabIndex = 40;
+            this.layerColorPickerBtn.Text = "...";
+            this.layerColorPickerBtn.UseVisualStyleBackColor = true;
+            this.layerColorPickerBtn.Click += new System.EventHandler(this.layerColorPickerBtn_Click);
             // 
             // pictureBox2
             // 
@@ -2959,51 +3044,6 @@
             this.nameMustNotContainTbox.TabIndex = 12;
             this.nameMustNotContainTbox.TextChanged += new System.EventHandler(this.nameMustNotContainTbox_TextChanged);
             // 
-            // label94
-            // 
-            this.label94.AutoSize = true;
-            this.label94.Location = new System.Drawing.Point(261, 8);
-            this.label94.Name = "label94";
-            this.label94.Size = new System.Drawing.Size(34, 13);
-            this.label94.TabIndex = 37;
-            this.label94.Text = "Type:";
-            // 
-            // ditherTypeCombox
-            // 
-            this.ditherTypeCombox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ditherTypeCombox.FormattingEnabled = true;
-            this.ditherTypeCombox.Items.AddRange(new object[] {
-            "Floyd-Steinberg",
-            "Riemersma"});
-            this.ditherTypeCombox.Location = new System.Drawing.Point(301, 4);
-            this.ditherTypeCombox.Name = "ditherTypeCombox";
-            this.ditherTypeCombox.Size = new System.Drawing.Size(100, 21);
-            this.ditherTypeCombox.TabIndex = 36;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Image = global::MagickUtils.Properties.Resources.questmark_72px_bordeer;
-            this.pictureBox3.Location = new System.Drawing.Point(67, 3);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(23, 23);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 39;
-            this.pictureBox3.TabStop = false;
-            this.defTip.SetToolTip(this.pictureBox3, "Choose the dithering method (Floyd-Steinberg is recommended due to the improved c" +
-        "olor accuracy) and the minimum/maximum amount of colors.");
-            // 
-            // layerColorPickerBtn
-            // 
-            this.layerColorPickerBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.layerColorPickerBtn.Location = new System.Drawing.Point(554, 5);
-            this.layerColorPickerBtn.Name = "layerColorPickerBtn";
-            this.layerColorPickerBtn.Size = new System.Drawing.Size(25, 20);
-            this.layerColorPickerBtn.TabIndex = 40;
-            this.layerColorPickerBtn.Text = "...";
-            this.layerColorPickerBtn.UseVisualStyleBackColor = true;
-            this.layerColorPickerBtn.Click += new System.EventHandler(this.layerColorPickerBtn_Click);
-            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -3069,6 +3109,7 @@
             this.tabPage4.ResumeLayout(false);
             this.panel17.ResumeLayout(false);
             this.panel17.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.panel12.ResumeLayout(false);
             this.panel12.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -3095,7 +3136,6 @@
             this.panel13.PerformLayout();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3344,5 +3384,8 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Button layerColorPickerBtn;
         private System.Windows.Forms.ColorDialog layerColorDialog;
+        private System.Windows.Forms.Label resampleReupscaleFilterLabel;
+        private System.Windows.Forms.Label label95;
+        private System.Windows.Forms.ComboBox resampleReupscaleFilterBox;
     }
 }

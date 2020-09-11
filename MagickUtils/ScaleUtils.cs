@@ -11,7 +11,7 @@ namespace MagickUtils
     {
         static long bytesPre = 0;
 
-        public static async void ResampleDirRand (int sMin, int sMax, int randFilterMode)
+        public static async void ResampleDirRand (int sMin, int sMax, int downFilterMode, int upFilterMode)
         {
             int counter = 1;
             FileInfo[] files = IOUtils.GetFiles();
@@ -20,7 +20,7 @@ namespace MagickUtils
             {
                 Program.ShowProgress("Resampling Image ", counter, files.Length);
                 counter++;
-                RandomResample(file.FullName, sMin, sMax, randFilterMode);
+                RandomResample(file.FullName, sMin, sMax, downFilterMode, upFilterMode);
                 if(counter % 2 == 0) await Program.PutTaskDelay();
             }
         }
@@ -47,12 +47,11 @@ namespace MagickUtils
         public static bool appendFiltername;
         public static bool dontOverwrite;
 
-        public static void RandomResample (string path, int minScale, int maxScale, int randFilterMode)
+        public static void RandomResample (string path, int minScale, int maxScale, int downFilterMode, int upFilterMode)
         {
             MagickImage img = IOUtils.ReadImage(path);
             string fname = Path.ChangeExtension(path, null);
-            Program.Print("-> " + fname + " (" + img.Width + "x" + img.Height + ")");
-            FT filter = GetFilter(randFilterMode);
+            FT filter = GetFilter(downFilterMode);
             int srcWidth = img.Width;
             int srcHeight = img.Height;
             Random rand = new Random();
@@ -60,9 +59,8 @@ namespace MagickUtils
             Program.Print("-> Scaling down to " + targetScale + "% with filter " + filter + "...");
             img.FilterType = filter;
             img.Resize(new Percentage(targetScale));
-            //img.Write(img.FileName);
             MagickGeometry upscaleGeom = new MagickGeometry(srcWidth + "x" + srcHeight + "!");
-            img.FilterType = FT.Point;
+            img.FilterType = GetFilter(upFilterMode);
             Program.Print("-> Scaling back up...\n");
             img.Resize(upscaleGeom);
             PreProcessing(path);
@@ -83,7 +81,6 @@ namespace MagickUtils
         {
             MagickImage img = IOUtils.ReadImage(path);
             string fname = Path.GetFileName(path);
-            Program.Print("-> " + fname + " (" + img.Width + "x" + img.Height + ")");
             FT filter = GetFilter(randFilterMode);
             Random rand = new Random();
             int targetScale = rand.Next(minScale, maxScale + 1);

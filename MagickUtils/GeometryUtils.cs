@@ -87,9 +87,6 @@ namespace MagickUtils.MagickUtils
                 else
                     img.Flop();
             }
-                
-            string fname = Path.GetFileName(path);
-            Program.Print("-> " + fname);
             img.Write(path);
         }
     }

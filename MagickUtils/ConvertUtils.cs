@@ -7,6 +7,7 @@ using ImageMagick;
 using System.IO;
 using System.Diagnostics;
 using ImageMagick.Formats.Dds;
+using System.Reflection;
 
 namespace MagickUtils
 {
@@ -42,6 +43,46 @@ namespace MagickUtils
                 if(counter % 2 == 0) await Program.PutTaskDelay();
             }
             Program.PostProcessing(true);
+        }
+
+        public static List<List<FileInfo>> SplitIntoBatches(List<FileInfo> source)
+        {
+            return source.Select((x, i) => new { Index = i, Value = x }).GroupBy(x => x.Index / 100).Select(x => x.Select(v => v.Value).ToList()).ToList();
+        }
+
+        public async static void ConvertDirToPngMT(int q, bool delSrc)
+        {
+            FileInfo[] files = IOUtils.GetFiles();
+
+            Program.PreProcessing();
+
+            int x = 0;
+            int chunkSize = (int)Math.Ceiling(files.Length / 8f);
+            FileInfo[][] batches = files.GroupBy(s => x++ / chunkSize).Select(g => g.ToArray()).ToArray();
+
+            List<Task> tasks = new List<Task>();
+
+            for (int i = 0; i < batches.GetLength(0); i++)
+            {
+                FileInfo[] batch = batches[i];
+                Program.Print("Running task with batch size " + batch.Length);
+                tasks.Add(ConvertBatchToPngMT(batch, q, delSrc));
+            }
+
+            await Task.WhenAll(tasks);
+            Program.PostProcessing(true);
+        }
+
+        static async Task ConvertBatchToPngMT (FileInfo[] files, int q, bool delSrc)
+        {
+            int counter = 1;
+            foreach (FileInfo file in files)
+            {
+                Program.ShowProgress("Converting Image ", counter, files.Length);
+                ConvertToPng(file.FullName, q, delSrc);
+                counter++;
+                if (counter % 2 == 0) await Program.PutTaskDelay();
+            }
         }
 
 
@@ -174,6 +215,19 @@ namespace MagickUtils
             img.Quality = pngCompressLvl;
             string outPath = Path.ChangeExtension(path, null) + ".png";
             PreProcessing(path);
+            img.Write(outPath);
+            PostProcessing(img, path, outPath, delSource);
+        }
+
+        public static async Task ConvertToPngMT(string path, int pngCompressLvl = 0, bool delSource = false)
+        {
+            MagickImage img = IOUtils.ReadImage(path);
+            if (img == null) return;
+            img.Format = MagickFormat.Png;
+            img.Quality = pngCompressLvl;
+            string outPath = Path.ChangeExtension(path, null) + ".png";
+            PreProcessing(path);
+            await Task.Delay(1);
             img.Write(outPath);
             PostProcessing(img, path, outPath, delSource);
         }

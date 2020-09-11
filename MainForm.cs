@@ -156,7 +156,7 @@ namespace MagickUtils
             if(scaleResampleCombox.SelectedIndex == 0)
                 ScaleTabHelper.ScaleUsingPath(minScaleCombox, maxScaleCombox, filterModeCombox);
             if(scaleResampleCombox.SelectedIndex == 1)
-                ScaleTabHelper.ResampleUsingPath(minScaleCombox, maxScaleCombox, filterModeCombox);
+                ScaleTabHelper.ResampleUsingPath(minScaleCombox, maxScaleCombox, filterModeCombox, resampleReupscaleFilterBox);
         }
 
         private void autoLevelBtn_Click (object sender, EventArgs e)
@@ -260,13 +260,6 @@ namespace MagickUtils
                 ScaleUtils.currMode = ScaleUtils.ScaleMode.LongerSide;
             if(scaleModeCombox.SelectedIndex == 4)
                 ScaleUtils.currMode = ScaleUtils.ScaleMode.ShorterSide;
-        }
-
-        private void filterModeCombox_SelectedIndexChanged (object sender, EventArgs e)
-        {
-            appendFilterCbox.Visible = false;
-            if(filterModeCombox.Text.ToLower().Contains("random"))
-                appendFilterCbox.Visible = true;
         }
 
         private void appendFilterCbox_CheckedChanged (object sender, EventArgs e)
@@ -375,7 +368,7 @@ namespace MagickUtils
             if(scaleResampleCombox.SelectedIndex == 0)
                 ScaleTabHelper.ScaleFileList(files, minScaleCombox, maxScaleCombox, filterModeCombox);
             if(scaleResampleCombox.SelectedIndex == 1)
-                ScaleTabHelper.ResampleFileList(files, minScaleCombox, maxScaleCombox, filterModeCombox);
+                ScaleTabHelper.ResampleFileList(files, minScaleCombox, maxScaleCombox, filterModeCombox, resampleReupscaleFilterBox);
 
         }
 
@@ -556,6 +549,17 @@ namespace MagickUtils
             layerColorDialog.ShowDialog();
             string colorStr = ColorTranslator.ToHtml(Color.FromArgb(layerColorDialog.Color.ToArgb())).Replace("#", "") + "FF";
             colorLayerTbox.Text = colorStr;
+        }
+
+        private void scaleResampleCombox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetResampleOptions(scaleResampleCombox.SelectedIndex == 1);
+        }
+
+        void SetResampleOptions (bool state)
+        {
+            resampleReupscaleFilterLabel.Visible = state;
+            resampleReupscaleFilterBox.Visible = state;
         }
     }
 }
