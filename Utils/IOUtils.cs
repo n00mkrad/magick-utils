@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using DdsFileTypePlus;
 using ImageMagick;
+using PaintDotNet;
 
 namespace MagickUtils
 {
@@ -20,7 +23,31 @@ namespace MagickUtils
         {
             try
             {
-                if(Path.GetExtension(path).ToLower() == "flif")   // IM does not support FLIF, so we convert it first
+                if (Path.GetExtension(path).ToLower() == ".dds")
+                {
+                    try
+                    {
+                        return new MagickImage(path);      // Try reading DDS with IM, fall back to DdsFileTypePlusHack if it fails
+                    }
+                    catch
+                    {
+                        //Logger.Log("Failed to read DDS using Mackig.NET - Trying DdsFileTypePlusHack");
+                        try
+                        {
+                            MagickImage img = null;
+                            Surface surface = DdsFile.Load(path);
+                            img = ConvertToMagickImage(surface);
+                            img.HasAlpha = DdsFile.HasTransparency(surface);
+                            return img;
+                        }
+                        catch (Exception e)
+                        {
+                            Program.Print("Error reading DDS: " + Path.GetFileName(path) + "!");
+                            return null;
+                        }
+                    }
+                }
+                if (Path.GetExtension(path).ToLower() == "flif")   // IM does not support FLIF, so we convert it first
                 {
                     return FlifInterface.DecodeToMagickImage(path, false);
                 }
@@ -37,6 +64,19 @@ namespace MagickUtils
                 Program.Print("Error reading " + Path.GetFileName(path) + "!");
             }
             return null;
+        }
+
+        public static MagickImage ConvertToMagickImage(Surface surface)
+        {
+            MagickImage result;
+            Bitmap bitmap = surface.CreateAliasedBitmap();
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                bitmap.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Png);
+                memoryStream.Position = 0;
+                result = new MagickImage(memoryStream, new MagickReadSettings() { Format = MagickFormat.Png00 });
+            }
+            return result;
         }
 
         public static long GetDirSize (DirectoryInfo d)
@@ -65,7 +105,7 @@ namespace MagickUtils
             string ext = Program.currentExt;
             bool recursive = IOUtils.recursive;
             Program.Print("Getting file list for " + path + "...");
-            var exts = new[] { ".png", ".jpg", ".jpeg", ".dds", ".bmp", ".gif", ".tga", ".webp", ".heic", ".jp2", ".flif" };
+            var exts = new[] { ".png", ".jpg", ".jpeg", ".dds", ".bmp", ".gif", ".tga", ".webp", ".heic", ".jp2", ".flif", ".avif" };
             if(!Program.IsPathValid(path))
                 return new FileInfo[0];
             IEnumerable<string> filePaths;

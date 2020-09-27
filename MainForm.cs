@@ -28,10 +28,8 @@ namespace MagickUtils
                 MessageBox.Show("MagickUtils is running as administrator. This will break Drag-n-Drop functionality.", "Warning");
 
             CenterToScreen();
-            Config.fileOperationsNoExtFilter = noExtFilterForFileOpsCbox.Checked;
-            Config.backgroundColor = confBgColor.Text.Trim().Replace("#", "");
-            Config.ReadConfig();
-            Config.WriteConfig(false);   // Write, in case we have new values that are not in the config yet
+
+            Config.Init();
 
             Program.logTbox = logTbox;
             Program.progBar = progressBar1;
@@ -58,9 +56,13 @@ namespace MagickUtils
             InitCombox(cropAbsGrav, 1);
             InitCombox(padMode, 0);
             InitCombox(renameCounterMode, 0);
+            InitCombox(renameCounterPadding, 1);
             InitCombox(tileMode, 0);
             InitCombox(zeroPaddingCombox, 0);
             InitCombox(ditherTypeCombox, 0);
+            InitCombox(scaleResampleCombox, 0);
+            InitCombox(scaleModeCombox, 0);
+            InitCombox(filterModeCombox, 0);
 
             IOUtils.recursive = recursiveCbox.Checked;
             ScaleUtils.onlyDownscale = onlyDownscaleCbox.Checked;
@@ -108,8 +110,14 @@ namespace MagickUtils
                 qualityMaxCombox.Enabled = qualityCombox.Enabled;
                 formatOptionsBtn.Visible = true;
             }
-                
-            if(formatStrTrim == "TGA")
+
+            if (formatStrTrim == "BMP")
+            {
+                selectedFormat = Program.ImageFormat.BMP;
+                qualityCombox.Enabled = false;
+            }
+
+            if (formatStrTrim == "TGA")
             {
                 selectedFormat = Program.ImageFormat.TGA;
                 qualityCombox.Enabled = false;
@@ -129,6 +137,11 @@ namespace MagickUtils
             {
                 selectedFormat = Program.ImageFormat.FLIF;
                 formatOptionsBtn.Visible = true;
+            }
+
+            if (formatStrTrim == "AVIF")
+            {
+                selectedFormat = Program.ImageFormat.AVIF;
             }
 
             CheckDelSourceFormat();
@@ -165,16 +178,10 @@ namespace MagickUtils
             AdjustUtils.AutoLevel(Program.currentDir, Program.currentExt, recursiveCbox.Checked);
         }
 
-        private void remAlphaWhite_Click (object sender, EventArgs e)
-        {
-            if(!Program.IsPathValid(Program.currentDir)) return;
-            ColorUtils.RemTransparencyDir(1);
-        }
-
         private void remAlphaBlack_Click (object sender, EventArgs e)
         {
             if(!Program.IsPathValid(Program.currentDir)) return;
-            ColorUtils.RemTransparencyDir(0);
+            ColorUtils.RemTransparencyDir(ColorUtils.NoAlphaMode.Fill);
         }
 
         private void delSmallImagesBtn_Click (object sender, EventArgs e)
@@ -343,7 +350,7 @@ namespace MagickUtils
 
         private void alphaOffBtn_Click (object sender, EventArgs e)
         {
-            ColorUtils.RemTransparencyDir(2);
+            ColorUtils.RemTransparencyDir(ColorUtils.NoAlphaMode.Off);
         }
 
         private void tabPage1_DragEnter (object sender, DragEventArgs e)
@@ -374,17 +381,19 @@ namespace MagickUtils
 
         private void saveCfgBtn_Click (object sender, EventArgs e)
         {
-            Config.WriteConfig();
-        }
-
-        private void noExtFilterForFileOpsCbox_CheckedChanged (object sender, EventArgs e)
-        {
-            Config.fileOperationsNoExtFilter = noExtFilterForFileOpsCbox.Checked;
+            Config.SaveGuiElement(fileOperationsNoFilter);
+            Config.SaveGuiElement(filenameReplaceIncludeExt);
+            Config.SaveGuiElement(backgroundColor);
+            Config.SaveGuiElement(pngQ);
+            Program.Print("Saved config file.");
         }
 
         private void tabPage6_Enter (object sender, EventArgs e)
         {
-            noExtFilterForFileOpsCbox.Checked = Config.fileOperationsNoExtFilter;
+            Config.LoadGuiElement(fileOperationsNoFilter);
+            Config.LoadGuiElement(filenameReplaceIncludeExt);
+            Config.LoadGuiElement(backgroundColor);
+            Config.LoadGuiElement(pngQ);
         }
 
         private void blurPrevBtn_Click (object sender, EventArgs e)
@@ -477,13 +486,9 @@ namespace MagickUtils
                 ColorUtils.LayerColorDir(colorLayerTbox.Text.Trim().Replace("#", ""));
         }
 
-        private void tileBtn_Click (object sender, EventArgs e)
-        {
-
-        }
-
         private void rotateBtn_Click (object sender, EventArgs e)
         {
+            if (!Program.IsPathValid(Program.currentDir)) return;
             GeometryUtils.RotateMode rotateMode = GeometryUtils.RotateMode.Rot90;
             if(geomRotationCombox.SelectedIndex == 1) rotateMode = GeometryUtils.RotateMode.Rot180;
             if(geomRotationCombox.SelectedIndex == 2) rotateMode = GeometryUtils.RotateMode.Rot270;
@@ -494,30 +499,29 @@ namespace MagickUtils
 
         private void flipBtn_Click (object sender, EventArgs e)
         {
+            if (!Program.IsPathValid(Program.currentDir)) return;
             GeometryUtils.FlipMode flipMode = GeometryUtils.FlipMode.Hor;
             if(geomFlipAxis.SelectedIndex == 1) flipMode = GeometryUtils.FlipMode.Vert;
             if(geomFlipAxis.SelectedIndex == 2) flipMode = GeometryUtils.FlipMode.Random;
             GeometryUtils.FlipDir(flipMode);
         }
 
-        private void confBgColor_TextChanged (object sender, EventArgs e)
-        {
-            Config.backgroundColor = confBgColor.Text.Trim().Replace("#", "");
-        }
-
         private void renameCounterBtn_Click (object sender, EventArgs e)
         {
-            OtherUtils.RenameCounterDir(renameCounterMode.SelectedIndex);
+            if (Program.IsPathValid(Program.currentDir))
+                OtherUtils.RenameCounterDir(renameCounterMode.SelectedIndex, renameCounterPadding.SelectedIndex == 1, renameCounterStartAt.GetInt());
         }
 
         private void mergeAllBtn_Click (object sender, EventArgs e)
         {
-            CropUtils.MergeAllDir();
+            if (Program.IsPathValid(Program.currentDir))
+                CropUtils.MergeAllDir();
         }
 
         private void edgeDetectBtn_Click (object sender, EventArgs e)
         {
-            EffectsUtils.EdgeDetectDir();
+            if (Program.IsPathValid(Program.currentDir))
+                EffectsUtils.EdgeDetectDir();
         }
 
         private void ditherBtn_Click (object sender, EventArgs e)
@@ -528,20 +532,22 @@ namespace MagickUtils
                 colorsMax = ditherColorsMax.GetInt();
             if(ditherTypeCombox.SelectedIndex == 0) ColorUtils.DitherDir(colorsMin, colorsMax, ColorUtils.DitherType.FloydSteinberg);
             if(ditherTypeCombox.SelectedIndex == 1) ColorUtils.DitherDir(colorsMin, colorsMax, ColorUtils.DitherType.Riemersma);
-            if(ditherTypeCombox.SelectedIndex == 2) ColorUtils.DitherDir(colorsMin, colorsMax, ColorUtils.DitherType.Random);
+            if(ditherTypeCombox.SelectedIndex == 2) ColorUtils.DitherDir(colorsMin, colorsMax, ColorUtils.DitherType.Ordered4x4);
+            if(ditherTypeCombox.SelectedIndex == 3) ColorUtils.DitherDir(colorsMin, colorsMax, ColorUtils.DitherType.Halftone4x4);
+            if (ditherTypeCombox.SelectedIndex == 4) ColorUtils.DitherDir(colorsMin, colorsMax, ColorUtils.DitherType.Random);
         }
 
         private void bgColorSelectBtn_Click (object sender, EventArgs e)
         {
             bgColorDialog.ShowDialog();
             string colorStr = ColorTranslator.ToHtml(Color.FromArgb(bgColorDialog.Color.ToArgb())).Replace("#", "") + "FF";
-            Config.backgroundColor = colorStr;
-            confBgColor.Text = colorStr;
+            backgroundColor.Text = colorStr;
         }
 
         private void zeropadBtn_Click (object sender, EventArgs e)
         {
-            OtherUtils.AddZeroPaddingDir(zeroPaddingCombox.GetInt());
+            if (Program.IsPathValid(Program.currentDir))
+                OtherUtils.AddZeroPaddingDir(zeroPaddingCombox.GetInt());
         }
 
         private void layerColorPickerBtn_Click (object sender, EventArgs e)
@@ -560,6 +566,37 @@ namespace MagickUtils
         {
             resampleReupscaleFilterLabel.Visible = state;
             resampleReupscaleFilterBox.Visible = state;
+        }
+
+        private void printInfoBtn_Click(object sender, EventArgs e)
+        {
+            if (Program.IsPathValid(Program.currentDir))
+                OtherUtils.PrintImageInfoDir();
+        }
+
+        private void deleteGrayscaleImgsBtn_Click(object sender, EventArgs e)
+        {
+            if (Program.IsPathValid(Program.currentDir))
+                ColorUtils.DeleteGrayscaleImgDir(grayscaleThreshTbox.GetFloat(), false);
+        }
+
+        private void deleteColorImgsBtn_Click(object sender, EventArgs e)
+        {
+            if (Program.IsPathValid(Program.currentDir))
+                ColorUtils.DeleteGrayscaleImgDir(grayscaleThreshTbox.GetFloat(), true);
+        }
+
+        private void removeBytesBtn_Click(object sender, EventArgs e)
+        {
+            if (Program.IsPathValid(Program.currentDir))
+                OtherUtils.RemoveBytesDir(removeBytesAmount.GetInt());
+        }
+
+        private void ditherTypeCombox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bool usesColorAmount = (ditherTypeCombox.SelectedIndex == 0 || ditherTypeCombox.SelectedIndex == 1);
+            ditherColorsMin.Enabled = usesColorAmount;
+            ditherColorsMax.Enabled = usesColorAmount;
         }
     }
 }

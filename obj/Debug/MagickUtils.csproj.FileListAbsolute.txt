@@ -52,7 +52,6 @@ D:\Code\Repos\MagickUtils\obj\Debug\MagickUtils.pdb
 D:\Code\GitHub\IEU\magick-utils\bin\Debug\MagickUtils.exe.config
 D:\Code\GitHub\IEU\magick-utils\bin\Debug\MagickUtils.exe
 D:\Code\GitHub\IEU\magick-utils\bin\Debug\MagickUtils.pdb
-D:\Code\GitHub\IEU\magick-utils\bin\Debug\Magick.NET-Q16-AnyCPU.xml
 D:\Code\GitHub\IEU\magick-utils\bin\Debug\Magick.NET.Core.xml
 D:\Code\GitHub\IEU\magick-utils\obj\Debug\MagickUtils.csprojAssemblyReference.cache
 D:\Code\GitHub\IEU\magick-utils\obj\Debug\MagickUtils.DdsOptionsWindow.resources
@@ -66,3 +65,12 @@ D:\Code\GitHub\IEU\magick-utils\obj\Debug\MagickUtils.csproj.Fody.CopyLocal.cach
 D:\Code\GitHub\IEU\magick-utils\obj\Debug\MagickUtils.csproj.CopyComplete
 D:\Code\GitHub\IEU\magick-utils\obj\Debug\MagickUtils.exe
 D:\Code\GitHub\IEU\magick-utils\obj\Debug\MagickUtils.pdb
+D:\Code\GitHub\IEU\magick-utils\bin\Debug\packages\NetVips.Native.win-x64.8.10.1\runtimes\win-x64\native\libglib-2.0-0.dll
+D:\Code\GitHub\IEU\magick-utils\bin\Debug\packages\NetVips.Native.win-x64.8.10.1\runtimes\win-x64\native\libgobject-2.0-0.dll
+D:\Code\GitHub\IEU\magick-utils\bin\Debug\packages\NetVips.Native.win-x64.8.10.1\runtimes\win-x64\native\libvips-42.dll
+D:\Code\GitHub\IEU\magick-utils\bin\Debug\Magick.NET-Q16-AnyCPU.xml
+D:\Code\GitHub\IEU\magick-utils\bin\Debug\NetVips.xml
+D:\Code\GitHub\IEU\magick-utils\bin\Debug\System.Buffers.xml
+D:\Code\GitHub\IEU\magick-utils\bin\Debug\System.Memory.xml
+D:\Code\GitHub\IEU\magick-utils\bin\Debug\System.Numerics.Vectors.xml
+D:\Code\GitHub\IEU\magick-utils\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml

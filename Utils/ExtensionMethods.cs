@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -66,20 +67,35 @@ namespace MagickUtils
             return (float)(mantissa * exponent);
         }
 
-        public static string TrimNumbers(this string s)
+        public static string TrimNumbers(this string s, bool allowDotComma = false)
         {
-            s = Regex.Replace(s, "[^.0-9]", "");
+            if (!allowDotComma)
+                s = Regex.Replace(s, "[^0-9]", "");
+            else
+                s = Regex.Replace(s, "[^.,0-9]", "");
             return s.Trim();
         }
 
         public static int GetInt(this TextBox textbox)
         {
-            return int.Parse(textbox.Text.TrimNumbers());
+            return GetInt(textbox.Text);
         }
 
         public static int GetInt(this ComboBox combobox)
         {
-            return int.Parse(combobox.Text.TrimNumbers());
+            return GetInt(combobox.Text);
+        }
+
+        public static int GetInt(this string str)
+        {
+            if (str.Length < 1 || str == null)
+                return 0;
+            try { return int.Parse(str.TrimNumbers()); }
+            catch (Exception e)
+            {
+                Program.Print("Failed to parse \"" + str + "\" to int: " + e);
+                return 0;
+            }
         }
 
         public static T[] Slice<T>(this T[] source, int index, int length)
@@ -87,6 +103,26 @@ namespace MagickUtils
             T[] slice = new T[length];
             Array.Copy(source, index, slice, 0, length);
             return slice;
+        }
+
+        public static float GetFloat(this TextBox textbox)
+        {
+            return GetFloat(textbox.Text);
+        }
+
+        public static float GetFloat(this ComboBox combobox)
+        {
+            return GetFloat(combobox.Text);
+        }
+
+        public static float GetFloat(this string str)
+        {
+            if (str.Length < 1 || str == null)
+                return 0f;
+            string num = str.TrimNumbers(true).Replace(",", ".");
+            float value;
+            float.TryParse(num, NumberStyles.Any, CultureInfo.InvariantCulture, out value);
+            return value;
         }
     }
 }

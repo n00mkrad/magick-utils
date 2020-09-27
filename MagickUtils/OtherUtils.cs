@@ -47,7 +47,7 @@ namespace MagickUtils
         public static void AddSuffixPrefixDir (string text, bool suffix)
         {
             int counter = 1;
-            FileInfo[] files = IOUtils.GetFiles(Config.fileOperationsNoExtFilter);
+            FileInfo[] files = IOUtils.GetFiles(Config.GetBool("fileOperationsNoFilter"));
             Program.PreProcessing(true, false);
             foreach(FileInfo file in files)
             {
@@ -73,7 +73,7 @@ namespace MagickUtils
         public static void ReplaceInFilenamesDir (string textToFind, string textToReplace)
         {
             int counter = 1;
-            FileInfo[] files = IOUtils.GetFiles(Config.fileOperationsNoExtFilter);
+            FileInfo[] files = IOUtils.GetFiles(Config.GetBool("fileOperationsNoFilter"));
             Program.PreProcessing(true, false);
             foreach(FileInfo file in files)
             {
@@ -86,11 +86,12 @@ namespace MagickUtils
             Program.PostProcessing(true, false);
         }
 
-        public static void ReplaceInFilename (string path, string textToFind, string textToReplace, bool includeExtension = true)
+        public static void ReplaceInFilename (string path, string textToFind, string textToReplace)
         {
             string ext = Path.GetExtension(path);
             string newFilename = Path.GetFileNameWithoutExtension(path).Replace(textToFind, textToReplace);
-            if(includeExtension)
+            bool includeExtension = Config.GetBool("filenameReplaceIncludeExt");
+            if (includeExtension)
                 newFilename = Path.GetFileName(path).Replace(textToFind, textToReplace);
             string targetPath = Path.Combine(Path.GetDirectoryName(path), newFilename);
             if (!includeExtension)
@@ -138,8 +139,8 @@ namespace MagickUtils
         public static void RemoveMissingFiles (string checkDir, bool testRun)
         {
             int counter = 1;
-            FileInfo[] files = IOUtils.GetFiles(Config.fileOperationsNoExtFilter);
-            FileInfo[] filesCheckDir = IOUtils.GetFiles(Config.fileOperationsNoExtFilter, checkDir);
+            FileInfo[] files = IOUtils.GetFiles(Config.GetBool("fileOperationsNoFilter"));
+            FileInfo[] filesCheckDir = IOUtils.GetFiles(Config.GetBool("fileOperationsNoFilter"), checkDir);
             Program.Print("(1/2) Checking " + files.Length + " files...");
             Program.Print("Folder B has " + filesCheckDir.Length + " files");
             foreach(FileInfo file in files)
@@ -225,10 +226,10 @@ namespace MagickUtils
             Program.PostProcessing(false, false);
         }
 
-        public static void RenameCounterDir (int sortMode)
+        public static void RenameCounterDir(int sortMode, bool zeroPadding, int startAt)
         {
-            int counter = 1;
-            FileInfo[] files = IOUtils.GetFiles(Config.fileOperationsNoExtFilter);
+            int counter = startAt;
+            FileInfo[] files = IOUtils.GetFiles(Config.GetBool("fileOperationsNoFilter"));
             var filesSorted = files.OrderBy(n => n);
             if(sortMode == 1)
                 filesSorted.Reverse();
@@ -237,7 +238,10 @@ namespace MagickUtils
             {
                 string dir = new DirectoryInfo(file.FullName).Parent.FullName;
                 int filesDigits = (int)Math.Floor(Math.Log10((double)files.Length) + 1);
-                File.Move(file.FullName, Path.Combine(dir, counter.ToString().PadLeft(filesDigits, '0') + Path.GetExtension(file.FullName)));
+                if(zeroPadding)
+                    File.Move(file.FullName, Path.Combine(dir, counter.ToString().PadLeft(filesDigits, '0') + Path.GetExtension(file.FullName)));
+                else
+                    File.Move(file.FullName, Path.Combine(dir, counter.ToString() + Path.GetExtension(file.FullName)));
                 Program.ShowProgress("", counter, files.Length);
                 counter++;
                 if(counter % 100 == 0) Program.Print("Renamed " + counter + " files...");
@@ -245,10 +249,10 @@ namespace MagickUtils
             Program.PostProcessing(true, false);
         }
 
-        public static void AddZeroPaddingDir (int targetLength)
+        public static async void AddZeroPaddingDir (int targetLength)
         {
             int counter = 1;
-            FileInfo[] files = IOUtils.GetFiles(Config.fileOperationsNoExtFilter);
+            FileInfo[] files = IOUtils.GetFiles(Config.GetBool("fileOperationsNoFilter"));
             Program.PreProcessing(true, false);
             foreach(FileInfo file in files)
             {
@@ -260,7 +264,28 @@ namespace MagickUtils
                 File.Move(file.FullName, Path.Combine(Path.GetDirectoryName(file.FullName), fnameNoExt.PadLeft(targetLength, '0') + ext));
                 Program.ShowProgress("", counter, files.Length);
                 counter++;
-                if(counter % 100 == 0) Program.Print("Renamed " + counter + " files...");
+                if(counter % 100 == 0)
+                {
+                    Program.Print("Renamed " + counter + " files...");
+                    await Program.PutTaskDelay();
+                }
+            }
+            Program.PostProcessing(true, false);
+        }
+
+        public static async void PrintImageInfoDir ()
+        {
+            int counter = 1;
+            FileInfo[] files = IOUtils.GetFiles(Config.GetBool("fileOperationsNoFilter"));
+            Program.PreProcessing(true, false);
+            foreach (FileInfo file in files)
+            {
+                MagickImage img = IOUtils.ReadImage(file.FullName);
+                string fnameNoExt = Path.GetFileNameWithoutExtension(file.Name);
+                //Program.Print("     Format Info: " + img.FormatInfo);
+                Program.ShowProgress("", counter, files.Length);
+                counter++;
+                if (counter % 10 == 0) await Program.PutTaskDelay();
             }
             Program.PostProcessing(true, false);
         }
@@ -272,6 +297,46 @@ namespace MagickUtils
             if(img1.Width == img2.Width && img1.Height == img2.Height)
                 return true;
             return false;
+        }
+
+        public static async void RemoveBytesDir (int bytes) 
+        {
+            int counter = 1;
+            FileInfo[] files = IOUtils.GetFiles(Config.GetBool("fileOperationsNoFilter"));
+            Program.PreProcessing(true, false);
+            foreach (FileInfo file in files)
+            {
+                string fnameNoExt = Path.GetFileNameWithoutExtension(file.Name);
+                RemoveBytes(file.FullName, bytes);
+                Program.ShowProgress("", counter, files.Length);
+                counter++;
+                if (counter % 100 == 0)
+                {
+                    Program.Print("Processed " + counter + " files...");
+                    await Program.PutTaskDelay();
+                }
+            }
+            Program.PostProcessing(true, false);
+        }
+
+        public static void RemoveBytes (string path, int bytes)
+        {
+            byte[] x = File.ReadAllBytes(path);
+            try
+            {
+                byte[] temp = new byte[x.Length - bytes];
+                ulong tempx = 0;
+                for (long i = bytes; i < x.LongLength; i++)
+                {
+                    temp[tempx] = x[i];
+                    tempx++;
+                }
+                File.WriteAllBytes(path, temp);
+            }
+            catch
+            {
+                Program.Print("Failed to remove bytes on " + path + " (Filesize: " + x.Length + " bytes)");
+            }
         }
     }
 }

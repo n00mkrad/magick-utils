@@ -24,7 +24,7 @@ namespace MagickUtils
                 Program.ShowProgress("Converting Image ", counter, files.Length);
                 ConvertToJpegRandomQuality(file.FullName, qMin, qMax, delSrc);
                 counter++;
-                if(counter % 10 == 0) await Program.PutTaskDelay();
+                if(counter % 8 == 0) await Program.PutTaskDelay();
             }
             Program.PostProcessing();
         }
@@ -45,48 +45,7 @@ namespace MagickUtils
             Program.PostProcessing(true);
         }
 
-        public static List<List<FileInfo>> SplitIntoBatches(List<FileInfo> source)
-        {
-            return source.Select((x, i) => new { Index = i, Value = x }).GroupBy(x => x.Index / 100).Select(x => x.Select(v => v.Value).ToList()).ToList();
-        }
-
-        public async static void ConvertDirToPngMT(int q, bool delSrc)
-        {
-            FileInfo[] files = IOUtils.GetFiles();
-
-            Program.PreProcessing();
-
-            int x = 0;
-            int chunkSize = (int)Math.Ceiling(files.Length / 8f);
-            FileInfo[][] batches = files.GroupBy(s => x++ / chunkSize).Select(g => g.ToArray()).ToArray();
-
-            List<Task> tasks = new List<Task>();
-
-            for (int i = 0; i < batches.GetLength(0); i++)
-            {
-                FileInfo[] batch = batches[i];
-                Program.Print("Running task with batch size " + batch.Length);
-                tasks.Add(ConvertBatchToPngMT(batch, q, delSrc));
-            }
-
-            await Task.WhenAll(tasks);
-            Program.PostProcessing(true);
-        }
-
-        static async Task ConvertBatchToPngMT (FileInfo[] files, int q, bool delSrc)
-        {
-            int counter = 1;
-            foreach (FileInfo file in files)
-            {
-                Program.ShowProgress("Converting Image ", counter, files.Length);
-                ConvertToPng(file.FullName, q, delSrc);
-                counter++;
-                if (counter % 2 == 0) await Program.PutTaskDelay();
-            }
-        }
-
-
-        public static void ConvertDirToDds (bool delSrc)
+        public static async void ConvertDirToDds (bool delSrc)
         {
             int counter = 1;
             FileInfo[] files = IOUtils.GetFiles();
@@ -97,6 +56,7 @@ namespace MagickUtils
                 Program.ShowProgress("Converting Image ", counter, files.Length);
                 counter++;
                 ConvertToDds(file.FullName, delSrc);
+                if (counter % 2 == 0) await Program.PutTaskDelay();
             }
             Program.PostProcessing();
         }
@@ -117,7 +77,7 @@ namespace MagickUtils
             Program.PostProcessing();
         }
 
-        public static void ConvertDirToTga (bool delSrc)
+        public static async void ConvertDirToTga (bool delSrc)
         {
             int counter = 1;
             FileInfo[] files = IOUtils.GetFiles();
@@ -128,6 +88,7 @@ namespace MagickUtils
                 Program.ShowProgress("Converting Image ", counter, files.Length);
                 counter++;
                 ConvertToTga(file.FullName, delSrc);
+                if (counter % 2 == 0) await Program.PutTaskDelay();
             }
             Program.PostProcessing();
         }
@@ -143,7 +104,7 @@ namespace MagickUtils
                 Program.ShowProgress("Converting Image ", counter, files.Length);
                 counter++;
                 ConvertToWebp(file.FullName, q, delSrc);
-                if(counter % 5 == 0) await Program.PutTaskDelay();
+                if(counter % 2 == 0) await Program.PutTaskDelay();
             }
             Program.PostProcessing();
         }
@@ -172,12 +133,67 @@ namespace MagickUtils
             Program.PreProcessing();
             foreach(FileInfo file in files)
             {
-                Program.ShowProgress("Encoding Image ", counter, files.Length);
+                Program.ShowProgress("Converting Image ", counter, files.Length);
                 counter++;
                 FlifInterface.EncodeImage(file.FullName, q, delSrc);
                 await Program.PutTaskDelay();
             }
             Program.PostProcessing();
+        }
+
+        public static async void ConvertDirToBmp(bool delSrc)
+        {
+            int counter = 1;
+            FileInfo[] files = IOUtils.GetFiles();
+
+            Program.PreProcessing();
+            foreach (FileInfo file in files)
+            {
+                Program.ShowProgress("Converting Image ", counter, files.Length);
+                counter++;
+                ConvertToBmp(file.FullName, delSrc);
+                if (counter % 8 == 0) await Program.PutTaskDelay();
+            }
+            Program.PostProcessing();
+        }
+
+        public static void ConvertToBmp(string path, bool delSource = false)
+        {
+            MagickImage img = IOUtils.ReadImage(path);
+            if (img == null) return;
+            img.Format = MagickFormat.Bmp;
+            string outPath = Path.ChangeExtension(path, null) + ".bmp";
+            PreProcessing(path);
+            img.Write(outPath);
+            PostProcessing(img, path, outPath, delSource);
+        }
+
+        public static async void ConvertDirToAvif(int q, bool delSrc)
+        {
+            int counter = 1;
+            FileInfo[] files = IOUtils.GetFiles();
+
+            Program.PreProcessing();
+            foreach (FileInfo file in files)
+            {
+                Program.ShowProgress("Converting Image ", counter, files.Length);
+                counter++;
+                ConvertToAvif(file.FullName, q, delSrc);
+                await Program.PutTaskDelay();
+            }
+            Program.PostProcessing();
+        }
+
+        public static void ConvertToAvif(string path, int q, bool delSource = false)
+        {
+            MagickImage img = IOUtils.ReadImage(path);
+            if (img == null) return;
+            img.Format = MagickFormat.Avif;
+            img.Quality = q;
+            string outPath = Path.ChangeExtension(path, null) + ".avif";
+            PreProcessing(path);
+            img.Write(outPath);
+            PostProcessing(img, path, outPath, delSource);
         }
 
         static long bytesPre;
@@ -207,12 +223,24 @@ namespace MagickUtils
             PostProcessing(img, path, outPath, delSource);
         }
 
-        public static void ConvertToPng (string path, int pngCompressLvl = 0, bool delSource = false)
+        public static void ConvertToPng(string path, int q = 50, bool delSource = false)
+        {
+            MagickImage img = IOUtils.ReadImage(path);
+            if (img == null) return;
+            img.Format = MagickFormat.Png;
+            img.Quality = q;
+            string outPath = Path.ChangeExtension(path, null) + ".png";
+            PreProcessing(path);
+            img.Write(outPath);
+            PostProcessing(img, path, outPath, delSource);
+        }
+
+        public static void ConvertToPngIM (string path, int q = 50, bool delSource = false)
         {
             MagickImage img = IOUtils.ReadImage(path);
             if(img == null) return;
             img.Format = MagickFormat.Png;
-            img.Quality = pngCompressLvl;
+            img.Quality = q;
             string outPath = Path.ChangeExtension(path, null) + ".png";
             PreProcessing(path);
             img.Write(outPath);
@@ -290,7 +318,8 @@ namespace MagickUtils
         static void PostProcessing (MagickImage img, string sourcePath, string outPath, bool delSource)
         {
             Program.sw.Stop();
-            img.Dispose();
+            if(img != null)
+                img.Dispose();
             long bytesPost = new FileInfo(outPath).Length;
             Program.Print("-> Done. Size pre: " + Format.Filesize(bytesPre) + " - Size post: " + Format.Filesize(bytesPost) + " - Ratio: " + Format.Ratio(bytesPre, bytesPost));
             if(delSource)

@@ -21,7 +21,7 @@ namespace MagickUtils
         public static string previewImgPath;
 
 
-        public enum ImageFormat { JPG, PNG, DDS, TGA, WEBP, J2K, FLIF }
+        public enum ImageFormat { JPG, PNG, DDS, TGA, WEBP, BMP, AVIF, J2K, FLIF }
 
         [STAThread]
         static void Main (string[] args)
@@ -30,6 +30,7 @@ namespace MagickUtils
             Application.SetCompatibleTextRenderingDefault(false);
             mainForm = new MainForm();
             mainForm.FormClosing += new FormClosingEventHandler(OnFormClose);
+            ResourceLimits.Memory = (ulong)Math.Round(ResourceLimits.Memory * 1.5f);
             Application.Run(mainForm);
         }
 
@@ -135,9 +136,9 @@ namespace MagickUtils
             if(img.Format == MagickFormat.Jpg || img.Format == MagickFormat.Jpeg)
                 return 95;
             if(img.Format == MagickFormat.Png)
-                return 50;
+                return 30;
             if(img.Format == MagickFormat.WebP)
-                return 92;
+                return 93;
             return 99;
         }
     }

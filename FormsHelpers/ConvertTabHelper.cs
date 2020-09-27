@@ -26,7 +26,7 @@ namespace MagickUtils
                         ConvertUtils.ConvertToJpegRandomQuality(file, qMin, qMax, delSrcCbox.Checked);
 
                     if(selectedFormat == IF.PNG)
-                        ConvertUtils.ConvertToPng(file, qMin, delSrcCbox.Checked);
+                        ConvertUtils.ConvertToPngIM(file, qMin, delSrcCbox.Checked);
 
                     if(selectedFormat == IF.DDS)
                     {
@@ -45,6 +45,12 @@ namespace MagickUtils
 
                     if(selectedFormat == IF.FLIF)
                         FlifInterface.EncodeImage(file, qMin, delSrcCbox.Checked);
+
+                    if (selectedFormat == IF.BMP)
+                        ConvertUtils.ConvertToBmp(file, delSrcCbox.Checked);
+
+                    if (selectedFormat == IF.AVIF)
+                        ConvertUtils.ConvertToAvif(file, qMin, delSrcCbox.Checked);
                 }
             }
         }
@@ -79,6 +85,12 @@ namespace MagickUtils
 
             if(selectedFormat == IF.FLIF)
                 ConvertUtils.ConvertDirToFlif(qMin, delSrcCbox.Checked);
+
+            if (selectedFormat == IF.BMP)
+                ConvertUtils.ConvertDirToBmp(delSrcCbox.Checked);
+
+            if (selectedFormat == IF.AVIF)
+                ConvertUtils.ConvertDirToAvif(qMin, delSrcCbox.Checked);
         }
     }
 }

@@ -2643,6 +2643,11 @@
             Xor
             </summary>
         </member>
+        <member name="F:ImageMagick.EvaluateOperator.InverseLog">
+            <summary>
+            InverseLog
+            </summary>
+        </member>
         <member name="T:ImageMagick.FillRule">
             <summary>
             Specifies fill rule.
@@ -3541,6 +3546,11 @@
         <member name="F:ImageMagick.MagickFormat.Arw">
             <summary>
             Sony Alpha Raw Image Format
+            </summary>
+        </member>
+        <member name="F:ImageMagick.MagickFormat.Ashlar">
+            <summary>
+            Image sequence laid out in continuous irregular courses (Unknown)
             </summary>
         </member>
         <member name="F:ImageMagick.MagickFormat.Avi">
@@ -9162,6 +9172,13 @@
             <param name="pathName">Name of clipping path resource. If name is preceded by #, use clipping path numbered by name.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
+        <member name="M:ImageMagick.IMagickImage.SetCompression(ImageMagick.CompressionMethod)">
+            <summary>
+            Gets the compression of the image. This method should only be used when the encoder uses the compression of the image. For
+            most usecases Setting.Compression should be used instead.
+            </summary>
+            <param name="compression">The compression method.</param>
+        </member>
         <member name="M:ImageMagick.IMagickImage.SetProfile(ImageMagick.IImageProfile)">
             <summary>
             Set the specified profile of the image. If a profile with the same name already exists it will be overwritten.
@@ -9673,6 +9690,17 @@
             </summary>
             <param name="thresholdPercentage">The threshold for smoothing.</param>
             <param name="softness">Attenuate the smoothing threshold.</param>
+        </member>
+        <member name="M:ImageMagick.IMagickImage.WhiteBalance">
+            <summary>
+            Apply a white balancing to an image according to a grayworld assumption in the LAB colorspace.
+            </summary>
+        </member>
+        <member name="M:ImageMagick.IMagickImage.WhiteBalance(ImageMagick.Percentage)">
+            <summary>
+            Apply a white balancing to an image according to a grayworld assumption in the LAB colorspace.
+            </summary>
+            <param name="vibrance">The vibrance.</param>
         </member>
         <member name="M:ImageMagick.IMagickImage.WhiteThreshold(ImageMagick.Percentage)">
             <summary>
@@ -12075,6 +12103,92 @@
             </summary>
             <returns>A <typeparamref name="TQuantumType"/> array.</returns>
         </member>
+        <member name="M:ImageMagick.IPixelCollection`1.SetArea(System.Int32,System.Int32,System.Int32,System.Int32,`0[])">
+            <summary>
+            Changes the values of the specified pixels.
+            </summary>
+            <param name="x">The X coordinate of the area.</param>
+            <param name="y">The Y coordinate of the area.</param>
+            <param name="width">The width of the area.</param>
+            <param name="height">The height of the area.</param>
+            <param name="values">The values of the pixels.</param>
+        </member>
+        <member name="M:ImageMagick.IPixelCollection`1.SetArea(ImageMagick.IMagickGeometry,`0[])">
+            <summary>
+            Changes the values of the specified pixels.
+            </summary>
+            <param name="geometry">The geometry of the area.</param>
+            <param name="values">The values of the pixels.</param>
+        </member>
+        <member name="M:ImageMagick.IPixelCollection`1.SetByteArea(System.Int32,System.Int32,System.Int32,System.Int32,System.Byte[])">
+            <summary>
+            Changes the values of the specified pixels.
+            </summary>
+            <param name="x">The X coordinate of the area.</param>
+            <param name="y">The Y coordinate of the area.</param>
+            <param name="width">The width of the area.</param>
+            <param name="height">The height of the area.</param>
+            <param name="values">The values of the pixels.</param>
+        </member>
+        <member name="M:ImageMagick.IPixelCollection`1.SetByteArea(ImageMagick.IMagickGeometry,System.Byte[])">
+            <summary>
+            Changes the values of the specified pixels.
+            </summary>
+            <param name="geometry">The geometry of the area.</param>
+            <param name="values">The values of the pixels.</param>
+        </member>
+        <member name="M:ImageMagick.IPixelCollection`1.SetBytePixels(System.Byte[])">
+            <summary>
+            Changes the values of the specified pixels.
+            </summary>
+            <param name="values">The values of the pixels.</param>
+        </member>
+        <member name="M:ImageMagick.IPixelCollection`1.SetDoubleArea(System.Int32,System.Int32,System.Int32,System.Int32,System.Double[])">
+            <summary>
+            Changes the values of the specified pixels.
+            </summary>
+            <param name="x">The X coordinate of the area.</param>
+            <param name="y">The Y coordinate of the area.</param>
+            <param name="width">The width of the area.</param>
+            <param name="height">The height of the area.</param>
+            <param name="values">The values of the pixels.</param>
+        </member>
+        <member name="M:ImageMagick.IPixelCollection`1.SetDoubleArea(ImageMagick.IMagickGeometry,System.Double[])">
+            <summary>
+            Changes the values of the specified pixels.
+            </summary>
+            <param name="geometry">The geometry of the area.</param>
+            <param name="values">The values of the pixels.</param>
+        </member>
+        <member name="M:ImageMagick.IPixelCollection`1.SetDoublePixels(System.Double[])">
+            <summary>
+            Changes the values of the specified pixels.
+            </summary>
+            <param name="values">The values of the pixels.</param>
+        </member>
+        <member name="M:ImageMagick.IPixelCollection`1.SetIntArea(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32[])">
+            <summary>
+            Changes the values of the specified pixels.
+            </summary>
+            <param name="x">The X coordinate of the area.</param>
+            <param name="y">The Y coordinate of the area.</param>
+            <param name="width">The width of the area.</param>
+            <param name="height">The height of the area.</param>
+            <param name="values">The values of the pixels.</param>
+        </member>
+        <member name="M:ImageMagick.IPixelCollection`1.SetIntArea(ImageMagick.IMagickGeometry,System.Int32[])">
+            <summary>
+            Changes the values of the specified pixels.
+            </summary>
+            <param name="geometry">The geometry of the area.</param>
+            <param name="values">The values of the pixels.</param>
+        </member>
+        <member name="M:ImageMagick.IPixelCollection`1.SetIntPixels(System.Int32[])">
+            <summary>
+            Changes the values of the specified pixels.
+            </summary>
+            <param name="values">The values of the pixels.</param>
+        </member>
         <member name="M:ImageMagick.IPixelCollection`1.SetPixel(ImageMagick.IPixel{`0})">
             <summary>
             Changes the value of the specified pixel.
@@ -12095,96 +12209,10 @@
             <param name="y">The Y coordinate of the pixel.</param>
             <param name="value">The value of the pixel.</param>
         </member>
-        <member name="M:ImageMagick.IPixelCollection`1.SetPixels(System.Byte[])">
-            <summary>
-            Changes the values of the specified pixels.
-            </summary>
-            <param name="values">The values of the pixels.</param>
-        </member>
-        <member name="M:ImageMagick.IPixelCollection`1.SetPixels(System.Double[])">
-            <summary>
-            Changes the values of the specified pixels.
-            </summary>
-            <param name="values">The values of the pixels.</param>
-        </member>
-        <member name="M:ImageMagick.IPixelCollection`1.SetPixels(System.Int32[])">
-            <summary>
-            Changes the values of the specified pixels.
-            </summary>
-            <param name="values">The values of the pixels.</param>
-        </member>
         <member name="M:ImageMagick.IPixelCollection`1.SetPixels(`0[])">
             <summary>
             Changes the values of the specified pixels.
             </summary>
-            <param name="values">The values of the pixels.</param>
-        </member>
-        <member name="M:ImageMagick.IPixelCollection`1.SetArea(System.Int32,System.Int32,System.Int32,System.Int32,System.Byte[])">
-            <summary>
-            Changes the values of the specified pixels.
-            </summary>
-            <param name="x">The X coordinate of the area.</param>
-            <param name="y">The Y coordinate of the area.</param>
-            <param name="width">The width of the area.</param>
-            <param name="height">The height of the area.</param>
-            <param name="values">The values of the pixels.</param>
-        </member>
-        <member name="M:ImageMagick.IPixelCollection`1.SetArea(ImageMagick.IMagickGeometry,System.Byte[])">
-            <summary>
-            Changes the values of the specified pixels.
-            </summary>
-            <param name="geometry">The geometry of the area.</param>
-            <param name="values">The values of the pixels.</param>
-        </member>
-        <member name="M:ImageMagick.IPixelCollection`1.SetArea(System.Int32,System.Int32,System.Int32,System.Int32,System.Double[])">
-            <summary>
-            Changes the values of the specified pixels.
-            </summary>
-            <param name="x">The X coordinate of the area.</param>
-            <param name="y">The Y coordinate of the area.</param>
-            <param name="width">The width of the area.</param>
-            <param name="height">The height of the area.</param>
-            <param name="values">The values of the pixels.</param>
-        </member>
-        <member name="M:ImageMagick.IPixelCollection`1.SetArea(ImageMagick.IMagickGeometry,System.Double[])">
-            <summary>
-            Changes the values of the specified pixels.
-            </summary>
-            <param name="geometry">The geometry of the area.</param>
-            <param name="values">The values of the pixels.</param>
-        </member>
-        <member name="M:ImageMagick.IPixelCollection`1.SetArea(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32[])">
-            <summary>
-            Changes the values of the specified pixels.
-            </summary>
-            <param name="x">The X coordinate of the area.</param>
-            <param name="y">The Y coordinate of the area.</param>
-            <param name="width">The width of the area.</param>
-            <param name="height">The height of the area.</param>
-            <param name="values">The values of the pixels.</param>
-        </member>
-        <member name="M:ImageMagick.IPixelCollection`1.SetArea(ImageMagick.IMagickGeometry,System.Int32[])">
-            <summary>
-            Changes the values of the specified pixels.
-            </summary>
-            <param name="geometry">The geometry of the area.</param>
-            <param name="values">The values of the pixels.</param>
-        </member>
-        <member name="M:ImageMagick.IPixelCollection`1.SetArea(System.Int32,System.Int32,System.Int32,System.Int32,`0[])">
-            <summary>
-            Changes the values of the specified pixels.
-            </summary>
-            <param name="x">The X coordinate of the area.</param>
-            <param name="y">The Y coordinate of the area.</param>
-            <param name="width">The width of the area.</param>
-            <param name="height">The height of the area.</param>
-            <param name="values">The values of the pixels.</param>
-        </member>
-        <member name="M:ImageMagick.IPixelCollection`1.SetArea(ImageMagick.IMagickGeometry,`0[])">
-            <summary>
-            Changes the values of the specified pixels.
-            </summary>
-            <param name="geometry">The geometry of the area.</param>
             <param name="values">The values of the pixels.</param>
         </member>
         <member name="M:ImageMagick.IPixelCollection`1.ToArray">

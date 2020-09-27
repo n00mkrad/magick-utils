@@ -118,7 +118,8 @@ namespace MagickUtils
 
         static void Write (MagickImage img, FT filter)
         {
-            if(!appendFiltername)
+            img.Quality = Program.GetDefaultQuality(img);
+            if (!appendFiltername)
             {
                 if(!dontOverwrite)
                 {

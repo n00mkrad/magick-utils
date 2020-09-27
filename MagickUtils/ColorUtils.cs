@@ -35,7 +35,7 @@ namespace MagickUtils.MagickUtils
             img.Write(path);
         }
 
-        public static async void RemTransparencyDir (byte mode)
+        public static async void RemTransparencyDir (NoAlphaMode mode)
         {
             int counter = 1;
             FileInfo[] files = IOUtils.GetFiles();
@@ -50,12 +50,12 @@ namespace MagickUtils.MagickUtils
             Program.PostProcessing();
         }
 
-        public static void RemoveTransparency (string path, byte mode)
+        public enum NoAlphaMode { Off, Fill }
+        public static void RemoveTransparency (string path, NoAlphaMode mode)
         {
             MagickImage img = IOUtils.ReadImage(path);
-            if(mode == 0) img.ColorAlpha(MagickColors.Black);
-            if(mode == 1) img.ColorAlpha(MagickColors.White);
-            if(mode == 2) img.Alpha(AlphaOption.Off);
+            if(mode == NoAlphaMode.Fill) img.ColorAlpha(new MagickColor("#" + Config.Get("backgroundColor")));
+            if(mode == NoAlphaMode.Off) img.Alpha(AlphaOption.Off);
             img.Write(path);
         }
 
@@ -83,7 +83,7 @@ namespace MagickUtils.MagickUtils
             img.Write(path);
         }
 
-        public enum DitherType { FloydSteinberg, Riemersma, Random }
+        public enum DitherType { FloydSteinberg, Riemersma, Ordered4x4, Halftone4x4, Random }
         public static async void DitherDir (int colorsMin, int colorsMax, DitherType type)
         {
             int counter = 1;
@@ -102,32 +102,86 @@ namespace MagickUtils.MagickUtils
         public static void Dither (string path, int colorsMin, int colorsMax, DitherType type)
         {
             MagickImage img = IOUtils.ReadImage(path);
-            QuantizeSettings quantSettings = new QuantizeSettings();
             int colors = new Random().Next(colorsMin, colorsMax);
-            quantSettings.Colors = colors;
-            quantSettings.DitherMethod = GetDitherMethod(type);
-            Program.Print("-> Colors: " + colors + ", Dither Method: " + quantSettings.DitherMethod.ToString());
-            img.Quantize(quantSettings);
+            //Program.Print("-> Colors: " + colors + ", Dither Method: " + quantSettings.DitherMethod.ToString());
+            DitherWithMethod(img, colors, type);
             img.Quality = Program.GetDefaultQuality(img);
             img.Write(path);
         }
 
-        static DitherMethod GetDitherMethod (DitherType type)
+        static void DitherWithMethod (MagickImage img, int colors, DitherType type)
         {
-            if(type == DitherType.FloydSteinberg)
-                return DitherMethod.FloydSteinberg;
+            if(type != DitherType.Random)
+                Program.Print("-> Colors: " + colors + ", Dither Method: " + type.ToString());
 
-            if(type == DitherType.Riemersma)
-                return DitherMethod.Riemersma;
+            if (type == DitherType.FloydSteinberg)
+                img.Quantize(new QuantizeSettings { Colors = colors, DitherMethod = DitherMethod.FloydSteinberg });
+
+            if (type == DitherType.Riemersma)
+                img.Quantize(new QuantizeSettings { Colors = colors, DitherMethod = DitherMethod.Riemersma });
+
+            if (type == DitherType.Ordered4x4)
+                img.OrderedDither("o4x4");
+
+            if (type == DitherType.Halftone4x4)
+                img.OrderedDither("h4x4a");
 
             var random = new Random();
-            int i = random.Next(0, 2);
-            if(i == 0)
-                return DitherMethod.FloydSteinberg;
-            if(i == 1)
-                return DitherMethod.Riemersma;
+            int i = random.Next(0, 4);
 
-            return DitherMethod.FloydSteinberg;
+            if (type == DitherType.Random)
+            {
+                if (i == 0)
+                    DitherWithMethod(img, colors, DitherType.FloydSteinberg);
+                if (i == 1)
+                    DitherWithMethod(img, colors, DitherType.Riemersma);
+                if (i == 2)
+                    DitherWithMethod(img, colors, DitherType.Ordered4x4);
+                if (i == 3)
+                    DitherWithMethod(img, colors, DitherType.Halftone4x4);
+            }
+
+        }
+
+        public static async void DeleteGrayscaleImgDir (float thresh, bool invert)
+        {
+            int counter = 1;
+            FileInfo[] files = IOUtils.GetFiles();
+            Program.PreProcessing();
+            foreach (FileInfo file in files)
+            {
+                Program.ShowProgress("", counter, files.Length);
+                counter++;
+                DeleteGrayscaleImg(file.FullName, thresh, invert);
+                if (counter % 5 == 0) await Program.PutTaskDelay();
+            }
+            Program.PostProcessing();
+        }
+
+        public static void DeleteGrayscaleImg (string path, float thresh, bool invert)
+        {
+            MagickImage img = IOUtils.ReadImage(path);
+            img.ColorSpace = ColorSpace.HSL;
+
+            float saturation = 100f;
+            using (IMagickImage channel = img.Separate(Channels.Gray).First())
+            {
+                saturation = channel.FormatExpression("%[fx:mean]").GetFloat();
+                Program.Print("Image Saturation: " + saturation.ToString("0.00"));
+            }
+
+            if (!invert && saturation < thresh)
+            {
+                Program.Print("Deleting " + Path.GetFileName(path));
+                File.Delete(path);
+            }
+                
+            if (invert && saturation > thresh)
+            {
+                Program.Print("Deleting " + Path.GetFileName(path));
+                File.Delete(path);
+            }
+
         }
     }
 }

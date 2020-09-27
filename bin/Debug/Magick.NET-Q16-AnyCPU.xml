@@ -4429,6 +4429,13 @@
             <param name="pathName">Name of clipping path resource. If name is preceded by #, use clipping path numbered by name.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
+        <member name="M:ImageMagick.MagickImage.SetCompression(ImageMagick.CompressionMethod)">
+            <summary>
+            Gets the compression of the image. This method should only be used when the encoder uses the compression of the image. For
+            most usecases Setting.Compression should be used instead.
+            </summary>
+            <param name="compression">The compression method.</param>
+        </member>
         <member name="M:ImageMagick.MagickImage.SetColormap(System.Int32,ImageMagick.IMagickColor{System.UInt16})">
             <summary>
             Set color at colormap position index.
@@ -4932,6 +4939,13 @@
             <param name="format">The format to use.</param>
             <returns>A base64 <see cref="T:System.String"/>.</returns>
         </member>
+        <member name="M:ImageMagick.MagickImage.ToBase64(ImageMagick.IWriteDefines)">
+            <summary>
+            Converts this instance to a base64 <see cref="T:System.String"/>.
+            </summary>
+            <param name="defines">The defines to set.</param>
+            <returns>A base64 <see cref="T:System.String"/>.</returns>
+        </member>
         <member name="M:ImageMagick.MagickImage.ToByteArray">
             <summary>
             Converts this instance to a <see cref="T:System.Byte"/> array.
@@ -5144,6 +5158,17 @@
             </summary>
             <param name="thresholdPercentage">The threshold for smoothing.</param>
             <param name="softness">Attenuate the smoothing threshold.</param>
+        </member>
+        <member name="M:ImageMagick.MagickImage.WhiteBalance">
+            <summary>
+            Apply a white balancing to an image according to a grayworld assumption in the LAB colorspace.
+            </summary>
+        </member>
+        <member name="M:ImageMagick.MagickImage.WhiteBalance(ImageMagick.Percentage)">
+            <summary>
+            Apply a white balancing to an image according to a grayworld assumption in the LAB colorspace.
+            </summary>
+            <param name="vibrance">The vibrance.</param>
         </member>
         <member name="M:ImageMagick.MagickImage.WhiteThreshold(ImageMagick.Percentage)">
             <summary>
@@ -6961,7 +6986,7 @@
             <param name="name">The name of the define.</param>
             <returns>A string for the specified format and name.</returns>
         </member>
-        <member name="M:ImageMagick.MagickSettings.Copy(ImageMagick.MagickSettings)">
+        <member name="M:ImageMagick.MagickSettings.CopyFrom(ImageMagick.MagickSettings)">
             <summary>
             Copies the settings from the specified <see cref="T:ImageMagick.MagickSettings"/>.
             </summary>
@@ -12886,6 +12911,26 @@
             </summary>
             <returns>A new <see cref="T:ImageMagick.IQuantizeSettings"/> instance.</returns>
         </member>
+        <member name="T:ImageMagick.Formats.Bmp.BmpReadDefines">
+            <summary>
+            Class for defines that are used when a <see cref="F:ImageMagick.MagickFormat.Bmp"/> image is read.
+            </summary>
+        </member>
+        <member name="M:ImageMagick.Formats.Bmp.BmpReadDefines.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ImageMagick.Formats.Bmp.BmpReadDefines"/> class.
+            </summary>
+        </member>
+        <member name="P:ImageMagick.Formats.Bmp.BmpReadDefines.IgnoreFileSize">
+            <summary>
+            Gets or sets a value indicating whether the file size should be ignored (bmp:ignore-filesize).
+            </summary>
+        </member>
+        <member name="P:ImageMagick.Formats.Bmp.BmpReadDefines.Defines">
+            <summary>
+            Gets the defines that should be set as a define on an image.
+            </summary>
+        </member>
         <member name="T:ImageMagick.Formats.Bmp.BmpSubtype">
             <summary>
             Specifies bmp subtypes.
@@ -13650,6 +13695,11 @@
             Gets or sets the endianness of the tiff file (tiff:fill-order).
             </summary>
         </member>
+        <member name="P:ImageMagick.Formats.Tiff.TiffWriteDefines.PreserveCompression">
+            <summary>
+            Gets or sets a value indicating whether the compression of the image should be preserved (tiff:preserve-compression).
+            </summary>
+        </member>
         <member name="P:ImageMagick.Formats.Tiff.TiffWriteDefines.RowsPerStrip">
             <summary>
             Gets or sets the rows per strip (tiff:rows-per-strip).
@@ -13658,6 +13708,11 @@
         <member name="P:ImageMagick.Formats.Tiff.TiffWriteDefines.TileGeometry">
             <summary>
             Gets or sets the tile geometry (tiff:tile-geometry).
+            </summary>
+        </member>
+        <member name="P:ImageMagick.Formats.Tiff.TiffWriteDefines.WriteLayers">
+            <summary>
+            Gets or sets a value indicating whether photoshop layers should be written (tiff:write-layers).
             </summary>
         </member>
         <member name="P:ImageMagick.Formats.Tiff.TiffWriteDefines.Defines">

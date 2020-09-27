@@ -121,12 +121,30 @@
             this.label88 = new System.Windows.Forms.Label();
             this.cropBtn = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.panel21 = new System.Windows.Forms.Panel();
+            this.removeBytesAmount = new System.Windows.Forms.TextBox();
+            this.label103 = new System.Windows.Forms.Label();
+            this.label104 = new System.Windows.Forms.Label();
+            this.removeBytesBtn = new System.Windows.Forms.Button();
+            this.panel20 = new System.Windows.Forms.Panel();
+            this.deleteColorImgsBtn = new System.Windows.Forms.Button();
+            this.grayscaleThreshTbox = new System.Windows.Forms.TextBox();
+            this.label102 = new System.Windows.Forms.Label();
+            this.label101 = new System.Windows.Forms.Label();
+            this.deleteGrayscaleImgsBtn = new System.Windows.Forms.Button();
+            this.panel19 = new System.Windows.Forms.Panel();
+            this.label100 = new System.Windows.Forms.Label();
+            this.printInfoBtn = new System.Windows.Forms.Button();
             this.panel18 = new System.Windows.Forms.Panel();
             this.zeroPaddingCombox = new System.Windows.Forms.ComboBox();
             this.label92 = new System.Windows.Forms.Label();
             this.zeropadBtn = new System.Windows.Forms.Button();
             this.label93 = new System.Windows.Forms.Label();
             this.panel15 = new System.Windows.Forms.Panel();
+            this.label99 = new System.Windows.Forms.Label();
+            this.renameCounterStartAt = new System.Windows.Forms.TextBox();
+            this.renameCounterPadding = new System.Windows.Forms.ComboBox();
+            this.label98 = new System.Windows.Forms.Label();
             this.renameCounterMode = new System.Windows.Forms.ComboBox();
             this.label83 = new System.Windows.Forms.Label();
             this.renameCounterBtn = new System.Windows.Forms.Button();
@@ -197,7 +215,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.alphaOffBtn = new System.Windows.Forms.Button();
             this.remAlphaBlack = new System.Windows.Forms.Button();
-            this.remAlphaWhite = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.autoLevelBtn = new System.Windows.Forms.Button();
@@ -255,13 +272,16 @@
             this.label72 = new System.Windows.Forms.Label();
             this.rotateBtn = new System.Windows.Forms.Button();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.label97 = new System.Windows.Forms.Label();
+            this.pngQ = new System.Windows.Forms.ComboBox();
+            this.label96 = new System.Windows.Forms.Label();
             this.bgColorSelectBtn = new System.Windows.Forms.Button();
             this.label76 = new System.Windows.Forms.Label();
-            this.confBgColor = new System.Windows.Forms.TextBox();
+            this.backgroundColor = new System.Windows.Forms.TextBox();
             this.label75 = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
             this.label44 = new System.Windows.Forms.Label();
-            this.noExtFilterForFileOpsCbox = new System.Windows.Forms.CheckBox();
+            this.fileOperationsNoFilter = new System.Windows.Forms.CheckBox();
             this.saveCfgBtn = new System.Windows.Forms.Button();
             this.recursiveCbox = new System.Windows.Forms.CheckBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
@@ -274,6 +294,9 @@
             this.defTip = new System.Windows.Forms.ToolTip(this.components);
             this.bgColorDialog = new System.Windows.Forms.ColorDialog();
             this.layerColorDialog = new System.Windows.Forms.ColorDialog();
+            this.label105 = new System.Windows.Forms.Label();
+            this.filenameReplaceIncludeExt = new System.Windows.Forms.CheckBox();
+            this.label106 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -285,6 +308,9 @@
             this.tabPage14.SuspendLayout();
             this.tabPage15.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.panel21.SuspendLayout();
+            this.panel20.SuspendLayout();
+            this.panel19.SuspendLayout();
             this.panel18.SuspendLayout();
             this.panel15.SuspendLayout();
             this.panel11.SuspendLayout();
@@ -538,10 +564,12 @@
             this.formatCombox.Items.AddRange(new object[] {
             "JPEG",
             "PNG",
+            "WEBP",
+            "BMP",
             "DDS",
             "TGA",
-            "WEBP",
             "JPEG 2000",
+            "AVIF",
             "FLIF"});
             this.formatCombox.Location = new System.Drawing.Point(150, 6);
             this.formatCombox.Name = "formatCombox";
@@ -608,6 +636,7 @@
             // 
             // resampleReupscaleFilterBox
             // 
+            this.resampleReupscaleFilterBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.resampleReupscaleFilterBox.FormattingEnabled = true;
             this.resampleReupscaleFilterBox.Items.AddRange(new object[] {
             "Mitchell",
@@ -620,7 +649,6 @@
             this.resampleReupscaleFilterBox.Name = "resampleReupscaleFilterBox";
             this.resampleReupscaleFilterBox.Size = new System.Drawing.Size(150, 21);
             this.resampleReupscaleFilterBox.TabIndex = 43;
-            this.resampleReupscaleFilterBox.Text = "Mitchell";
             this.resampleReupscaleFilterBox.Visible = false;
             // 
             // label42
@@ -715,6 +743,7 @@
             // 
             // filterModeCombox
             // 
+            this.filterModeCombox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.filterModeCombox.FormattingEnabled = true;
             this.filterModeCombox.Items.AddRange(new object[] {
             "Mitchell",
@@ -727,7 +756,6 @@
             this.filterModeCombox.Name = "filterModeCombox";
             this.filterModeCombox.Size = new System.Drawing.Size(150, 21);
             this.filterModeCombox.TabIndex = 33;
-            this.filterModeCombox.Text = "Mitchell";
             // 
             // label20
             // 
@@ -770,6 +798,7 @@
             // 
             // scaleModeCombox
             // 
+            this.scaleModeCombox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.scaleModeCombox.FormattingEnabled = true;
             this.scaleModeCombox.Items.AddRange(new object[] {
             "Percentage",
@@ -781,7 +810,6 @@
             this.scaleModeCombox.Name = "scaleModeCombox";
             this.scaleModeCombox.Size = new System.Drawing.Size(150, 21);
             this.scaleModeCombox.TabIndex = 28;
-            this.scaleModeCombox.Text = "Percentage";
             this.scaleModeCombox.SelectedIndexChanged += new System.EventHandler(this.scaleModeCombox_SelectedIndexChanged);
             // 
             // maxScaleCombox
@@ -851,6 +879,7 @@
             // 
             // scaleResampleCombox
             // 
+            this.scaleResampleCombox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.scaleResampleCombox.FormattingEnabled = true;
             this.scaleResampleCombox.Items.AddRange(new object[] {
             "Scale",
@@ -859,7 +888,6 @@
             this.scaleResampleCombox.Name = "scaleResampleCombox";
             this.scaleResampleCombox.Size = new System.Drawing.Size(150, 21);
             this.scaleResampleCombox.TabIndex = 19;
-            this.scaleResampleCombox.Text = "Scale";
             this.scaleResampleCombox.SelectedIndexChanged += new System.EventHandler(this.scaleResampleCombox_SelectedIndexChanged);
             // 
             // tabPage8
@@ -1348,6 +1376,9 @@
             // 
             this.tabPage3.AutoScroll = true;
             this.tabPage3.AutoScrollMargin = new System.Drawing.Size(0, 10);
+            this.tabPage3.Controls.Add(this.panel21);
+            this.tabPage3.Controls.Add(this.panel20);
+            this.tabPage3.Controls.Add(this.panel19);
             this.tabPage3.Controls.Add(this.panel18);
             this.tabPage3.Controls.Add(this.panel15);
             this.tabPage3.Controls.Add(this.panel11);
@@ -1364,6 +1395,152 @@
             this.tabPage3.Text = "File Handling";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // panel21
+            // 
+            this.panel21.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel21.Controls.Add(this.removeBytesAmount);
+            this.panel21.Controls.Add(this.label103);
+            this.panel21.Controls.Add(this.label104);
+            this.panel21.Controls.Add(this.removeBytesBtn);
+            this.panel21.Location = new System.Drawing.Point(6, 434);
+            this.panel21.Name = "panel21";
+            this.panel21.Size = new System.Drawing.Size(670, 31);
+            this.panel21.TabIndex = 36;
+            // 
+            // removeBytesAmount
+            // 
+            this.removeBytesAmount.Location = new System.Drawing.Point(509, 5);
+            this.removeBytesAmount.Name = "removeBytesAmount";
+            this.removeBytesAmount.Size = new System.Drawing.Size(50, 20);
+            this.removeBytesAmount.TabIndex = 34;
+            this.removeBytesAmount.Text = "12";
+            // 
+            // label103
+            // 
+            this.label103.AutoSize = true;
+            this.label103.Location = new System.Drawing.Point(408, 8);
+            this.label103.Name = "label103";
+            this.label103.Size = new System.Drawing.Size(95, 13);
+            this.label103.TabIndex = 33;
+            this.label103.Text = "Bytes To Remove:";
+            // 
+            // label104
+            // 
+            this.label104.AutoSize = true;
+            this.label104.BackColor = System.Drawing.Color.Transparent;
+            this.label104.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label104.Location = new System.Drawing.Point(3, 8);
+            this.label104.Name = "label104";
+            this.label104.Size = new System.Drawing.Size(218, 13);
+            this.label104.TabIndex = 8;
+            this.label104.Text = "Remove Bytes From Beginning of File";
+            // 
+            // removeBytesBtn
+            // 
+            this.removeBytesBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.removeBytesBtn.Location = new System.Drawing.Point(565, 3);
+            this.removeBytesBtn.Name = "removeBytesBtn";
+            this.removeBytesBtn.Size = new System.Drawing.Size(100, 23);
+            this.removeBytesBtn.TabIndex = 32;
+            this.removeBytesBtn.Text = "Run";
+            this.removeBytesBtn.UseVisualStyleBackColor = true;
+            this.removeBytesBtn.Click += new System.EventHandler(this.removeBytesBtn_Click);
+            // 
+            // panel20
+            // 
+            this.panel20.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel20.Controls.Add(this.deleteColorImgsBtn);
+            this.panel20.Controls.Add(this.grayscaleThreshTbox);
+            this.panel20.Controls.Add(this.label102);
+            this.panel20.Controls.Add(this.label101);
+            this.panel20.Controls.Add(this.deleteGrayscaleImgsBtn);
+            this.panel20.Location = new System.Drawing.Point(6, 43);
+            this.panel20.Name = "panel20";
+            this.panel20.Size = new System.Drawing.Size(670, 31);
+            this.panel20.TabIndex = 37;
+            // 
+            // deleteColorImgsBtn
+            // 
+            this.deleteColorImgsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deleteColorImgsBtn.Location = new System.Drawing.Point(359, 3);
+            this.deleteColorImgsBtn.Name = "deleteColorImgsBtn";
+            this.deleteColorImgsBtn.Size = new System.Drawing.Size(150, 23);
+            this.deleteColorImgsBtn.TabIndex = 37;
+            this.deleteColorImgsBtn.Text = "Delete Color Images";
+            this.deleteColorImgsBtn.UseVisualStyleBackColor = true;
+            this.deleteColorImgsBtn.Click += new System.EventHandler(this.deleteColorImgsBtn_Click);
+            // 
+            // grayscaleThreshTbox
+            // 
+            this.grayscaleThreshTbox.Location = new System.Drawing.Point(303, 5);
+            this.grayscaleThreshTbox.Name = "grayscaleThreshTbox";
+            this.grayscaleThreshTbox.Size = new System.Drawing.Size(50, 20);
+            this.grayscaleThreshTbox.TabIndex = 36;
+            this.grayscaleThreshTbox.Text = "0.02";
+            // 
+            // label102
+            // 
+            this.label102.AutoSize = true;
+            this.label102.Location = new System.Drawing.Point(243, 8);
+            this.label102.Name = "label102";
+            this.label102.Size = new System.Drawing.Size(54, 13);
+            this.label102.TabIndex = 35;
+            this.label102.Text = "Threshold";
+            // 
+            // label101
+            // 
+            this.label101.AutoSize = true;
+            this.label101.BackColor = System.Drawing.Color.Transparent;
+            this.label101.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label101.Location = new System.Drawing.Point(3, 8);
+            this.label101.Name = "label101";
+            this.label101.Size = new System.Drawing.Size(183, 13);
+            this.label101.TabIndex = 8;
+            this.label101.Text = "Delete/Keep Grayscale Images";
+            // 
+            // deleteGrayscaleImgsBtn
+            // 
+            this.deleteGrayscaleImgsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deleteGrayscaleImgsBtn.Location = new System.Drawing.Point(515, 3);
+            this.deleteGrayscaleImgsBtn.Name = "deleteGrayscaleImgsBtn";
+            this.deleteGrayscaleImgsBtn.Size = new System.Drawing.Size(150, 23);
+            this.deleteGrayscaleImgsBtn.TabIndex = 32;
+            this.deleteGrayscaleImgsBtn.Text = "Delete B/W Images";
+            this.deleteGrayscaleImgsBtn.UseVisualStyleBackColor = true;
+            this.deleteGrayscaleImgsBtn.Click += new System.EventHandler(this.deleteGrayscaleImgsBtn_Click);
+            // 
+            // panel19
+            // 
+            this.panel19.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel19.Controls.Add(this.label100);
+            this.panel19.Controls.Add(this.printInfoBtn);
+            this.panel19.Location = new System.Drawing.Point(6, 397);
+            this.panel19.Name = "panel19";
+            this.panel19.Size = new System.Drawing.Size(670, 31);
+            this.panel19.TabIndex = 36;
+            // 
+            // label100
+            // 
+            this.label100.AutoSize = true;
+            this.label100.BackColor = System.Drawing.Color.Transparent;
+            this.label100.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label100.Location = new System.Drawing.Point(3, 8);
+            this.label100.Name = "label100";
+            this.label100.Size = new System.Drawing.Size(152, 13);
+            this.label100.TabIndex = 8;
+            this.label100.Text = "Print Info For Each Image";
+            // 
+            // printInfoBtn
+            // 
+            this.printInfoBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.printInfoBtn.Location = new System.Drawing.Point(565, 3);
+            this.printInfoBtn.Name = "printInfoBtn";
+            this.printInfoBtn.Size = new System.Drawing.Size(100, 23);
+            this.printInfoBtn.TabIndex = 32;
+            this.printInfoBtn.Text = "Run";
+            this.printInfoBtn.UseVisualStyleBackColor = true;
+            this.printInfoBtn.Click += new System.EventHandler(this.printInfoBtn_Click);
+            // 
             // panel18
             // 
             this.panel18.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -1371,7 +1548,7 @@
             this.panel18.Controls.Add(this.label92);
             this.panel18.Controls.Add(this.zeropadBtn);
             this.panel18.Controls.Add(this.label93);
-            this.panel18.Location = new System.Drawing.Point(6, 257);
+            this.panel18.Location = new System.Drawing.Point(6, 294);
             this.panel18.Name = "panel18";
             this.panel18.Size = new System.Drawing.Size(670, 31);
             this.panel18.TabIndex = 36;
@@ -1424,25 +1601,67 @@
             // panel15
             // 
             this.panel15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel15.Controls.Add(this.label99);
+            this.panel15.Controls.Add(this.renameCounterStartAt);
+            this.panel15.Controls.Add(this.renameCounterPadding);
+            this.panel15.Controls.Add(this.label98);
             this.panel15.Controls.Add(this.renameCounterMode);
             this.panel15.Controls.Add(this.label83);
             this.panel15.Controls.Add(this.renameCounterBtn);
             this.panel15.Controls.Add(this.label84);
-            this.panel15.Location = new System.Drawing.Point(6, 220);
+            this.panel15.Location = new System.Drawing.Point(6, 257);
             this.panel15.Name = "panel15";
             this.panel15.Size = new System.Drawing.Size(670, 31);
             this.panel15.TabIndex = 35;
+            // 
+            // label99
+            // 
+            this.label99.AutoSize = true;
+            this.label99.Location = new System.Drawing.Point(163, 9);
+            this.label99.Name = "label99";
+            this.label99.Size = new System.Drawing.Size(41, 13);
+            this.label99.TabIndex = 37;
+            this.label99.Text = "Start at";
+            // 
+            // renameCounterStartAt
+            // 
+            this.renameCounterStartAt.Location = new System.Drawing.Point(210, 5);
+            this.renameCounterStartAt.Name = "renameCounterStartAt";
+            this.renameCounterStartAt.Size = new System.Drawing.Size(50, 20);
+            this.renameCounterStartAt.TabIndex = 36;
+            this.renameCounterStartAt.Text = "0";
+            // 
+            // renameCounterPadding
+            // 
+            this.renameCounterPadding.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.renameCounterPadding.FormattingEnabled = true;
+            this.renameCounterPadding.Items.AddRange(new object[] {
+            "None",
+            "Zero-Padding"});
+            this.renameCounterPadding.Location = new System.Drawing.Point(321, 4);
+            this.renameCounterPadding.Name = "renameCounterPadding";
+            this.renameCounterPadding.Size = new System.Drawing.Size(100, 21);
+            this.renameCounterPadding.TabIndex = 35;
+            // 
+            // label98
+            // 
+            this.label98.AutoSize = true;
+            this.label98.Location = new System.Drawing.Point(266, 9);
+            this.label98.Name = "label98";
+            this.label98.Size = new System.Drawing.Size(49, 13);
+            this.label98.TabIndex = 34;
+            this.label98.Text = "Padding:";
             // 
             // renameCounterMode
             // 
             this.renameCounterMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.renameCounterMode.FormattingEnabled = true;
             this.renameCounterMode.Items.AddRange(new object[] {
-            "Alphabetically (A -> Z)",
-            "Alphabetically (Z -> A)"});
-            this.renameCounterMode.Location = new System.Drawing.Point(409, 5);
+            "A -> Z",
+            "Z -> A"});
+            this.renameCounterMode.Location = new System.Drawing.Point(459, 4);
             this.renameCounterMode.Name = "renameCounterMode";
-            this.renameCounterMode.Size = new System.Drawing.Size(150, 21);
+            this.renameCounterMode.Size = new System.Drawing.Size(100, 21);
             this.renameCounterMode.TabIndex = 33;
             // 
             // label83
@@ -1452,9 +1671,9 @@
             this.label83.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label83.Location = new System.Drawing.Point(3, 8);
             this.label83.Name = "label83";
-            this.label83.Size = new System.Drawing.Size(167, 13);
+            this.label83.Size = new System.Drawing.Size(131, 13);
             this.label83.TabIndex = 8;
-            this.label83.Text = "Rename Files Using Counter";
+            this.label83.Text = "Rename With Counter";
             // 
             // renameCounterBtn
             // 
@@ -1470,11 +1689,11 @@
             // label84
             // 
             this.label84.AutoSize = true;
-            this.label84.Location = new System.Drawing.Point(360, 8);
+            this.label84.Location = new System.Drawing.Point(424, 9);
             this.label84.Name = "label84";
-            this.label84.Size = new System.Drawing.Size(43, 13);
+            this.label84.Size = new System.Drawing.Size(29, 13);
             this.label84.TabIndex = 20;
-            this.label84.Text = "Sorting:";
+            this.label84.Text = "Sort:";
             // 
             // panel11
             // 
@@ -1484,7 +1703,7 @@
             this.panel11.Controls.Add(this.label50);
             this.panel11.Controls.Add(this.label51);
             this.panel11.Controls.Add(this.delMissingBtn);
-            this.panel11.Location = new System.Drawing.Point(6, 294);
+            this.panel11.Location = new System.Drawing.Point(6, 331);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(670, 60);
             this.panel11.TabIndex = 36;
@@ -1546,7 +1765,7 @@
             this.panel9.Controls.Add(this.label38);
             this.panel9.Controls.Add(this.replaceBtn);
             this.panel9.Controls.Add(this.label39);
-            this.panel9.Location = new System.Drawing.Point(6, 183);
+            this.panel9.Location = new System.Drawing.Point(6, 220);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(670, 31);
             this.panel9.TabIndex = 35;
@@ -1613,7 +1832,7 @@
             this.panel8.Controls.Add(this.label32);
             this.panel8.Controls.Add(this.button2);
             this.panel8.Controls.Add(this.label37);
-            this.panel8.Location = new System.Drawing.Point(6, 146);
+            this.panel8.Location = new System.Drawing.Point(6, 183);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(670, 31);
             this.panel8.TabIndex = 34;
@@ -1625,14 +1844,14 @@
             this.suffixPrefixCombox.Items.AddRange(new object[] {
             "Before Filename (Prefix)",
             "After Filename (Suffix)"});
-            this.suffixPrefixCombox.Location = new System.Drawing.Point(409, 5);
+            this.suffixPrefixCombox.Location = new System.Drawing.Point(409, 4);
             this.suffixPrefixCombox.Name = "suffixPrefixCombox";
             this.suffixPrefixCombox.Size = new System.Drawing.Size(150, 21);
             this.suffixPrefixCombox.TabIndex = 33;
             // 
             // suffixPrefixTbox
             // 
-            this.suffixPrefixTbox.Location = new System.Drawing.Point(303, 6);
+            this.suffixPrefixTbox.Location = new System.Drawing.Point(303, 5);
             this.suffixPrefixTbox.Name = "suffixPrefixTbox";
             this.suffixPrefixTbox.Size = new System.Drawing.Size(100, 20);
             this.suffixPrefixTbox.TabIndex = 9;
@@ -1678,7 +1897,7 @@
             this.panel5.Controls.Add(this.normalSuffixCombox);
             this.panel5.Controls.Add(this.label27);
             this.panel5.Controls.Add(this.groupNormalsBtn);
-            this.panel5.Location = new System.Drawing.Point(6, 80);
+            this.panel5.Location = new System.Drawing.Point(6, 117);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(670, 60);
             this.panel5.TabIndex = 35;
@@ -1765,7 +1984,7 @@
             this.panel4.Controls.Add(this.label57);
             this.panel4.Controls.Add(this.label26);
             this.panel4.Controls.Add(this.delFilesNotMatchingExtBtn);
-            this.panel4.Location = new System.Drawing.Point(6, 43);
+            this.panel4.Location = new System.Drawing.Point(6, 80);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(670, 31);
             this.panel4.TabIndex = 34;
@@ -1978,11 +2197,15 @@
             this.ditherTypeCombox.FormattingEnabled = true;
             this.ditherTypeCombox.Items.AddRange(new object[] {
             "Floyd-Steinberg",
-            "Riemersma"});
+            "Riemersma",
+            "Ordered 4x4",
+            "Halftone 4x4",
+            "Random"});
             this.ditherTypeCombox.Location = new System.Drawing.Point(301, 4);
             this.ditherTypeCombox.Name = "ditherTypeCombox";
             this.ditherTypeCombox.Size = new System.Drawing.Size(100, 21);
             this.ditherTypeCombox.TabIndex = 36;
+            this.ditherTypeCombox.SelectedIndexChanged += new System.EventHandler(this.ditherTypeCombox_SelectedIndexChanged);
             // 
             // label89
             // 
@@ -2181,7 +2404,6 @@
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.alphaOffBtn);
             this.panel2.Controls.Add(this.remAlphaBlack);
-            this.panel2.Controls.Add(this.remAlphaWhite);
             this.panel2.Controls.Add(this.label22);
             this.panel2.Location = new System.Drawing.Point(6, 43);
             this.panel2.Name = "panel2";
@@ -2198,13 +2420,14 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 37;
             this.pictureBox1.TabStop = false;
-            this.defTip.SetToolTip(this.pictureBox1, "Tip: Use \"Alpha Off\" for images that use the Alpha channel to store additional in" +
-        "formation, like Skyrim\'s normal maps.");
+            this.defTip.SetToolTip(this.pictureBox1, "You can configure the color used for filling in the \"Config\" tab.\r\nTip: Use \"Alph" +
+        "a Off\" for images that use the Alpha channel to store additional information, li" +
+        "ke Skyrim\'s normal maps.");
             // 
             // alphaOffBtn
             // 
             this.alphaOffBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.alphaOffBtn.Location = new System.Drawing.Point(223, 3);
+            this.alphaOffBtn.Location = new System.Drawing.Point(329, 3);
             this.alphaOffBtn.Name = "alphaOffBtn";
             this.alphaOffBtn.Size = new System.Drawing.Size(150, 23);
             this.alphaOffBtn.TabIndex = 14;
@@ -2215,24 +2438,13 @@
             // remAlphaBlack
             // 
             this.remAlphaBlack.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.remAlphaBlack.Location = new System.Drawing.Point(535, 3);
+            this.remAlphaBlack.Location = new System.Drawing.Point(485, 3);
             this.remAlphaBlack.Name = "remAlphaBlack";
-            this.remAlphaBlack.Size = new System.Drawing.Size(150, 23);
+            this.remAlphaBlack.Size = new System.Drawing.Size(200, 23);
             this.remAlphaBlack.TabIndex = 13;
-            this.remAlphaBlack.Text = "Black Background";
+            this.remAlphaBlack.Text = "Fill Background With Color";
             this.remAlphaBlack.UseVisualStyleBackColor = true;
             this.remAlphaBlack.Click += new System.EventHandler(this.remAlphaBlack_Click);
-            // 
-            // remAlphaWhite
-            // 
-            this.remAlphaWhite.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.remAlphaWhite.Location = new System.Drawing.Point(379, 3);
-            this.remAlphaWhite.Name = "remAlphaWhite";
-            this.remAlphaWhite.Size = new System.Drawing.Size(150, 23);
-            this.remAlphaWhite.TabIndex = 12;
-            this.remAlphaWhite.Text = "White Background";
-            this.remAlphaWhite.UseVisualStyleBackColor = true;
-            this.remAlphaWhite.Click += new System.EventHandler(this.remAlphaWhite_Click);
             // 
             // label22
             // 
@@ -2878,13 +3090,19 @@
             // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.label106);
+            this.tabPage6.Controls.Add(this.filenameReplaceIncludeExt);
+            this.tabPage6.Controls.Add(this.label105);
+            this.tabPage6.Controls.Add(this.label97);
+            this.tabPage6.Controls.Add(this.pngQ);
+            this.tabPage6.Controls.Add(this.label96);
             this.tabPage6.Controls.Add(this.bgColorSelectBtn);
             this.tabPage6.Controls.Add(this.label76);
-            this.tabPage6.Controls.Add(this.confBgColor);
+            this.tabPage6.Controls.Add(this.backgroundColor);
             this.tabPage6.Controls.Add(this.label75);
             this.tabPage6.Controls.Add(this.label43);
             this.tabPage6.Controls.Add(this.label44);
-            this.tabPage6.Controls.Add(this.noExtFilterForFileOpsCbox);
+            this.tabPage6.Controls.Add(this.fileOperationsNoFilter);
             this.tabPage6.Controls.Add(this.saveCfgBtn);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
@@ -2895,10 +3113,45 @@
             this.tabPage6.UseVisualStyleBackColor = true;
             this.tabPage6.Enter += new System.EventHandler(this.tabPage6_Enter);
             // 
+            // label97
+            // 
+            this.label97.AutoSize = true;
+            this.label97.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label97.Location = new System.Drawing.Point(331, 84);
+            this.label97.Name = "label97";
+            this.label97.Size = new System.Drawing.Size(289, 13);
+            this.label97.TabIndex = 42;
+            this.label97.Text = "Compression strength used when re-encoding PNGs. 0-100.";
+            // 
+            // pngQ
+            // 
+            this.pngQ.FormattingEnabled = true;
+            this.pngQ.Items.AddRange(new object[] {
+            "100",
+            "70",
+            "50",
+            "30",
+            "10",
+            "0"});
+            this.pngQ.Location = new System.Drawing.Point(223, 81);
+            this.pngQ.Name = "pngQ";
+            this.pngQ.Size = new System.Drawing.Size(101, 21);
+            this.pngQ.TabIndex = 41;
+            this.pngQ.Text = "30";
+            // 
+            // label96
+            // 
+            this.label96.AutoSize = true;
+            this.label96.Location = new System.Drawing.Point(6, 84);
+            this.label96.Name = "label96";
+            this.label96.Size = new System.Drawing.Size(130, 13);
+            this.label96.TabIndex = 40;
+            this.label96.Text = "Default PNG Compression";
+            // 
             // bgColorSelectBtn
             // 
             this.bgColorSelectBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.bgColorSelectBtn.Location = new System.Drawing.Point(279, 31);
+            this.bgColorSelectBtn.Location = new System.Drawing.Point(299, 56);
             this.bgColorSelectBtn.Name = "bgColorSelectBtn";
             this.bgColorSelectBtn.Size = new System.Drawing.Size(25, 20);
             this.bgColorSelectBtn.TabIndex = 39;
@@ -2910,25 +3163,24 @@
             // 
             this.label76.AutoSize = true;
             this.label76.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label76.Location = new System.Drawing.Point(311, 34);
+            this.label76.Location = new System.Drawing.Point(331, 59);
             this.label76.Name = "label76";
             this.label76.Size = new System.Drawing.Size(352, 13);
             this.label76.TabIndex = 38;
             this.label76.Text = "For operations where a background gets filled, like expanding the canvas";
             // 
-            // confBgColor
+            // backgroundColor
             // 
-            this.confBgColor.Location = new System.Drawing.Point(203, 31);
-            this.confBgColor.Name = "confBgColor";
-            this.confBgColor.Size = new System.Drawing.Size(70, 20);
-            this.confBgColor.TabIndex = 36;
-            this.confBgColor.Text = "000000FF";
-            this.confBgColor.TextChanged += new System.EventHandler(this.confBgColor_TextChanged);
+            this.backgroundColor.Location = new System.Drawing.Point(223, 56);
+            this.backgroundColor.Name = "backgroundColor";
+            this.backgroundColor.Size = new System.Drawing.Size(70, 20);
+            this.backgroundColor.TabIndex = 36;
+            this.backgroundColor.Text = "000000FF";
             // 
             // label75
             // 
             this.label75.AutoSize = true;
-            this.label75.Location = new System.Drawing.Point(6, 34);
+            this.label75.Location = new System.Drawing.Point(6, 59);
             this.label75.Name = "label75";
             this.label75.Size = new System.Drawing.Size(170, 13);
             this.label75.TabIndex = 37;
@@ -2938,7 +3190,7 @@
             // 
             this.label43.AutoSize = true;
             this.label43.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label43.Location = new System.Drawing.Point(311, 9);
+            this.label43.Location = new System.Drawing.Point(331, 9);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(350, 13);
             this.label43.TabIndex = 35;
@@ -2953,17 +3205,16 @@
             this.label44.TabIndex = 34;
             this.label44.Text = "No Extension Filter for File Operations";
             // 
-            // noExtFilterForFileOpsCbox
+            // fileOperationsNoFilter
             // 
-            this.noExtFilterForFileOpsCbox.AutoSize = true;
-            this.noExtFilterForFileOpsCbox.Checked = true;
-            this.noExtFilterForFileOpsCbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.noExtFilterForFileOpsCbox.Location = new System.Drawing.Point(203, 9);
-            this.noExtFilterForFileOpsCbox.Name = "noExtFilterForFileOpsCbox";
-            this.noExtFilterForFileOpsCbox.Size = new System.Drawing.Size(15, 14);
-            this.noExtFilterForFileOpsCbox.TabIndex = 33;
-            this.noExtFilterForFileOpsCbox.UseVisualStyleBackColor = true;
-            this.noExtFilterForFileOpsCbox.CheckedChanged += new System.EventHandler(this.noExtFilterForFileOpsCbox_CheckedChanged);
+            this.fileOperationsNoFilter.AutoSize = true;
+            this.fileOperationsNoFilter.Checked = true;
+            this.fileOperationsNoFilter.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.fileOperationsNoFilter.Location = new System.Drawing.Point(223, 9);
+            this.fileOperationsNoFilter.Name = "fileOperationsNoFilter";
+            this.fileOperationsNoFilter.Size = new System.Drawing.Size(15, 14);
+            this.fileOperationsNoFilter.TabIndex = 33;
+            this.fileOperationsNoFilter.UseVisualStyleBackColor = true;
             // 
             // saveCfgBtn
             // 
@@ -3044,6 +3295,36 @@
             this.nameMustNotContainTbox.TabIndex = 12;
             this.nameMustNotContainTbox.TextChanged += new System.EventHandler(this.nameMustNotContainTbox_TextChanged);
             // 
+            // label105
+            // 
+            this.label105.AutoSize = true;
+            this.label105.Location = new System.Drawing.Point(6, 34);
+            this.label105.Name = "label105";
+            this.label105.Size = new System.Drawing.Size(203, 13);
+            this.label105.TabIndex = 43;
+            this.label105.Text = "Include Ext. When Replacing In Filename";
+            // 
+            // filenameReplaceIncludeExt
+            // 
+            this.filenameReplaceIncludeExt.AutoSize = true;
+            this.filenameReplaceIncludeExt.Checked = true;
+            this.filenameReplaceIncludeExt.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.filenameReplaceIncludeExt.Location = new System.Drawing.Point(223, 34);
+            this.filenameReplaceIncludeExt.Name = "filenameReplaceIncludeExt";
+            this.filenameReplaceIncludeExt.Size = new System.Drawing.Size(15, 14);
+            this.filenameReplaceIncludeExt.TabIndex = 44;
+            this.filenameReplaceIncludeExt.UseVisualStyleBackColor = true;
+            // 
+            // label106
+            // 
+            this.label106.AutoSize = true;
+            this.label106.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label106.Location = new System.Drawing.Point(331, 34);
+            this.label106.Name = "label106";
+            this.label106.Size = new System.Drawing.Size(286, 13);
+            this.label106.TabIndex = 45;
+            this.label106.Text = "Replace text in full filename or in filename without extension";
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -3090,6 +3371,12 @@
             this.tabPage15.ResumeLayout(false);
             this.tabPage15.PerformLayout();
             this.tabPage3.ResumeLayout(false);
+            this.panel21.ResumeLayout(false);
+            this.panel21.PerformLayout();
+            this.panel20.ResumeLayout(false);
+            this.panel20.PerformLayout();
+            this.panel19.ResumeLayout(false);
+            this.panel19.PerformLayout();
             this.panel18.ResumeLayout(false);
             this.panel18.PerformLayout();
             this.panel15.ResumeLayout(false);
@@ -3190,7 +3477,6 @@
         private System.Windows.Forms.ComboBox delSmallImagesSizeCombox;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button remAlphaBlack;
-        private System.Windows.Forms.Button remAlphaWhite;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label25;
@@ -3254,7 +3540,7 @@
         private System.Windows.Forms.TabPage tabPage6;
         private System.Windows.Forms.Label label43;
         private System.Windows.Forms.Label label44;
-        private System.Windows.Forms.CheckBox noExtFilterForFileOpsCbox;
+        private System.Windows.Forms.CheckBox fileOperationsNoFilter;
         private System.Windows.Forms.Button saveCfgBtn;
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.Button blurPrevBtn;
@@ -3335,7 +3621,7 @@
         private System.Windows.Forms.ComboBox cropDivisibleGrav;
         private System.Windows.Forms.Label label74;
         private System.Windows.Forms.Label label76;
-        private System.Windows.Forms.TextBox confBgColor;
+        private System.Windows.Forms.TextBox backgroundColor;
         private System.Windows.Forms.Label label75;
         private System.Windows.Forms.Label label77;
         private System.Windows.Forms.CheckBox cropDivisibleExpand;
@@ -3387,5 +3673,29 @@
         private System.Windows.Forms.Label resampleReupscaleFilterLabel;
         private System.Windows.Forms.Label label95;
         private System.Windows.Forms.ComboBox resampleReupscaleFilterBox;
+        private System.Windows.Forms.Label label97;
+        private System.Windows.Forms.ComboBox pngQ;
+        private System.Windows.Forms.Label label96;
+        private System.Windows.Forms.ComboBox renameCounterPadding;
+        private System.Windows.Forms.Label label98;
+        private System.Windows.Forms.Label label99;
+        private System.Windows.Forms.TextBox renameCounterStartAt;
+        private System.Windows.Forms.Panel panel19;
+        private System.Windows.Forms.Label label100;
+        private System.Windows.Forms.Button printInfoBtn;
+        private System.Windows.Forms.Panel panel20;
+        private System.Windows.Forms.Button deleteColorImgsBtn;
+        private System.Windows.Forms.TextBox grayscaleThreshTbox;
+        private System.Windows.Forms.Label label102;
+        private System.Windows.Forms.Label label101;
+        private System.Windows.Forms.Button deleteGrayscaleImgsBtn;
+        private System.Windows.Forms.Panel panel21;
+        private System.Windows.Forms.TextBox removeBytesAmount;
+        private System.Windows.Forms.Label label103;
+        private System.Windows.Forms.Label label104;
+        private System.Windows.Forms.Button removeBytesBtn;
+        private System.Windows.Forms.Label label106;
+        private System.Windows.Forms.CheckBox filenameReplaceIncludeExt;
+        private System.Windows.Forms.Label label105;
     }
 }

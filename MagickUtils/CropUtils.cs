@@ -48,7 +48,7 @@ namespace MagickUtils
             {
                 while(divisbleWidth % divisibleBy != 0) divisbleWidth++;
                 while(divisibleHeight % divisibleBy != 0) divisibleHeight++;
-                img.BackgroundColor = new MagickColor("#" + Config.backgroundColor);
+                img.BackgroundColor = new MagickColor("#" + Config.Get("backgroundColor"));
             }
 
             if(divisbleWidth == img.Width && divisibleHeight == img.Height)
@@ -116,7 +116,7 @@ namespace MagickUtils
                 Program.Print("-> Resizing to " + targetSize + "% (" + w + "x" + h + ")...");
                 geom = new MagickGeometry(w + "x" + h);
             }
-            img.BackgroundColor = new MagickColor("#" + Config.backgroundColor);
+            img.BackgroundColor = new MagickColor("#" + Config.Get("backgroundColor"));
             img.Extent(geom, grav);
             img.Write(path);
             PostProcessing(img, path);
@@ -157,7 +157,7 @@ namespace MagickUtils
                 w = img.Width - pix;
                 h = img.Height - pix;
             }
-            img.BackgroundColor = new MagickColor("#" + Config.backgroundColor);
+            img.BackgroundColor = new MagickColor("#" + Config.Get("backgroundColor"));
             MagickGeometry geom = new MagickGeometry(w + "x" + h + "!");
             img.Extent(geom, Gravity.Center);
 
@@ -186,7 +186,7 @@ namespace MagickUtils
             MagickImage img = IOUtils.ReadImage(path);
             PreProcessing(path);
 
-            img.BackgroundColor = new MagickColor("#" + Config.backgroundColor);
+            img.BackgroundColor = new MagickColor("#" + Config.Get("backgroundColor"));
             img.Extent(newWidth, newHeight, grav);
 
             img.Write(path);
@@ -203,13 +203,13 @@ namespace MagickUtils
             {
                 Program.ShowProgress("Tiling Image ", counter, Files.Length);
                 counter++;
-                Tile(file.FullName, w, h, useTileAmount);
+                await Tile(file.FullName, w, h, useTileAmount);
                 if(counter % 2 == 0) await Program.PutTaskDelay();
             }
             Program.PostProcessing();
         }
 
-        public static async void Tile (string path, int tileW, int tileH, bool useTileAmount)
+        public static async Task Tile (string path, int tileW, int tileH, bool useTileAmount)
         {
             MagickImage img = IOUtils.ReadImage(path);
             PreProcessing(path);
@@ -246,7 +246,6 @@ namespace MagickUtils
             Program.PreProcessing();
 
             int sqrt = (int)Math.Sqrt(files.Length);
-            //sqrt = 10;
 
             MagickImageCollection row = new MagickImageCollection();
             MagickImageCollection rows = new MagickImageCollection();
@@ -281,7 +280,7 @@ namespace MagickUtils
             }
             Program.Print("-> Creating output image... ");
             var result = rows.AppendVertically();
-            result.BackgroundColor = new MagickColor("#" + Config.backgroundColor);
+            result.BackgroundColor = new MagickColor("#" + Config.Get("backgroundColor"));
             result.Format = MagickFormat.Png;
             string outpath = Program.currentDir + "-merged.png";
             result.Write(outpath);
