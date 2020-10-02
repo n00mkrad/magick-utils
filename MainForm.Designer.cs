@@ -220,6 +220,14 @@
             this.autoLevelBtn = new System.Windows.Forms.Button();
             this.label21 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.panel22 = new System.Windows.Forms.Panel();
+            this.medianRadiusMax = new System.Windows.Forms.ComboBox();
+            this.label107 = new System.Windows.Forms.Label();
+            this.medianPreviewBtn = new System.Windows.Forms.Button();
+            this.label108 = new System.Windows.Forms.Label();
+            this.medianRadiusMin = new System.Windows.Forms.ComboBox();
+            this.label109 = new System.Windows.Forms.Label();
+            this.medianFilterBtn = new System.Windows.Forms.Button();
             this.panel16 = new System.Windows.Forms.Panel();
             this.label90 = new System.Windows.Forms.Label();
             this.edgeDetectBtn = new System.Windows.Forms.Button();
@@ -272,6 +280,9 @@
             this.label72 = new System.Windows.Forms.Label();
             this.rotateBtn = new System.Windows.Forms.Button();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.label106 = new System.Windows.Forms.Label();
+            this.filenameReplaceIncludeExt = new System.Windows.Forms.CheckBox();
+            this.label105 = new System.Windows.Forms.Label();
             this.label97 = new System.Windows.Forms.Label();
             this.pngQ = new System.Windows.Forms.ComboBox();
             this.label96 = new System.Windows.Forms.Label();
@@ -294,9 +305,6 @@
             this.defTip = new System.Windows.Forms.ToolTip(this.components);
             this.bgColorDialog = new System.Windows.Forms.ColorDialog();
             this.layerColorDialog = new System.Windows.Forms.ColorDialog();
-            this.label105 = new System.Windows.Forms.Label();
-            this.filenameReplaceIncludeExt = new System.Windows.Forms.CheckBox();
-            this.label106 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -329,6 +337,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.tabPage5.SuspendLayout();
+            this.panel22.SuspendLayout();
             this.panel16.SuspendLayout();
             this.panel10.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -2490,6 +2499,7 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.panel22);
             this.tabPage5.Controls.Add(this.panel16);
             this.tabPage5.Controls.Add(this.panel10);
             this.tabPage5.Controls.Add(this.panel7);
@@ -2501,12 +2511,108 @@
             this.tabPage5.Text = "Effects";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // panel22
+            // 
+            this.panel22.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel22.Controls.Add(this.medianRadiusMax);
+            this.panel22.Controls.Add(this.label107);
+            this.panel22.Controls.Add(this.medianPreviewBtn);
+            this.panel22.Controls.Add(this.label108);
+            this.panel22.Controls.Add(this.medianRadiusMin);
+            this.panel22.Controls.Add(this.label109);
+            this.panel22.Controls.Add(this.medianFilterBtn);
+            this.panel22.Location = new System.Drawing.Point(6, 109);
+            this.panel22.Name = "panel22";
+            this.panel22.Size = new System.Drawing.Size(690, 31);
+            this.panel22.TabIndex = 45;
+            // 
+            // medianRadiusMax
+            // 
+            this.medianRadiusMax.FormattingEnabled = true;
+            this.medianRadiusMax.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "4",
+            "6",
+            "8",
+            "10"});
+            this.medianRadiusMax.Location = new System.Drawing.Point(423, 5);
+            this.medianRadiusMax.Name = "medianRadiusMax";
+            this.medianRadiusMax.Size = new System.Drawing.Size(50, 21);
+            this.medianRadiusMax.TabIndex = 44;
+            // 
+            // label107
+            // 
+            this.label107.AutoSize = true;
+            this.label107.Location = new System.Drawing.Point(401, 8);
+            this.label107.Name = "label107";
+            this.label107.Size = new System.Drawing.Size(16, 13);
+            this.label107.TabIndex = 43;
+            this.label107.Text = "to";
+            // 
+            // medianPreviewBtn
+            // 
+            this.medianPreviewBtn.Location = new System.Drawing.Point(479, 3);
+            this.medianPreviewBtn.Name = "medianPreviewBtn";
+            this.medianPreviewBtn.Size = new System.Drawing.Size(100, 23);
+            this.medianPreviewBtn.TabIndex = 42;
+            this.medianPreviewBtn.Text = "Preview";
+            this.medianPreviewBtn.UseVisualStyleBackColor = true;
+            this.medianPreviewBtn.Click += new System.EventHandler(this.medianPreviewBtn_Click);
+            // 
+            // label108
+            // 
+            this.label108.AutoSize = true;
+            this.label108.Location = new System.Drawing.Point(296, 8);
+            this.label108.Name = "label108";
+            this.label108.Size = new System.Drawing.Size(43, 13);
+            this.label108.TabIndex = 41;
+            this.label108.Text = "Radius:";
+            // 
+            // medianRadiusMin
+            // 
+            this.medianRadiusMin.FormattingEnabled = true;
+            this.medianRadiusMin.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "4",
+            "6",
+            "8",
+            "10"});
+            this.medianRadiusMin.Location = new System.Drawing.Point(345, 5);
+            this.medianRadiusMin.Name = "medianRadiusMin";
+            this.medianRadiusMin.Size = new System.Drawing.Size(50, 21);
+            this.medianRadiusMin.TabIndex = 40;
+            this.medianRadiusMin.Text = "1";
+            // 
+            // label109
+            // 
+            this.label109.AutoSize = true;
+            this.label109.BackColor = System.Drawing.Color.Transparent;
+            this.label109.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label109.Location = new System.Drawing.Point(3, 8);
+            this.label109.Name = "label109";
+            this.label109.Size = new System.Drawing.Size(80, 13);
+            this.label109.TabIndex = 8;
+            this.label109.Text = "Median Filter";
+            // 
+            // medianFilterBtn
+            // 
+            this.medianFilterBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.medianFilterBtn.Location = new System.Drawing.Point(585, 3);
+            this.medianFilterBtn.Name = "medianFilterBtn";
+            this.medianFilterBtn.Size = new System.Drawing.Size(100, 23);
+            this.medianFilterBtn.TabIndex = 32;
+            this.medianFilterBtn.Text = "Apply";
+            this.medianFilterBtn.UseVisualStyleBackColor = true;
+            this.medianFilterBtn.Click += new System.EventHandler(this.medianFilterBtn_Click);
+            // 
             // panel16
             // 
             this.panel16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel16.Controls.Add(this.label90);
             this.panel16.Controls.Add(this.edgeDetectBtn);
-            this.panel16.Location = new System.Drawing.Point(6, 109);
+            this.panel16.Location = new System.Drawing.Point(6, 146);
             this.panel16.Name = "panel16";
             this.panel16.Size = new System.Drawing.Size(690, 31);
             this.panel16.TabIndex = 45;
@@ -2625,7 +2731,7 @@
             this.blurBtn.Name = "blurBtn";
             this.blurBtn.Size = new System.Drawing.Size(100, 23);
             this.blurBtn.TabIndex = 32;
-            this.blurBtn.Text = "Blur";
+            this.blurBtn.Text = "Apply";
             this.blurBtn.UseVisualStyleBackColor = true;
             this.blurBtn.Click += new System.EventHandler(this.blurBtn_Click);
             // 
@@ -2774,7 +2880,7 @@
             this.addNoiseBtn.Name = "addNoiseBtn";
             this.addNoiseBtn.Size = new System.Drawing.Size(100, 23);
             this.addNoiseBtn.TabIndex = 32;
-            this.addNoiseBtn.Text = "Add Noise";
+            this.addNoiseBtn.Text = "Apply";
             this.addNoiseBtn.UseVisualStyleBackColor = true;
             this.addNoiseBtn.Click += new System.EventHandler(this.addNoiseBtn_Click);
             // 
@@ -3113,6 +3219,36 @@
             this.tabPage6.UseVisualStyleBackColor = true;
             this.tabPage6.Enter += new System.EventHandler(this.tabPage6_Enter);
             // 
+            // label106
+            // 
+            this.label106.AutoSize = true;
+            this.label106.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label106.Location = new System.Drawing.Point(331, 34);
+            this.label106.Name = "label106";
+            this.label106.Size = new System.Drawing.Size(286, 13);
+            this.label106.TabIndex = 45;
+            this.label106.Text = "Replace text in full filename or in filename without extension";
+            // 
+            // filenameReplaceIncludeExt
+            // 
+            this.filenameReplaceIncludeExt.AutoSize = true;
+            this.filenameReplaceIncludeExt.Checked = true;
+            this.filenameReplaceIncludeExt.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.filenameReplaceIncludeExt.Location = new System.Drawing.Point(223, 34);
+            this.filenameReplaceIncludeExt.Name = "filenameReplaceIncludeExt";
+            this.filenameReplaceIncludeExt.Size = new System.Drawing.Size(15, 14);
+            this.filenameReplaceIncludeExt.TabIndex = 44;
+            this.filenameReplaceIncludeExt.UseVisualStyleBackColor = true;
+            // 
+            // label105
+            // 
+            this.label105.AutoSize = true;
+            this.label105.Location = new System.Drawing.Point(6, 34);
+            this.label105.Name = "label105";
+            this.label105.Size = new System.Drawing.Size(203, 13);
+            this.label105.TabIndex = 43;
+            this.label105.Text = "Include Ext. When Replacing In Filename";
+            // 
             // label97
             // 
             this.label97.AutoSize = true;
@@ -3295,36 +3431,6 @@
             this.nameMustNotContainTbox.TabIndex = 12;
             this.nameMustNotContainTbox.TextChanged += new System.EventHandler(this.nameMustNotContainTbox_TextChanged);
             // 
-            // label105
-            // 
-            this.label105.AutoSize = true;
-            this.label105.Location = new System.Drawing.Point(6, 34);
-            this.label105.Name = "label105";
-            this.label105.Size = new System.Drawing.Size(203, 13);
-            this.label105.TabIndex = 43;
-            this.label105.Text = "Include Ext. When Replacing In Filename";
-            // 
-            // filenameReplaceIncludeExt
-            // 
-            this.filenameReplaceIncludeExt.AutoSize = true;
-            this.filenameReplaceIncludeExt.Checked = true;
-            this.filenameReplaceIncludeExt.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.filenameReplaceIncludeExt.Location = new System.Drawing.Point(223, 34);
-            this.filenameReplaceIncludeExt.Name = "filenameReplaceIncludeExt";
-            this.filenameReplaceIncludeExt.Size = new System.Drawing.Size(15, 14);
-            this.filenameReplaceIncludeExt.TabIndex = 44;
-            this.filenameReplaceIncludeExt.UseVisualStyleBackColor = true;
-            // 
-            // label106
-            // 
-            this.label106.AutoSize = true;
-            this.label106.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label106.Location = new System.Drawing.Point(331, 34);
-            this.label106.Name = "label106";
-            this.label106.Size = new System.Drawing.Size(286, 13);
-            this.label106.TabIndex = 45;
-            this.label106.Text = "Replace text in full filename or in filename without extension";
-            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -3408,6 +3514,8 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tabPage5.ResumeLayout(false);
+            this.panel22.ResumeLayout(false);
+            this.panel22.PerformLayout();
             this.panel16.ResumeLayout(false);
             this.panel16.PerformLayout();
             this.panel10.ResumeLayout(false);
@@ -3697,5 +3805,13 @@
         private System.Windows.Forms.Label label106;
         private System.Windows.Forms.CheckBox filenameReplaceIncludeExt;
         private System.Windows.Forms.Label label105;
+        private System.Windows.Forms.Panel panel22;
+        private System.Windows.Forms.ComboBox medianRadiusMax;
+        private System.Windows.Forms.Label label107;
+        private System.Windows.Forms.Button medianPreviewBtn;
+        private System.Windows.Forms.Label label108;
+        private System.Windows.Forms.ComboBox medianRadiusMin;
+        private System.Windows.Forms.Label label109;
+        private System.Windows.Forms.Button medianFilterBtn;
     }
 }

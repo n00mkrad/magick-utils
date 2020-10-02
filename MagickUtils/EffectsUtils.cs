@@ -84,7 +84,7 @@ namespace MagickUtils
             var blur = new SuperfastBlur.GaussianBlur(image as Bitmap);
             Random rand = new Random();
             int blurRad = rand.Next(radiusMin, radiusMax + 1);
-            Program.Print("-> Using radius " + blurRad);
+            Program.Print("-> Using blur radius " + blurRad);
             var result = blur.Process(blurRad);
             string tempPath = Path.Combine(IOUtils.GetAppDataDir(), "blur-out.png");
             result.Save(tempPath, ImageFormat.Png);
@@ -122,6 +122,34 @@ namespace MagickUtils
             PostProcessing(null, path, path);
         }
 
+        public async static void MedianDir(int radiusMin, int radiusMax)
+        {
+            int counter = 1;
+            FileInfo[] files = IOUtils.GetFiles();
+
+            Program.PreProcessing();
+            foreach (FileInfo file in files)
+            {
+                Program.ShowProgress("Running Median Filter on Image ", counter, files.Length);
+                Median(file.FullName, radiusMin, radiusMax);
+                counter++;
+                if (counter % 2 == 0) await Program.PutTaskDelay();
+            }
+            Program.PostProcessing(true);
+        }
+
+        public static void Median(string path, int radiusMin, int radiusMax)
+        {
+            PreProcessing(path);
+            MagickImage img = new MagickImage(path);
+            Random rand = new Random();
+            int radius = rand.Next(radiusMin, radiusMax + 1);
+            Program.Print("-> Using median radius " + radius);
+            img.MedianFilter(radius);
+            img.Write(path);
+            PostProcessing(null, path, path);
+        }
+
         static void PreProcessing (string path, string infoSuffix = null)
         {
             Program.Print("-> Processing " + Path.GetFileName(path) + " " + infoSuffix);
@@ -135,7 +163,7 @@ namespace MagickUtils
                 img.Dispose();
             long bytesPost = new FileInfo(outPath).Length;
             //Program.Print("-> Done. Size pre: " + Format.Filesize(bytesPre) + " - Size post: " + Format.Filesize(bytesPost) + " - Ratio: " + Format.Ratio(bytesPre, bytesPost));
-            Program.Print("-> Done.");
+            Program.Print("Done.");
             if(delSource)
                 DelSource(sourcePath);
         }

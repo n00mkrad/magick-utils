@@ -418,11 +418,20 @@ namespace MagickUtils
 
         public void SetBlurVars ()
         {
-            EffectsTabHelper.blurRadiusMin = int.Parse(blurRadiusCombox.Text.Trim());
+            EffectsTabHelper.blurRadiusMin = blurRadiusCombox.GetInt();
             if(String.IsNullOrWhiteSpace(blurRadiusMaxCombox.Text.Trim()))
                 EffectsTabHelper.blurRadiusMax = EffectsTabHelper.blurRadiusMin;
             else
-                EffectsTabHelper.blurRadiusMax = int.Parse(blurRadiusMaxCombox.Text.Trim());
+                EffectsTabHelper.blurRadiusMax = blurRadiusMaxCombox.GetInt();
+        }
+
+        public void SetMedianVars()
+        {
+            EffectsTabHelper.medianRadiusMin = medianRadiusMin.GetInt();
+            if (String.IsNullOrWhiteSpace(medianRadiusMax.Text.Trim()))
+                EffectsTabHelper.medianRadiusMax = EffectsTabHelper.medianRadiusMin;
+            else
+                EffectsTabHelper.medianRadiusMax = medianRadiusMax.GetInt();
         }
 
         private void blurBtn_Click (object sender, EventArgs e)
@@ -597,6 +606,16 @@ namespace MagickUtils
             bool usesColorAmount = (ditherTypeCombox.SelectedIndex == 0 || ditherTypeCombox.SelectedIndex == 1);
             ditherColorsMin.Enabled = usesColorAmount;
             ditherColorsMax.Enabled = usesColorAmount;
+        }
+
+        private void medianPreviewBtn_Click(object sender, EventArgs e)
+        {
+            EffectsTabHelper.MedianPreview();
+        }
+
+        private void medianFilterBtn_Click(object sender, EventArgs e)
+        {
+            EffectsTabHelper.MedianApply();
         }
     }
 }

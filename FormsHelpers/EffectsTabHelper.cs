@@ -21,6 +21,9 @@ namespace MagickUtils
         public static int blurRadiusMin;
         public static int blurRadiusMax;
 
+        public static int medianRadiusMin;
+        public static int medianRadiusMax;
+
         public static void NoisePreview ()
         {
             Program.mainForm.SetNoiseVars();
@@ -64,6 +67,23 @@ namespace MagickUtils
         {
             Program.mainForm.SetBlurVars();
             EffectsUtils.BlurDir(blurRadiusMin, blurRadiusMax);
+        }
+
+        public static void MedianPreview()
+        {
+            Program.mainForm.SetMedianVars();
+            FileInfo firstImg = IOUtils.GetFiles()[0];
+            string tempImgPath = Path.Combine(IOUtils.GetAppDataDir(), "medianpreview" + firstImg.Extension);
+            if (File.Exists(tempImgPath)) File.Delete(tempImgPath);
+            File.Copy(firstImg.FullName, tempImgPath);
+            EffectsUtils.Median(tempImgPath, medianRadiusMin, medianRadiusMax);
+            Program.mainForm.PreviewImage(tempImgPath);
+        }
+
+        public static void MedianApply()
+        {
+            Program.mainForm.SetMedianVars();
+            EffectsUtils.MedianDir(medianRadiusMin, medianRadiusMax);
         }
     }
 }
