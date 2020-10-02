@@ -72,6 +72,7 @@ namespace MagickUtils
 			return key switch
 			{
 				"fileOperationsNoFilter" => WriteDefault("fileOperationsNoFilter", "True"),
+				"filenameReplaceIncludeExt" => WriteDefault("filenameReplaceIncludeExt", "True"),
 				"pngQ" => WriteDefault("pngQ", "30"),
 				"backgroundColor" => WriteDefault("backgroundColor", "000000FF"),
 				_ => null,

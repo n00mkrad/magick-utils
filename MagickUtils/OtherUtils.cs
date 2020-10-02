@@ -89,19 +89,20 @@ namespace MagickUtils
         public static void ReplaceInFilename (string path, string textToFind, string textToReplace)
         {
             string ext = Path.GetExtension(path);
-            string newFilename = Path.GetFileNameWithoutExtension(path).Replace(textToFind, textToReplace);
+            string newFilename = Path.GetFileNameWithoutExtension(path).Replace(textToFind, textToReplace)+ ext;
             bool includeExtension = Config.GetBool("filenameReplaceIncludeExt");
             if (includeExtension)
                 newFilename = Path.GetFileName(path).Replace(textToFind, textToReplace);
             string targetPath = Path.Combine(Path.GetDirectoryName(path), newFilename);
-            if (!includeExtension)
-                targetPath += ext;
-            if (File.Exists(targetPath))
+            try
             {
-                Program.Print("Skipped " + path + " because a file with the target name already exists.");
-                return;
+                File.Move(path, targetPath);
+                Program.Print(Path.GetFileName(path) + " => " + Path.GetFileName(targetPath));
             }
-            File.Move(path, targetPath);
+            catch
+            {
+                Program.Print("Can't rename " + Path.GetFileName(path) + " to " + Path.GetFileName(targetPath) + "perhaps a file with that name already exists");
+            }
         }
 
         public static async void DelSmallImgsDir (int minSize, ImageSizeFilterUtils.SizeMode scaleMode, ImageSizeFilterUtils.Operator op)
