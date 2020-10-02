@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MagickUtils.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,10 +13,10 @@ namespace MagickUtils
     {
         public static void ConvertFileList (string[] files, ComboBox qualityCombox, ComboBox qualityMaxCombox, IF selectedFormat, CheckBox delSrcCbox)
         {
-            int qMin = int.Parse(qualityCombox.Text.Trim());
+            int qMin = qualityCombox.GetInt();
             int qMax = qMin;
             if(!string.IsNullOrWhiteSpace(qualityMaxCombox.Text.Trim()))
-                qMax = int.Parse(qualityMaxCombox.Text.Trim());
+                qMax = qualityMaxCombox.GetInt();
 
             foreach(string file in files)
             {
@@ -51,6 +52,9 @@ namespace MagickUtils
 
                     if (selectedFormat == IF.AVIF)
                         ConvertUtils.ConvertToAvif(file, qMin, delSrcCbox.Checked);
+
+                    if (selectedFormat == IF.HEIF)
+                        HeifInterface.EncodeImage(file, qMin, delSrcCbox.Checked);
                 }
             }
         }
@@ -91,6 +95,9 @@ namespace MagickUtils
 
             if (selectedFormat == IF.AVIF)
                 ConvertUtils.ConvertDirToAvif(qMin, delSrcCbox.Checked);
+
+            if (selectedFormat == IF.HEIF)
+                ConvertUtils.ConvertDirToHeif(qMin, delSrcCbox.Checked);
         }
     }
 }

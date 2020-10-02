@@ -21,7 +21,7 @@ namespace MagickUtils
         public static string previewImgPath;
 
 
-        public enum ImageFormat { JPG, PNG, DDS, TGA, WEBP, BMP, AVIF, J2K, FLIF }
+        public enum ImageFormat { JPG, PNG, DDS, TGA, WEBP, BMP, AVIF, J2K, FLIF, HEIF }
 
         [STAThread]
         static void Main (string[] args)
@@ -112,6 +112,8 @@ namespace MagickUtils
             Console.WriteLine(s);
             if(replaceLastLine)
                 logTbox.Text = logTbox.Text.Remove(logTbox.Text.LastIndexOf(Environment.NewLine));
+            if (logTbox == null)
+                return;
             s = s.Replace("\n", Environment.NewLine);
             logTbox.AppendText(Environment.NewLine + s);
         }

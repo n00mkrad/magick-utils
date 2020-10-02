@@ -124,5 +124,15 @@ namespace MagickUtils
             float.TryParse(num, NumberStyles.Any, CultureInfo.InvariantCulture, out value);
             return value;
         }
+
+        public static string WrapPath(this string path, bool addSpaceFront = false, bool addSpaceEnd = false)
+        {
+            string s = "\"" + path + "\"";
+            if (addSpaceFront)
+                s = " " + s;
+            if (addSpaceEnd)
+                s = s + " ";
+            return s;
+        }
     }
 }

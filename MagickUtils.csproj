@@ -88,6 +88,9 @@
     <Reference Include="DdsFileTypePlus, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\DdsFileTypePlusHack.1.0.4\lib\net45\DdsFileTypePlus.dll</HintPath>
     </Reference>
+    <Reference Include="DotNetZip, Version=1.13.8.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+      <HintPath>packages\DotNetZip.1.13.8\lib\net40\DotNetZip.dll</HintPath>
+    </Reference>
     <Reference Include="Magick.NET-Q16-AnyCPU, Version=7.22.0.0, Culture=neutral, PublicKeyToken=2004825badfa91ec, processorArchitecture=MSIL">
       <HintPath>packages\Magick.NET-Q16-AnyCPU.7.22.0\lib\net40\Magick.NET-Q16-AnyCPU.dll</HintPath>
     </Reference>
@@ -122,6 +125,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\HeifInterface.cs" />
     <Compile Include="MagickUtils\AdjustUtils.cs" />
     <Compile Include="MagickUtils\ColorUtils.cs" />
     <Compile Include="MagickUtils\GeometryUtils.cs" />
@@ -200,6 +204,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\gear.bmp" />
+    <None Include="Resources\heif.zip" />
     <None Include="Resources\questmark-72px-bordeer.png" />
     <None Include="Resources\questmark.png" />
     <None Include="Resources\inpaint-thinlines1-2048px.png" />

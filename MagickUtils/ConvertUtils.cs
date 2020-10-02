@@ -8,6 +8,7 @@ using System.IO;
 using System.Diagnostics;
 using ImageMagick.Formats.Dds;
 using System.Reflection;
+using MagickUtils.Interfaces;
 
 namespace MagickUtils
 {
@@ -196,6 +197,22 @@ namespace MagickUtils
             PostProcessing(img, path, outPath, delSource);
         }
 
+        public static async void ConvertDirToHeif(int q, bool delSrc)
+        {
+            int counter = 1;
+            FileInfo[] files = IOUtils.GetFiles();
+
+            Program.PreProcessing();
+            foreach (FileInfo file in files)
+            {
+                Program.ShowProgress("Converting Image ", counter, files.Length);
+                counter++;
+                HeifInterface.EncodeImage(file.FullName, q, delSrc);
+                await Program.PutTaskDelay();
+            }
+            Program.PostProcessing();
+        }
+
         static long bytesPre;
 
         public static void ConvertToJpeg (string path, int q = 95, bool delSource = false)
@@ -243,19 +260,6 @@ namespace MagickUtils
             img.Quality = q;
             string outPath = Path.ChangeExtension(path, null) + ".png";
             PreProcessing(path);
-            img.Write(outPath);
-            PostProcessing(img, path, outPath, delSource);
-        }
-
-        public static async Task ConvertToPngMT(string path, int pngCompressLvl = 0, bool delSource = false)
-        {
-            MagickImage img = IOUtils.ReadImage(path);
-            if (img == null) return;
-            img.Format = MagickFormat.Png;
-            img.Quality = pngCompressLvl;
-            string outPath = Path.ChangeExtension(path, null) + ".png";
-            PreProcessing(path);
-            await Task.Delay(1);
             img.Write(outPath);
             PostProcessing(img, path, outPath, delSource);
         }
@@ -328,7 +332,7 @@ namespace MagickUtils
 
         static void DelSource (string sourcePath, string newPath)
         {
-            if(Path.GetExtension(sourcePath) == Path.GetExtension(newPath))
+            if(Path.GetExtension(sourcePath).ToLower() == Path.GetExtension(newPath).ToLower())
             {
                 Program.Print("-> Not deleting " + Path.GetFileName(sourcePath) + " as it was overwritten");
                 return;

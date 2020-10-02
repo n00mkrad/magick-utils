@@ -21,3 +21,4 @@ D:\Code\GitHub\IEU\magick-utils\obj\x64\Debug\MagickUtils.pdb
 D:\Code\GitHub\IEU\magick-utils\obj\x64\Debug\MagickUtils.csprojAssemblyReference.cache
 D:\Code\GitHub\IEU\magick-utils\bin\x64\Debug\DdsFileTypePlusIO_x86.dll
 D:\Code\GitHub\IEU\magick-utils\bin\x64\Debug\DdsFileTypePlusIO_x64.dll
+D:\Code\GitHub\IEU\magick-utils\bin\x64\Debug\DotNetZip.xml

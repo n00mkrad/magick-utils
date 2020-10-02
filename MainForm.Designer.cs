@@ -45,7 +45,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.delSrcCbox = new System.Windows.Forms.CheckBox();
             this.startBtn = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
+            this.formatQualityLabel = new System.Windows.Forms.Label();
             this.qualityCombox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -190,7 +190,6 @@
             this.label23 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.panel17 = new System.Windows.Forms.Panel();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label94 = new System.Windows.Forms.Label();
             this.ditherColorsMax = new System.Windows.Forms.ComboBox();
             this.ditherTypeCombox = new System.Windows.Forms.ComboBox();
@@ -201,7 +200,6 @@
             this.ditherBtn = new System.Windows.Forms.Button();
             this.panel12 = new System.Windows.Forms.Panel();
             this.layerColorPickerBtn = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.colorLayerTbox = new System.Windows.Forms.TextBox();
             this.label60 = new System.Windows.Forms.Label();
             this.colorLayerBtn = new System.Windows.Forms.Button();
@@ -212,7 +210,6 @@
             this.applyColorDepthBtn = new System.Windows.Forms.Button();
             this.label33 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.alphaOffBtn = new System.Windows.Forms.Button();
             this.remAlphaBlack = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
@@ -305,6 +302,9 @@
             this.defTip = new System.Windows.Forms.ToolTip(this.components);
             this.bgColorDialog = new System.Windows.Forms.ColorDialog();
             this.layerColorDialog = new System.Windows.Forms.ColorDialog();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -329,12 +329,9 @@
             this.panel3.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.panel17.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panel12.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel6.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.panel22.SuspendLayout();
@@ -346,6 +343,9 @@
             this.panel14.SuspendLayout();
             this.panel13.SuspendLayout();
             this.tabPage6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // pathTextbox
@@ -413,7 +413,7 @@
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.delSrcCbox);
             this.tabPage1.Controls.Add(this.startBtn);
-            this.tabPage1.Controls.Add(this.label5);
+            this.tabPage1.Controls.Add(this.formatQualityLabel);
             this.tabPage1.Controls.Add(this.qualityCombox);
             this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Controls.Add(this.label4);
@@ -523,15 +523,15 @@
             this.startBtn.UseVisualStyleBackColor = true;
             this.startBtn.Click += new System.EventHandler(this.convertStartBtn_Click);
             // 
-            // label5
+            // formatQualityLabel
             // 
-            this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label5.Location = new System.Drawing.Point(307, 36);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(168, 13);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "JPEG/PNG: 0-100, Crunch: 0-255";
+            this.formatQualityLabel.AutoSize = true;
+            this.formatQualityLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.formatQualityLabel.Location = new System.Drawing.Point(307, 36);
+            this.formatQualityLabel.Name = "formatQualityLabel";
+            this.formatQualityLabel.Size = new System.Drawing.Size(102, 13);
+            this.formatQualityLabel.TabIndex = 10;
+            this.formatQualityLabel.Text = "JPEG Quality: 0-100";
             // 
             // qualityCombox
             // 
@@ -569,6 +569,7 @@
             // 
             // formatCombox
             // 
+            this.formatCombox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.formatCombox.FormattingEnabled = true;
             this.formatCombox.Items.AddRange(new object[] {
             "JPEG",
@@ -579,7 +580,8 @@
             "TGA",
             "JPEG 2000",
             "AVIF",
-            "FLIF"});
+            "FLIF",
+            "HEIF"});
             this.formatCombox.Location = new System.Drawing.Point(150, 6);
             this.formatCombox.Name = "formatCombox";
             this.formatCombox.Size = new System.Drawing.Size(150, 21);
@@ -2163,19 +2165,6 @@
             this.panel17.Size = new System.Drawing.Size(690, 31);
             this.panel17.TabIndex = 47;
             // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Image = global::MagickUtils.Properties.Resources.questmark_72px_bordeer;
-            this.pictureBox3.Location = new System.Drawing.Point(67, 3);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(23, 23);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 39;
-            this.pictureBox3.TabStop = false;
-            this.defTip.SetToolTip(this.pictureBox3, "Choose the dithering method (Floyd-Steinberg is recommended due to the improved c" +
-        "olor accuracy) and the minimum/maximum amount of colors.");
-            // 
             // label94
             // 
             this.label94.AutoSize = true;
@@ -2297,19 +2286,6 @@
             this.layerColorPickerBtn.UseVisualStyleBackColor = true;
             this.layerColorPickerBtn.Click += new System.EventHandler(this.layerColorPickerBtn_Click);
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Image = global::MagickUtils.Properties.Resources.questmark_72px_bordeer;
-            this.pictureBox2.Location = new System.Drawing.Point(126, 3);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(23, 23);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 38;
-            this.pictureBox2.TabStop = false;
-            this.defTip.SetToolTip(this.pictureBox2, "Enter a color, for example 00FF0080 will be green with 50% transparency (0x80 = 1" +
-        "28).");
-            // 
             // colorLayerTbox
             // 
             this.colorLayerTbox.Location = new System.Drawing.Point(480, 5);
@@ -2418,20 +2394,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(690, 31);
             this.panel2.TabIndex = 13;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Image = global::MagickUtils.Properties.Resources.questmark_72px_bordeer;
-            this.pictureBox1.Location = new System.Drawing.Point(143, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(23, 23);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 37;
-            this.pictureBox1.TabStop = false;
-            this.defTip.SetToolTip(this.pictureBox1, "You can configure the color used for filling in the \"Config\" tab.\r\nTip: Use \"Alph" +
-        "a Off\" for images that use the Alpha channel to store additional information, li" +
-        "ke Skyrim\'s normal maps.");
             // 
             // alphaOffBtn
             // 
@@ -3431,6 +3393,46 @@
             this.nameMustNotContainTbox.TabIndex = 12;
             this.nameMustNotContainTbox.TextChanged += new System.EventHandler(this.nameMustNotContainTbox_TextChanged);
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox3.Image = global::MagickUtils.Properties.Resources.questmark_72px_bordeer;
+            this.pictureBox3.Location = new System.Drawing.Point(67, 3);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(23, 23);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 39;
+            this.pictureBox3.TabStop = false;
+            this.defTip.SetToolTip(this.pictureBox3, "Choose the dithering method (Floyd-Steinberg is recommended due to the improved c" +
+        "olor accuracy) and the minimum/maximum amount of colors.");
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox2.Image = global::MagickUtils.Properties.Resources.questmark_72px_bordeer;
+            this.pictureBox2.Location = new System.Drawing.Point(126, 3);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(23, 23);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 38;
+            this.pictureBox2.TabStop = false;
+            this.defTip.SetToolTip(this.pictureBox2, "Enter a color, for example 00FF0080 will be green with 50% transparency (0x80 = 1" +
+        "28).");
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Image = global::MagickUtils.Properties.Resources.questmark_72px_bordeer;
+            this.pictureBox1.Location = new System.Drawing.Point(143, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(23, 23);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 37;
+            this.pictureBox1.TabStop = false;
+            this.defTip.SetToolTip(this.pictureBox1, "You can configure the color used for filling in the \"Config\" tab.\r\nTip: Use \"Alph" +
+        "a Off\" for images that use the Alpha channel to store additional information, li" +
+        "ke Skyrim\'s normal maps.");
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -3502,15 +3504,12 @@
             this.tabPage4.ResumeLayout(false);
             this.panel17.ResumeLayout(false);
             this.panel17.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.panel12.ResumeLayout(false);
             this.panel12.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tabPage5.ResumeLayout(false);
@@ -3531,6 +3530,9 @@
             this.panel13.PerformLayout();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3549,7 +3551,7 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.ComboBox formatCombox;
         private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label formatQualityLabel;
         private System.Windows.Forms.ComboBox qualityCombox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;

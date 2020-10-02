@@ -49,9 +49,10 @@ namespace MagickUtils
             flifProcess.WaitForExit();
             Program.Print("Done converting " + path);
             if(deleteSrc)
-                File.Delete(path);
+                DelSource(path, outPath);
             return outPath;
         }
+
         public static string DecodeImage (string path, bool deleteSrc, bool tempExtension = false)
         {
             ExtractExe();
@@ -66,8 +67,8 @@ namespace MagickUtils
             flifProcess.Start();
             flifProcess.WaitForExit();
             Program.Print("Done converting " + path);
-            if(deleteSrc)
-                File.Delete(path);
+            if (deleteSrc)
+                DelSource(path, outPath);
             return outPath;
         }
 
@@ -77,6 +78,17 @@ namespace MagickUtils
             MagickImage image = new MagickImage(File.ReadAllBytes(outPath));  // Store images as bytes so we can delete the actual file
             File.Delete(outPath);
             return image;
+        }
+
+        static void DelSource(string sourcePath, string newPath)
+        {
+            if (Path.GetExtension(sourcePath).ToLower() == Path.GetExtension(newPath).ToLower())
+            {
+                Program.Print("-> Not deleting " + Path.GetFileName(sourcePath) + " as it was overwritten");
+                return;
+            }
+            Program.Print("-> Deleting source file: " + Path.GetFileName(sourcePath) + "...");
+            File.Delete(sourcePath);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using ImageMagick;
+using MagickUtils.Interfaces;
 using MagickUtils.MagickUtils;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,7 @@ namespace MagickUtils
             CenterToScreen();
 
             Config.Init();
+            HeifInterface.Extract(true);
 
             Program.logTbox = logTbox;
             Program.progBar = progressBar1;
@@ -91,16 +93,19 @@ namespace MagickUtils
             qualityCombox.Enabled = true;
             qualityMaxCombox.Enabled = false;
             formatOptionsBtn.Visible = false;
+            formatQualityLabel.Text = "";
 
-            if(formatStrTrim == "JPEG")
+            if (formatStrTrim == "JPEG")
             {
                 selectedFormat = Program.ImageFormat.JPG;
                 qualityMaxCombox.Enabled = true;
+                formatQualityLabel.Text = "JPEG Quality: 0 - 100. Default: 95";
             } 
 
             if(formatStrTrim == "PNG")
             {
                 selectedFormat = Program.ImageFormat.PNG;
+                formatQualityLabel.Text = "PNG Compression Strength: 0 (Raw) - 100 (Max). Default: 30";
             }
 
             if(formatStrTrim == "DDS")
@@ -126,22 +131,32 @@ namespace MagickUtils
             if(formatStrTrim == "WEBP")
             {
                 selectedFormat = Program.ImageFormat.WEBP;
+                formatQualityLabel.Text = "WEBP Quality: 0 - 100. Default: 93";
             }
 
             if(formatStrTrim == "JPEG 2000")
             {
                 selectedFormat = Program.ImageFormat.J2K;
+                formatQualityLabel.Text = "JPEG 2000 Quality: 0 - 100";
             }
 
             if(formatStrTrim == "FLIF")
             {
                 selectedFormat = Program.ImageFormat.FLIF;
                 formatOptionsBtn.Visible = true;
+                formatQualityLabel.Text = "FLIF Quality: 0 - 100";
             }
 
             if (formatStrTrim == "AVIF")
             {
                 selectedFormat = Program.ImageFormat.AVIF;
+                formatQualityLabel.Text = "AVIF Quality: 0 - 100";
+            }
+
+            if (formatStrTrim == "HEIF")
+            {
+                selectedFormat = Program.ImageFormat.HEIF;
+                formatQualityLabel.Text = "HEIF Quality: 0 - 100. Default: 50";
             }
 
             CheckDelSourceFormat();

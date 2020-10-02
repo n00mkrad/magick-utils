@@ -93,6 +93,16 @@ namespace MagickUtils.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] heif {
+            get {
+                object obj = ResourceManager.GetObject("heif", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] inpaint_circles_1024px {
             get {
                 object obj = ResourceManager.GetObject("inpaint_circles_1024px", resourceCulture);
