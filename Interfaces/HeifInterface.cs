@@ -27,7 +27,7 @@ namespace MagickUtils.Interfaces
             foreach (ZipEntry e in zip)
                 e.Extract(IOUtils.GetAppDataDir(), ExtractExistingFileAction.OverwriteSilently);
 
-            Program.Print("[HeifInterface] Extratced HEIF resources to " + heifExePath);
+            Program.Print("[HeifInterface] Extracted HEIF resources to " + heifExePath);
         }
 
         static void GetPaths()
@@ -41,7 +41,9 @@ namespace MagickUtils.Interfaces
             Extract();
             string outPath = Path.ChangeExtension(path, null) + ".heic";
             ProcessStartInfo psi;
-            string args = " -q " + q + " -o " + outPath.WrapPath(true, true) + path.WrapPath(true, true);
+            string qualityStr = " -q " + q;
+            if (q >= 100) qualityStr = " -L ";
+            string args = qualityStr + " -o " + outPath.WrapPath(true, true) + path.WrapPath(true, true);
             psi = new ProcessStartInfo { FileName = heifExePath, Arguments = args };
             psi.WorkingDirectory = Path.GetDirectoryName(heifExePath);
             Program.Print("HEIF args:" + args);

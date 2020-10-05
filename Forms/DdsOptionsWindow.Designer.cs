@@ -29,16 +29,16 @@
         private void InitializeComponent ()
         {
             this.crunchPanel = new System.Windows.Forms.Panel();
-            this.label30 = new System.Windows.Forms.Label();
-            this.dxtQualCombox = new System.Windows.Forms.ComboBox();
-            this.useMipsCbox = new System.Windows.Forms.CheckBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
+            this.useMipsCbox = new System.Windows.Forms.CheckBox();
+            this.dxtQualCombox = new System.Windows.Forms.ComboBox();
+            this.label30 = new System.Windows.Forms.Label();
             this.crunchDdsCbox = new System.Windows.Forms.CheckBox();
             this.label31 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.doneBtn = new System.Windows.Forms.Button();
             this.crunchPanel.SuspendLayout();
             this.SuspendLayout();
@@ -58,14 +58,44 @@
             this.crunchPanel.Size = new System.Drawing.Size(440, 58);
             this.crunchPanel.TabIndex = 22;
             // 
-            // label30
+            // label3
             // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(3, 10);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(103, 13);
-            this.label30.TabIndex = 20;
-            this.label30.Text = "DXT Quality/Speed:";
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label3.Location = new System.Drawing.Point(251, 37);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(171, 13);
+            this.label3.TabIndex = 26;
+            this.label3.Text = "Generate mipmaps (or use existing)";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label2.Location = new System.Drawing.Point(251, 10);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(113, 13);
+            this.label2.TabIndex = 25;
+            this.label2.Text = "Encoding speed/effort";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(3, 37);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(132, 13);
+            this.label32.TabIndex = 23;
+            this.label32.Text = "Generate/Reuse Mipmaps";
+            // 
+            // useMipsCbox
+            // 
+            this.useMipsCbox.AutoSize = true;
+            this.useMipsCbox.Location = new System.Drawing.Point(149, 37);
+            this.useMipsCbox.Name = "useMipsCbox";
+            this.useMipsCbox.Size = new System.Drawing.Size(15, 14);
+            this.useMipsCbox.TabIndex = 22;
+            this.useMipsCbox.UseVisualStyleBackColor = true;
+            this.useMipsCbox.CheckedChanged += new System.EventHandler(this.useMipsCbox_CheckedChanged);
             // 
             // dxtQualCombox
             // 
@@ -83,24 +113,14 @@
             this.dxtQualCombox.TabIndex = 19;
             this.dxtQualCombox.SelectedIndexChanged += new System.EventHandler(this.dxtQualCombox_SelectedIndexChanged);
             // 
-            // useMipsCbox
+            // label30
             // 
-            this.useMipsCbox.AutoSize = true;
-            this.useMipsCbox.Location = new System.Drawing.Point(149, 37);
-            this.useMipsCbox.Name = "useMipsCbox";
-            this.useMipsCbox.Size = new System.Drawing.Size(15, 14);
-            this.useMipsCbox.TabIndex = 22;
-            this.useMipsCbox.UseVisualStyleBackColor = true;
-            this.useMipsCbox.CheckedChanged += new System.EventHandler(this.useMipsCbox_CheckedChanged);
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(3, 37);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(132, 13);
-            this.label32.TabIndex = 23;
-            this.label32.Text = "Generate/Reuse Mipmaps";
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(3, 10);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(103, 13);
+            this.label30.TabIndex = 20;
+            this.label30.Text = "DXT Quality/Speed:";
             // 
             // crunchDdsCbox
             // 
@@ -140,26 +160,6 @@
             this.label10.Size = new System.Drawing.Size(179, 13);
             this.label10.TabIndex = 24;
             this.label10.Text = "If unchecked, ImageMagick is used.";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label2.Location = new System.Drawing.Point(251, 10);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(113, 13);
-            this.label2.TabIndex = 25;
-            this.label2.Text = "Encoding speed/effort";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label3.Location = new System.Drawing.Point(251, 37);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(171, 13);
-            this.label3.TabIndex = 26;
-            this.label3.Text = "Generate mipmaps (or use existing)";
             // 
             // doneBtn
             // 

@@ -54,8 +54,16 @@ namespace MagickUtils.MagickUtils
         public static void RemoveTransparency (string path, NoAlphaMode mode)
         {
             MagickImage img = IOUtils.ReadImage(path);
-            if(mode == NoAlphaMode.Fill) img.ColorAlpha(new MagickColor("#" + Config.Get("backgroundColor")));
-            if(mode == NoAlphaMode.Off) img.Alpha(AlphaOption.Off);
+            // if(mode == NoAlphaMode.Fill) img.ColorAlpha(new MagickColor("#" + Config.Get("backgroundColor")));
+            if(mode == NoAlphaMode.Fill)
+            {
+                MagickImage bg = new MagickImage(new MagickColor("#" + Config.Get("backgroundColor")), img.Width, img.Height);
+                bg.BackgroundColor = new MagickColor("#" + Config.Get("backgroundColor"));
+                bg.Composite(img, CompositeOperator.Over);
+                img = bg;
+            }
+            if (mode == NoAlphaMode.Off)
+                img.Alpha(AlphaOption.Off);
             img.Write(path);
         }
 

@@ -75,6 +75,7 @@ namespace MagickUtils
 				"filenameReplaceIncludeExt" => WriteDefault("filenameReplaceIncludeExt", "True"),
 				"pngQ" => WriteDefault("pngQ", "30"),
 				"backgroundColor" => WriteDefault("backgroundColor", "000000FF"),
+				"pngColorDepth" => WriteDefault("pngColorDepth", "0"),
 				_ => null,
 			};
 		}

@@ -125,6 +125,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\PngOptionsWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PngOptionsWindow.Designer.cs">
+      <DependentUpon>PngOptionsWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Interfaces\HeifInterface.cs" />
     <Compile Include="MagickUtils\AdjustUtils.cs" />
     <Compile Include="MagickUtils\ColorUtils.cs" />
@@ -232,6 +238,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FlifOptionsWindow.resx">
       <DependentUpon>FlifOptionsWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PngOptionsWindow.resx">
+      <DependentUpon>PngOptionsWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

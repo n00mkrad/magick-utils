@@ -27,7 +27,7 @@ namespace MagickUtils
                         ConvertUtils.ConvertToJpegRandomQuality(file, qMin, qMax, delSrcCbox.Checked);
 
                     if(selectedFormat == IF.PNG)
-                        ConvertUtils.ConvertToPngIM(file, qMin, delSrcCbox.Checked);
+                        ConvertUtils.ConvertToPng(file, qMin, delSrcCbox.Checked);
 
                     if(selectedFormat == IF.DDS)
                     {

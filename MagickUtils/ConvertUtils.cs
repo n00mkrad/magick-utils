@@ -245,18 +245,10 @@ namespace MagickUtils
             MagickImage img = IOUtils.ReadImage(path);
             if (img == null) return;
             img.Format = MagickFormat.Png;
-            img.Quality = q;
-            string outPath = Path.ChangeExtension(path, null) + ".png";
-            PreProcessing(path);
-            img.Write(outPath);
-            PostProcessing(img, path, outPath, delSource);
-        }
-
-        public static void ConvertToPngIM (string path, int q = 50, bool delSource = false)
-        {
-            MagickImage img = IOUtils.ReadImage(path);
-            if(img == null) return;
-            img.Format = MagickFormat.Png;
+            if (Config.GetInt("pngColorDepth") == 1)
+                img.Format = MagickFormat.Png24;
+            if (Config.GetInt("pngColorDepth") == 2)
+                img.Format = MagickFormat.Png32;
             img.Quality = q;
             string outPath = Path.ChangeExtension(path, null) + ".png";
             PreProcessing(path);

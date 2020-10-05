@@ -1,4 +1,5 @@
 ﻿using ImageMagick;
+using MagickUtils.Forms;
 using MagickUtils.Interfaces;
 using MagickUtils.MagickUtils;
 using System;
@@ -106,6 +107,7 @@ namespace MagickUtils
             {
                 selectedFormat = Program.ImageFormat.PNG;
                 formatQualityLabel.Text = "PNG Compression Strength: 0 (Raw) - 100 (Max). Default: 30";
+                formatOptionsBtn.Visible = true;
             }
 
             if(formatStrTrim == "DDS")
@@ -156,7 +158,7 @@ namespace MagickUtils
             if (formatStrTrim == "HEIF")
             {
                 selectedFormat = Program.ImageFormat.HEIF;
-                formatQualityLabel.Text = "HEIF Quality: 0 - 100. Default: 50";
+                formatQualityLabel.Text = "HEIF Quality: 0 - 99. Default: 50. Use 100 for lossless mode.";
             }
 
             CheckDelSourceFormat();
@@ -250,12 +252,12 @@ namespace MagickUtils
 
         private void formatOptionsBtn_Click (object sender, EventArgs e)
         {
-            var ddsForm = new DdsOptionsWindow();
-            var flifForm = new FlifOptionsWindow();
-            if(selectedFormat == Program.ImageFormat.DDS)
-                ddsForm.Show();
+            if (selectedFormat == Program.ImageFormat.DDS)
+                new DdsOptionsWindow().Show();
             if(selectedFormat == Program.ImageFormat.FLIF)
-                flifForm.Show();
+                new FlifOptionsWindow().Show();
+            if (selectedFormat == Program.ImageFormat.PNG)
+                new PngOptionsWindow().Show();
         }
 
         private void MainForm_Activated (object sender, EventArgs e)
