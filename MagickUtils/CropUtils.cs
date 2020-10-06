@@ -193,7 +193,7 @@ namespace MagickUtils
             PostProcessing(img, path);
         }
 
-        public static async void TileDir (int w, int h, bool useTileAmount)
+        public static async void TileDir (int w, int h, bool useTileAmount, bool delSrc)
         {
             int counter = 1;
             FileInfo[] Files = IOUtils.GetFiles();
@@ -203,13 +203,13 @@ namespace MagickUtils
             {
                 Program.ShowProgress("Tiling Image ", counter, Files.Length);
                 counter++;
-                await Tile(file.FullName, w, h, useTileAmount);
+                await Tile(file.FullName, w, h, useTileAmount, delSrc);
                 if(counter % 2 == 0) await Program.PutTaskDelay();
             }
             Program.PostProcessing();
         }
 
-        public static async Task Tile (string path, int tileW, int tileH, bool useTileAmount)
+        public static async Task Tile (string path, int tileW, int tileH, bool useTileAmount, bool delSrc)
         {
             MagickImage img = IOUtils.ReadImage(path);
             PreProcessing(path);
@@ -224,8 +224,7 @@ namespace MagickUtils
             }
 
             int i = 1;
-            Program.Print("-> Creating tiles... (CropToTiles(" + tileW + ", " + tileH + "))");
-            //Program.Print("-> Tile size: " + w + "x" + h);
+            Program.Print("-> Creating tiles...");
             var tiles = img.CropToTiles(tileW, tileH);
             foreach(MagickImage tile in tiles)
             {
@@ -236,6 +235,8 @@ namespace MagickUtils
             }
             await Program.PutTaskDelay();
             PostProcessing(img, path);
+            if(delSrc)
+                DelSource(path);
         }
 
         public static async void MergeAllDir ()

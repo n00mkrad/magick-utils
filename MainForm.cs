@@ -66,6 +66,11 @@ namespace MagickUtils
             InitCombox(scaleResampleCombox, 0);
             InitCombox(scaleModeCombox, 0);
             InitCombox(filterModeCombox, 0);
+            // Crop/Expand/Tile
+            InitCombox(cropRelSizeMode, 0);
+            InitCombox(cropAbsGrav, 1);
+            InitCombox(cropDivisibleGrav, 1);
+            InitCombox(padMode, 0);
 
             IOUtils.recursive = recursiveCbox.Checked;
             ScaleUtils.onlyDownscale = onlyDownscaleCbox.Checked;
@@ -492,7 +497,7 @@ namespace MagickUtils
             if(cropTabControl.SelectedIndex == 3)
                 CropTabHelper.CropPadding(padPixMin, padPixMax, padMode);
             if(cropTabControl.SelectedIndex == 4)
-                CropTabHelper.CropTiles(tilingW, tilingH, tileMode);
+                CropTabHelper.CropTiles(tilingW, tilingH, tileMode, tileDelSrc.Checked);
         }
 
         private void tabPage7_DragEnter (object sender, DragEventArgs e)
