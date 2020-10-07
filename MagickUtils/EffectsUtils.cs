@@ -150,6 +150,38 @@ namespace MagickUtils
             PostProcessing(null, path, path);
         }
 
+        public async static void HaloDir(int radiusMin, int radiusMax)
+        {
+            int counter = 1;
+            FileInfo[] files = IOUtils.GetFiles();
+
+            Program.PreProcessing();
+            foreach (FileInfo file in files)
+            {
+                Program.ShowProgress("Running Halo Effect on Image ", counter, files.Length);
+                Halo(file.FullName, radiusMin, radiusMax);
+                counter++;
+                if (counter % 2 == 0) await Program.PutTaskDelay();
+            }
+            Program.PostProcessing(true);
+        }
+
+        public static void Halo(string path, int radiusMin, int radiusMax)
+        {
+            PreProcessing(path);
+            MagickImage img = new MagickImage(path);
+            Random rand = new Random();
+            int radius = rand.Next(radiusMin, radiusMax + 1);
+            Program.Print("-> Using halo intensity " + radius);
+
+            MagickImage sharpenImg = new MagickImage(img);
+            sharpenImg.Sharpen(0, radius);
+            img.Composite(sharpenImg, CompositeOperator.Lighten);
+
+            img.Write(path);
+            PostProcessing(null, path, path);
+        }
+
         static void PreProcessing (string path, string infoSuffix = null)
         {
             Program.Print("-> Processing " + Path.GetFileName(path) + " " + infoSuffix);

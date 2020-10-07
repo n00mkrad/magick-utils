@@ -82,6 +82,7 @@ namespace MagickUtils
             FT filter = GetFilter(randFilterMode);
             Random rand = new Random();
             float targetScale = (float)rand.NextDouble(minScale, maxScale);
+            Program.Print("targetScale: " + targetScale);
             img.FilterType = filter;
 
             bool heightLonger = img.Height > img.Width;
@@ -107,7 +108,8 @@ namespace MagickUtils
             if(currMode == SM.Percentage)
             {
                 Program.Print("-> Scaling to " + targetScale + "% with filter " + filter + "...");
-                img.Resize(new Percentage(targetScale));
+                MagickGeometry geom = new MagickGeometry(img.Width * targetScale / 100f + "x");
+                img.Resize(geom);
             }
             PreProcessing(path);
             Write(img, filter);

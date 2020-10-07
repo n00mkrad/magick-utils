@@ -111,6 +111,8 @@
             this.label82 = new System.Windows.Forms.Label();
             this.padMode = new System.Windows.Forms.ComboBox();
             this.tabPage15 = new System.Windows.Forms.TabPage();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tileDelSrc = new System.Windows.Forms.CheckBox();
             this.label67 = new System.Windows.Forms.Label();
             this.mergeAllBtn = new System.Windows.Forms.Button();
             this.label87 = new System.Windows.Forms.Label();
@@ -305,8 +307,13 @@
             this.defTip = new System.Windows.Forms.ToolTip(this.components);
             this.bgColorDialog = new System.Windows.Forms.ColorDialog();
             this.layerColorDialog = new System.Windows.Forms.ColorDialog();
-            this.label5 = new System.Windows.Forms.Label();
-            this.tileDelSrc = new System.Windows.Forms.CheckBox();
+            this.panel23 = new System.Windows.Forms.Panel();
+            this.haloRadiusMax = new System.Windows.Forms.ComboBox();
+            this.label110 = new System.Windows.Forms.Label();
+            this.label111 = new System.Windows.Forms.Label();
+            this.haloRadiusMin = new System.Windows.Forms.ComboBox();
+            this.label112 = new System.Windows.Forms.Label();
+            this.haloBtn = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -348,6 +355,7 @@
             this.panel14.SuspendLayout();
             this.panel13.SuspendLayout();
             this.tabPage6.SuspendLayout();
+            this.panel23.SuspendLayout();
             this.SuspendLayout();
             // 
             // pathTextbox
@@ -1305,6 +1313,26 @@
             this.tabPage15.TabIndex = 5;
             this.tabPage15.Text = "Create Tiles";
             this.tabPage15.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 63);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(78, 13);
+            this.label5.TabIndex = 56;
+            this.label5.Text = "Delete Source:";
+            // 
+            // tileDelSrc
+            // 
+            this.tileDelSrc.AutoSize = true;
+            this.tileDelSrc.Checked = true;
+            this.tileDelSrc.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.tileDelSrc.Location = new System.Drawing.Point(152, 63);
+            this.tileDelSrc.Name = "tileDelSrc";
+            this.tileDelSrc.Size = new System.Drawing.Size(15, 14);
+            this.tileDelSrc.TabIndex = 55;
+            this.tileDelSrc.UseVisualStyleBackColor = true;
             // 
             // label67
             // 
@@ -2509,6 +2537,7 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.panel23);
             this.tabPage5.Controls.Add(this.panel22);
             this.tabPage5.Controls.Add(this.panel16);
             this.tabPage5.Controls.Add(this.panel10);
@@ -3441,25 +3470,88 @@
             this.nameMustNotContainTbox.TabIndex = 12;
             this.nameMustNotContainTbox.TextChanged += new System.EventHandler(this.nameMustNotContainTbox_TextChanged);
             // 
-            // label5
+            // panel23
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 63);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(78, 13);
-            this.label5.TabIndex = 56;
-            this.label5.Text = "Delete Source:";
+            this.panel23.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel23.Controls.Add(this.haloRadiusMax);
+            this.panel23.Controls.Add(this.label110);
+            this.panel23.Controls.Add(this.label111);
+            this.panel23.Controls.Add(this.haloRadiusMin);
+            this.panel23.Controls.Add(this.label112);
+            this.panel23.Controls.Add(this.haloBtn);
+            this.panel23.Location = new System.Drawing.Point(6, 183);
+            this.panel23.Name = "panel23";
+            this.panel23.Size = new System.Drawing.Size(690, 31);
+            this.panel23.TabIndex = 46;
             // 
-            // tileDelSrc
+            // haloRadiusMax
             // 
-            this.tileDelSrc.AutoSize = true;
-            this.tileDelSrc.Checked = true;
-            this.tileDelSrc.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.tileDelSrc.Location = new System.Drawing.Point(152, 63);
-            this.tileDelSrc.Name = "tileDelSrc";
-            this.tileDelSrc.Size = new System.Drawing.Size(15, 14);
-            this.tileDelSrc.TabIndex = 55;
-            this.tileDelSrc.UseVisualStyleBackColor = true;
+            this.haloRadiusMax.FormattingEnabled = true;
+            this.haloRadiusMax.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "4",
+            "6",
+            "8"});
+            this.haloRadiusMax.Location = new System.Drawing.Point(529, 5);
+            this.haloRadiusMax.Name = "haloRadiusMax";
+            this.haloRadiusMax.Size = new System.Drawing.Size(50, 21);
+            this.haloRadiusMax.TabIndex = 44;
+            // 
+            // label110
+            // 
+            this.label110.AutoSize = true;
+            this.label110.Location = new System.Drawing.Point(507, 8);
+            this.label110.Name = "label110";
+            this.label110.Size = new System.Drawing.Size(16, 13);
+            this.label110.TabIndex = 43;
+            this.label110.Text = "to";
+            // 
+            // label111
+            // 
+            this.label111.AutoSize = true;
+            this.label111.Location = new System.Drawing.Point(396, 8);
+            this.label111.Name = "label111";
+            this.label111.Size = new System.Drawing.Size(49, 13);
+            this.label111.TabIndex = 41;
+            this.label111.Text = "Intensity:";
+            // 
+            // haloRadiusMin
+            // 
+            this.haloRadiusMin.FormattingEnabled = true;
+            this.haloRadiusMin.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "4",
+            "6",
+            "8"});
+            this.haloRadiusMin.Location = new System.Drawing.Point(451, 5);
+            this.haloRadiusMin.Name = "haloRadiusMin";
+            this.haloRadiusMin.Size = new System.Drawing.Size(50, 21);
+            this.haloRadiusMin.TabIndex = 40;
+            this.haloRadiusMin.Text = "2";
+            // 
+            // label112
+            // 
+            this.label112.AutoSize = true;
+            this.label112.BackColor = System.Drawing.Color.Transparent;
+            this.label112.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label112.Location = new System.Drawing.Point(3, 8);
+            this.label112.Name = "label112";
+            this.label112.Size = new System.Drawing.Size(142, 13);
+            this.label112.TabIndex = 8;
+            this.label112.Text = "Sharpening Halo/Fringe";
+            // 
+            // haloBtn
+            // 
+            this.haloBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.haloBtn.Location = new System.Drawing.Point(585, 3);
+            this.haloBtn.Name = "haloBtn";
+            this.haloBtn.Size = new System.Drawing.Size(100, 23);
+            this.haloBtn.TabIndex = 32;
+            this.haloBtn.Text = "Apply";
+            this.haloBtn.UseVisualStyleBackColor = true;
+            this.haloBtn.Click += new System.EventHandler(this.haloBtn_Click);
             // 
             // MainForm
             // 
@@ -3561,6 +3653,8 @@
             this.panel13.PerformLayout();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
+            this.panel23.ResumeLayout(false);
+            this.panel23.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3845,5 +3939,12 @@
         private System.Windows.Forms.Button medianFilterBtn;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox tileDelSrc;
+        private System.Windows.Forms.Panel panel23;
+        private System.Windows.Forms.ComboBox haloRadiusMax;
+        private System.Windows.Forms.Label label110;
+        private System.Windows.Forms.Label label111;
+        private System.Windows.Forms.ComboBox haloRadiusMin;
+        private System.Windows.Forms.Label label112;
+        private System.Windows.Forms.Button haloBtn;
     }
 }

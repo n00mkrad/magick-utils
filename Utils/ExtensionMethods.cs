@@ -81,6 +81,12 @@ namespace MagickUtils
             return s.Trim();
         }
 
+        public static bool IsIntegerString (this string str)
+        {
+            string newStr  = Regex.Replace(str, "[^0-9]", "");
+            return (str.Length == newStr.Length);
+        }
+
         public static int GetInt(this TextBox textbox)
         {
             return GetInt(textbox.Text);

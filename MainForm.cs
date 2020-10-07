@@ -638,5 +638,14 @@ namespace MagickUtils
         {
             EffectsTabHelper.MedianApply();
         }
+
+        private void haloBtn_Click(object sender, EventArgs e)
+        {
+            int radMin = haloRadiusMin.GetInt();
+            int radMax = radMin;
+            if (!String.IsNullOrWhiteSpace(haloRadiusMax.Text.Trim()))
+                radMax = haloRadiusMax.GetInt();
+            EffectsUtils.HaloDir(radMin, radMax);
+        }
     }
 }
