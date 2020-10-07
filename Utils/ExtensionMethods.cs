@@ -67,6 +67,11 @@ namespace MagickUtils
             return (float)(mantissa * exponent);
         }
 
+        public static double NextDouble(this Random random, double minValue, double maxValue)
+        {
+            return random.NextDouble() * (maxValue - minValue) + minValue;
+        }
+
         public static string TrimNumbers(this string s, bool allowDotComma = false)
         {
             if (!allowDotComma)

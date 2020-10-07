@@ -57,7 +57,6 @@ namespace MagickUtils
             InitCombox(geomFlipAxis, 0);
             InitCombox(cropDivisibleGrav, 1);
             InitCombox(cropAbsGrav, 1);
-            InitCombox(padMode, 0);
             InitCombox(renameCounterMode, 0);
             InitCombox(renameCounterPadding, 1);
             InitCombox(tileMode, 0);

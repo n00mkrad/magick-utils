@@ -11,7 +11,7 @@ namespace MagickUtils
     {
         static long bytesPre = 0;
 
-        public static async void ResampleDirRand (int sMin, int sMax, int downFilterMode, int upFilterMode)
+        public static async void ResampleDirRand (float sMin, float sMax, int downFilterMode, int upFilterMode)
         {
             int counter = 1;
             FileInfo[] files = IOUtils.GetFiles();
@@ -25,7 +25,7 @@ namespace MagickUtils
             }
         }
 
-        public static async void ScaleDir (int sMin, int sMax, int filterMode)
+        public static async void ScaleDir (float sMin, float sMax, int filterMode)
         {
             int counter = 1;
             FileInfo[] files = IOUtils.GetFiles();
@@ -47,15 +47,14 @@ namespace MagickUtils
         public static bool appendFiltername;
         public static bool dontOverwrite;
 
-        public static void RandomResample (string path, int minScale, int maxScale, int downFilterMode, int upFilterMode)
+        public static void RandomResample (string path, float minScale, float maxScale, int downFilterMode, int upFilterMode)
         {
             MagickImage img = IOUtils.ReadImage(path);
-            string fname = Path.ChangeExtension(path, null);
             FT filter = GetFilter(downFilterMode);
             int srcWidth = img.Width;
             int srcHeight = img.Height;
             Random rand = new Random();
-            int targetScale = rand.Next(minScale, maxScale + 1);
+            float targetScale = (float)rand.NextDouble(minScale, maxScale + 1);
             Program.Print("-> Scaling down to " + targetScale + "% with filter " + filter + "...");
             img.FilterType = filter;
             img.Resize(new Percentage(targetScale));
@@ -77,13 +76,12 @@ namespace MagickUtils
             else return filtersAll[rand.Next(filtersAll.Length)];
         }
 
-        public static void Scale (string path, int minScale, int maxScale, int randFilterMode)
+        public static void Scale (string path, float minScale, float maxScale, int randFilterMode)
         {
             MagickImage img = IOUtils.ReadImage(path);
-            string fname = Path.GetFileName(path);
             FT filter = GetFilter(randFilterMode);
             Random rand = new Random();
-            int targetScale = rand.Next(minScale, maxScale + 1);
+            float targetScale = (float)rand.NextDouble(minScale, maxScale);
             img.FilterType = filter;
 
             bool heightLonger = img.Height > img.Width;

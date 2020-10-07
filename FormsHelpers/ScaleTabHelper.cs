@@ -11,20 +11,20 @@ namespace MagickUtils
     {
         public static void ScaleUsingPath (ComboBox minScaleCombox, ComboBox maxScaleCombox, ComboBox filterModeCombox)
         {
-            int sMin = int.Parse(minScaleCombox.Text);
-            int sMax = sMin;
+            float sMin = minScaleCombox.GetFloat();
+            float sMax = sMin;
             if(!string.IsNullOrWhiteSpace(maxScaleCombox.Text.Trim()))
-                sMax = int.Parse(maxScaleCombox.Text);
+                sMax = maxScaleCombox.GetFloat();
             int filterMode = filterModeCombox.SelectedIndex;
             ScaleUtils.ScaleDir(sMin, sMax, filterMode);
         }
 
         public static void ScaleFileList (string[] files, ComboBox minScaleCombox, ComboBox maxScaleCombox, ComboBox filterModeCombox)
         {
-            int sMin = int.Parse(minScaleCombox.Text);
-            int sMax = sMin;
+            float sMin = minScaleCombox.GetFloat();
+            float sMax = sMin;
             if(!string.IsNullOrWhiteSpace(maxScaleCombox.Text.Trim()))
-                sMax = int.Parse(maxScaleCombox.Text);
+                sMax = maxScaleCombox.GetFloat();
             int filterMode = filterModeCombox.SelectedIndex;
 
             foreach(string file in files)
@@ -35,22 +35,22 @@ namespace MagickUtils
 
         public static void ResampleUsingPath (ComboBox minScaleCombox, ComboBox maxScaleCombox, ComboBox downFilterCombox, ComboBox upFilterCombox)
         {
-            int sMin = int.Parse(minScaleCombox.Text);
-            int sMax = sMin;
+            float sMin = minScaleCombox.GetFloat();
+            float sMax = sMin;
             if(!string.IsNullOrWhiteSpace(maxScaleCombox.Text.Trim()))
-                sMax = int.Parse(maxScaleCombox.Text);
+                sMax = maxScaleCombox.GetFloat();
             int filterMode = downFilterCombox.SelectedIndex;
             int reupFilterMode = upFilterCombox.SelectedIndex;
             ScaleUtils.ResampleDirRand(sMin, sMax, filterMode, reupFilterMode);
         }
 
-        public static void ResampleFileList (string[] files, ComboBox minScaleCombox, ComboBox maxScaleCombox, ComboBox filterModeCombox, ComboBox upFilterCombox)
+        public static void ResampleFileList (string[] files, ComboBox minScaleCombox, ComboBox maxScaleCombox, ComboBox downFilterCombox, ComboBox upFilterCombox)
         {
-            int sMin = int.Parse(minScaleCombox.Text);
-            int sMax = sMin;
-            if(!string.IsNullOrWhiteSpace(maxScaleCombox.Text.Trim()))
-                sMax = int.Parse(maxScaleCombox.Text);
-            int filterMode = filterModeCombox.SelectedIndex;
+            float sMin = minScaleCombox.GetFloat();
+            float sMax = sMin;
+            if (!string.IsNullOrWhiteSpace(maxScaleCombox.Text.Trim()))
+                sMax = maxScaleCombox.GetFloat();
+            int filterMode = downFilterCombox.SelectedIndex;
             int reupFilterMode = upFilterCombox.SelectedIndex;
 
             foreach (string file in files)
