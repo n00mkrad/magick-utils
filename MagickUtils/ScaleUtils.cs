@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.SqlClient;
 using System.IO;
 using ImageMagick;
 
@@ -108,7 +109,7 @@ namespace MagickUtils
             if(currMode == SM.Percentage)
             {
                 Program.Print("-> Scaling to " + targetScale + "% with filter " + filter + "...");
-                MagickGeometry geom = new MagickGeometry(img.Width * targetScale / 100f + "x");
+                MagickGeometry geom = new MagickGeometry(Math.Round(img.Width * targetScale / 100f) + "x" + Math.Round(img.Height * targetScale));
                 img.Resize(geom);
             }
             PreProcessing(path);

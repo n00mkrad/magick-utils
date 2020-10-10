@@ -252,6 +252,8 @@ namespace MagickUtils
             img.Quality = q;
             string outPath = Path.ChangeExtension(path, null) + ".png";
             PreProcessing(path);
+            if (path == outPath)
+                File.Delete(path);
             img.Write(outPath);
             PostProcessing(img, path, outPath, delSource);
         }

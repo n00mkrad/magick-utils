@@ -138,7 +138,7 @@ namespace MagickUtils
             if(img.Format == MagickFormat.Jpg || img.Format == MagickFormat.Jpeg)
                 return 95;
             if(img.Format == MagickFormat.Png)
-                return 30;
+                return Config.GetInt("pngQ");
             if(img.Format == MagickFormat.WebP)
                 return 93;
             return 99;
