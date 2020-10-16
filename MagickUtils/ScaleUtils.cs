@@ -83,7 +83,6 @@ namespace MagickUtils
             FT filter = GetFilter(randFilterMode);
             Random rand = new Random();
             float targetScale = (float)rand.NextDouble(minScale, maxScale);
-            Program.Print("targetScale: " + targetScale);
             img.FilterType = filter;
 
             bool heightLonger = img.Height > img.Width;
