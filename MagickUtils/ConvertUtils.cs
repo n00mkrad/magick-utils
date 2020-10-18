@@ -136,10 +136,23 @@ namespace MagickUtils
             {
                 Program.ShowProgress("Converting Image ", counter, files.Length);
                 counter++;
-                FlifInterface.EncodeImage(file.FullName, q, delSrc);
+                //FlifInterface.EncodeImage(file.FullName, q, delSrc);
+                ConvertToFlif(file.FullName, q, delSrc);
                 await Program.PutTaskDelay();
             }
             Program.PostProcessing();
+        }
+
+        public static void ConvertToFlif (string path, int q, bool delSrc)
+        {
+            MagickImage img = IOUtils.ReadImage(path);
+            if (img == null) return;
+            img.Format = MagickFormat.Flif;
+            img.Quality = q;
+            string outPath = Path.ChangeExtension(path, null) + ".flif";
+            PreProcessing(path);
+            img.Write(outPath);
+            PostProcessing(img, path, outPath, delSrc);
         }
 
         public static async void ConvertDirToBmp(bool delSrc)
