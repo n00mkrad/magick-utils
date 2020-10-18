@@ -45,8 +45,11 @@ namespace MagickUtils
                         ConvertUtils.ConvertToJpeg2000(file, qMin, delSrcCbox.Checked);
 
                     if(selectedFormat == IF.FLIF)
-                        FlifInterface.EncodeImage(file, qMin, delSrcCbox.Checked);
-
+                    {
+                        if(FormatOptions.flifUseWrapper) FlifInterface.EncodeImage(file, qMin, delSrcCbox.Checked);
+                        else ConvertUtils.ConvertToFlif(file, qMin, delSrcCbox.Checked);
+                    }
+                    
                     if (selectedFormat == IF.BMP)
                         ConvertUtils.ConvertToBmp(file, delSrcCbox.Checked);
 
@@ -88,7 +91,7 @@ namespace MagickUtils
                 ConvertUtils.ConvertDirToJpeg2000(qMin, delSrcCbox.Checked);
 
             if(selectedFormat == IF.FLIF)
-                ConvertUtils.ConvertDirToFlif(qMin, delSrcCbox.Checked);
+                ConvertUtils.ConvertDirToFlif(FormatOptions.flifUseWrapper, qMin, delSrcCbox.Checked);
 
             if (selectedFormat == IF.BMP)
                 ConvertUtils.ConvertDirToBmp(delSrcCbox.Checked);

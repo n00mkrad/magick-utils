@@ -9,5 +9,6 @@ namespace MagickUtils
     class FormatOptions
     {
         public static bool ddsUseCrunch = false;
+        public static bool flifUseWrapper = false;
     }
 }

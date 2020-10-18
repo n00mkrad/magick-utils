@@ -126,7 +126,7 @@ namespace MagickUtils
             Program.PostProcessing();
         }
 
-        public static async void ConvertDirToFlif (int q, bool delSrc)
+        public static async void ConvertDirToFlif (bool useFlifExe, int q, bool delSrc)
         {
             int counter = 1;
             FileInfo[] files = IOUtils.GetFiles();
@@ -136,8 +136,10 @@ namespace MagickUtils
             {
                 Program.ShowProgress("Converting Image ", counter, files.Length);
                 counter++;
-                //FlifInterface.EncodeImage(file.FullName, q, delSrc);
-                ConvertToFlif(file.FullName, q, delSrc);
+                if(useFlifExe)
+                    FlifInterface.EncodeImage(file.FullName, q, delSrc);
+                else
+                    ConvertToFlif(file.FullName, q, delSrc);
                 await Program.PutTaskDelay();
             }
             Program.PostProcessing();
