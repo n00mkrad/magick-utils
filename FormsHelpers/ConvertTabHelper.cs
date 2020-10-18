@@ -39,7 +39,7 @@ namespace MagickUtils
                         ConvertUtils.ConvertToTga(file, delSrcCbox.Checked);
 
                     if(selectedFormat == IF.WEBP)
-                        ConvertUtils.ConvertToWebp(file, qMin, delSrcCbox.Checked);
+                        ConvertUtils.ConvertToWebp(file, qMin, qMax, delSrcCbox.Checked);
 
                     if(selectedFormat == IF.J2K)
                         ConvertUtils.ConvertToJpeg2000(file, qMin, delSrcCbox.Checked);
@@ -82,7 +82,7 @@ namespace MagickUtils
                 ConvertUtils.ConvertDirToTga(delSrcCbox.Checked);
 
             if(selectedFormat == IF.WEBP)
-                ConvertUtils.ConvertDirToWebp(qMin, delSrcCbox.Checked);
+                ConvertUtils.ConvertDirToWebp(qMin, qMax, delSrcCbox.Checked);
 
             if(selectedFormat == IF.J2K)
                 ConvertUtils.ConvertDirToJpeg2000(qMin, delSrcCbox.Checked);

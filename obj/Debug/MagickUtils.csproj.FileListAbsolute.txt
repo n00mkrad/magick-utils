@@ -74,3 +74,11 @@ D:\Code\GitHub\IEU\magick-utils\bin\Debug\System.Buffers.xml
 D:\Code\GitHub\IEU\magick-utils\bin\Debug\System.Memory.xml
 D:\Code\GitHub\IEU\magick-utils\bin\Debug\System.Numerics.Vectors.xml
 D:\Code\GitHub\IEU\magick-utils\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\NMKD\Documents\GitHub\magick-utils\bin\Debug\DdsFileTypePlusIO_x86.dll
+C:\Users\NMKD\Documents\GitHub\magick-utils\bin\Debug\DdsFileTypePlusIO_x64.dll
+C:\Users\NMKD\Documents\GitHub\magick-utils\bin\Debug\DotNetZip.xml
+C:\Users\NMKD\Documents\GitHub\magick-utils\bin\Debug\System.Buffers.xml
+C:\Users\NMKD\Documents\GitHub\magick-utils\bin\Debug\System.Memory.xml
+C:\Users\NMKD\Documents\GitHub\magick-utils\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\NMKD\Documents\GitHub\magick-utils\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\NMKD\Documents\GitHub\magick-utils\obj\Debug\MagickUtils.Forms.PngOptionsWindow.resources

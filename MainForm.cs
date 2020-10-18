@@ -137,6 +137,7 @@ namespace MagickUtils
             if(formatStrTrim == "WEBP")
             {
                 selectedFormat = Program.ImageFormat.WEBP;
+                qualityMaxCombox.Enabled = true;
                 formatQualityLabel.Text = "WEBP Quality: 0 - 100. Default: 93";
             }
 

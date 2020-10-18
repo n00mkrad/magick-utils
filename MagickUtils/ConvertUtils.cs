@@ -94,7 +94,7 @@ namespace MagickUtils
             Program.PostProcessing();
         }
 
-        public static async void ConvertDirToWebp (int q, bool delSrc)
+        public static async void ConvertDirToWebp (int qMin, int qMax, bool delSrc)
         {
             int counter = 1;
             FileInfo[] files = IOUtils.GetFiles();
@@ -104,7 +104,7 @@ namespace MagickUtils
             {
                 Program.ShowProgress("Converting Image ", counter, files.Length);
                 counter++;
-                ConvertToWebp(file.FullName, q, delSrc);
+                ConvertToWebp(file.FullName, qMin, qMax, delSrc);
                 if(counter % 2 == 0) await Program.PutTaskDelay();
             }
             Program.PostProcessing();
@@ -282,13 +282,14 @@ namespace MagickUtils
             PostProcessing(img, path, outPath, delSource);
         }
 
-        public static void ConvertToWebp (string path, int q, bool delSource = false)
+        public static void ConvertToWebp (string path, int qMin, int qMax, bool delSource = false)
         {
             MagickImage img = IOUtils.ReadImage(path);if(img == null) return;
             img.Format = MagickFormat.WebP;
             string outPath = Path.ChangeExtension(path, null) + ".webp";
-            img.Quality = q;
-            PreProcessing(path);
+            Random rand = new Random();
+            img.Quality = rand.Next(qMin, qMax + 1);
+            PreProcessing(path, " [WEBP Quality: " + img.Quality + "]");
             img.Write(outPath);
             PostProcessing(img, path, outPath, delSource);
         }

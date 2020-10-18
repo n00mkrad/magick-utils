@@ -1458,6 +1458,17 @@
             <param name="height">The height of the part to chop vertically.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
+        <member name="M:ImageMagick.MagickImage.Clahe(ImageMagick.Percentage,ImageMagick.Percentage,System.Int32,System.Double)">
+            <summary>
+            A variant of adaptive histogram equalization in which the contrast amplification is limited,
+            so as to reduce this problem of noise amplification.
+            </summary>
+            <param name="xTiles">The percentage of tile divisions to use in horizontal direction.</param>
+            <param name="yTiles">The percentage of tile divisions to use in vertical direction.</param>
+            <param name="numberBins">The number of bins for histogram ("dynamic range").</param>
+            <param name="clipLimit">The contrast limit for localised changes in contrast. A limit less than 1
+            results in standard non-contrast limited AHE.</param>
+        </member>
         <member name="M:ImageMagick.MagickImage.Clahe(System.Int32,System.Int32,System.Int32,System.Double)">
             <summary>
             A variant of adaptive histogram equalization in which the contrast amplification is limited,
@@ -1534,14 +1545,14 @@
             <param name="height">The height of the area to clone.</param>
             <returns>A clone of the current image.</returns>
         </member>
-        <member name="M:ImageMagick.MagickImage.Clut(ImageMagick.IMagickImage{System.UInt16})">
+        <member name="M:ImageMagick.MagickImage.Clut(ImageMagick.IMagickImage)">
             <summary>
             Apply a color lookup table (CLUT) to the image.
             </summary>
             <param name="image">The image to use.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Clut(ImageMagick.IMagickImage{System.UInt16},ImageMagick.PixelInterpolateMethod)">
+        <member name="M:ImageMagick.MagickImage.Clut(ImageMagick.IMagickImage,ImageMagick.PixelInterpolateMethod)">
             <summary>
             Apply a color lookup table (CLUT) to the image.
             </summary>
@@ -1549,7 +1560,7 @@
             <param name="method">Pixel interpolate method.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Clut(ImageMagick.IMagickImage{System.UInt16},ImageMagick.PixelInterpolateMethod,ImageMagick.Channels)">
+        <member name="M:ImageMagick.MagickImage.Clut(ImageMagick.IMagickImage,ImageMagick.PixelInterpolateMethod,ImageMagick.Channels)">
             <summary>
             Apply a color lookup table (CLUT) to the image.
             </summary>
@@ -1605,7 +1616,7 @@
             <param name="startColor">The start color of the color range.</param>
             <param name="stopColor">The stop color of the color range.</param>
         </member>
-        <member name="M:ImageMagick.MagickImage.Compare(ImageMagick.IMagickImage{System.UInt16})">
+        <member name="M:ImageMagick.MagickImage.Compare(ImageMagick.IMagickImage)">
             <summary>
             Compare current image with another image and returns error information.
             </summary>
@@ -1613,7 +1624,7 @@
             <returns>The error information.</returns>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Compare(ImageMagick.IMagickImage{System.UInt16},ImageMagick.ErrorMetric)">
+        <member name="M:ImageMagick.MagickImage.Compare(ImageMagick.IMagickImage,ImageMagick.ErrorMetric)">
             <summary>
             Returns the distortion based on the specified metric.
             </summary>
@@ -1622,7 +1633,7 @@
             <returns>The distortion based on the specified metric.</returns>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Compare(ImageMagick.IMagickImage{System.UInt16},ImageMagick.ErrorMetric,ImageMagick.Channels)">
+        <member name="M:ImageMagick.MagickImage.Compare(ImageMagick.IMagickImage,ImageMagick.ErrorMetric,ImageMagick.Channels)">
             <summary>
             Returns the distortion based on the specified metric.
             </summary>
@@ -1632,7 +1643,7 @@
             <returns>The distortion based on the specified metric.</returns>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Compare(ImageMagick.IMagickImage{System.UInt16},ImageMagick.ICompareSettings{System.UInt16},ImageMagick.IMagickImage{System.UInt16})">
+        <member name="M:ImageMagick.MagickImage.Compare(ImageMagick.IMagickImage,ImageMagick.ICompareSettings{System.UInt16},ImageMagick.IMagickImage)">
             <summary>
             Returns the distortion based on the specified metric.
             </summary>
@@ -1642,7 +1653,7 @@
             <returns>The distortion based on the specified metric.</returns>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Compare(ImageMagick.IMagickImage{System.UInt16},ImageMagick.ErrorMetric,ImageMagick.IMagickImage{System.UInt16})">
+        <member name="M:ImageMagick.MagickImage.Compare(ImageMagick.IMagickImage,ImageMagick.ErrorMetric,ImageMagick.IMagickImage)">
             <summary>
             Returns the distortion based on the specified metric.
             </summary>
@@ -1652,7 +1663,7 @@
             <returns>The distortion based on the specified metric.</returns>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Compare(ImageMagick.IMagickImage{System.UInt16},ImageMagick.ErrorMetric,ImageMagick.IMagickImage{System.UInt16},ImageMagick.Channels)">
+        <member name="M:ImageMagick.MagickImage.Compare(ImageMagick.IMagickImage,ImageMagick.ErrorMetric,ImageMagick.IMagickImage,ImageMagick.Channels)">
             <summary>
             Returns the distortion based on the specified metric.
             </summary>
@@ -1663,7 +1674,7 @@
             <returns>The distortion based on the specified metric.</returns>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Compare(ImageMagick.IMagickImage{System.UInt16},ImageMagick.ICompareSettings{System.UInt16},ImageMagick.IMagickImage{System.UInt16},ImageMagick.Channels)">
+        <member name="M:ImageMagick.MagickImage.Compare(ImageMagick.IMagickImage,ImageMagick.ICompareSettings{System.UInt16},ImageMagick.IMagickImage,ImageMagick.Channels)">
             <summary>
             Returns the distortion based on the specified metric.
             </summary>
@@ -1681,14 +1692,14 @@
             <param name="other">The object to compare this image with.</param>
             <returns>A signed number indicating the relative values of this instance and value.</returns>
         </member>
-        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage{System.UInt16})">
+        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage)">
             <summary>
             Compose an image onto another at specified offset using the 'In' operator.
             </summary>
             <param name="image">The image to composite with this image.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage{System.UInt16},ImageMagick.Channels)">
+        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage,ImageMagick.Channels)">
             <summary>
             Compose an image onto another at specified offset using the 'In' operator.
             </summary>
@@ -1696,7 +1707,7 @@
             <param name="channels">The channel(s) to composite.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage{System.UInt16},ImageMagick.CompositeOperator)">
+        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage,ImageMagick.CompositeOperator)">
             <summary>
             Compose an image onto another using the specified algorithm.
             </summary>
@@ -1704,7 +1715,7 @@
             <param name="compose">The algorithm to use.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage{System.UInt16},ImageMagick.CompositeOperator,ImageMagick.Channels)">
+        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage,ImageMagick.CompositeOperator,ImageMagick.Channels)">
             <summary>
             Compose an image onto another using the specified algorithm.
             </summary>
@@ -1713,7 +1724,7 @@
             <param name="channels">The channel(s) to composite.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage{System.UInt16},ImageMagick.CompositeOperator,System.String)">
+        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage,ImageMagick.CompositeOperator,System.String)">
             <summary>
             Compose an image onto another at specified offset using the specified algorithm.
             </summary>
@@ -1722,7 +1733,7 @@
             <param name="args">The arguments for the algorithm (compose:args).</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage{System.UInt16},ImageMagick.CompositeOperator,System.String,ImageMagick.Channels)">
+        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage,ImageMagick.CompositeOperator,System.String,ImageMagick.Channels)">
             <summary>
             Compose an image onto another at specified offset using the specified algorithm.
             </summary>
@@ -1732,7 +1743,7 @@
             <param name="channels">The channel(s) to composite.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage{System.UInt16},System.Int32,System.Int32)">
+        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage,System.Int32,System.Int32)">
             <summary>
             Compose an image onto another at specified offset using the 'In' operator.
             </summary>
@@ -1741,7 +1752,7 @@
             <param name="y">The Y offset from origin.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage{System.UInt16},System.Int32,System.Int32,ImageMagick.Channels)">
+        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage,System.Int32,System.Int32,ImageMagick.Channels)">
             <summary>
             Compose an image onto another at specified offset using the 'In' operator.
             </summary>
@@ -1751,7 +1762,7 @@
             <param name="channels">The channel(s) to composite.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage{System.UInt16},System.Int32,System.Int32,ImageMagick.CompositeOperator)">
+        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage,System.Int32,System.Int32,ImageMagick.CompositeOperator)">
             <summary>
             Compose an image onto another at specified offset using the specified algorithm.
             </summary>
@@ -1761,7 +1772,7 @@
             <param name="compose">The algorithm to use.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage{System.UInt16},System.Int32,System.Int32,ImageMagick.CompositeOperator,ImageMagick.Channels)">
+        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage,System.Int32,System.Int32,ImageMagick.CompositeOperator,ImageMagick.Channels)">
             <summary>
             Compose an image onto another at specified offset using the specified algorithm.
             </summary>
@@ -1772,7 +1783,7 @@
             <param name="channels">The channel(s) to composite.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage{System.UInt16},System.Int32,System.Int32,ImageMagick.CompositeOperator,System.String)">
+        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage,System.Int32,System.Int32,ImageMagick.CompositeOperator,System.String)">
             <summary>
             Compose an image onto another at specified offset using the specified algorithm.
             </summary>
@@ -1783,7 +1794,7 @@
             <param name="args">The arguments for the algorithm (compose:args).</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage{System.UInt16},System.Int32,System.Int32,ImageMagick.CompositeOperator,System.String,ImageMagick.Channels)">
+        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage,System.Int32,System.Int32,ImageMagick.CompositeOperator,System.String,ImageMagick.Channels)">
             <summary>
             Compose an image onto another at specified offset using the specified algorithm.
             </summary>
@@ -1795,7 +1806,7 @@
             <param name="channels">The channel(s) to composite.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage{System.UInt16},ImageMagick.PointD)">
+        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage,ImageMagick.PointD)">
             <summary>
             Compose an image onto another at specified offset using the 'In' operator.
             </summary>
@@ -1803,7 +1814,7 @@
             <param name="offset">The offset from origin.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage{System.UInt16},ImageMagick.PointD,ImageMagick.Channels)">
+        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage,ImageMagick.PointD,ImageMagick.Channels)">
             <summary>
             Compose an image onto another at specified offset using the 'In' operator.
             </summary>
@@ -1812,7 +1823,7 @@
             <param name="channels">The channel(s) to composite.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage{System.UInt16},ImageMagick.PointD,ImageMagick.CompositeOperator)">
+        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage,ImageMagick.PointD,ImageMagick.CompositeOperator)">
             <summary>
             Compose an image onto another at specified offset using the specified algorithm.
             </summary>
@@ -1821,7 +1832,7 @@
             <param name="compose">The algorithm to use.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage{System.UInt16},ImageMagick.PointD,ImageMagick.CompositeOperator,ImageMagick.Channels)">
+        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage,ImageMagick.PointD,ImageMagick.CompositeOperator,ImageMagick.Channels)">
             <summary>
             Compose an image onto another at specified offset using the specified algorithm.
             </summary>
@@ -1831,7 +1842,7 @@
             <param name="channels">The channel(s) to composite.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage{System.UInt16},ImageMagick.PointD,ImageMagick.CompositeOperator,System.String)">
+        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage,ImageMagick.PointD,ImageMagick.CompositeOperator,System.String)">
             <summary>
             Compose an image onto another at specified offset using the specified algorithm.
             </summary>
@@ -1841,7 +1852,7 @@
             <param name="args">The arguments for the algorithm (compose:args).</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage{System.UInt16},ImageMagick.PointD,ImageMagick.CompositeOperator,System.String,ImageMagick.Channels)">
+        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage,ImageMagick.PointD,ImageMagick.CompositeOperator,System.String,ImageMagick.Channels)">
             <summary>
             Compose an image onto another at specified offset using the specified algorithm.
             </summary>
@@ -1852,7 +1863,7 @@
             <param name="channels">The channel(s) to composite.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage{System.UInt16},ImageMagick.Gravity)">
+        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage,ImageMagick.Gravity)">
             <summary>
             Compose an image onto another at specified offset using the 'In' operator.
             </summary>
@@ -1860,7 +1871,7 @@
             <param name="gravity">The placement gravity.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage{System.UInt16},ImageMagick.Gravity,ImageMagick.Channels)">
+        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage,ImageMagick.Gravity,ImageMagick.Channels)">
             <summary>
             Compose an image onto another at specified offset using the 'In' operator.
             </summary>
@@ -1869,7 +1880,7 @@
             <param name="channels">The channel(s) to composite.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage{System.UInt16},ImageMagick.Gravity,ImageMagick.CompositeOperator)">
+        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage,ImageMagick.Gravity,ImageMagick.CompositeOperator)">
             <summary>
             Compose an image onto another at specified offset using the specified algorithm.
             </summary>
@@ -1878,7 +1889,7 @@
             <param name="compose">The algorithm to use.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage{System.UInt16},ImageMagick.Gravity,ImageMagick.CompositeOperator,ImageMagick.Channels)">
+        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage,ImageMagick.Gravity,ImageMagick.CompositeOperator,ImageMagick.Channels)">
             <summary>
             Compose an image onto another at specified offset using the specified algorithm.
             </summary>
@@ -1888,7 +1899,7 @@
             <param name="channels">The channel(s) to composite.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage{System.UInt16},ImageMagick.Gravity,ImageMagick.CompositeOperator,System.String)">
+        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage,ImageMagick.Gravity,ImageMagick.CompositeOperator,System.String)">
             <summary>
             Compose an image onto another at specified offset using the specified algorithm.
             </summary>
@@ -1898,7 +1909,7 @@
             <param name="args">The arguments for the algorithm (compose:args).</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage{System.UInt16},ImageMagick.Gravity,ImageMagick.CompositeOperator,System.String,ImageMagick.Channels)">
+        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage,ImageMagick.Gravity,ImageMagick.CompositeOperator,System.String,ImageMagick.Channels)">
             <summary>
             Compose an image onto another at specified offset using the specified algorithm.
             </summary>
@@ -1909,7 +1920,7 @@
             <param name="channels">The channel(s) to composite.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage{System.UInt16},ImageMagick.Gravity,System.Int32,System.Int32)">
+        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage,ImageMagick.Gravity,System.Int32,System.Int32)">
             <summary>
             Compose an image onto another at specified offset using the 'In' operator.
             </summary>
@@ -1919,7 +1930,7 @@
             <param name="y">The Y offset from origin.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage{System.UInt16},ImageMagick.Gravity,System.Int32,System.Int32,ImageMagick.Channels)">
+        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage,ImageMagick.Gravity,System.Int32,System.Int32,ImageMagick.Channels)">
             <summary>
             Compose an image onto another at specified offset using the 'In' operator.
             </summary>
@@ -1930,7 +1941,7 @@
             <param name="channels">The channel(s) to composite.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage{System.UInt16},ImageMagick.Gravity,System.Int32,System.Int32,ImageMagick.CompositeOperator)">
+        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage,ImageMagick.Gravity,System.Int32,System.Int32,ImageMagick.CompositeOperator)">
             <summary>
             Compose an image onto another at specified offset using the 'In' operator.
             </summary>
@@ -1941,7 +1952,7 @@
             <param name="compose">The algorithm to use.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage{System.UInt16},ImageMagick.Gravity,System.Int32,System.Int32,ImageMagick.CompositeOperator,ImageMagick.Channels)">
+        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage,ImageMagick.Gravity,System.Int32,System.Int32,ImageMagick.CompositeOperator,ImageMagick.Channels)">
             <summary>
             Compose an image onto another at specified offset using the 'In' operator.
             </summary>
@@ -1953,19 +1964,7 @@
             <param name="channels">The channel(s) to composite.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage{System.UInt16},ImageMagick.Gravity,System.Int32,System.Int32,ImageMagick.CompositeOperator,System.String)">
-            <summary>
-            Compose an image onto another at specified offset using the specified algorithm.
-            </summary>
-            <param name="image">The image to composite with this image.</param>
-            <param name="gravity">The placement gravity.</param>
-            <param name="x">The X offset from origin.</param>
-            <param name="y">The Y offset from origin.</param>
-            <param name="compose">The algorithm to use.</param>
-            <param name="args">The arguments for the algorithm (compose:args).</param>
-            <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
-        </member>
-        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage{System.UInt16},ImageMagick.Gravity,System.Int32,System.Int32,ImageMagick.CompositeOperator,System.String,ImageMagick.Channels)">
+        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage,ImageMagick.Gravity,System.Int32,System.Int32,ImageMagick.CompositeOperator,System.String)">
             <summary>
             Compose an image onto another at specified offset using the specified algorithm.
             </summary>
@@ -1975,10 +1974,22 @@
             <param name="y">The Y offset from origin.</param>
             <param name="compose">The algorithm to use.</param>
             <param name="args">The arguments for the algorithm (compose:args).</param>
+            <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
+        </member>
+        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage,ImageMagick.Gravity,System.Int32,System.Int32,ImageMagick.CompositeOperator,System.String,ImageMagick.Channels)">
+            <summary>
+            Compose an image onto another at specified offset using the specified algorithm.
+            </summary>
+            <param name="image">The image to composite with this image.</param>
+            <param name="gravity">The placement gravity.</param>
+            <param name="x">The X offset from origin.</param>
+            <param name="y">The Y offset from origin.</param>
+            <param name="compose">The algorithm to use.</param>
+            <param name="args">The arguments for the algorithm (compose:args).</param>
             <param name="channels">The channel(s) to composite.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage{System.UInt16},ImageMagick.Gravity,ImageMagick.PointD)">
+        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage,ImageMagick.Gravity,ImageMagick.PointD)">
             <summary>
             Compose an image onto another at specified offset using the 'In' operator.
             </summary>
@@ -1987,7 +1998,7 @@
             <param name="offset">The offset from origin.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage{System.UInt16},ImageMagick.Gravity,ImageMagick.PointD,ImageMagick.Channels)">
+        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage,ImageMagick.Gravity,ImageMagick.PointD,ImageMagick.Channels)">
             <summary>
             Compose an image onto another at specified offset using the 'In' operator.
             </summary>
@@ -1997,7 +2008,7 @@
             <param name="channels">The channel(s) to composite.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage{System.UInt16},ImageMagick.Gravity,ImageMagick.PointD,ImageMagick.CompositeOperator)">
+        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage,ImageMagick.Gravity,ImageMagick.PointD,ImageMagick.CompositeOperator)">
             <summary>
             Compose an image onto another at specified offset using the 'In' operator.
             </summary>
@@ -2007,7 +2018,7 @@
             <param name="compose">The algorithm to use.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage{System.UInt16},ImageMagick.Gravity,ImageMagick.PointD,ImageMagick.CompositeOperator,ImageMagick.Channels)">
+        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage,ImageMagick.Gravity,ImageMagick.PointD,ImageMagick.CompositeOperator,ImageMagick.Channels)">
             <summary>
             Compose an image onto another at specified offset using the 'In' operator.
             </summary>
@@ -2018,7 +2029,7 @@
             <param name="channels">The channel(s) to composite.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage{System.UInt16},ImageMagick.Gravity,ImageMagick.PointD,ImageMagick.CompositeOperator,System.String)">
+        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage,ImageMagick.Gravity,ImageMagick.PointD,ImageMagick.CompositeOperator,System.String)">
             <summary>
             Compose an image onto another at specified offset using the specified algorithm.
             </summary>
@@ -2029,7 +2040,7 @@
             <param name="args">The arguments for the algorithm (compose:args).</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage{System.UInt16},ImageMagick.Gravity,ImageMagick.PointD,ImageMagick.CompositeOperator,System.String,ImageMagick.Channels)">
+        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.IMagickImage,ImageMagick.Gravity,ImageMagick.PointD,ImageMagick.CompositeOperator,System.String,ImageMagick.Channels)">
             <summary>
             Compose an image onto another at specified offset using the specified algorithm.
             </summary>
@@ -2117,14 +2128,14 @@
             <param name="convolveMatrix">The convolution matrix.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.CopyPixels(ImageMagick.IMagickImage{System.UInt16})">
+        <member name="M:ImageMagick.MagickImage.CopyPixels(ImageMagick.IMagickImage)">
             <summary>
             Copies pixels from the source image to the destination image.
             </summary>
             <param name="source">The source image to copy the pixels from.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.CopyPixels(ImageMagick.IMagickImage{System.UInt16},ImageMagick.Channels)">
+        <member name="M:ImageMagick.MagickImage.CopyPixels(ImageMagick.IMagickImage,ImageMagick.Channels)">
             <summary>
             Copies pixels from the source image to the destination image.
             </summary>
@@ -2132,7 +2143,7 @@
             <param name="channels">The channels to copy.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.CopyPixels(ImageMagick.IMagickImage{System.UInt16},ImageMagick.IMagickGeometry)">
+        <member name="M:ImageMagick.MagickImage.CopyPixels(ImageMagick.IMagickImage,ImageMagick.IMagickGeometry)">
             <summary>
             Copies pixels from the source image to the destination image.
             </summary>
@@ -2140,7 +2151,7 @@
             <param name="geometry">The geometry to copy.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.CopyPixels(ImageMagick.IMagickImage{System.UInt16},ImageMagick.IMagickGeometry,ImageMagick.Channels)">
+        <member name="M:ImageMagick.MagickImage.CopyPixels(ImageMagick.IMagickImage,ImageMagick.IMagickGeometry,ImageMagick.Channels)">
             <summary>
             Copies pixels from the source image to the destination image.
             </summary>
@@ -2149,7 +2160,7 @@
             <param name="channels">The channels to copy.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.CopyPixels(ImageMagick.IMagickImage{System.UInt16},ImageMagick.IMagickGeometry,ImageMagick.PointD)">
+        <member name="M:ImageMagick.MagickImage.CopyPixels(ImageMagick.IMagickImage,ImageMagick.IMagickGeometry,ImageMagick.PointD)">
             <summary>
             Copies pixels from the source image as defined by the geometry the destination image at
             the specified offset.
@@ -2159,7 +2170,7 @@
             <param name="offset">The offset to copy the pixels to.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.CopyPixels(ImageMagick.IMagickImage{System.UInt16},ImageMagick.IMagickGeometry,ImageMagick.PointD,ImageMagick.Channels)">
+        <member name="M:ImageMagick.MagickImage.CopyPixels(ImageMagick.IMagickImage,ImageMagick.IMagickGeometry,ImageMagick.PointD,ImageMagick.Channels)">
             <summary>
             Copies pixels from the source image as defined by the geometry the destination image at
             the specified offset.
@@ -2170,7 +2181,7 @@
             <param name="channels">The channels to copy.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.CopyPixels(ImageMagick.IMagickImage{System.UInt16},ImageMagick.IMagickGeometry,System.Int32,System.Int32)">
+        <member name="M:ImageMagick.MagickImage.CopyPixels(ImageMagick.IMagickImage,ImageMagick.IMagickGeometry,System.Int32,System.Int32)">
             <summary>
             Copies pixels from the source image as defined by the geometry the destination image at
             the specified offset.
@@ -2181,7 +2192,7 @@
             <param name="y">The Y offset to start the copy from.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.CopyPixels(ImageMagick.IMagickImage{System.UInt16},ImageMagick.IMagickGeometry,System.Int32,System.Int32,ImageMagick.Channels)">
+        <member name="M:ImageMagick.MagickImage.CopyPixels(ImageMagick.IMagickImage,ImageMagick.IMagickGeometry,System.Int32,System.Int32,ImageMagick.Channels)">
             <summary>
             Copies pixels from the source image as defined by the geometry the destination image at
             the specified offset.
@@ -2860,7 +2871,7 @@
             <param name="name">The name of the profile.</param>
             <returns>A value indicating whether a profile with the specified name already exists on the image.</returns>
         </member>
-        <member name="M:ImageMagick.MagickImage.HaldClut(ImageMagick.IMagickImage{System.UInt16})">
+        <member name="M:ImageMagick.MagickImage.HaldClut(ImageMagick.IMagickImage)">
             <summary>
             Apply a color lookup table (Hald CLUT) to the image.
             </summary>
@@ -3356,7 +3367,7 @@
             <returns>The error informaton.</returns>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Map(ImageMagick.IMagickImage{System.UInt16})">
+        <member name="M:ImageMagick.MagickImage.Map(ImageMagick.IMagickImage)">
             <summary>
             Remap image colors with closest color from reference image.
             </summary>
@@ -3364,7 +3375,7 @@
             <returns>The error informaton.</returns>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Map(ImageMagick.IMagickImage{System.UInt16},ImageMagick.IQuantizeSettings)">
+        <member name="M:ImageMagick.MagickImage.Map(ImageMagick.IMagickImage,ImageMagick.IQuantizeSettings)">
             <summary>
             Remap image colors with closest color from reference image.
             </summary>
@@ -4466,7 +4477,7 @@
             <param name="mode">The color transformation mode.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.SetReadMask(ImageMagick.IMagickImage{System.UInt16})">
+        <member name="M:ImageMagick.MagickImage.SetReadMask(ImageMagick.IMagickImage)">
             <summary>
             Sets the associated read mask of the image. The mask must be the same dimensions as the image and
             only contain the colors black and white.
@@ -4474,7 +4485,7 @@
             <param name="image">The image that contains the read mask.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.SetWriteMask(ImageMagick.IMagickImage{System.UInt16})">
+        <member name="M:ImageMagick.MagickImage.SetWriteMask(ImageMagick.IMagickImage)">
             <summary>
             Sets the associated write mask of the image. The mask must be the same dimensions as the image and
             only contains the colors black and white.
@@ -4596,14 +4607,14 @@
         </member>
         <member name="M:ImageMagick.MagickImage.SigmoidalContrast(System.Double)">
             <summary>
-            adjust the image contrast with a non-linear sigmoidal contrast algorithm.
+            Adjust the image contrast with a non-linear sigmoidal contrast algorithm.
             </summary>
             <param name="contrast">The contrast.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
         <member name="M:ImageMagick.MagickImage.SigmoidalContrast(System.Boolean,System.Double)">
             <summary>
-            adjust the image contrast with a non-linear sigmoidal contrast algorithm.
+            Adjust the image contrast with a non-linear sigmoidal contrast algorithm.
             </summary>
             <param name="sharpen">Specifies if sharpening should be used.</param>
             <param name="contrast">The contrast.</param>
@@ -4611,7 +4622,7 @@
         </member>
         <member name="M:ImageMagick.MagickImage.SigmoidalContrast(System.Double,System.Double)">
             <summary>
-            adjust the image contrast with a non-linear sigmoidal contrast algorithm.
+            Adjust the image contrast with a non-linear sigmoidal contrast algorithm.
             </summary>
             <param name="contrast">The contrast to use.</param>
             <param name="midpoint">The midpoint to use.</param>
@@ -4619,7 +4630,7 @@
         </member>
         <member name="M:ImageMagick.MagickImage.SigmoidalContrast(System.Boolean,System.Double,System.Double)">
             <summary>
-            adjust the image contrast with a non-linear sigmoidal contrast algorithm.
+            Adjust the image contrast with a non-linear sigmoidal contrast algorithm.
             </summary>
             <param name="sharpen">Specifies if sharpening should be used.</param>
             <param name="contrast">The contrast to use.</param>
@@ -4628,7 +4639,7 @@
         </member>
         <member name="M:ImageMagick.MagickImage.SigmoidalContrast(System.Double,ImageMagick.Percentage)">
             <summary>
-            adjust the image contrast with a non-linear sigmoidal contrast algorithm.
+            Adjust the image contrast with a non-linear sigmoidal contrast algorithm.
             </summary>
             <param name="contrast">The contrast to use.</param>
             <param name="midpointPercentage">The midpoint to use.</param>
@@ -4636,7 +4647,7 @@
         </member>
         <member name="M:ImageMagick.MagickImage.SigmoidalContrast(System.Boolean,System.Double,ImageMagick.Percentage)">
             <summary>
-            adjust the image contrast with a non-linear sigmoidal contrast algorithm.
+            Adjust the image contrast with a non-linear sigmoidal contrast algorithm.
             </summary>
             <param name="sharpen">Specifies if sharpening should be used.</param>
             <param name="contrast">The contrast to use.</param>
@@ -4766,14 +4777,14 @@
             <returns>The image statistics.</returns>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Stegano(ImageMagick.IMagickImage{System.UInt16})">
+        <member name="M:ImageMagick.MagickImage.Stegano(ImageMagick.IMagickImage)">
             <summary>
             Add a digital watermark to the image (based on second image).
             </summary>
             <param name="watermark">The image to use as a watermark.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Stereo(ImageMagick.IMagickImage{System.UInt16})">
+        <member name="M:ImageMagick.MagickImage.Stereo(ImageMagick.IMagickImage)">
             <summary>
             Create an image which appears in stereo when viewed with red-blue glasses (Red image on
             left, blue on right).
@@ -4835,7 +4846,7 @@
             <returns>The result of the search action.</returns>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Texture(ImageMagick.IMagickImage{System.UInt16})">
+        <member name="M:ImageMagick.MagickImage.Texture(ImageMagick.IMagickImage)">
             <summary>
             Channel a texture on image background.
             </summary>
@@ -4890,7 +4901,7 @@
             <param name="percentageHeight">The percentage of the height.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Tile(ImageMagick.IMagickImage{System.UInt16},ImageMagick.CompositeOperator)">
+        <member name="M:ImageMagick.MagickImage.Tile(ImageMagick.IMagickImage,ImageMagick.CompositeOperator)">
             <summary>
             Compose an image repeated across and down the image.
             </summary>
@@ -4898,7 +4909,7 @@
             <param name="compose">The algorithm to use.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
-        <member name="M:ImageMagick.MagickImage.Tile(ImageMagick.IMagickImage{System.UInt16},ImageMagick.CompositeOperator,System.String)">
+        <member name="M:ImageMagick.MagickImage.Tile(ImageMagick.IMagickImage,ImageMagick.CompositeOperator,System.String)">
             <summary>
             Compose an image repeated across and down the image.
             </summary>
@@ -5044,13 +5055,15 @@
         </member>
         <member name="M:ImageMagick.MagickImage.Trim">
             <summary>
-            Trim edges that are the background color from the image.
+            Trim edges that are the background color from the image. The property <see cref="P:ImageMagick.MagickImage.BoundingBox"/> can be used to the
+            coordinates of the area that will be extracted.
             </summary>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
         <member name="M:ImageMagick.MagickImage.Trim(ImageMagick.Percentage)">
             <summary>
-            Trim edges that are the background color from the image.
+            Trim edges that are the background color from the image. The property <see cref="P:ImageMagick.MagickImage.BoundingBox"/> can be used to the
+            coordinates of the area that will be extracted.
             </summary>
             <param name="percentBackground">The percentage of background pixels permitted in the outer rows and columns.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
@@ -12938,22 +12951,22 @@
         </member>
         <member name="F:ImageMagick.Formats.Bmp.BmpSubtype.ARGB1555">
             <summary>
-            ARGB1555
+            ARGB1555.
             </summary>
         </member>
         <member name="F:ImageMagick.Formats.Bmp.BmpSubtype.ARGB4444">
             <summary>
-            ARGB4444
+            ARGB4444.
             </summary>
         </member>
         <member name="F:ImageMagick.Formats.Bmp.BmpSubtype.RGB555">
             <summary>
-            RGB555
+            RGB555.
             </summary>
         </member>
         <member name="F:ImageMagick.Formats.Bmp.BmpSubtype.RGB565">
             <summary>
-            RGB565
+            RGB565.
             </summary>
         </member>
         <member name="T:ImageMagick.Formats.Bmp.BmpWriteDefines">
@@ -13003,12 +13016,12 @@
         </member>
         <member name="F:ImageMagick.Formats.Dds.DdsCompression.None">
             <summary>
-            None
+            None.
             </summary>
         </member>
         <member name="F:ImageMagick.Formats.Dds.DdsCompression.Dxt1">
             <summary>
-            Dxt1
+            Dxt1.
             </summary>
         </member>
         <member name="T:ImageMagick.Formats.Dds.DdsReadDefines">
@@ -13088,32 +13101,32 @@
         </member>
         <member name="F:ImageMagick.Formats.Dng.DngOutputColor.Raw">
             <summary>
-            Raw color (unique to each camera)
+            Raw color (unique to each camera).
             </summary>
         </member>
         <member name="F:ImageMagick.Formats.Dng.DngOutputColor.SRGB">
             <summary>
-            sRGB D65 (default)
+            sRGB D65 (default).
             </summary>
         </member>
         <member name="F:ImageMagick.Formats.Dng.DngOutputColor.AdobeRGB">
             <summary>
-            Adobe RGB (1998) D65
+            Adobe RGB (1998) D65.
             </summary>
         </member>
         <member name="F:ImageMagick.Formats.Dng.DngOutputColor.WideGamutRGB">
             <summary>
-            Wide Gamut RGB D65
+            Wide Gamut RGB D65.
             </summary>
         </member>
         <member name="F:ImageMagick.Formats.Dng.DngOutputColor.KodakProPhotoRGB">
             <summary>
-            Kodak ProPhoto RGB D65
+            Kodak ProPhoto RGB D65.
             </summary>
         </member>
         <member name="F:ImageMagick.Formats.Dng.DngOutputColor.XYZ">
             <summary>
-            XYZ
+            XYZ.
             </summary>
         </member>
         <member name="T:ImageMagick.Formats.Dng.DngReadDefines">
@@ -13249,17 +13262,17 @@
         </member>
         <member name="F:ImageMagick.Formats.Jpeg.JpegDctMethod.Fast">
             <summary>
-            Fast
+            Fast.
             </summary>
         </member>
         <member name="F:ImageMagick.Formats.Jpeg.JpegDctMethod.Float">
             <summary>
-            Float
+            Float.
             </summary>
         </member>
         <member name="F:ImageMagick.Formats.Jpeg.JpegDctMethod.Slow">
             <summary>
-            Slow
+            Slow.
             </summary>
         </member>
         <member name="T:ImageMagick.Formats.Jpeg.JpegProfileTypes">
@@ -13269,32 +13282,32 @@
         </member>
         <member name="F:ImageMagick.Formats.Jpeg.JpegProfileTypes.App">
             <summary>
-            App profile
+            App profile.
             </summary>
         </member>
         <member name="F:ImageMagick.Formats.Jpeg.JpegProfileTypes.EightBim">
             <summary>
-            8bim profile
+            8bim profile.
             </summary>
         </member>
         <member name="F:ImageMagick.Formats.Jpeg.JpegProfileTypes.Exif">
             <summary>
-            Exif profile
+            Exif profile.
             </summary>
         </member>
         <member name="F:ImageMagick.Formats.Jpeg.JpegProfileTypes.Icc">
             <summary>
-            Icc profile
+            Icc profile.
             </summary>
         </member>
         <member name="F:ImageMagick.Formats.Jpeg.JpegProfileTypes.Iptc">
             <summary>
-            Iptc profile
+            Iptc profile.
             </summary>
         </member>
         <member name="F:ImageMagick.Formats.Jpeg.JpegProfileTypes.Xmp">
             <summary>
-            Xmp profile
+            Xmp profile.
             </summary>
         </member>
         <member name="T:ImageMagick.Formats.Jpeg.JpegReadDefines">
@@ -13350,32 +13363,32 @@
         </member>
         <member name="F:ImageMagick.Formats.Jpeg.JpegSamplingFactor.Ratio444">
             <summary>
-            4:4:4
+            4:4:4.
             </summary>
         </member>
         <member name="F:ImageMagick.Formats.Jpeg.JpegSamplingFactor.Ratio422">
             <summary>
-            4:2:2
+            4:2:2.
             </summary>
         </member>
         <member name="F:ImageMagick.Formats.Jpeg.JpegSamplingFactor.Ratio411">
             <summary>
-            4:1:1
+            4:1:1.
             </summary>
         </member>
         <member name="F:ImageMagick.Formats.Jpeg.JpegSamplingFactor.Ratio440">
             <summary>
-            4:4:0
+            4:4:0.
             </summary>
         </member>
         <member name="F:ImageMagick.Formats.Jpeg.JpegSamplingFactor.Ratio420">
             <summary>
-            4:2:0
+            4:2:0.
             </summary>
         </member>
         <member name="F:ImageMagick.Formats.Jpeg.JpegSamplingFactor.Ratio410">
             <summary>
-            4:1:0
+            4:1:0.
             </summary>
         </member>
         <member name="T:ImageMagick.Formats.Jpeg.JpegWriteDefines">
@@ -13465,32 +13478,32 @@
         </member>
         <member name="F:ImageMagick.Formats.Png.PngProfileTypes.App">
             <summary>
-            App profile
+            App profile.
             </summary>
         </member>
         <member name="F:ImageMagick.Formats.Png.PngProfileTypes.EightBim">
             <summary>
-            8bim profile
+            8bim profile.
             </summary>
         </member>
         <member name="F:ImageMagick.Formats.Png.PngProfileTypes.Exif">
             <summary>
-            Exif profile
+            Exif profile.
             </summary>
         </member>
         <member name="F:ImageMagick.Formats.Png.PngProfileTypes.Icc">
             <summary>
-            Icc profile
+            Icc profile.
             </summary>
         </member>
         <member name="F:ImageMagick.Formats.Png.PngProfileTypes.Iptc">
             <summary>
-            Iptc profile
+            Iptc profile.
             </summary>
         </member>
         <member name="F:ImageMagick.Formats.Png.PngProfileTypes.Xmp">
             <summary>
-            Xmp profile
+            Xmp profile.
             </summary>
         </member>
         <member name="T:ImageMagick.Formats.Png.PngReadDefines">
@@ -13572,12 +13585,12 @@
         </member>
         <member name="F:ImageMagick.Formats.Psd.PsdAdditionalInfoPart.None">
             <summary>
-            None
+            None.
             </summary>
         </member>
         <member name="F:ImageMagick.Formats.Psd.PsdAdditionalInfoPart.All">
             <summary>
-            All
+            All.
             </summary>
         </member>
         <member name="F:ImageMagick.Formats.Psd.PsdAdditionalInfoPart.Selective">
@@ -13632,17 +13645,17 @@
         </member>
         <member name="F:ImageMagick.Formats.Tiff.TiffAlpha.Unspecified">
             <summary>
-            Unspecified
+            Unspecified.
             </summary>
         </member>
         <member name="F:ImageMagick.Formats.Tiff.TiffAlpha.Associated">
             <summary>
-            Associated
+            Associated.
             </summary>
         </member>
         <member name="F:ImageMagick.Formats.Tiff.TiffAlpha.Unassociated">
             <summary>
-            Unassociated
+            Unassociated.
             </summary>
         </member>
         <member name="T:ImageMagick.Formats.Tiff.TiffReadDefines">
