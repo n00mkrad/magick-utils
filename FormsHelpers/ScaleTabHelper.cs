@@ -19,7 +19,7 @@ namespace MagickUtils
             if(!string.IsNullOrWhiteSpace(maxScaleCombox.Text.Trim()))
                 sMax = maxScaleCombox.GetFloat();
             int filterMode = filterModeCombox.SelectedIndex;
-            ScaleUtils.ScaleDir(sMin, sMax, filterMode);
+            ScaleUtils.ScaleDir(sMin, sMax, filterMode, filterModeCombox.Text.Trim());
         }
 
         public static void ScaleFileList (string[] files, ComboBox minScaleCombox, ComboBox maxScaleCombox, ComboBox filterModeCombox)
@@ -35,7 +35,7 @@ namespace MagickUtils
 
             foreach(string file in files)
             {
-                ScaleUtils.Scale(file, sMin, sMax, filterMode);
+                ScaleUtils.Scale(file, sMin, sMax, filterMode, filterModeCombox.Text.Trim());
             }  
         }
 
@@ -50,7 +50,7 @@ namespace MagickUtils
                 sMax = maxScaleCombox.GetFloat();
             int filterMode = downFilterCombox.SelectedIndex;
             int reupFilterMode = upFilterCombox.SelectedIndex;
-            ScaleUtils.ResampleDirRand(sMin, sMax, filterMode, reupFilterMode);
+            ScaleUtils.ResampleDirRand(sMin, sMax, filterMode, downFilterCombox.Text.Trim(), reupFilterMode, upFilterCombox.Text.Trim());
         }
 
         public static void ResampleFileList (string[] files, ComboBox minScaleCombox, ComboBox maxScaleCombox, ComboBox downFilterCombox, ComboBox upFilterCombox)
@@ -67,7 +67,7 @@ namespace MagickUtils
 
             foreach (string file in files)
             {
-                ScaleUtils.RandomResample(file, sMin, sMax, filterMode, reupFilterMode);
+                ScaleUtils.RandomResample(file, sMin, sMax, filterMode, downFilterCombox.Text.Trim(), reupFilterMode, upFilterCombox.Text.Trim());
             }
         }
 

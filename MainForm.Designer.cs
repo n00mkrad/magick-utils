@@ -222,6 +222,13 @@
             this.autoLevelBtn = new System.Windows.Forms.Button();
             this.label21 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.panel23 = new System.Windows.Forms.Panel();
+            this.haloRadiusMax = new System.Windows.Forms.ComboBox();
+            this.label110 = new System.Windows.Forms.Label();
+            this.label111 = new System.Windows.Forms.Label();
+            this.haloRadiusMin = new System.Windows.Forms.ComboBox();
+            this.label112 = new System.Windows.Forms.Label();
+            this.haloBtn = new System.Windows.Forms.Button();
             this.panel22 = new System.Windows.Forms.Panel();
             this.medianRadiusMax = new System.Windows.Forms.ComboBox();
             this.label107 = new System.Windows.Forms.Label();
@@ -299,7 +306,6 @@
             this.recursiveCbox = new System.Windows.Forms.CheckBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.logTbox = new System.Windows.Forms.TextBox();
-            this.extensionWildcardTip = new System.Windows.Forms.ToolTip(this.components);
             this.label36 = new System.Windows.Forms.Label();
             this.label36v2 = new System.Windows.Forms.Label();
             this.nameMustContainTbox = new System.Windows.Forms.TextBox();
@@ -307,13 +313,6 @@
             this.defTip = new System.Windows.Forms.ToolTip(this.components);
             this.bgColorDialog = new System.Windows.Forms.ColorDialog();
             this.layerColorDialog = new System.Windows.Forms.ColorDialog();
-            this.panel23 = new System.Windows.Forms.Panel();
-            this.haloRadiusMax = new System.Windows.Forms.ComboBox();
-            this.label110 = new System.Windows.Forms.Label();
-            this.label111 = new System.Windows.Forms.Label();
-            this.haloRadiusMin = new System.Windows.Forms.ComboBox();
-            this.label112 = new System.Windows.Forms.Label();
-            this.haloBtn = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -346,6 +345,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.tabPage5.SuspendLayout();
+            this.panel23.SuspendLayout();
             this.panel22.SuspendLayout();
             this.panel16.SuspendLayout();
             this.panel10.SuspendLayout();
@@ -355,7 +355,6 @@
             this.panel14.SuspendLayout();
             this.panel13.SuspendLayout();
             this.tabPage6.SuspendLayout();
-            this.panel23.SuspendLayout();
             this.SuspendLayout();
             // 
             // pathTextbox
@@ -383,7 +382,7 @@
             this.label2.Size = new System.Drawing.Size(56, 13);
             this.label2.TabIndex = 3;
             this.label2.Text = "Extension:";
-            this.extensionWildcardTip.SetToolTip(this.label2, "Enter extension (not case sensitive). Example: \"png\"");
+            this.defTip.SetToolTip(this.label2, "Enter extension (not case sensitive). Example: \"png\"");
             // 
             // extTbox
             // 
@@ -392,6 +391,7 @@
             this.extTbox.Size = new System.Drawing.Size(50, 20);
             this.extTbox.TabIndex = 2;
             this.extTbox.Text = "*";
+            this.defTip.SetToolTip(this.extTbox, "Enter extension (not case sensitive). Example: \"png\"");
             this.extTbox.TextChanged += new System.EventHandler(this.extTbox_TextChanged);
             // 
             // tabControl1
@@ -657,7 +657,6 @@
             // 
             // resampleReupscaleFilterBox
             // 
-            this.resampleReupscaleFilterBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.resampleReupscaleFilterBox.FormattingEnabled = true;
             this.resampleReupscaleFilterBox.Items.AddRange(new object[] {
             "Mitchell",
@@ -764,7 +763,6 @@
             // 
             // filterModeCombox
             // 
-            this.filterModeCombox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.filterModeCombox.FormattingEnabled = true;
             this.filterModeCombox.Items.AddRange(new object[] {
             "Mitchell",
@@ -777,6 +775,7 @@
             this.filterModeCombox.Name = "filterModeCombox";
             this.filterModeCombox.Size = new System.Drawing.Size(150, 21);
             this.filterModeCombox.TabIndex = 33;
+            this.defTip.SetToolTip(this.filterModeCombox, resources.GetString("filterModeCombox.ToolTip"));
             // 
             // label20
             // 
@@ -2550,6 +2549,89 @@
             this.tabPage5.Text = "Effects";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // panel23
+            // 
+            this.panel23.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel23.Controls.Add(this.haloRadiusMax);
+            this.panel23.Controls.Add(this.label110);
+            this.panel23.Controls.Add(this.label111);
+            this.panel23.Controls.Add(this.haloRadiusMin);
+            this.panel23.Controls.Add(this.label112);
+            this.panel23.Controls.Add(this.haloBtn);
+            this.panel23.Location = new System.Drawing.Point(6, 183);
+            this.panel23.Name = "panel23";
+            this.panel23.Size = new System.Drawing.Size(690, 31);
+            this.panel23.TabIndex = 46;
+            // 
+            // haloRadiusMax
+            // 
+            this.haloRadiusMax.FormattingEnabled = true;
+            this.haloRadiusMax.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "4",
+            "6",
+            "8"});
+            this.haloRadiusMax.Location = new System.Drawing.Point(529, 5);
+            this.haloRadiusMax.Name = "haloRadiusMax";
+            this.haloRadiusMax.Size = new System.Drawing.Size(50, 21);
+            this.haloRadiusMax.TabIndex = 44;
+            // 
+            // label110
+            // 
+            this.label110.AutoSize = true;
+            this.label110.Location = new System.Drawing.Point(507, 8);
+            this.label110.Name = "label110";
+            this.label110.Size = new System.Drawing.Size(16, 13);
+            this.label110.TabIndex = 43;
+            this.label110.Text = "to";
+            // 
+            // label111
+            // 
+            this.label111.AutoSize = true;
+            this.label111.Location = new System.Drawing.Point(396, 8);
+            this.label111.Name = "label111";
+            this.label111.Size = new System.Drawing.Size(49, 13);
+            this.label111.TabIndex = 41;
+            this.label111.Text = "Intensity:";
+            // 
+            // haloRadiusMin
+            // 
+            this.haloRadiusMin.FormattingEnabled = true;
+            this.haloRadiusMin.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "4",
+            "6",
+            "8"});
+            this.haloRadiusMin.Location = new System.Drawing.Point(451, 5);
+            this.haloRadiusMin.Name = "haloRadiusMin";
+            this.haloRadiusMin.Size = new System.Drawing.Size(50, 21);
+            this.haloRadiusMin.TabIndex = 40;
+            this.haloRadiusMin.Text = "2";
+            // 
+            // label112
+            // 
+            this.label112.AutoSize = true;
+            this.label112.BackColor = System.Drawing.Color.Transparent;
+            this.label112.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label112.Location = new System.Drawing.Point(3, 8);
+            this.label112.Name = "label112";
+            this.label112.Size = new System.Drawing.Size(142, 13);
+            this.label112.TabIndex = 8;
+            this.label112.Text = "Sharpening Halo/Fringe";
+            // 
+            // haloBtn
+            // 
+            this.haloBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.haloBtn.Location = new System.Drawing.Point(585, 3);
+            this.haloBtn.Name = "haloBtn";
+            this.haloBtn.Size = new System.Drawing.Size(100, 23);
+            this.haloBtn.TabIndex = 32;
+            this.haloBtn.Text = "Apply";
+            this.haloBtn.UseVisualStyleBackColor = true;
+            this.haloBtn.Click += new System.EventHandler(this.haloBtn_Click);
+            // 
             // panel22
             // 
             this.panel22.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -3442,7 +3524,6 @@
             this.label36.Size = new System.Drawing.Size(72, 13);
             this.label36.TabIndex = 9;
             this.label36.Text = "Must Contain:";
-            this.extensionWildcardTip.SetToolTip(this.label36, "Enter extension (not case sensitive). Example: \"png\"");
             // 
             // label36v2
             // 
@@ -3452,7 +3533,6 @@
             this.label36v2.Size = new System.Drawing.Size(92, 13);
             this.label36v2.TabIndex = 11;
             this.label36v2.Text = "Must Not Contain:";
-            this.extensionWildcardTip.SetToolTip(this.label36v2, "Enter extension (not case sensitive). Example: \"png\"");
             // 
             // nameMustContainTbox
             // 
@@ -3469,89 +3549,6 @@
             this.nameMustNotContainTbox.Size = new System.Drawing.Size(100, 20);
             this.nameMustNotContainTbox.TabIndex = 12;
             this.nameMustNotContainTbox.TextChanged += new System.EventHandler(this.nameMustNotContainTbox_TextChanged);
-            // 
-            // panel23
-            // 
-            this.panel23.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel23.Controls.Add(this.haloRadiusMax);
-            this.panel23.Controls.Add(this.label110);
-            this.panel23.Controls.Add(this.label111);
-            this.panel23.Controls.Add(this.haloRadiusMin);
-            this.panel23.Controls.Add(this.label112);
-            this.panel23.Controls.Add(this.haloBtn);
-            this.panel23.Location = new System.Drawing.Point(6, 183);
-            this.panel23.Name = "panel23";
-            this.panel23.Size = new System.Drawing.Size(690, 31);
-            this.panel23.TabIndex = 46;
-            // 
-            // haloRadiusMax
-            // 
-            this.haloRadiusMax.FormattingEnabled = true;
-            this.haloRadiusMax.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "4",
-            "6",
-            "8"});
-            this.haloRadiusMax.Location = new System.Drawing.Point(529, 5);
-            this.haloRadiusMax.Name = "haloRadiusMax";
-            this.haloRadiusMax.Size = new System.Drawing.Size(50, 21);
-            this.haloRadiusMax.TabIndex = 44;
-            // 
-            // label110
-            // 
-            this.label110.AutoSize = true;
-            this.label110.Location = new System.Drawing.Point(507, 8);
-            this.label110.Name = "label110";
-            this.label110.Size = new System.Drawing.Size(16, 13);
-            this.label110.TabIndex = 43;
-            this.label110.Text = "to";
-            // 
-            // label111
-            // 
-            this.label111.AutoSize = true;
-            this.label111.Location = new System.Drawing.Point(396, 8);
-            this.label111.Name = "label111";
-            this.label111.Size = new System.Drawing.Size(49, 13);
-            this.label111.TabIndex = 41;
-            this.label111.Text = "Intensity:";
-            // 
-            // haloRadiusMin
-            // 
-            this.haloRadiusMin.FormattingEnabled = true;
-            this.haloRadiusMin.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "4",
-            "6",
-            "8"});
-            this.haloRadiusMin.Location = new System.Drawing.Point(451, 5);
-            this.haloRadiusMin.Name = "haloRadiusMin";
-            this.haloRadiusMin.Size = new System.Drawing.Size(50, 21);
-            this.haloRadiusMin.TabIndex = 40;
-            this.haloRadiusMin.Text = "2";
-            // 
-            // label112
-            // 
-            this.label112.AutoSize = true;
-            this.label112.BackColor = System.Drawing.Color.Transparent;
-            this.label112.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label112.Location = new System.Drawing.Point(3, 8);
-            this.label112.Name = "label112";
-            this.label112.Size = new System.Drawing.Size(142, 13);
-            this.label112.TabIndex = 8;
-            this.label112.Text = "Sharpening Halo/Fringe";
-            // 
-            // haloBtn
-            // 
-            this.haloBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.haloBtn.Location = new System.Drawing.Point(585, 3);
-            this.haloBtn.Name = "haloBtn";
-            this.haloBtn.Size = new System.Drawing.Size(100, 23);
-            this.haloBtn.TabIndex = 32;
-            this.haloBtn.Text = "Apply";
-            this.haloBtn.UseVisualStyleBackColor = true;
-            this.haloBtn.Click += new System.EventHandler(this.haloBtn_Click);
             // 
             // MainForm
             // 
@@ -3636,6 +3633,8 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tabPage5.ResumeLayout(false);
+            this.panel23.ResumeLayout(false);
+            this.panel23.PerformLayout();
             this.panel22.ResumeLayout(false);
             this.panel22.PerformLayout();
             this.panel16.ResumeLayout(false);
@@ -3653,8 +3652,6 @@
             this.panel13.PerformLayout();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
-            this.panel23.ResumeLayout(false);
-            this.panel23.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3752,7 +3749,6 @@
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.ToolTip extensionWildcardTip;
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.TextBox nameMustContainTbox;
         private System.Windows.Forms.Panel panel9;

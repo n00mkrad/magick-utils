@@ -12,7 +12,7 @@ namespace MagickUtils
     {
         static long bytesPre = 0;
 
-        public static async void ResampleDirRand (float sMin, float sMax, int downFilterMode, int upFilterMode)
+        public static async void ResampleDirRand (float sMin, float sMax, int downFilterMode, string downFilterName, int upFilterMode, string upFilterName)
         {
             int counter = 1;
             FileInfo[] files = IOUtils.GetFiles();
@@ -21,12 +21,12 @@ namespace MagickUtils
             {
                 Program.ShowProgress("Resampling Image ", counter, files.Length);
                 counter++;
-                RandomResample(file.FullName, sMin, sMax, downFilterMode, upFilterMode);
+                RandomResample(file.FullName, sMin, sMax, downFilterMode, downFilterName, upFilterMode, upFilterName);
                 if(counter % 2 == 0) await Program.PutTaskDelay();
             }
         }
 
-        public static async void ScaleDir (float sMin, float sMax, int filterMode)
+        public static async void ScaleDir (float sMin, float sMax, int filterMode, string filterName)
         {
             int counter = 1;
             FileInfo[] files = IOUtils.GetFiles();
@@ -35,7 +35,7 @@ namespace MagickUtils
             {
                 Program.ShowProgress("Scaling Image ", counter, files.Length);
                 counter++;
-                Scale(file.FullName, sMin, sMax, filterMode);
+                Scale(file.FullName, sMin, sMax, filterMode, filterName);
                 /* if(counter % 3 == 0) */ await Program.PutTaskDelay();
             }
             Program.PostProcessing();
@@ -48,10 +48,10 @@ namespace MagickUtils
         public static bool appendFiltername;
         public static bool dontOverwrite;
 
-        public static void RandomResample (string path, float minScale, float maxScale, int downFilterMode, int upFilterMode)
+        public static void RandomResample (string path, float minScale, float maxScale, int downFilterMode, string downFilterName, int upFilterMode, string upFilterName)
         {
             MagickImage img = IOUtils.ReadImage(path);
-            FT filter = GetFilter(downFilterMode);
+            FT filter = GetFilter(downFilterMode, downFilterName);
             int srcWidth = img.Width;
             int srcHeight = img.Height;
             Random rand = new Random();
@@ -60,7 +60,7 @@ namespace MagickUtils
             img.FilterType = filter;
             img.Resize(new Percentage(targetScale));
             MagickGeometry upscaleGeom = new MagickGeometry(srcWidth + "x" + srcHeight + "!");
-            img.FilterType = GetFilter(upFilterMode);
+            img.FilterType = GetFilter(upFilterMode, upFilterName);
             Program.Print("-> Scaling back up...\n");
             img.Resize(upscaleGeom);
             PreProcessing(path);
@@ -77,10 +77,10 @@ namespace MagickUtils
             else return filtersAll[rand.Next(filtersAll.Length)];
         }
 
-        public static void Scale (string path, float minScale, float maxScale, int randFilterMode)
+        public static void Scale (string path, float minScale, float maxScale, int randFilterMode, string filterName)
         {
             MagickImage img = IOUtils.ReadImage(path);
-            FT filter = GetFilter(randFilterMode);
+            FT filter = GetFilter(randFilterMode, filterName);
             Random rand = new Random();
             float targetScale = (float)rand.NextDouble(minScale, maxScale);
             img.FilterType = filter;
@@ -114,6 +114,7 @@ namespace MagickUtils
             PreProcessing(path);
             Write(img, filter);
             PostProcessing(img, path);
+            Program.Print("-> Done");
         }
 
         static void Write (MagickImage img, FT filter)
@@ -142,22 +143,32 @@ namespace MagickUtils
             }
         }
 
-        static FT GetFilter (int randFilterMode)
+        static FT GetFilter (int randFilterMode, string filterName)
         {
-            if(randFilterMode == 0) return FT.Mitchell;
+            Program.Print("Filter int: " + randFilterMode);
+            if (randFilterMode == 0) return FT.Mitchell;
             if(randFilterMode == 1) return FT.Lanczos;
             if(randFilterMode == 2) return FT.Catrom;
             if(randFilterMode == 3) return FT.Point;
             if(randFilterMode == 4) return GetRandomFilter(true);
             if(randFilterMode == 5) return GetRandomFilter();
-            return FT.Mitchell;
+            try
+            {
+                FT parsedFilter = (FT)Enum.Parse(typeof(FT), filterName);
+                Program.Print("Successfully parsed custom filter: " + parsedFilter.ToString());
+                return parsedFilter;
+            }
+            catch (Exception e)
+            {
+                Program.Print("Failed to parse custom filter: " + e.Message);
+                return FT.Mitchell;
+            }
         }
 
         static void PreProcessing (string path, string infoSuffix = null)
         {
             bytesPre = 0;
             bytesPre = new FileInfo(path).Length;
-            //Program.Print("-> Processing TEST " + Path.GetFileName(path) + " " + infoSuffix);
             Program.sw.Start();
         }
 
