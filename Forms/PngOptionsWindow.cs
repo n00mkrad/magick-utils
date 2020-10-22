@@ -19,14 +19,17 @@ namespace MagickUtils.Forms
 
         private void PngOptionsWindow_Load(object sender, EventArgs e)
         {
-            CenterToScreen();
             Config.LoadComboxIndex(pngColorDepth);
         }
 
         private void doneBtn_Click(object sender, EventArgs e)
         {
-            Config.SaveComboxIndex(pngColorDepth);
             Close();
+        }
+
+        private void PngOptionsWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Config.SaveComboxIndex(pngColorDepth);
         }
     }
 }

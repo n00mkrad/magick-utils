@@ -179,5 +179,12 @@ namespace MagickUtils
 
             return true;
         }
+
+        public static Image GetImage(string path)
+        {
+            using MemoryStream stream = new MemoryStream(File.ReadAllBytes(path));
+            Image img = Image.FromStream(stream);
+            return img;
+        }
     }
 }

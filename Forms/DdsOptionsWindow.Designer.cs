@@ -32,10 +32,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
-            this.useMipsCbox = new System.Windows.Forms.CheckBox();
-            this.dxtQualCombox = new System.Windows.Forms.ComboBox();
+            this.ddsUseMips = new System.Windows.Forms.CheckBox();
+            this.dxtSpeed = new System.Windows.Forms.ComboBox();
             this.label30 = new System.Windows.Forms.Label();
-            this.crunchDdsCbox = new System.Windows.Forms.CheckBox();
+            this.ddsUseCrunch = new System.Windows.Forms.CheckBox();
             this.label31 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -49,8 +49,8 @@
             this.crunchPanel.Controls.Add(this.label3);
             this.crunchPanel.Controls.Add(this.label2);
             this.crunchPanel.Controls.Add(this.label32);
-            this.crunchPanel.Controls.Add(this.useMipsCbox);
-            this.crunchPanel.Controls.Add(this.dxtQualCombox);
+            this.crunchPanel.Controls.Add(this.ddsUseMips);
+            this.crunchPanel.Controls.Add(this.dxtSpeed);
             this.crunchPanel.Controls.Add(this.label30);
             this.crunchPanel.Enabled = false;
             this.crunchPanel.Location = new System.Drawing.Point(12, 90);
@@ -87,31 +87,30 @@
             this.label32.TabIndex = 23;
             this.label32.Text = "Generate/Reuse Mipmaps";
             // 
-            // useMipsCbox
+            // ddsUseMips
             // 
-            this.useMipsCbox.AutoSize = true;
-            this.useMipsCbox.Location = new System.Drawing.Point(149, 37);
-            this.useMipsCbox.Name = "useMipsCbox";
-            this.useMipsCbox.Size = new System.Drawing.Size(15, 14);
-            this.useMipsCbox.TabIndex = 22;
-            this.useMipsCbox.UseVisualStyleBackColor = true;
-            this.useMipsCbox.CheckedChanged += new System.EventHandler(this.useMipsCbox_CheckedChanged);
+            this.ddsUseMips.AutoSize = true;
+            this.ddsUseMips.Location = new System.Drawing.Point(149, 37);
+            this.ddsUseMips.Name = "ddsUseMips";
+            this.ddsUseMips.Size = new System.Drawing.Size(15, 14);
+            this.ddsUseMips.TabIndex = 22;
+            this.ddsUseMips.UseVisualStyleBackColor = true;
+            this.ddsUseMips.CheckedChanged += new System.EventHandler(this.useMipsCbox_CheckedChanged);
             // 
-            // dxtQualCombox
+            // dxtSpeed
             // 
-            this.dxtQualCombox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.dxtQualCombox.FormattingEnabled = true;
-            this.dxtQualCombox.Items.AddRange(new object[] {
+            this.dxtSpeed.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.dxtSpeed.FormattingEnabled = true;
+            this.dxtSpeed.Items.AddRange(new object[] {
             "superfast",
             "fast",
             "normal",
             "better",
             "uber"});
-            this.dxtQualCombox.Location = new System.Drawing.Point(149, 7);
-            this.dxtQualCombox.Name = "dxtQualCombox";
-            this.dxtQualCombox.Size = new System.Drawing.Size(83, 21);
-            this.dxtQualCombox.TabIndex = 19;
-            this.dxtQualCombox.SelectedIndexChanged += new System.EventHandler(this.dxtQualCombox_SelectedIndexChanged);
+            this.dxtSpeed.Location = new System.Drawing.Point(149, 7);
+            this.dxtSpeed.Name = "dxtSpeed";
+            this.dxtSpeed.Size = new System.Drawing.Size(83, 21);
+            this.dxtSpeed.TabIndex = 19;
             // 
             // label30
             // 
@@ -122,15 +121,15 @@
             this.label30.TabIndex = 20;
             this.label30.Text = "DXT Quality/Speed:";
             // 
-            // crunchDdsCbox
+            // ddsUseCrunch
             // 
-            this.crunchDdsCbox.AutoSize = true;
-            this.crunchDdsCbox.Location = new System.Drawing.Point(162, 70);
-            this.crunchDdsCbox.Name = "crunchDdsCbox";
-            this.crunchDdsCbox.Size = new System.Drawing.Size(15, 14);
-            this.crunchDdsCbox.TabIndex = 8;
-            this.crunchDdsCbox.UseVisualStyleBackColor = true;
-            this.crunchDdsCbox.CheckedChanged += new System.EventHandler(this.crunchDdsCbox_CheckedChanged);
+            this.ddsUseCrunch.AutoSize = true;
+            this.ddsUseCrunch.Location = new System.Drawing.Point(162, 70);
+            this.ddsUseCrunch.Name = "ddsUseCrunch";
+            this.ddsUseCrunch.Size = new System.Drawing.Size(15, 14);
+            this.ddsUseCrunch.TabIndex = 8;
+            this.ddsUseCrunch.UseVisualStyleBackColor = true;
+            this.ddsUseCrunch.CheckedChanged += new System.EventHandler(this.crunchDdsCbox_CheckedChanged);
             // 
             // label31
             // 
@@ -181,10 +180,12 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.crunchPanel);
             this.Controls.Add(this.label31);
-            this.Controls.Add(this.crunchDdsCbox);
+            this.Controls.Add(this.ddsUseCrunch);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "DdsOptionsWindow";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DDS Format Options";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DdsOptionsWindow_FormClosing);
             this.Load += new System.EventHandler(this.DdsOptionsWindow_Load);
             this.crunchPanel.ResumeLayout(false);
             this.crunchPanel.PerformLayout();
@@ -196,10 +197,10 @@
         #endregion
         private System.Windows.Forms.Panel crunchPanel;
         private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.CheckBox useMipsCbox;
-        private System.Windows.Forms.ComboBox dxtQualCombox;
+        private System.Windows.Forms.CheckBox ddsUseMips;
+        private System.Windows.Forms.ComboBox dxtSpeed;
         private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.CheckBox crunchDdsCbox;
+        private System.Windows.Forms.CheckBox ddsUseCrunch;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label10;

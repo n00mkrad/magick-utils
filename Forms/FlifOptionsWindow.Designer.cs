@@ -32,7 +32,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
-            this.effortCombox = new System.Windows.Forms.ComboBox();
+            this.flifEffort = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.flifEnc = new System.Windows.Forms.ComboBox();
             this.flifWrapperPanel = new System.Windows.Forms.Panel();
@@ -55,7 +55,7 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label1.Location = new System.Drawing.Point(8, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(373, 24);
+            this.label1.Size = new System.Drawing.Size(319, 20);
             this.label1.TabIndex = 26;
             this.label1.Text = "FLIF (Free Lossless Image Format) Options";
             // 
@@ -78,22 +78,22 @@
             this.label31.TabIndex = 29;
             this.label31.Text = "FLIF Encoder";
             // 
-            // effortCombox
+            // flifEffort
             // 
-            this.effortCombox.FormattingEnabled = true;
-            this.effortCombox.Items.AddRange(new object[] {
+            this.flifEffort.FormattingEnabled = true;
+            this.flifEffort.Items.AddRange(new object[] {
             "100",
             "80",
             "60",
             "40",
             "20",
             "0"});
-            this.effortCombox.Location = new System.Drawing.Point(149, 0);
-            this.effortCombox.Name = "effortCombox";
-            this.effortCombox.Size = new System.Drawing.Size(125, 21);
-            this.effortCombox.TabIndex = 31;
-            this.effortCombox.Text = "50";
-            this.effortCombox.SelectedIndexChanged += new System.EventHandler(this.effortCombox_SelectedIndexChanged);
+            this.flifEffort.Location = new System.Drawing.Point(149, 0);
+            this.flifEffort.Name = "flifEffort";
+            this.flifEffort.Size = new System.Drawing.Size(125, 21);
+            this.flifEffort.TabIndex = 31;
+            this.flifEffort.Text = "50";
+            this.flifEffort.SelectedIndexChanged += new System.EventHandler(this.effortCombox_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -119,7 +119,7 @@
             // 
             // flifWrapperPanel
             // 
-            this.flifWrapperPanel.Controls.Add(this.effortCombox);
+            this.flifWrapperPanel.Controls.Add(this.flifEffort);
             this.flifWrapperPanel.Controls.Add(this.label10);
             this.flifWrapperPanel.Controls.Add(this.label2);
             this.flifWrapperPanel.Location = new System.Drawing.Point(5, 94);
@@ -139,7 +139,9 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FlifOptionsWindow";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FLIF Format Options";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FlifOptionsWindow_FormClosing);
             this.Load += new System.EventHandler(this.FlifOptionsWindow_Load);
             this.flifWrapperPanel.ResumeLayout(false);
             this.flifWrapperPanel.PerformLayout();
@@ -154,7 +156,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.ComboBox effortCombox;
+        private System.Windows.Forms.ComboBox flifEffort;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox flifEnc;
         private System.Windows.Forms.Panel flifWrapperPanel;

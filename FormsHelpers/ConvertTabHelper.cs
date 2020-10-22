@@ -24,14 +24,14 @@ namespace MagickUtils
                 if(!IOUtils.IsPathDirectory(file))
                 {
                     if(selectedFormat == IF.JPG)
-                        ConvertUtils.ConvertToJpegRandomQuality(file, qMin, qMax, delSrcCbox.Checked);
+                        ConvertUtils.ConvertToJpeg(file, qMin, qMax, delSrcCbox.Checked);
 
                     if(selectedFormat == IF.PNG)
                         ConvertUtils.ConvertToPng(file, qMin, delSrcCbox.Checked);
 
                     if(selectedFormat == IF.DDS)
                     {
-                        if(FormatOptions.ddsUseCrunch) ConvertUtils.ConvertDirToDdsCrunch(qMin, qMax, delSrcCbox.Checked);
+                        if(Config.GetBool("ddsUseCrunch")) ConvertUtils.ConvertDirToDdsCrunch(qMin, qMax, delSrcCbox.Checked);
                         else ConvertUtils.ConvertToDds(file, delSrcCbox.Checked);
                     }
 
@@ -46,7 +46,7 @@ namespace MagickUtils
 
                     if(selectedFormat == IF.FLIF)
                     {
-                        if(FormatOptions.flifUseWrapper) FlifInterface.EncodeImage(file, qMin, delSrcCbox.Checked);
+                        if(Config.GetInt("flifEnc") == 1) FlifInterface.EncodeImage(file, qMin, delSrcCbox.Checked);
                         else ConvertUtils.ConvertToFlif(file, qMin, delSrcCbox.Checked);
                     }
                     
@@ -77,7 +77,7 @@ namespace MagickUtils
 
             if(selectedFormat == IF.DDS)
             {
-                if(FormatOptions.ddsUseCrunch) ConvertUtils.ConvertDirToDdsCrunch(qMin, qMax, delSrcCbox.Checked);
+                if(Config.GetBool("ddsUseCrunch")) ConvertUtils.ConvertDirToDdsCrunch(qMin, qMax, delSrcCbox.Checked);
                 else ConvertUtils.ConvertDirToDds(delSrcCbox.Checked);
             }
 
@@ -91,7 +91,7 @@ namespace MagickUtils
                 ConvertUtils.ConvertDirToJpeg2000(qMin, delSrcCbox.Checked);
 
             if(selectedFormat == IF.FLIF)
-                ConvertUtils.ConvertDirToFlif(FormatOptions.flifUseWrapper, qMin, delSrcCbox.Checked);
+                ConvertUtils.ConvertDirToFlif(Config.GetInt("flifEnc") == 1, qMin, delSrcCbox.Checked);
 
             if (selectedFormat == IF.BMP)
                 ConvertUtils.ConvertDirToBmp(delSrcCbox.Checked);

@@ -87,7 +87,9 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "PngOptionsWindow";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PNG Format Options";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PngOptionsWindow_FormClosing);
             this.Load += new System.EventHandler(this.PngOptionsWindow_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

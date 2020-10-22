@@ -97,6 +97,9 @@
     <Reference Include="Magick.NET.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=2004825badfa91ec, processorArchitecture=MSIL">
       <HintPath>packages\Magick.NET.Core.5.0.0\lib\net40\Magick.NET.Core.dll</HintPath>
     </Reference>
+    <Reference Include="MozJpegSharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\MozJpegSharp.1.0.27\lib\net45\MozJpegSharp.dll</HintPath>
+    </Reference>
     <Reference Include="PaintDotNet.Base, Version=3.36.7079.22820, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\DdsFileTypePlusHack.1.0.4\lib\net45\PaintDotNet.Base.dll</HintPath>
     </Reference>
@@ -125,6 +128,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\JpegOptionsWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\JpegOptionsWindow.Designer.cs">
+      <DependentUpon>JpegOptionsWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\PngOptionsWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,6 +141,7 @@
       <DependentUpon>PngOptionsWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\HeifInterface.cs" />
+    <Compile Include="Interfaces\MozJpeg.cs" />
     <Compile Include="MagickUtils\AdjustUtils.cs" />
     <Compile Include="MagickUtils\ColorUtils.cs" />
     <Compile Include="MagickUtils\GeometryUtils.cs" />
@@ -166,7 +176,6 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Utils\FormatOptions.cs" />
     <Compile Include="MagickUtils\FormatUtils.cs" />
     <Compile Include="ThirdParty\GaussianBlur.cs" />
     <Compile Include="Forms\ImagePreviewPopup.cs">
@@ -239,6 +248,9 @@
     <EmbeddedResource Include="Forms\FlifOptionsWindow.resx">
       <DependentUpon>FlifOptionsWindow.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\JpegOptionsWindow.resx">
+      <DependentUpon>JpegOptionsWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\PngOptionsWindow.resx">
       <DependentUpon>PngOptionsWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -274,7 +286,9 @@
     <Error Condition="!Exists('packages\Costura.Fody.4.1.0\build\Costura.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Costura.Fody.4.1.0\build\Costura.Fody.props'))" />
     <Error Condition="!Exists('packages\DdsFileTypePlusHack.1.0.4\build\DdsFileTypePlusHack.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\DdsFileTypePlusHack.1.0.4\build\DdsFileTypePlusHack.targets'))" />
     <Error Condition="!Exists('packages\Fody.6.2.6\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Fody.6.2.6\build\Fody.targets'))" />
+    <Error Condition="!Exists('packages\MozJpegSharp.1.0.27\build\MozJpegSharp.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\MozJpegSharp.1.0.27\build\MozJpegSharp.targets'))" />
   </Target>
   <Import Project="packages\DdsFileTypePlusHack.1.0.4\build\DdsFileTypePlusHack.targets" Condition="Exists('packages\DdsFileTypePlusHack.1.0.4\build\DdsFileTypePlusHack.targets')" />
   <Import Project="packages\Fody.6.2.6\build\Fody.targets" Condition="Exists('packages\Fody.6.2.6\build\Fody.targets')" />
+  <Import Project="packages\MozJpegSharp.1.0.27\build\MozJpegSharp.targets" Condition="Exists('packages\MozJpegSharp.1.0.27\build\MozJpegSharp.targets')" />
 </Project>

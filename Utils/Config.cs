@@ -71,11 +71,22 @@ namespace MagickUtils
 		{
 			return key switch
 			{
+				// Settings
 				"fileOperationsNoFilter" => WriteDefault("fileOperationsNoFilter", "True"),
 				"filenameReplaceIncludeExt" => WriteDefault("filenameReplaceIncludeExt", "True"),
 				"pngQ" => WriteDefault("pngQ", "30"),
 				"backgroundColor" => WriteDefault("backgroundColor", "000000FF"),
 				"pngColorDepth" => WriteDefault("pngColorDepth", "0"),
+				// JPEG Options
+				"jpegEnc" => WriteDefault("jpegEnc", "0"),
+				"jpegChromaSubsampling" => WriteDefault("jpegChromaSubsampling", "0"),
+				// DDS Options
+				"ddsUseCrunch" => WriteDefault("ddsUseCrunch", "False"),
+				"dxtSpeed" => WriteDefault("dxtSpeed", "2"),
+				"ddsUseMips" => WriteDefault("ddsUseMips", "False"),
+				// FLIF Options
+				"flifEnc" => WriteDefault("flifEnc", "0"),
+				"flifEffort" => WriteDefault("flifEffort", "50"),
 				_ => null,
 			};
 		}

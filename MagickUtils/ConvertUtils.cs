@@ -9,6 +9,7 @@ using System.Diagnostics;
 using ImageMagick.Formats.Dds;
 using System.Reflection;
 using MagickUtils.Interfaces;
+using ImageMagick.Formats.Jpeg;
 
 namespace MagickUtils
 {
@@ -23,7 +24,7 @@ namespace MagickUtils
             foreach(FileInfo file in files)
             {
                 Program.ShowProgress("Converting Image ", counter, files.Length);
-                ConvertToJpegRandomQuality(file.FullName, qMin, qMax, delSrc);
+                ConvertToJpeg(file.FullName, qMin, qMax, delSrc);
                 counter++;
                 if(counter % 8 == 0) await Program.PutTaskDelay();
             }
@@ -230,29 +231,32 @@ namespace MagickUtils
 
         static long bytesPre;
 
-        public static void ConvertToJpeg (string path, int q = 95, bool delSource = false)
+        public static void ConvertToJpeg (string path, int qMin, int qMax, bool delSource = false)
         {
-            MagickImage img = IOUtils.ReadImage(path);
-            if(img == null) return;
-            img.Format = MagickFormat.Jpeg;
-            img.Quality = q;
-            string outPath = Path.ChangeExtension(path, null) + ".jpg";
-            PreProcessing(path);
-            img.Write(outPath);
-            PostProcessing(img, path, outPath, delSource);
-        }
-
-        public static void ConvertToJpegRandomQuality (string path, int qMin, int qMax, bool delSource = false)
-        {
-            MagickImage img = IOUtils.ReadImage(path);
-            if(img == null) return;
-            img.Format = MagickFormat.Jpeg;
             Random rand = new Random();
-            img.Quality = rand.Next(qMin, qMax + 1);
+            int q = rand.Next(qMin, qMax + 1);
             string outPath = Path.ChangeExtension(path, null) + ".jpg";
-            PreProcessing(path, " [JPEG Quality: " + img.Quality + "]");
-            img.Write(outPath);
-            PostProcessing(img, path, outPath, delSource);
+            PreProcessing(path, " [JPEG Quality: " + q + "]");
+            if (Config.GetInt("jpegEnc") == 0)
+            {
+                MagickImage img = IOUtils.ReadImage(path);
+                if (img == null) return;
+                img.Format = MagickFormat.Jpeg;
+                img.Quality = q;
+                img = SetJpegChromaSubsampling(img);
+                img.Write(outPath);
+                PostProcessing(img, path, outPath, delSource);
+            }
+            else
+            {
+                switch (Config.GetInt("jpegChromaSubsampling"))
+                {
+                    case 0: MozJpeg.Encode(path, outPath, q, MozJpeg.Subsampling.Chroma420); break;
+                    case 1: MozJpeg.Encode(path, outPath, q, MozJpeg.Subsampling.Chroma422); break;
+                    case 2: MozJpeg.Encode(path, outPath, q, MozJpeg.Subsampling.Chroma444); break;
+                }
+                PostProcessing(null, path, outPath, delSource);
+            }
         }
 
         public static void ConvertToPng(string path, int q = 50, bool delSource = false)
@@ -304,7 +308,9 @@ namespace MagickUtils
             string outPath = Path.ChangeExtension(path, null) + ".webp";
             Random rand = new Random();
             img.Quality = rand.Next(qMin, qMax + 1);
-            PreProcessing(path, " [WEBP Quality: " + img.Quality + "]");
+            if (img.Quality >= 100)
+                img.Settings.SetDefine(MagickFormat.WebP, "lossless", true);
+            PreProcessing(path, " [WEBP Quality: " + img.Quality.ToString().Replace("100", "Lossless") + "]");
             img.Write(outPath);
             PostProcessing(img, path, outPath, delSource);
         }
@@ -349,6 +355,22 @@ namespace MagickUtils
             }
             Program.Print("-> Deleting source file: " + Path.GetFileName(sourcePath) + "...");
             File.Delete(sourcePath);
+        }
+
+        static MagickImage SetJpegChromaSubsampling (MagickImage img, bool print = true)
+        {
+            JpegWriteDefines jpegDefines = new JpegWriteDefines();
+            int configVal = Config.GetInt("jpegChromaSubsampling");
+            if (configVal == 0)
+                jpegDefines.SamplingFactor = JpegSamplingFactor.Ratio420;
+            if (configVal == 1)
+                jpegDefines.SamplingFactor = JpegSamplingFactor.Ratio422;
+            if (configVal == 2)
+                jpegDefines.SamplingFactor = JpegSamplingFactor.Ratio444;
+            img.Settings.SetDefines(jpegDefines);
+            if (print)
+                Program.Print("-> Chroma Subsampling: " + jpegDefines.SamplingFactor.ToString().Replace("Ratio", ""));
+            return img;
         }
     }
 }

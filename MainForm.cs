@@ -105,6 +105,7 @@ namespace MagickUtils
                 selectedFormat = Program.ImageFormat.JPG;
                 qualityMaxCombox.Enabled = true;
                 formatQualityLabel.Text = "JPEG Quality: 0 - 100. Default: 95";
+                formatOptionsBtn.Visible = true;
             } 
 
             if(formatStrTrim == "PNG")
@@ -117,7 +118,7 @@ namespace MagickUtils
             if(formatStrTrim == "DDS")
             {
                 selectedFormat = Program.ImageFormat.DDS;
-                qualityCombox.Enabled = FormatOptions.ddsUseCrunch;
+                qualityCombox.Enabled = Config.GetBool("ddsUseCrunch");
                 qualityMaxCombox.Enabled = qualityCombox.Enabled;
                 formatOptionsBtn.Visible = true;
             }
@@ -138,7 +139,7 @@ namespace MagickUtils
             {
                 selectedFormat = Program.ImageFormat.WEBP;
                 qualityMaxCombox.Enabled = true;
-                formatQualityLabel.Text = "WEBP Quality: 0 - 100. Default: 93";
+                formatQualityLabel.Text = "WEBP Quality: 0 - 99. 100 for Lossless. Default: 93";
             }
 
             if(formatStrTrim == "JPEG 2000")
@@ -257,6 +258,8 @@ namespace MagickUtils
 
         private void formatOptionsBtn_Click (object sender, EventArgs e)
         {
+            if (selectedFormat == Program.ImageFormat.JPG)
+                new JpegOptionsWindow().Show();
             if (selectedFormat == Program.ImageFormat.DDS)
                 new DdsOptionsWindow().Show();
             if(selectedFormat == Program.ImageFormat.FLIF)

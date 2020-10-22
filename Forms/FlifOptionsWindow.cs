@@ -24,25 +24,24 @@ namespace MagickUtils
 
         private void effortCombox_SelectedIndexChanged (object sender, EventArgs e)
         {
-            FlifInterface.effort = effortCombox.GetInt();
+            FlifInterface.effort = flifEffort.GetInt();
         }
 
         private void FlifOptionsWindow_Load (object sender, EventArgs e)
         {
-            CenterToScreen();
-            UpdateUI();
-            flifEnc.SelectedIndex = 0;
-        }
-
-        void UpdateUI ()
-        {
-            effortCombox.Text = FlifInterface.effort.ToString();
+            Config.LoadComboxIndex(flifEnc);
+            Config.LoadGuiElement(flifEffort);
         }
 
         private void flifEnc_SelectedIndexChanged(object sender, EventArgs e)
         {
-            FormatOptions.flifUseWrapper = flifEnc.SelectedIndex == 1;
             flifWrapperPanel.Visible = flifEnc.SelectedIndex == 1;
+        }
+
+        private void FlifOptionsWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Config.SaveComboxIndex(flifEnc);
+            Config.SaveGuiElement(flifEffort);
         }
     }
 }

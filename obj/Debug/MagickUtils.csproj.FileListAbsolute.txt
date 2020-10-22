@@ -82,3 +82,8 @@ D:\Code\GitHub\IEU\magick-utils\bin\Debug\DdsFileTypePlusIO_x86.dll
 D:\Code\GitHub\IEU\magick-utils\bin\Debug\DdsFileTypePlusIO_x64.dll
 D:\Code\GitHub\IEU\magick-utils\bin\Debug\DotNetZip.xml
 D:\Code\GitHub\IEU\magick-utils\obj\Debug\MagickUtils.Forms.PngOptionsWindow.resources
+D:\Code\GitHub\IEU\magick-utils\obj\Debug\MagickUtils.Forms.JpegOptionsWindow.resources
+D:\Code\GitHub\IEU\magick-utils\bin\Debug\runtimes\win-x64\native\turbojpeg.dll
+D:\Code\GitHub\IEU\magick-utils\bin\Debug\runtimes\win-x64\native\vcruntime140.dll
+D:\Code\GitHub\IEU\magick-utils\bin\Debug\runtimes\win-x86\native\turbojpeg.dll
+D:\Code\GitHub\IEU\magick-utils\bin\Debug\runtimes\win-x86\native\vcruntime140.dll

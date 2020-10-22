@@ -12,44 +12,31 @@ namespace MagickUtils
 
         private void DdsOptionsWindow_Load (object sender, EventArgs e)
         {
-            CenterToScreen();
-            UpdateUI();
-        }
-
-        void UpdateUI ()
-        {
-            crunchDdsCbox.Checked = FormatOptions.ddsUseCrunch;
-            crunchPanel.Enabled = FormatOptions.ddsUseCrunch;
-            if(CrunchInterface.currentQual == CrunchInterface.DXTQuality.superfast) dxtQualCombox.SelectedIndex = 0;
-            if(CrunchInterface.currentQual == CrunchInterface.DXTQuality.fast) dxtQualCombox.SelectedIndex = 1;
-            if(CrunchInterface.currentQual == CrunchInterface.DXTQuality.normal) dxtQualCombox.SelectedIndex = 2;
-            if(CrunchInterface.currentQual == CrunchInterface.DXTQuality.better) dxtQualCombox.SelectedIndex = 3;
-            if(CrunchInterface.currentQual == CrunchInterface.DXTQuality.uber) dxtQualCombox.SelectedIndex = 4;
-        }
-
-        private void dxtQualCombox_SelectedIndexChanged (object sender, EventArgs e)
-        {
-            if(dxtQualCombox.SelectedIndex == 0) CrunchInterface.currentQual = CrunchInterface.DXTQuality.superfast;
-            if(dxtQualCombox.SelectedIndex == 1) CrunchInterface.currentQual = CrunchInterface.DXTQuality.fast;
-            if(dxtQualCombox.SelectedIndex == 2) CrunchInterface.currentQual = CrunchInterface.DXTQuality.normal;
-            if(dxtQualCombox.SelectedIndex == 3) CrunchInterface.currentQual = CrunchInterface.DXTQuality.better;
-            if(dxtQualCombox.SelectedIndex == 4) CrunchInterface.currentQual = CrunchInterface.DXTQuality.uber;
+            Config.LoadGuiElement(ddsUseCrunch);
+            Config.LoadComboxIndex(dxtSpeed);
+            Config.LoadGuiElement(ddsUseMips);
         }
 
         private void useMipsCbox_CheckedChanged (object sender, EventArgs e)
         {
-            CrunchInterface.currentMipMode = useMipsCbox.Checked;
+            CrunchInterface.currentMipMode = ddsUseMips.Checked;
         }
 
         private void crunchDdsCbox_CheckedChanged (object sender, EventArgs e)
         {
-            FormatOptions.ddsUseCrunch = crunchDdsCbox.Checked;
-            UpdateUI();
+            crunchPanel.Enabled = ddsUseCrunch.Checked;
         }
 
         private void doneBtn_Click (object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void DdsOptionsWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Config.SaveGuiElement(ddsUseCrunch);
+            Config.SaveComboxIndex(dxtSpeed);
+            Config.SaveGuiElement(ddsUseMips);
         }
     }
 }
