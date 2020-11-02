@@ -63,9 +63,9 @@ namespace MagickUtils.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] crunch {
+        internal static byte[] dds {
             get {
-                object obj = ResourceManager.GetObject("crunch", resourceCulture);
+                object obj = ResourceManager.GetObject("dds", resourceCulture);
                 return ((byte[])(obj));
             }
         }

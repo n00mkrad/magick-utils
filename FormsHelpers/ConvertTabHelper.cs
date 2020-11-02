@@ -1,6 +1,7 @@
 ﻿using MagickUtils.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -31,8 +32,9 @@ namespace MagickUtils
 
                     if(selectedFormat == IF.DDS)
                     {
-                        if(Config.GetBool("ddsUseCrunch")) ConvertUtils.ConvertDirToDdsCrunch(qMin, qMax, delSrcCbox.Checked);
-                        else ConvertUtils.ConvertToDds(file, delSrcCbox.Checked);
+                        if(Config.GetInt("ddsEnc") == 0) ConvertUtils.ConvertToDds(file, delSrcCbox.Checked);
+                        if (Config.GetInt("ddsEnc") == 1) DdsInterface.NvCompress(file, Path.ChangeExtension(file, "dds"), delSrcCbox.Checked);
+                        if (Config.GetInt("ddsEnc") == 2) DdsInterface.Crunch(file, qMin, qMax, delSrcCbox.Checked);
                     }
 
                     if(selectedFormat == IF.TGA)
@@ -77,8 +79,7 @@ namespace MagickUtils
 
             if(selectedFormat == IF.DDS)
             {
-                if(Config.GetBool("ddsUseCrunch")) ConvertUtils.ConvertDirToDdsCrunch(qMin, qMax, delSrcCbox.Checked);
-                else ConvertUtils.ConvertDirToDds(delSrcCbox.Checked);
+               ConvertUtils.ConvertDirToDds(qMin, qMax, delSrcCbox.Checked);
             }
 
             if(selectedFormat == IF.TGA)

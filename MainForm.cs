@@ -32,7 +32,7 @@ namespace MagickUtils
             CenterToScreen();
 
             Config.Init();
-            HeifInterface.Extract(true);
+            //HeifInterface.Extract(true);
 
             Program.logTbox = logTbox;
             Program.progBar = progressBar1;
@@ -118,7 +118,7 @@ namespace MagickUtils
             if(formatStrTrim == "DDS")
             {
                 selectedFormat = Program.ImageFormat.DDS;
-                qualityCombox.Enabled = Config.GetBool("ddsUseCrunch");
+                qualityCombox.Enabled = Config.GetInt("ddsEnc") == 2;
                 qualityMaxCombox.Enabled = qualityCombox.Enabled;
                 formatOptionsBtn.Visible = true;
             }

@@ -12,19 +12,9 @@ namespace MagickUtils
 
         private void DdsOptionsWindow_Load (object sender, EventArgs e)
         {
-            Config.LoadGuiElement(ddsUseCrunch);
-            Config.LoadComboxIndex(dxtSpeed);
-            Config.LoadGuiElement(ddsUseMips);
-        }
-
-        private void useMipsCbox_CheckedChanged (object sender, EventArgs e)
-        {
-            CrunchInterface.currentMipMode = ddsUseMips.Checked;
-        }
-
-        private void crunchDdsCbox_CheckedChanged (object sender, EventArgs e)
-        {
-            crunchPanel.Enabled = ddsUseCrunch.Checked;
+            Config.LoadComboxIndex(ddsEnc);
+            Config.LoadGuiElement(ddsCompressionType);
+            Config.LoadGuiElement(ddsEnableMips);
         }
 
         private void doneBtn_Click (object sender, EventArgs e)
@@ -34,9 +24,18 @@ namespace MagickUtils
 
         private void DdsOptionsWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Config.SaveGuiElement(ddsUseCrunch);
-            Config.SaveComboxIndex(dxtSpeed);
-            Config.SaveGuiElement(ddsUseMips);
+            Config.SaveComboxIndex(ddsEnc);
+            Config.SaveGuiElement(ddsCompressionType);
+            Config.SaveGuiElement(ddsEnableMips);
+        }
+
+        private void ddsCompressionType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(ddsCompressionType.SelectedIndex > 1 && ddsEnc.SelectedIndex == 0)
+            {
+                MessageBox.Show("ImageMagick only supports ARGB and DXT1 formats!\nPlease use NvCompress or Crunch for other formats.", "Error");
+                ddsCompressionType.SelectedIndex = 1;
+            }
         }
     }
 }

@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.mozJpegOptionsPanel = new System.Windows.Forms.Panel();
+            this.jpegChromaSubsampling = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.jpegEnc = new System.Windows.Forms.ComboBox();
             this.label31 = new System.Windows.Forms.Label();
             this.doneBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.jpegChromaSubsampling = new System.Windows.Forms.ComboBox();
             this.mozJpegOptionsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,6 +46,19 @@
             this.mozJpegOptionsPanel.Name = "mozJpegOptionsPanel";
             this.mozJpegOptionsPanel.Size = new System.Drawing.Size(447, 54);
             this.mozJpegOptionsPanel.TabIndex = 39;
+            // 
+            // jpegChromaSubsampling
+            // 
+            this.jpegChromaSubsampling.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.jpegChromaSubsampling.FormattingEnabled = true;
+            this.jpegChromaSubsampling.Items.AddRange(new object[] {
+            "Normal (4:2:0)",
+            "Medium (4:2:2)",
+            "Disabled (4:4:4)"});
+            this.jpegChromaSubsampling.Location = new System.Drawing.Point(149, 0);
+            this.jpegChromaSubsampling.Name = "jpegChromaSubsampling";
+            this.jpegChromaSubsampling.Size = new System.Drawing.Size(125, 21);
+            this.jpegChromaSubsampling.TabIndex = 40;
             // 
             // label2
             // 
@@ -61,7 +74,7 @@
             this.jpegEnc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.jpegEnc.FormattingEnabled = true;
             this.jpegEnc.Items.AddRange(new object[] {
-            "Magick.NET",
+            "Built-In (ImageMagick)",
             "MozJpeg"});
             this.jpegEnc.Location = new System.Drawing.Point(154, 67);
             this.jpegEnc.Name = "jpegEnc";
@@ -97,19 +110,6 @@
             this.label1.Size = new System.Drawing.Size(363, 20);
             this.label1.TabIndex = 35;
             this.label1.Text = "JPEG (Joint Photographic Experts Group) Options";
-            // 
-            // jpegChromaSubsampling
-            // 
-            this.jpegChromaSubsampling.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.jpegChromaSubsampling.FormattingEnabled = true;
-            this.jpegChromaSubsampling.Items.AddRange(new object[] {
-            "Normal (4:2:0)",
-            "Medium (4:2:2)",
-            "Disabled (4:4:4)"});
-            this.jpegChromaSubsampling.Location = new System.Drawing.Point(149, 0);
-            this.jpegChromaSubsampling.Name = "jpegChromaSubsampling";
-            this.jpegChromaSubsampling.Size = new System.Drawing.Size(125, 21);
-            this.jpegChromaSubsampling.TabIndex = 40;
             // 
             // JpegOptionsWindow
             // 

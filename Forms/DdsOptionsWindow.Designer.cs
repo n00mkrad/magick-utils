@@ -28,117 +28,15 @@
         /// </summary>
         private void InitializeComponent ()
         {
-            this.crunchPanel = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
-            this.ddsUseMips = new System.Windows.Forms.CheckBox();
-            this.dxtSpeed = new System.Windows.Forms.ComboBox();
-            this.label30 = new System.Windows.Forms.Label();
-            this.ddsUseCrunch = new System.Windows.Forms.CheckBox();
-            this.label31 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.doneBtn = new System.Windows.Forms.Button();
-            this.crunchPanel.SuspendLayout();
+            this.ddsEnc = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.ddsCompressionType = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.ddsEnableMips = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
-            // 
-            // crunchPanel
-            // 
-            this.crunchPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.crunchPanel.Controls.Add(this.label3);
-            this.crunchPanel.Controls.Add(this.label2);
-            this.crunchPanel.Controls.Add(this.label32);
-            this.crunchPanel.Controls.Add(this.ddsUseMips);
-            this.crunchPanel.Controls.Add(this.dxtSpeed);
-            this.crunchPanel.Controls.Add(this.label30);
-            this.crunchPanel.Enabled = false;
-            this.crunchPanel.Location = new System.Drawing.Point(12, 90);
-            this.crunchPanel.Name = "crunchPanel";
-            this.crunchPanel.Size = new System.Drawing.Size(440, 58);
-            this.crunchPanel.TabIndex = 22;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label3.Location = new System.Drawing.Point(251, 37);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(171, 13);
-            this.label3.TabIndex = 26;
-            this.label3.Text = "Generate mipmaps (or use existing)";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label2.Location = new System.Drawing.Point(251, 10);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(113, 13);
-            this.label2.TabIndex = 25;
-            this.label2.Text = "Encoding speed/effort";
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(3, 37);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(132, 13);
-            this.label32.TabIndex = 23;
-            this.label32.Text = "Generate/Reuse Mipmaps";
-            // 
-            // ddsUseMips
-            // 
-            this.ddsUseMips.AutoSize = true;
-            this.ddsUseMips.Location = new System.Drawing.Point(149, 37);
-            this.ddsUseMips.Name = "ddsUseMips";
-            this.ddsUseMips.Size = new System.Drawing.Size(15, 14);
-            this.ddsUseMips.TabIndex = 22;
-            this.ddsUseMips.UseVisualStyleBackColor = true;
-            this.ddsUseMips.CheckedChanged += new System.EventHandler(this.useMipsCbox_CheckedChanged);
-            // 
-            // dxtSpeed
-            // 
-            this.dxtSpeed.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.dxtSpeed.FormattingEnabled = true;
-            this.dxtSpeed.Items.AddRange(new object[] {
-            "superfast",
-            "fast",
-            "normal",
-            "better",
-            "uber"});
-            this.dxtSpeed.Location = new System.Drawing.Point(149, 7);
-            this.dxtSpeed.Name = "dxtSpeed";
-            this.dxtSpeed.Size = new System.Drawing.Size(83, 21);
-            this.dxtSpeed.TabIndex = 19;
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(3, 10);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(103, 13);
-            this.label30.TabIndex = 20;
-            this.label30.Text = "DXT Quality/Speed:";
-            // 
-            // ddsUseCrunch
-            // 
-            this.ddsUseCrunch.AutoSize = true;
-            this.ddsUseCrunch.Location = new System.Drawing.Point(162, 70);
-            this.ddsUseCrunch.Name = "ddsUseCrunch";
-            this.ddsUseCrunch.Size = new System.Drawing.Size(15, 14);
-            this.ddsUseCrunch.TabIndex = 8;
-            this.ddsUseCrunch.UseVisualStyleBackColor = true;
-            this.ddsUseCrunch.CheckedChanged += new System.EventHandler(this.crunchDdsCbox_CheckedChanged);
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(12, 70);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(120, 13);
-            this.label31.TabIndex = 21;
-            this.label31.Text = "Use Crunch compressor";
             // 
             // label1
             // 
@@ -150,16 +48,6 @@
             this.label1.TabIndex = 23;
             this.label1.Text = "DDS (DirectDraw Surface) Options";
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label10.Location = new System.Drawing.Point(264, 70);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(179, 13);
-            this.label10.TabIndex = 24;
-            this.label10.Text = "If unchecked, ImageMagick is used.";
-            // 
             // doneBtn
             // 
             this.doneBtn.Location = new System.Drawing.Point(12, 201);
@@ -170,42 +58,104 @@
             this.doneBtn.UseVisualStyleBackColor = true;
             this.doneBtn.Click += new System.EventHandler(this.doneBtn_Click);
             // 
+            // ddsEnc
+            // 
+            this.ddsEnc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddsEnc.FormattingEnabled = true;
+            this.ddsEnc.Items.AddRange(new object[] {
+            "ImageMagick",
+            "NvCompress",
+            "Crunch"});
+            this.ddsEnc.Location = new System.Drawing.Point(154, 67);
+            this.ddsEnc.Name = "ddsEnc";
+            this.ddsEnc.Size = new System.Drawing.Size(125, 21);
+            this.ddsEnc.TabIndex = 40;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 70);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(73, 13);
+            this.label2.TabIndex = 39;
+            this.label2.Text = "DDS Encoder";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 97);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(93, 13);
+            this.label3.TabIndex = 41;
+            this.label3.Text = "DDS Compression";
+            // 
+            // ddsCompressionType
+            // 
+            this.ddsCompressionType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddsCompressionType.FormattingEnabled = true;
+            this.ddsCompressionType.Items.AddRange(new object[] {
+            "ARGB",
+            "BC1 (DXT1)",
+            "BC2 (DXT3)",
+            "BC3 (DXT5)",
+            "BC4",
+            "BC5"});
+            this.ddsCompressionType.Location = new System.Drawing.Point(154, 94);
+            this.ddsCompressionType.Name = "ddsCompressionType";
+            this.ddsCompressionType.Size = new System.Drawing.Size(125, 21);
+            this.ddsCompressionType.TabIndex = 42;
+            this.ddsCompressionType.SelectedIndexChanged += new System.EventHandler(this.ddsCompressionType_SelectedIndexChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 124);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(85, 13);
+            this.label4.TabIndex = 44;
+            this.label4.Text = "Enable Mipmaps";
+            // 
+            // ddsEnableMips
+            // 
+            this.ddsEnableMips.AutoSize = true;
+            this.ddsEnableMips.Location = new System.Drawing.Point(154, 123);
+            this.ddsEnableMips.Name = "ddsEnableMips";
+            this.ddsEnableMips.Size = new System.Drawing.Size(15, 14);
+            this.ddsEnableMips.TabIndex = 45;
+            this.ddsEnableMips.UseVisualStyleBackColor = true;
+            // 
             // DdsOptionsWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(464, 236);
+            this.Controls.Add(this.ddsEnableMips);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.ddsCompressionType);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.ddsEnc);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.doneBtn);
-            this.Controls.Add(this.label10);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.crunchPanel);
-            this.Controls.Add(this.label31);
-            this.Controls.Add(this.ddsUseCrunch);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "DdsOptionsWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DDS Format Options";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DdsOptionsWindow_FormClosing);
             this.Load += new System.EventHandler(this.DdsOptionsWindow_Load);
-            this.crunchPanel.ResumeLayout(false);
-            this.crunchPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Panel crunchPanel;
-        private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.CheckBox ddsUseMips;
-        private System.Windows.Forms.ComboBox dxtSpeed;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.CheckBox ddsUseCrunch;
-        private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button doneBtn;
+        private System.Windows.Forms.ComboBox ddsEnc;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox ddsCompressionType;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox ddsEnableMips;
     }
 }

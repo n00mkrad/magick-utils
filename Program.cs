@@ -36,7 +36,6 @@ namespace MagickUtils
 
         private static void OnFormClose (Object sender, FormClosingEventArgs e)
         {
-            CrunchInterface.DeleteExe();
             string tempImgPath = Path.Combine(IOUtils.GetAppDataDir(), "previewImg.png");
             if(File.Exists(tempImgPath)) File.Delete(tempImgPath);
         }
@@ -55,7 +54,7 @@ namespace MagickUtils
             }
         }
 
-        public static Stopwatch sw = new Stopwatch();
+        public static Stopwatch timer = new Stopwatch();
         static long dirSizePre;
         static long dirSizeAfter;
 
@@ -74,21 +73,21 @@ namespace MagickUtils
             dirSizePre = 0;
             dirSizePre = IOUtils.GetDirSize(new DirectoryInfo(currentDir));
             if(showSize)
-                Print("\nFolder size before processing: " + Format.Filesize(dirSizePre) + "\n");
-            sw.Reset();
-            if(startStopwatch) sw.Start();
+                Print("\nFolder size before processing: " + Format.Bytes(dirSizePre) + "\n");
+            timer.Reset();
+            if(startStopwatch) timer.Start();
         }
 
         public static void PostProcessing (bool showStopwatch = false, bool showSize = true)
         {
-            sw.Stop();
+            timer.Stop();
             dirSizeAfter = 0;
             dirSizeAfter = IOUtils.GetDirSize(new DirectoryInfo(currentDir));
             if(showStopwatch)
-                Print("Processing time: " + Format.TimeSw(sw));
+                Print("Processing time: " + Format.TimeSw(timer));
             if(showSize)
             {
-                Print("\nFolder size after processing: " + Format.Filesize(dirSizeAfter) + " from " + Format.Filesize(dirSizePre));
+                Print("\nFolder size after processing: " + Format.Bytes(dirSizeAfter) + " from " + Format.Bytes(dirSizePre));
                 Print("Size ratio: " + Format.Ratio(dirSizePre, dirSizeAfter) + " of original size");
             }
             progBar.Value = 0;

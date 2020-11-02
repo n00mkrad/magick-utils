@@ -5,7 +5,7 @@ namespace MagickUtils
 {
     class Format
     {
-        public static string Filesize (long sizeBytes)
+        public static string Bytes (long sizeBytes)
         {
             int sizeKb = (int)Math.Round(sizeBytes / 1024f);
             int sizeMb = (int)Math.Round(sizeKb / 1024f);

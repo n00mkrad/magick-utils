@@ -299,12 +299,12 @@ namespace MagickUtils
             bytesPre = 0;
             bytesPre = new FileInfo(path).Length;
             //Program.Print("-> Processing TEST " + Path.GetFileName(path) + " " + infoSuffix);
-            Program.sw.Start();
+            Program.timer.Start();
         }
 
         static void PostProcessing (MagickImage img, string outPath)
         {
-            Program.sw.Stop();
+            Program.timer.Stop();
             img.Dispose();
             //long bytesPost = new FileInfo(outPath).Length;
             //Program.Print("-> Done. Size pre: " + Format.Filesize(bytesPre) + " - Size post: " + Format.Filesize(bytesPost) + " - Ratio: " + Format.Ratio(bytesPre, bytesPost));

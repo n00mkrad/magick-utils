@@ -81,9 +81,10 @@ namespace MagickUtils
 				"jpegEnc" => WriteDefault("jpegEnc", "0"),
 				"jpegChromaSubsampling" => WriteDefault("jpegChromaSubsampling", "0"),
 				// DDS Options
-				"ddsUseCrunch" => WriteDefault("ddsUseCrunch", "False"),
-				"dxtSpeed" => WriteDefault("dxtSpeed", "2"),
-				"ddsUseMips" => WriteDefault("ddsUseMips", "False"),
+				"ddsEnc" => WriteDefault("ddsEnc", "0"),
+				"ddsCompressionType" => WriteDefault("ddsCompressionType", "BC1 (DXT1)"),
+				"ddsEnableMips" => WriteDefault("ddsEnableMips", "False"),
+				"crunchDxtSpeed" => WriteDefault("crunchDxtSpeed", "2"),
 				// FLIF Options
 				"flifEnc" => WriteDefault("flifEnc", "0"),
 				"flifEffort" => WriteDefault("flifEffort", "50"),

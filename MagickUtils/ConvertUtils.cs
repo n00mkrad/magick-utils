@@ -47,7 +47,7 @@ namespace MagickUtils
             Program.PostProcessing(true);
         }
 
-        public static async void ConvertDirToDds (bool delSrc)
+        public static async void ConvertDirToDds (int qMin, int qMax, bool delSrc)
         {
             int counter = 1;
             FileInfo[] files = IOUtils.GetFiles();
@@ -57,12 +57,18 @@ namespace MagickUtils
             {
                 Program.ShowProgress("Converting Image ", counter, files.Length);
                 counter++;
-                ConvertToDds(file.FullName, delSrc);
+                switch (Config.GetInt("ddsEnc"))
+                {
+                    case 0: ConvertToDds(file.FullName, delSrc); break;
+                    case 1: DdsInterface.Crunch(file.FullName, qMin, qMax, delSrc); break;
+                    case 2: DdsInterface.NvCompress(file.FullName, Path.ChangeExtension(file.FullName, "dds"), delSrc); break;
+                }
                 if (counter % 2 == 0) await Program.PutTaskDelay();
             }
             Program.PostProcessing();
         }
 
+        /*
         public static async void ConvertDirToDdsCrunch (int qMin, int qMax, bool delSrc)
         {
             int counter = 1;
@@ -73,11 +79,12 @@ namespace MagickUtils
             {
                 Program.ShowProgress("Crunching Image ", counter, files.Length);
                 counter++;
-                CrunchInterface.CrunchImage(file.FullName, qMin, qMax, delSrc);
+                DdsInterface.Crunch(file.FullName, qMin, qMax, delSrc);
                 if(counter % 2 == 0) await Program.PutTaskDelay();
             }
             Program.PostProcessing();
         }
+        */
 
         public static async void ConvertDirToTga (bool delSrc)
         {
@@ -282,7 +289,13 @@ namespace MagickUtils
             MagickImage img = IOUtils.ReadImage(path);
             if(img == null) return;
             img.Format = MagickFormat.Dds;
-            var defines = new DdsWriteDefines { Compression = DdsCompression.Dxt1 };
+            DdsCompression compression = DdsCompression.None;
+            if (Config.Get("ddsCompressionType").Contains("BC1"))
+                compression = DdsCompression.Dxt1;
+            int mips = 0;
+            if (Config.GetBool("ddsEnableMips")) mips = 8;
+            Program.Print("-> Mips: " + mips);
+            var defines = new DdsWriteDefines { Compression = compression, Mipmaps = mips, FastMipmaps = true };
             img.Settings.SetDefines(defines);
             string outPath = Path.ChangeExtension(path, null) + ".dds";
             PreProcessing(path);
@@ -331,17 +344,17 @@ namespace MagickUtils
         {
             bytesPre = 0;
             bytesPre = new FileInfo(path).Length;
-            Program.Print("-> Processing " + Path.GetFileName(path) + " " + infoSuffix);
-            Program.sw.Start();
+            //Program.Print("-> Processing " + Path.GetFileName(path) + " " + infoSuffix);
+            Program.timer.Start();
         }
 
         static void PostProcessing (MagickImage img, string sourcePath, string outPath, bool delSource)
         {
-            Program.sw.Stop();
+            Program.timer.Stop();
             if(img != null)
                 img.Dispose();
             long bytesPost = new FileInfo(outPath).Length;
-            Program.Print("-> Done. Size pre: " + Format.Filesize(bytesPre) + " - Size post: " + Format.Filesize(bytesPost) + " - Ratio: " + Format.Ratio(bytesPre, bytesPost));
+            Program.Print("-> Done. Size pre: " + Format.Bytes(bytesPre) + " - Size post: " + Format.Bytes(bytesPost) + " - Ratio: " + Format.Ratio(bytesPre, bytesPost));
             if(delSource)
                 DelSource(sourcePath, outPath);
         }
