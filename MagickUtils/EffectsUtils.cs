@@ -32,6 +32,7 @@ namespace MagickUtils
         {
             if(noiseTypes.Count < 1) return;
             MagickImage img = IOUtils.ReadImage(path);
+            if (img == null) return;
             NoiseType chosenNoiseType = GetRandomNoiseType(noiseTypes);
             PreProcessing(path, "- Noise Type: " + chosenNoiseType.ToString());
             Random rand = new Random();

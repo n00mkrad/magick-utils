@@ -332,6 +332,7 @@ namespace MagickUtils
         public void PreviewImage (string imgPath)
         {
             MagickImage tempImg = IOUtils.ReadImage(imgPath);
+            if (tempImg == null) return;
             tempImg.Format = MagickFormat.Png;
             string tempImgPath = Path.Combine(IOUtils.GetAppDataDir(), "previewImg.png");
             tempImg.Write(tempImgPath);

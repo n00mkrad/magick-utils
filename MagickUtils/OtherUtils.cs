@@ -44,7 +44,7 @@ namespace MagickUtils
             }
         }
 
-        public static void AddSuffixPrefixDir (string text, bool suffix)
+        public static async void AddSuffixPrefixDir (string text, bool suffix)
         {
             int counter = 1;
             FileInfo[] files = IOUtils.GetFiles(Config.GetBool("fileOperationsNoFilter"));
@@ -54,7 +54,11 @@ namespace MagickUtils
                 AddSuffixPrefix(file.FullName, text, suffix);
                 Program.ShowProgress("", counter, files.Length);
                 counter++;
-                if(counter % 100 == 0) Program.Print("Renamed " + counter + " files...");
+                if (counter % 100 == 0)
+                {
+                    Program.Print("Renamed " + counter + " files...");
+                    await Program.PutTaskDelay();
+                }
             }
             Program.PostProcessing(true, false);
         }
@@ -70,7 +74,7 @@ namespace MagickUtils
                 File.Move(path, Path.Combine(Path.GetDirectoryName(path), (text + Path.GetFileNameWithoutExtension(path) + ext)));
         }
 
-        public static void ReplaceInFilenamesDir (string textToFind, string textToReplace)
+        public static async void ReplaceInFilenamesDir (string textToFind, string textToReplace)
         {
             int counter = 1;
             FileInfo[] files = IOUtils.GetFiles(Config.GetBool("fileOperationsNoFilter"));
@@ -80,7 +84,11 @@ namespace MagickUtils
                 ReplaceInFilename(file.FullName, textToFind, textToReplace);
                 Program.ShowProgress("", counter, files.Length);
                 counter++;
-                if(counter % 100 == 0) Program.Print("Processed " + counter + " files...");
+                if (counter % 100 == 0)
+                {
+                    Program.Print("Processed " + counter + " files...");
+                    await Program.PutTaskDelay();
+                }
             }
             Program.Print("Done - Processed " + counter + " files.");
             Program.PostProcessing(true, false);
@@ -96,8 +104,11 @@ namespace MagickUtils
             string targetPath = Path.Combine(Path.GetDirectoryName(path), newFilename);
             try
             {
-                File.Move(path, targetPath);
-                Program.Print(Path.GetFileName(path) + " => " + Path.GetFileName(targetPath));
+                if(path != targetPath)
+                {
+                    File.Move(path, targetPath);
+                    Program.Print(Path.GetFileName(path) + " => " + Path.GetFileName(targetPath));
+                }
             }
             catch
             {
@@ -283,7 +294,6 @@ namespace MagickUtils
             {
                 MagickImage img = IOUtils.ReadImage(file.FullName);
                 string fnameNoExt = Path.GetFileNameWithoutExtension(file.Name);
-                //Program.Print("     Format Info: " + img.FormatInfo);
                 Program.ShowProgress("", counter, files.Length);
                 counter++;
                 if (counter % 10 == 0) await Program.PutTaskDelay();

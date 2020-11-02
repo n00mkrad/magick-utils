@@ -35,6 +35,7 @@ namespace MagickUtils
         public static void CropDivisible (string path, int divisibleBy, Gravity grav, bool expand)
         {
             MagickImage img = IOUtils.ReadImage(path);
+            if (img == null) return;
 
             int divisbleWidth = img.Width;
             int divisibleHeight = img.Height;
@@ -87,6 +88,7 @@ namespace MagickUtils
         public static void CropRelative (string path, int minSize, int maxSize, SizeMode sizeMode, Gravity grav)
         {
             MagickImage img = IOUtils.ReadImage(path);
+            if (img == null) return;
             PreProcessing(path);
 
             Random rand = new Random();
@@ -141,6 +143,7 @@ namespace MagickUtils
         public static void CropPadding (string path, int pixMin, int pixMax, bool cut)
         {
             MagickImage img = IOUtils.ReadImage(path);
+            if (img == null) return;
             PreProcessing(path);
 
             Random rand = new Random();
@@ -184,6 +187,7 @@ namespace MagickUtils
         public static void CropAbsolute (string path, int newWidth, int newHeight, Gravity grav)
         {
             MagickImage img = IOUtils.ReadImage(path);
+            if (img == null) return;
             PreProcessing(path);
 
             img.BackgroundColor = new MagickColor("#" + Config.Get("backgroundColor"));
@@ -212,6 +216,7 @@ namespace MagickUtils
         public static async Task Tile (string path, int tileW, int tileH, bool useTileAmount, bool delSrc)
         {
             MagickImage img = IOUtils.ReadImage(path);
+            if (img == null) return;
             PreProcessing(path);
 
             string pathNoExt = Path.ChangeExtension(path, null);

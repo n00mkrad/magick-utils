@@ -80,6 +80,7 @@ namespace MagickUtils
         public static void Scale (string path, float minScale, float maxScale, int randFilterMode, string filterName)
         {
             MagickImage img = IOUtils.ReadImage(path);
+            if (img == null) return;
             FT filter = GetFilter(randFilterMode, filterName);
             Random rand = new Random();
             float targetScale = (float)rand.NextDouble(minScale, maxScale);
@@ -145,7 +146,6 @@ namespace MagickUtils
 
         static FT GetFilter (int randFilterMode, string filterName)
         {
-            Program.Print("Filter int: " + randFilterMode);
             if (randFilterMode == 0) return FT.Mitchell;
             if(randFilterMode == 1) return FT.Lanczos;
             if(randFilterMode == 2) return FT.Catrom;
@@ -154,8 +154,10 @@ namespace MagickUtils
             if(randFilterMode == 5) return GetRandomFilter();
             try
             {
+                filterName = filterName.Replace("Bilinear", "Triangle");
+                filterName = filterName.Replace("Point", "Nearest");
+                filterName = filterName.Replace("Bicubic", "Catrom");
                 FT parsedFilter = (FT)Enum.Parse(typeof(FT), filterName);
-                Program.Print("Successfully parsed custom filter: " + parsedFilter.ToString());
                 return parsedFilter;
             }
             catch (Exception e)

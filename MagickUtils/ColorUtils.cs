@@ -54,8 +54,8 @@ namespace MagickUtils.MagickUtils
         public static void RemoveTransparency (string path, NoAlphaMode mode)
         {
             MagickImage img = IOUtils.ReadImage(path);
-            // if(mode == NoAlphaMode.Fill) img.ColorAlpha(new MagickColor("#" + Config.Get("backgroundColor")));
-            if(mode == NoAlphaMode.Fill)
+            if (img == null) return;
+            if (mode == NoAlphaMode.Fill)
             {
                 MagickImage bg = new MagickImage(new MagickColor("#" + Config.Get("backgroundColor")), img.Width, img.Height);
                 bg.BackgroundColor = new MagickColor("#" + Config.Get("backgroundColor"));
@@ -86,6 +86,7 @@ namespace MagickUtils.MagickUtils
         public static void SetColorDepth (string path, int bits)
         {
             MagickImage img = IOUtils.ReadImage(path);
+            if (img == null) return;
             img.BitDepth(bits);
             img.Quality = Program.GetDefaultQuality(img);
             img.Write(path);
@@ -110,6 +111,7 @@ namespace MagickUtils.MagickUtils
         public static void Dither (string path, int colorsMin, int colorsMax, DitherType type)
         {
             MagickImage img = IOUtils.ReadImage(path);
+            if (img == null) return;
             int colors = new Random().Next(colorsMin, colorsMax);
             //Program.Print("-> Colors: " + colors + ", Dither Method: " + quantSettings.DitherMethod.ToString());
             DitherWithMethod(img, colors, type);
@@ -169,8 +171,8 @@ namespace MagickUtils.MagickUtils
         public static void DeleteGrayscaleImg (string path, float thresh, bool invert)
         {
             MagickImage img = IOUtils.ReadImage(path);
+            if (img == null) return;
             img.ColorSpace = ColorSpace.HSL;
-
             float saturation = 100f;
             using (IMagickImage channel = img.Separate(Channels.Gray).First())
             {

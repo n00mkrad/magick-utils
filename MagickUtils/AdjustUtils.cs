@@ -27,6 +27,7 @@ namespace MagickUtils
         public static void AutoGamma (string path)
         {
             MagickImage img = IOUtils.ReadImage(path);
+            if (img == null) return;
             string fname = Path.ChangeExtension(path, null);
             Print("-> " + fname + "\n");
             img.AutoGamma();
@@ -36,6 +37,7 @@ namespace MagickUtils
         public static void AutoLevel (string path)
         {
             MagickImage img = IOUtils.ReadImage(path);
+            if (img == null) return;
             string fname = Path.ChangeExtension(path, null);
             Print("-> " + fname + "\n");
             img.AutoLevel();

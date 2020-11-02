@@ -1153,8 +1153,6 @@
             // cropDivisibleExpand
             // 
             this.cropDivisibleExpand.AutoSize = true;
-            this.cropDivisibleExpand.Checked = true;
-            this.cropDivisibleExpand.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cropDivisibleExpand.Location = new System.Drawing.Point(271, 63);
             this.cropDivisibleExpand.Name = "cropDivisibleExpand";
             this.cropDivisibleExpand.Size = new System.Drawing.Size(15, 14);

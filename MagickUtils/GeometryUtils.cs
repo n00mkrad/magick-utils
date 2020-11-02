@@ -30,7 +30,8 @@ namespace MagickUtils.MagickUtils
         public static void Rotate (string path, RotateMode mode)
         {
             MagickImage img = IOUtils.ReadImage(path);
-            if(mode == RotateMode.Rot90)
+            if (img == null) return;
+            if (mode == RotateMode.Rot90)
                 img.Rotate(90);
             if(mode == RotateMode.Rot180)
                 img.Rotate(180);
@@ -72,7 +73,8 @@ namespace MagickUtils.MagickUtils
         public static void Flip (string path, FlipMode mode)
         {
             MagickImage img = IOUtils.ReadImage(path);
-            if(mode == FlipMode.Hor)
+            if (img == null) return;
+            if (mode == FlipMode.Hor)
             {
                 img.Flop();
             } 

@@ -33,6 +33,7 @@ namespace MagickUtils
         {
             if (patterns.Count < 1) return;
             MagickImage img = IOUtils.ReadImage(path);
+            if (img == null) return;
             PatternType chosenPattern = GetRandomPatternType(patterns);
             PreProcessing(path, "- Pattern: " + chosenPattern.ToString());
             Random rand = new Random();

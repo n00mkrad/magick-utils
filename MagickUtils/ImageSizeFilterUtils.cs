@@ -17,6 +17,7 @@ namespace MagickUtils
         public static void DeleteSmallImages(string path, SM mode, Op op, int minPixels)
         {
             MagickImage img = IOUtils.ReadImage(path, false);
+            if (img == null) return;
             bool heightLonger = img.Height > img.Width;
             bool widthLonger = img.Width > img.Height;
             bool square = (img.Height == img.Width);

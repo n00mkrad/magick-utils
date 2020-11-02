@@ -120,11 +120,14 @@
   <metadata name="defTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>168, 13</value>
   </metadata>
+  <metadata name="defTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>168, 13</value>
+  </metadata>
   <data name="filterModeCombox.ToolTip" xml:space="preserve">
     <value>Available Filters:
-Point
+Point (Or "Nearest")
 Box
-Triangle
+Triangle (Or "Bilinear")
 Hermite
 Hann
 Hamming
@@ -132,7 +135,7 @@ Blackman
 Gaussian
 Quadratic
 Cubic
-Catrom
+Catrom (Or "Bicubic")
 Mitchell
 Jinc
 Sinc
@@ -152,7 +155,7 @@ RobidouxSharp
 Cosine
 Spline
 LanczosRadius
-CubicSpline</value>
+CubicSpline </value>
   </data>
   <metadata name="bgColorDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>254, 13</value>
