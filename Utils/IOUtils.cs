@@ -54,8 +54,8 @@ namespace MagickUtils
                 else
                 {
                     MagickImage img = new MagickImage(path);
-                    if(showInfo)
-                        Program.Print("-> Loaded image " + Path.GetFileName(path) + " (" + img.ToString() + ")");
+                    if (showInfo)
+                        Program.Print($"-> Loaded image {Path.GetFileName(path).Truncate(60)} ({img})");
                     return img;
                 }
             }

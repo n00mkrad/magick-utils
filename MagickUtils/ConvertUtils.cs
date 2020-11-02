@@ -294,7 +294,6 @@ namespace MagickUtils
                 compression = DdsCompression.Dxt1;
             int mips = 0;
             if (Config.GetBool("ddsEnableMips")) mips = 8;
-            Program.Print("-> Mips: " + mips);
             var defines = new DdsWriteDefines { Compression = compression, Mipmaps = mips, FastMipmaps = true };
             img.Settings.SetDefines(defines);
             string outPath = Path.ChangeExtension(path, null) + ".dds";

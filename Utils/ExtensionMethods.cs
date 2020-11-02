@@ -145,5 +145,10 @@ namespace MagickUtils
                 s = s + " ";
             return s;
         }
+
+        public static string Truncate(this string str, int maxChars)
+        {
+            return str.Length <= maxChars ? str : str.Substring(0, maxChars) + "...";
+        }
     }
 }

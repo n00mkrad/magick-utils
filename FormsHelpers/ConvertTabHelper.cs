@@ -21,7 +21,7 @@ namespace MagickUtils
 
             foreach(string file in files)
             {
-                Program.Print("Convert Dragndrop: " + file);
+                Program.Print("\nDropped File: " + Path.GetFileName(file).Truncate(90));
                 if(!IOUtils.IsPathDirectory(file))
                 {
                     if(selectedFormat == IF.JPG)
