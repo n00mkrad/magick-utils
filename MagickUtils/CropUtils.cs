@@ -244,14 +244,15 @@ namespace MagickUtils
                 DelSource(path);
         }
 
-        public static async void MergeAllDir ()
+        public static async void MergeAllDir (int rowLength)
         {
             int counter = 1;
             FileInfo[] files = IOUtils.GetFiles();
             Program.Print("-> Merging " + files.Length + " images...");
             Program.PreProcessing();
 
-            int sqrt = (int)Math.Sqrt(files.Length);
+            if(rowLength <= 0)
+                rowLength = (int)Math.Sqrt(files.Length);
 
             MagickImageCollection row = new MagickImageCollection();
             MagickImageCollection rows = new MagickImageCollection();
@@ -266,7 +267,7 @@ namespace MagickUtils
                 Program.Print("Adding " + Path.GetFileName(currentImg.FileName) + "...", true);
                 row.Add(currentImg);
                 
-                if(currImg >= sqrt)
+                if(currImg >= rowLength)
                 {
                     currImg = 0;    // Reset counter
                     var mergedRow =  row.AppendHorizontally();  // Append
@@ -278,7 +279,7 @@ namespace MagickUtils
                 await Program.PutTaskDelay();
                 counter++;
 
-                if(counter > files.Length && currImg != 0) // Merge the remaining images if we are done, even if they don't fill a row
+                if(counter > files.Length && currImg != 0 && row.Count > 0) // Merge the remaining images if we are done, even if they don't fill a row
                 {
                     var mergedRow = row.AppendHorizontally();  // Append
                     rows.Add(mergedRow);

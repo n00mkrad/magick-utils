@@ -60,8 +60,8 @@ namespace MagickUtils
                 switch (Config.GetInt("ddsEnc"))
                 {
                     case 0: ConvertToDds(file.FullName, delSrc); break;
-                    case 1: DdsInterface.Crunch(file.FullName, qMin, qMax, delSrc); break;
-                    case 2: DdsInterface.NvCompress(file.FullName, Path.ChangeExtension(file.FullName, "dds"), delSrc); break;
+                    case 1: DdsInterface.NvCompress(file.FullName, Path.ChangeExtension(file.FullName, "dds"), delSrc); break;
+                    case 2: DdsInterface.Crunch(file.FullName, qMin, qMax, delSrc); break;
                 }
                 if (counter % 2 == 0) await Program.PutTaskDelay();
             }
@@ -159,6 +159,7 @@ namespace MagickUtils
             if (img == null) return;
             img.Format = MagickFormat.Flif;
             img.Quality = q;
+            img.Settings.SetDefine(MagickFormat.Flif, "lossless", true);
             string outPath = Path.ChangeExtension(path, null) + ".flif";
             PreProcessing(path);
             img.Write(outPath);
@@ -293,7 +294,7 @@ namespace MagickUtils
             if (Config.Get("ddsCompressionType").Contains("BC1"))
                 compression = DdsCompression.Dxt1;
             int mips = 0;
-            if (Config.GetBool("ddsEnableMips")) mips = 8;
+            if (Config.GetBool("ddsEnableMips")) mips = Config.GetInt("mipCount");
             var defines = new DdsWriteDefines { Compression = compression, Mipmaps = mips, FastMipmaps = true };
             img.Settings.SetDefines(defines);
             string outPath = Path.ChangeExtension(path, null) + ".dds";
@@ -353,7 +354,7 @@ namespace MagickUtils
             if(img != null)
                 img.Dispose();
             long bytesPost = new FileInfo(outPath).Length;
-            Program.Print("-> Done. Size pre: " + Format.Bytes(bytesPre) + " - Size post: " + Format.Bytes(bytesPost) + " - Ratio: " + Format.Ratio(bytesPre, bytesPost));
+            Program.Print("-> Done. Size pre: " + FormatUtils.Bytes(bytesPre) + " - Size post: " + FormatUtils.Bytes(bytesPost) + " - Ratio: " + FormatUtils.Ratio(bytesPre, bytesPost));
             if(delSource)
                 DelSource(sourcePath, outPath);
         }

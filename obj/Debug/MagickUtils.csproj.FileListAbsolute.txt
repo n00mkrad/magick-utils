@@ -87,3 +87,4 @@ D:\Code\GitHub\IEU\magick-utils\bin\Debug\runtimes\win-x64\native\turbojpeg.dll
 D:\Code\GitHub\IEU\magick-utils\bin\Debug\runtimes\win-x64\native\vcruntime140.dll
 D:\Code\GitHub\IEU\magick-utils\bin\Debug\runtimes\win-x86\native\turbojpeg.dll
 D:\Code\GitHub\IEU\magick-utils\bin\Debug\runtimes\win-x86\native\vcruntime140.dll
+D:\Code\GitHub\IEU\magick-utils\bin\Debug\SixLabors.ImageSharp.xml

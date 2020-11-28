@@ -150,5 +150,10 @@ namespace MagickUtils
         {
             return str.Length <= maxChars ? str : str.Substring(0, maxChars) + "...";
         }
+
+        public static int RoundToInt(this float f)
+        {
+            return (int)Math.Round(f);
+        }
     }
 }

@@ -73,7 +73,7 @@ namespace MagickUtils
             dirSizePre = 0;
             dirSizePre = IOUtils.GetDirSize(new DirectoryInfo(currentDir));
             if(showSize)
-                Print("\nFolder size before processing: " + Format.Bytes(dirSizePre) + "\n");
+                Print("\nFolder size before processing: " + FormatUtils.Bytes(dirSizePre) + "\n");
             timer.Reset();
             if(startStopwatch) timer.Start();
         }
@@ -84,11 +84,11 @@ namespace MagickUtils
             dirSizeAfter = 0;
             dirSizeAfter = IOUtils.GetDirSize(new DirectoryInfo(currentDir));
             if(showStopwatch)
-                Print("Processing time: " + Format.TimeSw(timer));
+                Print("Processing time: " + FormatUtils.TimeSw(timer));
             if(showSize)
             {
-                Print("\nFolder size after processing: " + Format.Bytes(dirSizeAfter) + " from " + Format.Bytes(dirSizePre));
-                Print("Size ratio: " + Format.Ratio(dirSizePre, dirSizeAfter) + " of original size");
+                Print("\nFolder size after processing: " + FormatUtils.Bytes(dirSizeAfter) + " from " + FormatUtils.Bytes(dirSizePre));
+                Print("Size ratio: " + FormatUtils.Ratio(dirSizePre, dirSizeAfter) + " of original size");
             }
             progBar.Value = 0;
             Print("Done.");

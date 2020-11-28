@@ -411,6 +411,7 @@ namespace MagickUtils
             Config.SaveGuiElement(filenameReplaceIncludeExt);
             Config.SaveGuiElement(backgroundColor);
             Config.SaveGuiElement(pngQ);
+            //Config.SaveGuiElement(imgSharpScaling);
             Program.Print("Saved config file.");
         }
 
@@ -420,6 +421,7 @@ namespace MagickUtils
             Config.LoadGuiElement(filenameReplaceIncludeExt);
             Config.LoadGuiElement(backgroundColor);
             Config.LoadGuiElement(pngQ);
+            //Config.LoadGuiElement(imgSharpScaling);
         }
 
         private void blurPrevBtn_Click (object sender, EventArgs e)
@@ -550,7 +552,7 @@ namespace MagickUtils
         private void mergeAllBtn_Click (object sender, EventArgs e)
         {
             if (Program.IsPathValid(Program.currentDir))
-                CropUtils.MergeAllDir();
+                CropUtils.MergeAllDir(mergeRowLength.GetInt());
         }
 
         private void edgeDetectBtn_Click (object sender, EventArgs e)
@@ -651,6 +653,11 @@ namespace MagickUtils
             if (!String.IsNullOrWhiteSpace(haloRadiusMax.Text.Trim()))
                 radMax = haloRadiusMax.GetInt();
             EffectsUtils.HaloDir(radMin, radMax);
+        }
+
+        private void onlyDownscaleCbox_CheckedChanged(object sender, EventArgs e)
+        {
+            ScaleUtils.onlyDownscale = onlyDownscaleCbox.Checked;
         }
     }
 }

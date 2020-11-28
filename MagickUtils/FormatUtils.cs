@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace MagickUtils
 {
-    class Format
+    class FormatUtils
     {
         public static string Bytes (long sizeBytes)
         {

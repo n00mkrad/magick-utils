@@ -77,6 +77,7 @@ namespace MagickUtils
 				"pngQ" => WriteDefault("pngQ", "30"),
 				"backgroundColor" => WriteDefault("backgroundColor", "000000FF"),
 				"pngColorDepth" => WriteDefault("pngColorDepth", "0"),
+				"imgSharpScaling" => WriteDefault("imgSharpScaling", "False"),
 				// JPEG Options
 				"jpegEnc" => WriteDefault("jpegEnc", "0"),
 				"jpegChromaSubsampling" => WriteDefault("jpegChromaSubsampling", "0"),
@@ -85,6 +86,7 @@ namespace MagickUtils
 				"ddsCompressionType" => WriteDefault("ddsCompressionType", "BC1 (DXT1)"),
 				"ddsEnableMips" => WriteDefault("ddsEnableMips", "False"),
 				"crunchDxtSpeed" => WriteDefault("crunchDxtSpeed", "2"),
+				"mipCount" => WriteDefault("mipCount", "10"),
 				// FLIF Options
 				"flifEnc" => WriteDefault("flifEnc", "0"),
 				"flifEffort" => WriteDefault("flifEffort", "50"),

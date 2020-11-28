@@ -121,7 +121,7 @@ namespace MagickUtils
             if (img != null)
                 img.Dispose();
             long bytesPost = new FileInfo(outPath).Length;
-            Program.Print($"-> Done. Size pre: {Format.Bytes(bytesPre)} - Size post: {Format.Bytes(bytesPost)} - Ratio: {Format.Ratio(bytesPre, bytesPost)}");
+            Program.Print($"-> Done. Size pre: {FormatUtils.Bytes(bytesPre)} - Size post: {FormatUtils.Bytes(bytesPost)} - Ratio: {FormatUtils.Ratio(bytesPre, bytesPost)}");
             if (delSource)
                 File.Delete(sourcePath);
         }

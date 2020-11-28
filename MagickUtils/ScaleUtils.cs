@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 using System.IO;
 using ImageMagick;
+using MagickUtils.Utils;
 
 namespace MagickUtils
 {
@@ -31,12 +32,16 @@ namespace MagickUtils
             int counter = 1;
             FileInfo[] files = IOUtils.GetFiles();
             Program.PreProcessing();
-            foreach(FileInfo file in files)
+            bool imgSharp = Config.GetBool("imgSharpScaling");
+            foreach (FileInfo file in files)
             {
                 Program.ShowProgress("Scaling Image ", counter, files.Length);
                 counter++;
-                Scale(file.FullName, sMin, sMax, filterMode, filterName);
-                /* if(counter % 3 == 0) */ await Program.PutTaskDelay();
+                if(!imgSharp)
+                    Scale(file.FullName, sMin, sMax, filterMode, filterName);
+                else
+                    ImgSharpUtils.Scale(file.FullName, sMin, sMax, filterMode);
+                await Program.PutTaskDelay();
             }
             Program.PostProcessing();
         }
@@ -71,7 +76,7 @@ namespace MagickUtils
         static FT GetRandomFilter (bool onlyBasicFilters = false)
         {
             FT[] filtersAll = new FT[] { FT.Lanczos, FT.Catrom, FT.Quadratic, FT.Spline, FT.Box, FT.Gaussian, FT.Mitchell, FT.Triangle };
-            FT[] filtersBasic = new FT[] { FT.Catrom, FT.Box, FT.Mitchell };
+            FT[] filtersBasic = new FT[] { FT.Catrom, FT.Triangle, FT.Mitchell };
             Random rand = new Random();
             if(onlyBasicFilters) return filtersBasic[rand.Next(filtersBasic.Length)];
             else return filtersAll[rand.Next(filtersAll.Length)];
