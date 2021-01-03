@@ -34,7 +34,11 @@ namespace MagickUtils
 
             if(args.Length > 0 && args[0] != null && File.Exists(args[0]))
             {
-                PreviewImage(args[0], true);
+                try
+                {
+                    PreviewImage(args[0], true);
+                }
+                catch { }
             }
             else
             {
