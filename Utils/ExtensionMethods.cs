@@ -155,5 +155,16 @@ namespace MagickUtils
         {
             return (int)Math.Round(f);
         }
+
+        public static string RemoveFirstLines(this string str, int linesCount)
+        {
+            var lines = Regex.Split(str, "\r\n|\r|\n").Skip(linesCount);
+            return string.Join(Environment.NewLine, lines.ToArray());
+        }
+
+        public static int CountLines (this string str)
+        {
+            return Regex.Split(str, "\r\n|\r|\n").Length;
+        }
     }
 }

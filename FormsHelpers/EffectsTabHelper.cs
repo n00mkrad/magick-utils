@@ -33,7 +33,7 @@ namespace MagickUtils
             File.Copy(firstImg.FullName, tempImgPath);
             Random rand = new Random();
             EffectsUtils.AddNoise(tempImgPath, GetNoiseTypeList(), attenMin, attenMax, monochrome);
-            Program.mainForm.PreviewImage(tempImgPath);
+            Program.PreviewImage(tempImgPath);
         }
 
         public static void NoiseApply ()
@@ -60,7 +60,7 @@ namespace MagickUtils
             if(File.Exists(tempImgPath)) File.Delete(tempImgPath);
             File.Copy(firstImg.FullName, tempImgPath);
             EffectsUtils.Blur(tempImgPath, blurRadiusMin, blurRadiusMax);
-            Program.mainForm.PreviewImage(tempImgPath);
+            Program.PreviewImage(tempImgPath);
         }
 
         public static void BlurApply ()
@@ -77,7 +77,7 @@ namespace MagickUtils
             if (File.Exists(tempImgPath)) File.Delete(tempImgPath);
             File.Copy(firstImg.FullName, tempImgPath);
             EffectsUtils.Median(tempImgPath, medianRadiusMin, medianRadiusMax);
-            Program.mainForm.PreviewImage(tempImgPath);
+            Program.PreviewImage(tempImgPath);
         }
 
         public static void MedianApply()

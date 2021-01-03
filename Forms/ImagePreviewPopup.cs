@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,9 +22,12 @@ namespace MagickUtils
         {
             CenterToScreen();
             WindowState = FormWindowState.Maximized;
-            previewPicbox.ImageLocation = Program.previewImgPath;
+            //previewPicbox.ImageLocation = Program.previewImgPath;
+            if (File.Exists(Program.previewImgPath))
+                imgBox.Image = IOUtils.GetImage(Program.previewImgPath);
         }
 
+        /*
         private void previewPicbox_Click (object sender, EventArgs e)
         {
             if(previewPicbox.SizeMode == PictureBoxSizeMode.CenterImage)
@@ -37,6 +41,12 @@ namespace MagickUtils
                 previewPicbox.SizeMode = PictureBoxSizeMode.CenterImage;
                 return;
             }
+        }
+        */
+
+        private void ImagePreviewPopup_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            imgBox.Image = null;
         }
     }
 }

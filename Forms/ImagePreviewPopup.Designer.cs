@@ -28,24 +28,22 @@
         /// </summary>
         private void InitializeComponent ()
         {
-            this.previewPicbox = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.previewPicbox)).BeginInit();
+            this.imgBox = new Cyotek.Windows.Forms.ImageBox();
             this.SuspendLayout();
             // 
-            // previewPicbox
+            // imgBox
             // 
-            this.previewPicbox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.previewPicbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.previewPicbox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.previewPicbox.Location = new System.Drawing.Point(0, 0);
-            this.previewPicbox.Name = "previewPicbox";
-            this.previewPicbox.Size = new System.Drawing.Size(884, 861);
-            this.previewPicbox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.previewPicbox.TabIndex = 0;
-            this.previewPicbox.TabStop = false;
-            this.previewPicbox.Click += new System.EventHandler(this.previewPicbox_Click);
+            this.imgBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imgBox.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.imgBox.GridColorAlternate = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.imgBox.GridScale = Cyotek.Windows.Forms.ImageBoxGridScale.Medium;
+            this.imgBox.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+            this.imgBox.Location = new System.Drawing.Point(0, 0);
+            this.imgBox.Margin = new System.Windows.Forms.Padding(0);
+            this.imgBox.Name = "imgBox";
+            this.imgBox.Size = new System.Drawing.Size(884, 861);
+            this.imgBox.TabIndex = 1;
+            this.imgBox.Text = " ";
             // 
             // ImagePreviewPopup
             // 
@@ -53,18 +51,18 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(884, 861);
-            this.Controls.Add(this.previewPicbox);
+            this.Controls.Add(this.imgBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "ImagePreviewPopup";
             this.Text = "Image Preview";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ImagePreviewPopup_FormClosing);
             this.Load += new System.EventHandler(this.ImagePreviewPopup_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.previewPicbox)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox previewPicbox;
+        private Cyotek.Windows.Forms.ImageBox imgBox;
     }
 }

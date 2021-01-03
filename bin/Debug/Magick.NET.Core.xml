@@ -63,15 +63,21 @@
             </summary>
             <returns>The <see cref="T:System.Byte"/> array.</returns>
         </member>
+        <member name="M:ImageMagick.IMagickColor`1.ToHexString">
+            <summary>
+            Converts the value of this instance to a hexadecimal string that will not include the alpha channel if it is opaque.
+            </summary>
+            <returns>The <see cref="T:System.String"/>.</returns>
+        </member>
         <member name="M:ImageMagick.IMagickColor`1.ToShortString">
             <summary>
-            Converts the value of this instance to a short hexadecimal string.
+            Converts the value of this instance to a string representation that will not include the alpha channel if it is opaque.
             </summary>
             <returns>The <see cref="T:System.String"/>.</returns>
         </member>
         <member name="M:ImageMagick.IMagickColor`1.ToString">
             <summary>
-            Converts the value of this instance to a hexadecimal string.
+            Converts the value of this instance to a string representation.
             </summary>
             <returns>The <see cref="T:System.String"/>.</returns>
         </member>
@@ -3863,9 +3869,19 @@
             High Dynamic-range (HDR).
             </summary>
         </member>
+        <member name="F:ImageMagick.MagickFormat.Farbfeld">
+            <summary>
+            Farbfeld.
+            </summary>
+        </member>
         <member name="F:ImageMagick.MagickFormat.Fax">
             <summary>
             Group 3 FAX.
+            </summary>
+        </member>
+        <member name="F:ImageMagick.MagickFormat.Ff">
+            <summary>
+            Farbfeld.
             </summary>
         </member>
         <member name="F:ImageMagick.MagickFormat.File">
@@ -3876,6 +3892,11 @@
         <member name="F:ImageMagick.MagickFormat.Fits">
             <summary>
             Flexible Image Transport System.
+            </summary>
+        </member>
+        <member name="F:ImageMagick.MagickFormat.Fl32">
+            <summary>
+            FilmLight.
             </summary>
         </member>
         <member name="F:ImageMagick.MagickFormat.Flif">
@@ -3959,6 +3980,11 @@
             </summary>
         </member>
         <member name="F:ImageMagick.MagickFormat.Heic">
+            <summary>
+            High Efficiency Image Format.
+            </summary>
+        </member>
+        <member name="F:ImageMagick.MagickFormat.Heif">
             <summary>
             High Efficiency Image Format.
             </summary>
@@ -4101,6 +4127,11 @@
         <member name="F:ImageMagick.MagickFormat.Json">
             <summary>
             The image format and characteristics.
+            </summary>
+        </member>
+        <member name="F:ImageMagick.MagickFormat.Jxl">
+            <summary>
+            JPEG XL Lossless JPEG1 Recompression.
             </summary>
         </member>
         <member name="F:ImageMagick.MagickFormat.K">
@@ -4376,6 +4407,11 @@
         <member name="F:ImageMagick.MagickFormat.Pgm">
             <summary>
             Portable graymap format (gray scale).
+            </summary>
+        </member>
+        <member name="F:ImageMagick.MagickFormat.Phm">
+            <summary>
+            Portable half float format.
             </summary>
         </member>
         <member name="F:ImageMagick.MagickFormat.Pgx">
@@ -4816,6 +4852,11 @@
         <member name="F:ImageMagick.MagickFormat.Y">
             <summary>
             Raw yellow samples.
+            </summary>
+        </member>
+        <member name="F:ImageMagick.MagickFormat.Yaml">
+            <summary>
+            The image format and characteristics.
             </summary>
         </member>
         <member name="F:ImageMagick.MagickFormat.Ycbcr">
@@ -7378,6 +7419,22 @@
             <param name="method">The threshold method.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
+        <member name="M:ImageMagick.IMagickImage.BilateralBlur(System.Int32,System.Int32)">
+            <summary>
+            Applies a non-linear, edge-preserving, and noise-reducing smoothing filter.
+            </summary>
+            <param name="width">The width of the neighborhood in pixels.</param>
+            <param name="height">The height of the neighborhood in pixels.</param>\
+        </member>
+        <member name="M:ImageMagick.IMagickImage.BilateralBlur(System.Int32,System.Int32,System.Double,System.Double)">
+            <summary>
+            Applies a non-linear, edge-preserving, and noise-reducing smoothing filter.
+            </summary>
+            <param name="width">The width of the neighborhood in pixels.</param>
+            <param name="height">The height of the neighborhood in pixels.</param>
+            <param name="intensitySigma">The sigma in the intensity space.</param>
+            <param name="spatialSigma">The sigma in the coordinate space.</param>
+        </member>
         <member name="M:ImageMagick.IMagickImage.BlackThreshold(ImageMagick.Percentage)">
             <summary>
             Forces all pixels below the threshold into black while leaving all pixels at or above
@@ -9759,7 +9816,7 @@
             Sets a named image attribute.
             </summary>
             <param name="name">The name of the attribute.</param>
-            <param name="value">The value of the attribute.</param>
+            <param name="flag">The value of the attribute.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
         <member name="M:ImageMagick.IMagickImage.SetClippingPath(System.String)">
@@ -10258,6 +10315,13 @@
             <summary>
             Trim edges that are the background color from the image.
             </summary>
+            <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
+        </member>
+        <member name="M:ImageMagick.IMagickImage.Trim(ImageMagick.Gravity[])">
+            <summary>
+            Trim the specified edges that are the background color from the image.
+            </summary>
+            <param name="edges">The edges that need to be trimmed.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
         <member name="M:ImageMagick.IMagickImage.Trim(ImageMagick.Percentage)">

@@ -340,6 +340,36 @@ namespace MagickUtils
             PostProcessing(img, path, outPath, delSource);
         }
 
+        public static async void ConvertDirToJxl(int qMin, int qMax, bool delSrc)
+        {
+            int counter = 1;
+            FileInfo[] files = IOUtils.GetFiles();
+
+            Program.PreProcessing();
+            foreach (FileInfo file in files)
+            {
+                Program.ShowProgress("Converting Image ", counter, files.Length);
+                ConvertToJxl(file.FullName, qMin, qMax, delSrc);
+                counter++;
+                if (counter % 2 == 0) await Program.PutTaskDelay();
+            }
+            Program.PostProcessing();
+        }
+
+        public static void ConvertToJxl(string path, int qMin, int qMax, bool delSource = false)
+        {
+            Random rand = new Random();
+            int q = rand.Next(qMin, qMax + 1);
+            string outPath = Path.ChangeExtension(path, null) + ".jxl";
+            PreProcessing(path, " [JPEG XL Quality: " + q + "]");
+            MagickImage img = IOUtils.ReadImage(path);
+            if (img == null) return;
+            img.Format = MagickFormat.Jxl;
+            img.Quality = q;
+            img.Write(outPath);
+            PostProcessing(img, path, outPath, delSource);
+        }
+
         static void PreProcessing (string path, string infoSuffix = null)
         {
             bytesPre = 0;

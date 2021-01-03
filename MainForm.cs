@@ -94,7 +94,7 @@ namespace MagickUtils
 
         private void formatCombox_SelectedIndexChanged (object sender, EventArgs e)
         {
-            string formatStrTrim = formatCombox.Text.Trim();
+            string formatStrTrim = formatCombox.Text.Trim().ToUpper();
             qualityCombox.Enabled = true;
             qualityMaxCombox.Enabled = false;
             formatOptionsBtn.Visible = false;
@@ -165,6 +165,14 @@ namespace MagickUtils
             {
                 selectedFormat = Program.ImageFormat.HEIF;
                 formatQualityLabel.Text = "HEIF Quality: 0 - 99. Default: 50. Use 100 for lossless mode.";
+            }
+
+            if (formatStrTrim == "JPEG XL")
+            {
+                selectedFormat = Program.ImageFormat.JXL;
+                //qualityMaxCombox.Enabled = true;
+                qualityCombox.Enabled = false;
+                formatQualityLabel.Text = "Currently only lossless mode is supported.";
             }
 
             CheckDelSourceFormat();
@@ -324,21 +332,9 @@ namespace MagickUtils
                 else
                 {
                     Program.Print("Previewing " + file + "...");
-                    PreviewImage(file);
+                    Program.PreviewImage(file);
                 }
             }
-        }
-
-        public void PreviewImage (string imgPath)
-        {
-            MagickImage tempImg = IOUtils.ReadImage(imgPath);
-            if (tempImg == null) return;
-            tempImg.Format = MagickFormat.Png;
-            string tempImgPath = Path.Combine(IOUtils.GetAppDataDir(), "previewImg.png");
-            tempImg.Write(tempImgPath);
-            Program.previewImgPath = tempImgPath;
-            var imgForm = new ImagePreviewPopup();
-            imgForm.Show();
         }
 
         private void addNoiseBtn_Click (object sender, EventArgs e)

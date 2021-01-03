@@ -21,7 +21,7 @@ namespace MagickUtils
         public static string previewImgPath;
 
 
-        public enum ImageFormat { JPG, PNG, DDS, TGA, WEBP, BMP, AVIF, J2K, FLIF, HEIF }
+        public enum ImageFormat { JPG, PNG, DDS, TGA, WEBP, BMP, AVIF, J2K, FLIF, HEIF, JXL }
 
         [STAThread]
         static void Main (string[] args)
@@ -31,7 +31,34 @@ namespace MagickUtils
             mainForm = new MainForm();
             mainForm.FormClosing += new FormClosingEventHandler(OnFormClose);
             ResourceLimits.Memory = (ulong)Math.Round(ResourceLimits.Memory * 1.5f);
-            Application.Run(mainForm);
+
+            if(args.Length > 0 && args[0] != null && File.Exists(args[0]))
+            {
+                PreviewImage(args[0], true);
+            }
+            else
+            {
+                Application.Run(mainForm);
+            }
+        }
+
+        public static void PreviewImage(string imgPath, bool run = false)
+        {
+            MagickImage tempImg = IOUtils.ReadImage(imgPath);
+            if (tempImg == null) return;
+            tempImg.Format = MagickFormat.Png;
+            string tempImgPath = Path.Combine(IOUtils.GetAppDataDir(), "previewImg.png");
+            tempImg.Write(tempImgPath);
+            tempImg.Dispose();
+            previewImgPath = tempImgPath;
+            if (run)
+            {
+                Application.Run(new ImagePreviewPopup());
+            }
+            else
+            {
+                new ImagePreviewPopup().Show();
+            }
         }
 
         private static void OnFormClose (Object sender, FormClosingEventArgs e)

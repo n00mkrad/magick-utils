@@ -60,6 +60,9 @@ namespace MagickUtils
 
                     if (selectedFormat == IF.HEIF)
                         HeifInterface.EncodeImage(file, qMin, delSrcCbox.Checked);
+
+                    if (selectedFormat == IF.JXL)
+                        ConvertUtils.ConvertToJxl(file, qMin, qMax, delSrcCbox.Checked);
                 }
             }
         }
@@ -78,9 +81,7 @@ namespace MagickUtils
                 ConvertUtils.ConvertDirToPng(qMin, delSrcCbox.Checked);
 
             if(selectedFormat == IF.DDS)
-            {
                ConvertUtils.ConvertDirToDds(qMin, qMax, delSrcCbox.Checked);
-            }
 
             if(selectedFormat == IF.TGA)
                 ConvertUtils.ConvertDirToTga(delSrcCbox.Checked);
@@ -102,6 +103,9 @@ namespace MagickUtils
 
             if (selectedFormat == IF.HEIF)
                 ConvertUtils.ConvertDirToHeif(qMin, delSrcCbox.Checked);
+
+            if (selectedFormat == IF.JXL)
+                ConvertUtils.ConvertDirToJxl(qMin, qMax, delSrcCbox.Checked);
         }
     }
 }

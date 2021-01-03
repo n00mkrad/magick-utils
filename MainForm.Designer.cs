@@ -111,6 +111,9 @@
             this.label82 = new System.Windows.Forms.Label();
             this.padMode = new System.Windows.Forms.ComboBox();
             this.tabPage15 = new System.Windows.Forms.TabPage();
+            this.label114 = new System.Windows.Forms.Label();
+            this.label113 = new System.Windows.Forms.Label();
+            this.mergeRowLength = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.tileDelSrc = new System.Windows.Forms.CheckBox();
             this.label67 = new System.Windows.Forms.Label();
@@ -313,9 +316,6 @@
             this.defTip = new System.Windows.Forms.ToolTip(this.components);
             this.bgColorDialog = new System.Windows.Forms.ColorDialog();
             this.layerColorDialog = new System.Windows.Forms.ColorDialog();
-            this.mergeRowLength = new System.Windows.Forms.TextBox();
-            this.label113 = new System.Windows.Forms.Label();
-            this.label114 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -594,7 +594,8 @@
             "JPEG 2000",
             "AVIF",
             "FLIF",
-            "HEIF"});
+            "HEIF",
+            "JPEG XL"});
             this.formatCombox.Location = new System.Drawing.Point(150, 6);
             this.formatCombox.Name = "formatCombox";
             this.formatCombox.Size = new System.Drawing.Size(150, 21);
@@ -1317,6 +1318,33 @@
             this.tabPage15.TabIndex = 5;
             this.tabPage15.Text = "Create Tiles";
             this.tabPage15.UseVisualStyleBackColor = true;
+            // 
+            // label114
+            // 
+            this.label114.AutoSize = true;
+            this.label114.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label114.Location = new System.Drawing.Point(458, 133);
+            this.label114.Name = "label114";
+            this.label114.Size = new System.Drawing.Size(134, 13);
+            this.label114.TabIndex = 59;
+            this.label114.Text = "Use 0 for automatic length.";
+            // 
+            // label113
+            // 
+            this.label113.AutoSize = true;
+            this.label113.Location = new System.Drawing.Point(306, 133);
+            this.label113.Name = "label113";
+            this.label113.Size = new System.Drawing.Size(68, 13);
+            this.label113.TabIndex = 58;
+            this.label113.Text = "Row Length:";
+            // 
+            // mergeRowLength
+            // 
+            this.mergeRowLength.Location = new System.Drawing.Point(380, 130);
+            this.mergeRowLength.Name = "mergeRowLength";
+            this.mergeRowLength.Size = new System.Drawing.Size(72, 20);
+            this.mergeRowLength.TabIndex = 57;
+            this.mergeRowLength.Text = "0";
             // 
             // label5
             // 
@@ -3554,33 +3582,6 @@
             this.nameMustNotContainTbox.Size = new System.Drawing.Size(100, 20);
             this.nameMustNotContainTbox.TabIndex = 12;
             this.nameMustNotContainTbox.TextChanged += new System.EventHandler(this.nameMustNotContainTbox_TextChanged);
-            // 
-            // mergeRowLength
-            // 
-            this.mergeRowLength.Location = new System.Drawing.Point(380, 130);
-            this.mergeRowLength.Name = "mergeRowLength";
-            this.mergeRowLength.Size = new System.Drawing.Size(72, 20);
-            this.mergeRowLength.TabIndex = 57;
-            this.mergeRowLength.Text = "0";
-            // 
-            // label113
-            // 
-            this.label113.AutoSize = true;
-            this.label113.Location = new System.Drawing.Point(306, 133);
-            this.label113.Name = "label113";
-            this.label113.Size = new System.Drawing.Size(68, 13);
-            this.label113.TabIndex = 58;
-            this.label113.Text = "Row Length:";
-            // 
-            // label114
-            // 
-            this.label114.AutoSize = true;
-            this.label114.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label114.Location = new System.Drawing.Point(458, 133);
-            this.label114.Name = "label114";
-            this.label114.Size = new System.Drawing.Size(134, 13);
-            this.label114.TabIndex = 59;
-            this.label114.Text = "Use 0 for automatic length.";
             // 
             // MainForm
             // 
