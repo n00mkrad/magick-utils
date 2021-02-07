@@ -5408,616 +5408,676 @@
             </summary>
             <returns>A new <see cref="T:ImageMagick.IQuantizeSettings"/> instance.</returns>
         </member>
-        <member name="T:ImageMagick.Formats.Bmp.BmpReadDefines">
+        <member name="T:ImageMagick.Formats.BmpReadDefines">
             <summary>
             Class for defines that are used when a <see cref="F:ImageMagick.MagickFormat.Bmp"/> image is read.
             </summary>
         </member>
-        <member name="M:ImageMagick.Formats.Bmp.BmpReadDefines.#ctor">
+        <member name="M:ImageMagick.Formats.BmpReadDefines.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:ImageMagick.Formats.Bmp.BmpReadDefines"/> class.
+            Initializes a new instance of the <see cref="T:ImageMagick.Formats.BmpReadDefines"/> class.
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Bmp.BmpReadDefines.IgnoreFileSize">
+        <member name="P:ImageMagick.Formats.BmpReadDefines.IgnoreFileSize">
             <summary>
             Gets or sets a value indicating whether the file size should be ignored (bmp:ignore-filesize).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Bmp.BmpReadDefines.Defines">
+        <member name="P:ImageMagick.Formats.BmpReadDefines.Defines">
             <summary>
             Gets the defines that should be set as a define on an image.
             </summary>
         </member>
-        <member name="T:ImageMagick.Formats.Bmp.BmpSubtype">
+        <member name="T:ImageMagick.Formats.BmpSubtype">
             <summary>
             Specifies bmp subtypes.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Bmp.BmpSubtype.ARGB1555">
+        <member name="F:ImageMagick.Formats.BmpSubtype.ARGB1555">
             <summary>
             ARGB1555.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Bmp.BmpSubtype.ARGB4444">
+        <member name="F:ImageMagick.Formats.BmpSubtype.ARGB4444">
             <summary>
             ARGB4444.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Bmp.BmpSubtype.RGB555">
+        <member name="F:ImageMagick.Formats.BmpSubtype.RGB555">
             <summary>
             RGB555.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Bmp.BmpSubtype.RGB565">
+        <member name="F:ImageMagick.Formats.BmpSubtype.RGB565">
             <summary>
             RGB565.
             </summary>
         </member>
-        <member name="T:ImageMagick.Formats.Bmp.BmpWriteDefines">
+        <member name="T:ImageMagick.Formats.BmpWriteDefines">
             <summary>
             Class for defines that are used when a <see cref="F:ImageMagick.MagickFormat.Bmp"/> image is written.
             </summary>
         </member>
-        <member name="M:ImageMagick.Formats.Bmp.BmpWriteDefines.#ctor">
+        <member name="M:ImageMagick.Formats.BmpWriteDefines.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:ImageMagick.Formats.Bmp.BmpWriteDefines"/> class.
+            Initializes a new instance of the <see cref="T:ImageMagick.Formats.BmpWriteDefines"/> class.
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Bmp.BmpWriteDefines.Subtype">
+        <member name="P:ImageMagick.Formats.BmpWriteDefines.Subtype">
             <summary>
             Gets or sets the subtype that will be used (bmp:subtype).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Bmp.BmpWriteDefines.Defines">
+        <member name="P:ImageMagick.Formats.BmpWriteDefines.Defines">
             <summary>
             Gets the defines that should be set as a define on an image.
             </summary>
         </member>
-        <member name="T:ImageMagick.Formats.Caption.CaptionReadDefines">
+        <member name="T:ImageMagick.Formats.CaptionReadDefines">
             <summary>
             Class for defines that are used when a <see cref="F:ImageMagick.MagickFormat.Caption"/> image is read.
             </summary>
         </member>
-        <member name="M:ImageMagick.Formats.Caption.CaptionReadDefines.#ctor">
+        <member name="M:ImageMagick.Formats.CaptionReadDefines.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:ImageMagick.Formats.Caption.CaptionReadDefines"/> class.
+            Initializes a new instance of the <see cref="T:ImageMagick.Formats.CaptionReadDefines"/> class.
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Caption.CaptionReadDefines.MaxFontPointsize">
+        <member name="P:ImageMagick.Formats.CaptionReadDefines.MaxFontPointsize">
             <summary>
             Gets or sets a the maximum font pointsize (caption:max-pointsize).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Caption.CaptionReadDefines.Defines">
+        <member name="P:ImageMagick.Formats.CaptionReadDefines.Defines">
             <summary>
             Gets the defines that should be set as a define on an image.
             </summary>
         </member>
-        <member name="T:ImageMagick.Formats.Dds.DdsCompression">
+        <member name="T:ImageMagick.Formats.DdsCompression">
             <summary>
             Specifies dds compression methods.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Dds.DdsCompression.None">
+        <member name="F:ImageMagick.Formats.DdsCompression.None">
             <summary>
             None.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Dds.DdsCompression.Dxt1">
+        <member name="F:ImageMagick.Formats.DdsCompression.Dxt1">
             <summary>
             Dxt1.
             </summary>
         </member>
-        <member name="T:ImageMagick.Formats.Dds.DdsReadDefines">
+        <member name="T:ImageMagick.Formats.DdsReadDefines">
             <summary>
             Class for defines that are used when a <see cref="F:ImageMagick.MagickFormat.Dds"/> image is read.
             </summary>
         </member>
-        <member name="M:ImageMagick.Formats.Dds.DdsReadDefines.#ctor">
+        <member name="M:ImageMagick.Formats.DdsReadDefines.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:ImageMagick.Formats.Dds.DdsReadDefines"/> class.
+            Initializes a new instance of the <see cref="T:ImageMagick.Formats.DdsReadDefines"/> class.
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Dds.DdsReadDefines.SkipMipmaps">
+        <member name="P:ImageMagick.Formats.DdsReadDefines.SkipMipmaps">
             <summary>
             Gets or sets a value indicating wether mipmaps should be skipped (dds:skip-mipmaps).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Dds.DdsReadDefines.Defines">
+        <member name="P:ImageMagick.Formats.DdsReadDefines.Defines">
             <summary>
             Gets the defines that should be set as a define on an image.
             </summary>
         </member>
-        <member name="T:ImageMagick.Formats.Dds.DdsWriteDefines">
+        <member name="T:ImageMagick.Formats.DdsWriteDefines">
             <summary>
             Class for defines that are used when a <see cref="F:ImageMagick.MagickFormat.Dds"/> image is written.
             </summary>
         </member>
-        <member name="M:ImageMagick.Formats.Dds.DdsWriteDefines.#ctor">
+        <member name="M:ImageMagick.Formats.DdsWriteDefines.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:ImageMagick.Formats.Dds.DdsWriteDefines"/> class.
+            Initializes a new instance of the <see cref="T:ImageMagick.Formats.DdsWriteDefines"/> class.
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Dds.DdsWriteDefines.ClusterFit">
+        <member name="P:ImageMagick.Formats.DdsWriteDefines.ClusterFit">
             <summary>
             Gets or sets a value indicating whether cluser fit is enabled or disabled (dds:cluster-fit).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Dds.DdsWriteDefines.Compression">
+        <member name="P:ImageMagick.Formats.DdsWriteDefines.Compression">
             <summary>
             Gets or sets the compression that will be used (dds:compression).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Dds.DdsWriteDefines.FastMipmaps">
+        <member name="P:ImageMagick.Formats.DdsWriteDefines.FastMipmaps">
             <summary>
             Gets or sets a value indicating whether the mipmaps should be resized faster but with a lower quality (dds:fast-mipmaps).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Dds.DdsWriteDefines.Mipmaps">
+        <member name="P:ImageMagick.Formats.DdsWriteDefines.Mipmaps">
             <summary>
             Gets or sets the the number of mipmaps, zero will disable writing mipmaps (dds:mipmaps).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Dds.DdsWriteDefines.MipmapsFromCollection">
+        <member name="P:ImageMagick.Formats.DdsWriteDefines.MipmapsFromCollection">
             <summary>
             Gets or sets a value indicating whether the mipmaps should be created from the images in the collection (dds:mipmaps=fromlist).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Dds.DdsWriteDefines.Raw">
+        <member name="P:ImageMagick.Formats.DdsWriteDefines.Raw">
             <summary>
             Gets or sets a value indicating whether only the raw pixels should be written (dds:raw).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Dds.DdsWriteDefines.WeightByAlpha">
+        <member name="P:ImageMagick.Formats.DdsWriteDefines.WeightByAlpha">
             <summary>
             Gets or sets a value indicating whether weight by alpha is enabled or disabled when cluster fit is used (dds:weight-by-alpha).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Dds.DdsWriteDefines.Defines">
+        <member name="P:ImageMagick.Formats.DdsWriteDefines.Defines">
             <summary>
             Gets the defines that should be set as a define on an image.
             </summary>
         </member>
-        <member name="T:ImageMagick.Formats.Dng.DngOutputColor">
+        <member name="T:ImageMagick.Formats.DngOutputColor">
             <summary>
             Defines the dng output colors.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Dng.DngOutputColor.Raw">
+        <member name="F:ImageMagick.Formats.DngOutputColor.Raw">
             <summary>
             Raw color (unique to each camera).
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Dng.DngOutputColor.SRGB">
+        <member name="F:ImageMagick.Formats.DngOutputColor.SRGB">
             <summary>
             sRGB D65 (default).
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Dng.DngOutputColor.AdobeRGB">
+        <member name="F:ImageMagick.Formats.DngOutputColor.AdobeRGB">
             <summary>
             Adobe RGB (1998) D65.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Dng.DngOutputColor.WideGamutRGB">
+        <member name="F:ImageMagick.Formats.DngOutputColor.WideGamutRGB">
             <summary>
             Wide Gamut RGB D65.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Dng.DngOutputColor.KodakProPhotoRGB">
+        <member name="F:ImageMagick.Formats.DngOutputColor.KodakProPhotoRGB">
             <summary>
             Kodak ProPhoto RGB D65.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Dng.DngOutputColor.XYZ">
+        <member name="F:ImageMagick.Formats.DngOutputColor.XYZ">
             <summary>
             XYZ.
             </summary>
         </member>
-        <member name="T:ImageMagick.Formats.Dng.DngReadDefines">
+        <member name="T:ImageMagick.Formats.DngReadDefines">
             <summary>
             Class for defines that are used when a <see cref="F:ImageMagick.MagickFormat.Dng"/> image is read.
             </summary>
         </member>
-        <member name="M:ImageMagick.Formats.Dng.DngReadDefines.#ctor">
+        <member name="M:ImageMagick.Formats.DngReadDefines.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:ImageMagick.Formats.Dng.DngReadDefines"/> class.
+            Initializes a new instance of the <see cref="T:ImageMagick.Formats.DngReadDefines"/> class.
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Dng.DngReadDefines.DisableAutoBrightness">
+        <member name="P:ImageMagick.Formats.DngReadDefines.DisableAutoBrightness">
             <summary>
             Gets or sets a value indicating wether auto whitebalance should be used (dng:use_auto_wb).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Dng.DngReadDefines.OutputColor">
+        <member name="P:ImageMagick.Formats.DngReadDefines.OutputColor">
             <summary>
             Gets or sets the output color.
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Dng.DngReadDefines.UseAutoWhitebalance">
+        <member name="P:ImageMagick.Formats.DngReadDefines.UseAutoWhitebalance">
             <summary>
             Gets or sets a value indicating wether auto whitebalance should be used (dng:use_auto_wb).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Dng.DngReadDefines.UseCameraWhitebalance">
+        <member name="P:ImageMagick.Formats.DngReadDefines.UseCameraWhitebalance">
             <summary>
             Gets or sets a value indicating wether the whitebalance of the camera should be used (dng:use_camera_wb).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Dng.DngReadDefines.Defines">
+        <member name="P:ImageMagick.Formats.DngReadDefines.Defines">
             <summary>
             Gets the defines that should be set as a define on an image.
             </summary>
         </member>
-        <member name="T:ImageMagick.Formats.Jp2.Jp2ProgressionOrder">
+        <member name="T:ImageMagick.Formats.HeicReadDefines">
+            <summary>
+            Class for defines that are used when a <see cref="F:ImageMagick.MagickFormat.Heic"/> image is read.
+            </summary>
+        </member>
+        <member name="M:ImageMagick.Formats.HeicReadDefines.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ImageMagick.Formats.HeicReadDefines"/> class.
+            </summary>
+        </member>
+        <member name="P:ImageMagick.Formats.HeicReadDefines.PreserveOrientation">
+            <summary>
+            Gets or sets a value indicating whether the orientation should be preserved (heic:preserve-orientation).
+            </summary>
+        </member>
+        <member name="P:ImageMagick.Formats.HeicReadDefines.Defines">
+            <summary>
+            Gets the defines that should be set as a define on an image.
+            </summary>
+        </member>
+        <member name="T:ImageMagick.Formats.Jp2ProgressionOrder">
             <summary>
             Specifies jp2 progression orders.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Jp2.Jp2ProgressionOrder.LRCP">
+        <member name="F:ImageMagick.Formats.Jp2ProgressionOrder.LRCP">
             <summary>
             Layer-resolution-component-precinct order.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Jp2.Jp2ProgressionOrder.RLCP">
+        <member name="F:ImageMagick.Formats.Jp2ProgressionOrder.RLCP">
             <summary>
             Resolution-layer-component-precinct order.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Jp2.Jp2ProgressionOrder.RPCL">
+        <member name="F:ImageMagick.Formats.Jp2ProgressionOrder.RPCL">
             <summary>
             Resolution-precinct-component-layer order.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Jp2.Jp2ProgressionOrder.PCRL">
+        <member name="F:ImageMagick.Formats.Jp2ProgressionOrder.PCRL">
             <summary>
             Precinct-component-resolution-layer order.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Jp2.Jp2ProgressionOrder.CPRL">
+        <member name="F:ImageMagick.Formats.Jp2ProgressionOrder.CPRL">
             <summary>
             Component-precinct-resolution-layer order.
             </summary>
         </member>
-        <member name="T:ImageMagick.Formats.Jp2.Jp2ReadDefines">
+        <member name="T:ImageMagick.Formats.Jp2ReadDefines">
             <summary>
             Class for defines that are used when a <see cref="F:ImageMagick.MagickFormat.Jp2"/> image is read.
             </summary>
         </member>
-        <member name="M:ImageMagick.Formats.Jp2.Jp2ReadDefines.#ctor">
+        <member name="M:ImageMagick.Formats.Jp2ReadDefines.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:ImageMagick.Formats.Jp2.Jp2ReadDefines"/> class.
+            Initializes a new instance of the <see cref="T:ImageMagick.Formats.Jp2ReadDefines"/> class.
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Jp2.Jp2ReadDefines.QualityLayers">
+        <member name="P:ImageMagick.Formats.Jp2ReadDefines.QualityLayers">
             <summary>
             Gets or sets the maximum number of quality layers to decode (jp2:quality-layers).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Jp2.Jp2ReadDefines.ReduceFactor">
+        <member name="P:ImageMagick.Formats.Jp2ReadDefines.ReduceFactor">
             <summary>
             Gets or sets the number of highest resolution levels to be discarded (jp2:reduce-factor).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Jp2.Jp2ReadDefines.Defines">
+        <member name="P:ImageMagick.Formats.Jp2ReadDefines.Defines">
             <summary>
             Gets the defines that should be set as a define on an image.
             </summary>
         </member>
-        <member name="T:ImageMagick.Formats.Jp2.Jp2WriteDefines">
+        <member name="T:ImageMagick.Formats.Jp2WriteDefines">
             <summary>
             Class for defines that are used when a <see cref="F:ImageMagick.MagickFormat.Jp2"/> image is written.
             </summary>
         </member>
-        <member name="M:ImageMagick.Formats.Jp2.Jp2WriteDefines.#ctor">
+        <member name="M:ImageMagick.Formats.Jp2WriteDefines.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:ImageMagick.Formats.Jp2.Jp2WriteDefines"/> class.
+            Initializes a new instance of the <see cref="T:ImageMagick.Formats.Jp2WriteDefines"/> class.
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Jp2.Jp2WriteDefines.NumberResolutions">
+        <member name="P:ImageMagick.Formats.Jp2WriteDefines.NumberResolutions">
             <summary>
             Gets or sets the number of resolutions to encode (jp2:number-resolutions).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Jp2.Jp2WriteDefines.ProgressionOrder">
+        <member name="P:ImageMagick.Formats.Jp2WriteDefines.ProgressionOrder">
             <summary>
             Gets or sets the progression order (jp2:progression-order).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Jp2.Jp2WriteDefines.Quality">
+        <member name="P:ImageMagick.Formats.Jp2WriteDefines.Quality">
             <summary>
             Gets or sets the quality layer PSNR, given in dB. The order is from left to right in ascending order (jp2:quality).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Jp2.Jp2WriteDefines.Rate">
+        <member name="P:ImageMagick.Formats.Jp2WriteDefines.Rate">
             <summary>
             Gets or sets the compression ratio values. Each value is a factor of compression, thus 20 means 20 times compressed.
             The order is from left to right in descending order. A final lossless quality layer is signified by the value 1 (jp2:rate).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Jp2.Jp2WriteDefines.Defines">
+        <member name="P:ImageMagick.Formats.Jp2WriteDefines.Defines">
             <summary>
             Gets the defines that should be set as a define on an image.
             </summary>
         </member>
-        <member name="T:ImageMagick.Formats.Jpeg.JpegDctMethod">
+        <member name="T:ImageMagick.Formats.JpegDctMethod">
             <summary>
             Specifies the DCT method.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Jpeg.JpegDctMethod.Fast">
+        <member name="F:ImageMagick.Formats.JpegDctMethod.Fast">
             <summary>
             Fast.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Jpeg.JpegDctMethod.Float">
+        <member name="F:ImageMagick.Formats.JpegDctMethod.Float">
             <summary>
             Float.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Jpeg.JpegDctMethod.Slow">
+        <member name="F:ImageMagick.Formats.JpegDctMethod.Slow">
             <summary>
             Slow.
             </summary>
         </member>
-        <member name="T:ImageMagick.Formats.Jpeg.JpegProfileTypes">
+        <member name="T:ImageMagick.Formats.JpegProfileTypes">
             <summary>
             Specifies profile types.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Jpeg.JpegProfileTypes.App">
+        <member name="F:ImageMagick.Formats.JpegProfileTypes.App">
             <summary>
             App profile.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Jpeg.JpegProfileTypes.EightBim">
+        <member name="F:ImageMagick.Formats.JpegProfileTypes.EightBim">
             <summary>
             8bim profile.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Jpeg.JpegProfileTypes.Exif">
+        <member name="F:ImageMagick.Formats.JpegProfileTypes.Exif">
             <summary>
             Exif profile.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Jpeg.JpegProfileTypes.Icc">
+        <member name="F:ImageMagick.Formats.JpegProfileTypes.Icc">
             <summary>
             Icc profile.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Jpeg.JpegProfileTypes.Iptc">
+        <member name="F:ImageMagick.Formats.JpegProfileTypes.Iptc">
             <summary>
             Iptc profile.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Jpeg.JpegProfileTypes.Xmp">
+        <member name="F:ImageMagick.Formats.JpegProfileTypes.Xmp">
             <summary>
             Xmp profile.
             </summary>
         </member>
-        <member name="T:ImageMagick.Formats.Jpeg.JpegReadDefines">
+        <member name="T:ImageMagick.Formats.JpegReadDefines">
             <summary>
             Class for defines that are used when a <see cref="F:ImageMagick.MagickFormat.Jpeg"/> image is read.
             </summary>
         </member>
-        <member name="M:ImageMagick.Formats.Jpeg.JpegReadDefines.#ctor">
+        <member name="M:ImageMagick.Formats.JpegReadDefines.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:ImageMagick.Formats.Jpeg.JpegReadDefines"/> class.
+            Initializes a new instance of the <see cref="T:ImageMagick.Formats.JpegReadDefines"/> class.
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Jpeg.JpegReadDefines.BlockSmoothing">
+        <member name="P:ImageMagick.Formats.JpegReadDefines.BlockSmoothing">
             <summary>
             Gets or sets a value indicating whether block smoothing is enabled or disabled (jpeg:block-smoothing).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Jpeg.JpegReadDefines.Colors">
+        <member name="P:ImageMagick.Formats.JpegReadDefines.Colors">
             <summary>
             Gets or sets the desired number of colors (jpeg:colors).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Jpeg.JpegReadDefines.DctMethod">
+        <member name="P:ImageMagick.Formats.JpegReadDefines.DctMethod">
             <summary>
             Gets or sets the dtc method that will be used (jpeg:dct-method).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Jpeg.JpegReadDefines.FancyUpsampling">
+        <member name="P:ImageMagick.Formats.JpegReadDefines.FancyUpsampling">
             <summary>
             Gets or sets a value indicating whether fancy upsampling is enabled or disabled (jpeg:fancy-upsampling).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Jpeg.JpegReadDefines.Size">
+        <member name="P:ImageMagick.Formats.JpegReadDefines.Size">
             <summary>
             Gets or sets the size the scale the image to (jpeg:size). The output image won't be exactly
             the specified size. More information can be found here: http://jpegclub.org/djpeg/.
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Jpeg.JpegReadDefines.SkipProfiles">
+        <member name="P:ImageMagick.Formats.JpegReadDefines.SkipProfiles">
             <summary>
             Gets or sets the profile(s) that should be skipped when the image is read (profile:skip).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Jpeg.JpegReadDefines.Defines">
+        <member name="P:ImageMagick.Formats.JpegReadDefines.Defines">
             <summary>
             Gets the defines that should be set as a define on an image.
             </summary>
         </member>
-        <member name="T:ImageMagick.Formats.Jpeg.JpegSamplingFactor">
+        <member name="T:ImageMagick.Formats.JpegSamplingFactor">
             <summary>
             Specifies the sampling factor.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Jpeg.JpegSamplingFactor.Ratio444">
+        <member name="F:ImageMagick.Formats.JpegSamplingFactor.Ratio444">
             <summary>
             4:4:4.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Jpeg.JpegSamplingFactor.Ratio422">
+        <member name="F:ImageMagick.Formats.JpegSamplingFactor.Ratio422">
             <summary>
             4:2:2.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Jpeg.JpegSamplingFactor.Ratio411">
+        <member name="F:ImageMagick.Formats.JpegSamplingFactor.Ratio411">
             <summary>
             4:1:1.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Jpeg.JpegSamplingFactor.Ratio440">
+        <member name="F:ImageMagick.Formats.JpegSamplingFactor.Ratio440">
             <summary>
             4:4:0.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Jpeg.JpegSamplingFactor.Ratio420">
+        <member name="F:ImageMagick.Formats.JpegSamplingFactor.Ratio420">
             <summary>
             4:2:0.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Jpeg.JpegSamplingFactor.Ratio410">
+        <member name="F:ImageMagick.Formats.JpegSamplingFactor.Ratio410">
             <summary>
             4:1:0.
             </summary>
         </member>
-        <member name="T:ImageMagick.Formats.Jpeg.JpegWriteDefines">
+        <member name="T:ImageMagick.Formats.JpegWriteDefines">
             <summary>
             Class for defines that are used when a <see cref="F:ImageMagick.MagickFormat.Jpeg"/> image is written.
             </summary>
         </member>
-        <member name="M:ImageMagick.Formats.Jpeg.JpegWriteDefines.#ctor">
+        <member name="M:ImageMagick.Formats.JpegWriteDefines.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:ImageMagick.Formats.Jpeg.JpegWriteDefines"/> class.
+            Initializes a new instance of the <see cref="T:ImageMagick.Formats.JpegWriteDefines"/> class.
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Jpeg.JpegWriteDefines.ArithmeticCoding">
+        <member name="P:ImageMagick.Formats.JpegWriteDefines.ArithmeticCoding">
             <summary>
             Gets or sets a value indicating whether arithmetic coding is enabled or disabled (jpeg:arithmetic-coding).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Jpeg.JpegWriteDefines.DctMethod">
+        <member name="P:ImageMagick.Formats.JpegWriteDefines.DctMethod">
             <summary>
             Gets or sets the dtc method that will be used (jpeg:dct-method).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Jpeg.JpegWriteDefines.Extent">
+        <member name="P:ImageMagick.Formats.JpegWriteDefines.Extent">
             <summary>
             Gets or sets the compression quality that does not exceed the specified extent in kilobytes (jpeg:extent).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Jpeg.JpegWriteDefines.OptimizeCoding">
+        <member name="P:ImageMagick.Formats.JpegWriteDefines.OptimizeCoding">
             <summary>
             Gets or sets a value indicating whether optimize coding is enabled or disabled (jpeg:optimize-coding).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Jpeg.JpegWriteDefines.QuantizationTables">
+        <member name="P:ImageMagick.Formats.JpegWriteDefines.QuantizationTables">
             <summary>
             Gets or sets the file name that contains custom quantization tables (jpeg:q-table).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Jpeg.JpegWriteDefines.SamplingFactor">
+        <member name="P:ImageMagick.Formats.JpegWriteDefines.SamplingFactor">
             <summary>
             Gets or sets jpeg sampling factor (jpeg:sampling-factor).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Jpeg.JpegWriteDefines.Defines">
+        <member name="P:ImageMagick.Formats.JpegWriteDefines.Defines">
             <summary>
             Gets the defines that should be set as a define on an image.
             </summary>
         </member>
-        <member name="T:ImageMagick.Formats.Pdf.PdfReadDefines">
+        <member name="T:ImageMagick.Formats.PdfInfo">
+            <summary>
+            The info of a <see cref="F:ImageMagick.MagickFormat.Pdf"/> file.
+            </summary>
+        </member>
+        <member name="P:ImageMagick.Formats.PdfInfo.PageCount">
+            <summary>
+            Gets the page count of the file.
+            </summary>
+        </member>
+        <member name="M:ImageMagick.Formats.PdfInfo.Create(System.IO.FileInfo)">
+            <summary>
+            Creates info from a <see cref="F:ImageMagick.MagickFormat.Pdf"/> file.
+            </summary>
+            <param name="file">The pdf file to create the info from.</param>
+            <returns>The info of a <see cref="F:ImageMagick.MagickFormat.Pdf"/> file.</returns>
+        </member>
+        <member name="M:ImageMagick.Formats.PdfInfo.Create(System.IO.FileInfo,System.String)">
+            <summary>
+            Creates info from a <see cref="F:ImageMagick.MagickFormat.Pdf"/> file.
+            </summary>
+            <param name="file">The pdf file to create the info from.</param>
+            <param name="password">The password of the pdf file.</param>
+            <returns>The info of a <see cref="F:ImageMagick.MagickFormat.Pdf"/> file.</returns>
+        </member>
+        <member name="M:ImageMagick.Formats.PdfInfo.Create(System.String)">
+            <summary>
+            Creates info from a <see cref="F:ImageMagick.MagickFormat.Pdf"/> file.
+            </summary>
+            <param name="fileName">The pdf file to create the info from.</param>
+            <returns>The info of a <see cref="F:ImageMagick.MagickFormat.Pdf"/> file.</returns>
+        </member>
+        <member name="M:ImageMagick.Formats.PdfInfo.Create(System.String,System.String)">
+            <summary>
+            Creates info from a <see cref="F:ImageMagick.MagickFormat.Pdf"/> file.
+            </summary>
+            <param name="fileName">The pdf file to create the info from.</param>
+            <param name="password">The password of the pdf file.</param>
+            <returns>The info of a <see cref="F:ImageMagick.MagickFormat.Pdf"/> file.</returns>
+        </member>
+        <member name="T:ImageMagick.Formats.PdfReadDefines">
             <summary>
             Class for defines that are used when a <see cref="F:ImageMagick.MagickFormat.Pdf"/> image is read.
             </summary>
         </member>
-        <member name="M:ImageMagick.Formats.Pdf.PdfReadDefines.#ctor">
+        <member name="M:ImageMagick.Formats.PdfReadDefines.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:ImageMagick.Formats.Pdf.PdfReadDefines"/> class.
+            Initializes a new instance of the <see cref="T:ImageMagick.Formats.PdfReadDefines"/> class.
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Pdf.PdfReadDefines.FitPage">
+        <member name="P:ImageMagick.Formats.PdfReadDefines.FitPage">
             <summary>
             Gets or sets the size where the image should be scaled to fit the page (pdf:fit-page).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Pdf.PdfReadDefines.Interpolate">
+        <member name="P:ImageMagick.Formats.PdfReadDefines.Interpolate">
             <summary>
             Gets or sets a value indicating whether all images are forced to be interpolated at full device resolution.
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Pdf.PdfReadDefines.Password">
+        <member name="P:ImageMagick.Formats.PdfReadDefines.Password">
             <summary>
             Gets or sets the password that should be used to open the pdf (authenticate).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Pdf.PdfReadDefines.UseCropBox">
+        <member name="P:ImageMagick.Formats.PdfReadDefines.UseCropBox">
             <summary>
             Gets or sets a value indicating whether use of the cropbox should be forced (pdf:use-trimbox).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Pdf.PdfReadDefines.UseTrimBox">
+        <member name="P:ImageMagick.Formats.PdfReadDefines.UseTrimBox">
             <summary>
             Gets or sets a value indicating whether use of the trimbox should be forced (pdf:use-trimbox).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Pdf.PdfReadDefines.Defines">
+        <member name="P:ImageMagick.Formats.PdfReadDefines.Defines">
             <summary>
             Gets the defines that should be set as a define on an image.
             </summary>
         </member>
-        <member name="T:ImageMagick.Formats.Png.PngProfileTypes">
+        <member name="T:ImageMagick.Formats.PngProfileTypes">
             <summary>
             Specifies profile types.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Png.PngProfileTypes.App">
+        <member name="F:ImageMagick.Formats.PngProfileTypes.App">
             <summary>
             App profile.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Png.PngProfileTypes.EightBim">
+        <member name="F:ImageMagick.Formats.PngProfileTypes.EightBim">
             <summary>
             8bim profile.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Png.PngProfileTypes.Exif">
+        <member name="F:ImageMagick.Formats.PngProfileTypes.Exif">
             <summary>
             Exif profile.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Png.PngProfileTypes.Icc">
+        <member name="F:ImageMagick.Formats.PngProfileTypes.Icc">
             <summary>
             Icc profile.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Png.PngProfileTypes.Iptc">
+        <member name="F:ImageMagick.Formats.PngProfileTypes.Iptc">
             <summary>
             Iptc profile.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Png.PngProfileTypes.Xmp">
+        <member name="F:ImageMagick.Formats.PngProfileTypes.Xmp">
             <summary>
             Xmp profile.
             </summary>
         </member>
-        <member name="T:ImageMagick.Formats.Png.PngReadDefines">
+        <member name="T:ImageMagick.Formats.PngReadDefines">
             <summary>
             Class for defines that are used when a <see cref="F:ImageMagick.MagickFormat.Png"/> image is read.
             </summary>
         </member>
-        <member name="M:ImageMagick.Formats.Png.PngReadDefines.#ctor">
+        <member name="M:ImageMagick.Formats.PngReadDefines.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:ImageMagick.Formats.Png.PngReadDefines"/> class.
+            Initializes a new instance of the <see cref="T:ImageMagick.Formats.PngReadDefines"/> class.
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Png.PngReadDefines.ChunkCacheMax">
+        <member name="P:ImageMagick.Formats.PngReadDefines.ChunkCacheMax">
             <summary>
             Gets or sets the total number of sPLT, text, and unknown chunks that can be stored
             (png:chunk-cache-max). 0 means unlimited.
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Png.PngReadDefines.ChunkMallocMax">
+        <member name="P:ImageMagick.Formats.PngReadDefines.ChunkMallocMax">
             <summary>
             Gets or sets the total memory that a zTXt, sPLT, iTXt, iCCP, or unknown chunk can occupy
             when decompressed (png:chuck-malloc-max). 0 means unlimited.
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Png.PngReadDefines.PreserveiCCP">
+        <member name="P:ImageMagick.Formats.PngReadDefines.PreserveiCCP">
             <summary>
             Gets or sets a value indicating whether the PNG decoder and encoder examine any ICC profile
             that is present. By default, the PNG decoder and encoder examine any ICC profile that is present,
@@ -6026,18 +6086,18 @@
             to prevent this from happening; in such cases the iCCP chunk will be read. (png:preserve-iCCP).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Png.PngReadDefines.IgnoreCrc">
+        <member name="P:ImageMagick.Formats.PngReadDefines.IgnoreCrc">
             <summary>
             Gets or sets a value indicating whether the PNG decoder should ignore the CRC when reading the
             image. (png:ignore-crc).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Png.PngReadDefines.SkipProfiles">
+        <member name="P:ImageMagick.Formats.PngReadDefines.SkipProfiles">
             <summary>
             Gets or sets the profile(s) that should be skipped when the image is read (profile:skip).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Png.PngReadDefines.SwapBytes">
+        <member name="P:ImageMagick.Formats.PngReadDefines.SwapBytes">
             <summary>
             Gets or sets a value indicating whether the bytes should be swapped. The PNG specification
             requires that any multi-byte integers be stored in network byte order (MSB-LSB endian).
@@ -6045,179 +6105,184 @@
             incorrectly in little-endian order (LSB-MSB). (png:swap-bytes).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Png.PngReadDefines.Defines">
+        <member name="P:ImageMagick.Formats.PngReadDefines.Defines">
             <summary>
             Gets the defines that should be set as a define on an image.
             </summary>
         </member>
-        <member name="T:ImageMagick.Formats.Psd.PsdAdditionalInfo">
+        <member name="T:ImageMagick.Formats.PsdAdditionalInfo">
             <summary>
             The additional info of a <see cref="F:ImageMagick.MagickFormat.Psd"/> image.
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Psd.PsdAdditionalInfo.LayerName">
+        <member name="P:ImageMagick.Formats.PsdAdditionalInfo.LayerName">
             <summary>
             Gets the name of the layer.
             </summary>
         </member>
-        <member name="M:ImageMagick.Formats.Psd.PsdAdditionalInfo.FromImage(ImageMagick.IMagickImage{System.UInt16})">
+        <member name="M:ImageMagick.Formats.PsdAdditionalInfo.FromImage(ImageMagick.IMagickImage{System.UInt16})">
             <summary>
             Creates additional info from a <see cref="F:ImageMagick.MagickFormat.Psd"/> image.
             </summary>
             <param name="image">The image to create the additonal info from.</param>
             <returns>The additional info from a <see cref="F:ImageMagick.MagickFormat.Psd"/> image.</returns>
         </member>
-        <member name="T:ImageMagick.Formats.Psd.PsdAdditionalInfoPart">
+        <member name="T:ImageMagick.Formats.PsdAdditionalInfoPart">
             <summary>
             Specifies which additional info should be written to the output file.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Psd.PsdAdditionalInfoPart.None">
+        <member name="F:ImageMagick.Formats.PsdAdditionalInfoPart.None">
             <summary>
             None.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Psd.PsdAdditionalInfoPart.All">
+        <member name="F:ImageMagick.Formats.PsdAdditionalInfoPart.All">
             <summary>
             All.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Psd.PsdAdditionalInfoPart.Selective">
+        <member name="F:ImageMagick.Formats.PsdAdditionalInfoPart.Selective">
             <summary>
             Only select the info that does not use geometry.
             </summary>
         </member>
-        <member name="T:ImageMagick.Formats.Psd.PsdReadDefines">
+        <member name="T:ImageMagick.Formats.PsdReadDefines">
             <summary>
             Class for defines that are used when a <see cref="F:ImageMagick.MagickFormat.Psd"/> image is read.
             </summary>
         </member>
-        <member name="M:ImageMagick.Formats.Psd.PsdReadDefines.#ctor">
+        <member name="M:ImageMagick.Formats.PsdReadDefines.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:ImageMagick.Formats.Psd.PsdReadDefines"/> class.
+            Initializes a new instance of the <see cref="T:ImageMagick.Formats.PsdReadDefines"/> class.
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Psd.PsdReadDefines.AlphaUnblend">
+        <member name="P:ImageMagick.Formats.PsdReadDefines.AlphaUnblend">
             <summary>
             Gets or sets a value indicating whether alpha unblending should be enabled or disabled (psd:alpha-unblend).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Psd.PsdReadDefines.Defines">
+        <member name="P:ImageMagick.Formats.PsdReadDefines.Defines">
             <summary>
             Gets the defines that should be set as a define on an image.
             </summary>
         </member>
-        <member name="T:ImageMagick.Formats.Psd.PsdWriteDefines">
+        <member name="T:ImageMagick.Formats.PsdWriteDefines">
             <summary>
             Class for defines that are used when a <see cref="F:ImageMagick.MagickFormat.Psd"/> image is written.
             </summary>
         </member>
-        <member name="M:ImageMagick.Formats.Psd.PsdWriteDefines.#ctor">
+        <member name="M:ImageMagick.Formats.PsdWriteDefines.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:ImageMagick.Formats.Psd.PsdWriteDefines"/> class.
+            Initializes a new instance of the <see cref="T:ImageMagick.Formats.PsdWriteDefines"/> class.
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Psd.PsdWriteDefines.AdditionalInfo">
+        <member name="P:ImageMagick.Formats.PsdWriteDefines.AdditionalInfo">
             <summary>
             Gets or sets which additional info should be written to the output file.
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Psd.PsdWriteDefines.Defines">
+        <member name="P:ImageMagick.Formats.PsdWriteDefines.Defines">
             <summary>
             Gets the defines that should be set as a define on an image.
             </summary>
         </member>
-        <member name="T:ImageMagick.Formats.Tiff.TiffAlpha">
+        <member name="T:ImageMagick.Formats.TiffAlpha">
             <summary>
             Specifies tiff alpha options.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Tiff.TiffAlpha.Unspecified">
+        <member name="F:ImageMagick.Formats.TiffAlpha.Unspecified">
             <summary>
             Unspecified.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Tiff.TiffAlpha.Associated">
+        <member name="F:ImageMagick.Formats.TiffAlpha.Associated">
             <summary>
             Associated.
             </summary>
         </member>
-        <member name="F:ImageMagick.Formats.Tiff.TiffAlpha.Unassociated">
+        <member name="F:ImageMagick.Formats.TiffAlpha.Unassociated">
             <summary>
             Unassociated.
             </summary>
         </member>
-        <member name="T:ImageMagick.Formats.Tiff.TiffReadDefines">
+        <member name="T:ImageMagick.Formats.TiffReadDefines">
             <summary>
             Class for defines that are used when a <see cref="F:ImageMagick.MagickFormat.Tiff"/> image is read.
             </summary>
         </member>
-        <member name="M:ImageMagick.Formats.Tiff.TiffReadDefines.#ctor">
+        <member name="M:ImageMagick.Formats.TiffReadDefines.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:ImageMagick.Formats.Tiff.TiffReadDefines"/> class.
+            Initializes a new instance of the <see cref="T:ImageMagick.Formats.TiffReadDefines"/> class.
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Tiff.TiffReadDefines.IgnoreExifPoperties">
+        <member name="P:ImageMagick.Formats.TiffReadDefines.IgnoreExifPoperties">
             <summary>
             Gets or sets a value indicating whether the exif profile should be ignored (tiff:exif-properties).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Tiff.TiffReadDefines.IgnoreTags">
+        <member name="P:ImageMagick.Formats.TiffReadDefines.IgnoreTags">
             <summary>
             Gets or sets the tiff tags that should be ignored (tiff:ignore-tags).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Tiff.TiffReadDefines.Defines">
+        <member name="P:ImageMagick.Formats.TiffReadDefines.Defines">
             <summary>
             Gets the defines that should be set as a define on an image.
             </summary>
         </member>
-        <member name="T:ImageMagick.Formats.Tiff.TiffWriteDefines">
+        <member name="T:ImageMagick.Formats.TiffWriteDefines">
             <summary>
             Class for defines that are used when a <see cref="F:ImageMagick.MagickFormat.Tiff"/> image is written.
             </summary>
         </member>
-        <member name="M:ImageMagick.Formats.Tiff.TiffWriteDefines.#ctor">
+        <member name="M:ImageMagick.Formats.TiffWriteDefines.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:ImageMagick.Formats.Tiff.TiffWriteDefines"/> class.
+            Initializes a new instance of the <see cref="T:ImageMagick.Formats.TiffWriteDefines"/> class.
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Tiff.TiffWriteDefines.Alpha">
+        <member name="P:ImageMagick.Formats.TiffWriteDefines.Alpha">
             <summary>
             Gets or sets the tiff alpha (tiff:alpha).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Tiff.TiffWriteDefines.Endian">
+        <member name="P:ImageMagick.Formats.TiffWriteDefines.Endian">
             <summary>
             Gets or sets the endianness of the tiff file (tiff:endian).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Tiff.TiffWriteDefines.FillOrder">
+        <member name="P:ImageMagick.Formats.TiffWriteDefines.FillOrder">
             <summary>
             Gets or sets the endianness of the tiff file (tiff:fill-order).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Tiff.TiffWriteDefines.PreserveCompression">
+        <member name="P:ImageMagick.Formats.TiffWriteDefines.Predictor">
+            <summary>
+            Gets or sets the prediction scheme with LZW (tiff:predictor).
+            </summary>
+        </member>
+        <member name="P:ImageMagick.Formats.TiffWriteDefines.PreserveCompression">
             <summary>
             Gets or sets a value indicating whether the compression of the image should be preserved (tiff:preserve-compression).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Tiff.TiffWriteDefines.RowsPerStrip">
+        <member name="P:ImageMagick.Formats.TiffWriteDefines.RowsPerStrip">
             <summary>
             Gets or sets the rows per strip (tiff:rows-per-strip).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Tiff.TiffWriteDefines.TileGeometry">
+        <member name="P:ImageMagick.Formats.TiffWriteDefines.TileGeometry">
             <summary>
             Gets or sets the tile geometry (tiff:tile-geometry).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Tiff.TiffWriteDefines.WriteLayers">
+        <member name="P:ImageMagick.Formats.TiffWriteDefines.WriteLayers">
             <summary>
             Gets or sets a value indicating whether photoshop layers should be written (tiff:write-layers).
             </summary>
         </member>
-        <member name="P:ImageMagick.Formats.Tiff.TiffWriteDefines.Defines">
+        <member name="P:ImageMagick.Formats.TiffWriteDefines.Defines">
             <summary>
             Gets the defines that should be set as a define on an image.
             </summary>
@@ -10609,6 +10674,12 @@
             <param name="factorPercentage">The factor to use.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
+        <member name="M:ImageMagick.MagickImage.SortPixels">
+            <summary>
+            Sort pixels within each scanline in ascending order of intensity.
+            </summary>
+            <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
+        </member>
         <member name="M:ImageMagick.MagickImage.Splice(ImageMagick.IMagickGeometry)">
             <summary>
             Splice the background color into the image.
@@ -13208,6 +13279,14 @@
             <param name="format">The format to set the define for.</param>
             <param name="name">The name of the define.</param>
             <param name="flag">The value of the define.</param>
+        </member>
+        <member name="M:ImageMagick.MagickSettings.SetDefine(ImageMagick.MagickFormat,System.String,System.Int32)">
+            <summary>
+            Sets a format-specific option.
+            </summary>
+            <param name="format">The format to set the define for.</param>
+            <param name="name">The name of the define.</param>
+            <param name="value">The value of the define.</param>
         </member>
         <member name="M:ImageMagick.MagickSettings.SetDefine(ImageMagick.MagickFormat,System.String,System.String)">
             <summary>

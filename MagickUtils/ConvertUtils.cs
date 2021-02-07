@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 using ImageMagick;
 using System.IO;
 using System.Diagnostics;
-using ImageMagick.Formats.Dds;
 using System.Reflection;
 using MagickUtils.Interfaces;
-using ImageMagick.Formats.Jpeg;
+using ImageMagick.Formats;
 
 namespace MagickUtils
 {

@@ -171,8 +171,8 @@ namespace MagickUtils
             {
                 selectedFormat = Program.ImageFormat.JXL;
                 //qualityMaxCombox.Enabled = true;
-                qualityCombox.Enabled = false;
-                formatQualityLabel.Text = "Currently only lossless mode is supported.";
+                //qualityCombox.Enabled = false;
+                formatQualityLabel.Text = "100 is lossless, everything lower will use a fixed lossy quality level. WIP!";
             }
 
             CheckDelSourceFormat();

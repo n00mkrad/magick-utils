@@ -10015,6 +10015,12 @@
             <param name="factor">The factor to use.</param>
             <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
         </member>
+        <member name="M:ImageMagick.IMagickImage.SortPixels">
+            <summary>
+            Sort pixels within each scanline in ascending order of intensity.
+            </summary>
+            <exception cref="T:ImageMagick.MagickException">Thrown when an error is raised by ImageMagick.</exception>
+        </member>
         <member name="M:ImageMagick.IMagickImage.Solarize(ImageMagick.Percentage)">
             <summary>
             Solarize image (similar to effect seen when exposing a photographic film to light during
@@ -15849,20 +15855,6 @@
             <param name="value">The value of the iptc item to remove.</param>
             <returns>True when the value was found and removed.</returns>
         </member>
-        <member name="M:ImageMagick.IIptcProfile.SetEncoding(System.Text.Encoding)">
-            <summary>
-            Changes the encoding for all the values.
-            </summary>
-            <param name="encoding">The encoding to use when storing the bytes.</param>
-        </member>
-        <member name="M:ImageMagick.IIptcProfile.SetValue(ImageMagick.IptcTag,System.Text.Encoding,System.String)">
-            <summary>
-            Sets the value of the specified tag.
-            </summary>
-            <param name="tag">The tag of the iptc value.</param>
-            <param name="encoding">The encoding to use when storing the bytes.</param>
-            <param name="value">The value.</param>
-        </member>
         <member name="M:ImageMagick.IIptcProfile.SetValue(ImageMagick.IptcTag,System.String)">
             <summary>
             Sets the value of the specified tag.
@@ -15887,11 +15879,6 @@
             A value of the iptc profile.
             </summary>
         </member>
-        <member name="P:ImageMagick.IIptcValue.Encoding">
-            <summary>
-            Gets or sets the encoding to use for the Value.
-            </summary>
-        </member>
         <member name="P:ImageMagick.IIptcValue.Tag">
             <summary>
             Gets the tag of the iptc value.
@@ -15913,12 +15900,11 @@
             </summary>
             <returns>A <see cref="T:System.Byte"/> array.</returns>
         </member>
-        <member name="M:ImageMagick.IIptcValue.ToString(System.Text.Encoding)">
+        <member name="M:ImageMagick.IIptcValue.ToString">
             <summary>
-            Returns a string that represents the current value with the specified encoding.
+            Returns a string that represents the current value.
             </summary>
-            <param name="encoding">The encoding to use.</param>
-            <returns>A string that represents the current value with the specified encoding.</returns>
+            <returns>A string that represents the current value.</returns>
         </member>
         <member name="T:ImageMagick.IptcProfile">
             <summary>
@@ -15982,20 +15968,6 @@
             <param name="tag">The tag of the iptc value to remove.</param>
             <param name="value">The value of the iptc item to remove.</param>
             <returns>True when the value was found and removed.</returns>
-        </member>
-        <member name="M:ImageMagick.IptcProfile.SetEncoding(System.Text.Encoding)">
-            <summary>
-            Changes the encoding for all the values.
-            </summary>
-            <param name="encoding">The encoding to use when storing the bytes.</param>
-        </member>
-        <member name="M:ImageMagick.IptcProfile.SetValue(ImageMagick.IptcTag,System.Text.Encoding,System.String)">
-            <summary>
-            Sets the value of the specified tag.
-            </summary>
-            <param name="tag">The tag of the iptc value.</param>
-            <param name="encoding">The encoding to use when storing the bytes.</param>
-            <param name="value">The value.</param>
         </member>
         <member name="M:ImageMagick.IptcProfile.SetValue(ImageMagick.IptcTag,System.String)">
             <summary>
@@ -16376,11 +16348,6 @@
             A value of the iptc profile.
             </summary>
         </member>
-        <member name="P:ImageMagick.IptcValue.Encoding">
-            <summary>
-            Gets or sets the encoding to use for the Value.
-            </summary>
-        </member>
         <member name="P:ImageMagick.IptcValue.Tag">
             <summary>
             Gets the tag of the iptc value.
@@ -16427,13 +16394,6 @@
             Returns a string that represents the current value.
             </summary>
             <returns>A string that represents the current value.</returns>
-        </member>
-        <member name="M:ImageMagick.IptcValue.ToString(System.Text.Encoding)">
-            <summary>
-            Returns a string that represents the current value with the specified encoding.
-            </summary>
-            <param name="encoding">The encoding to use.</param>
-            <returns>A string that represents the current value with the specified encoding.</returns>
         </member>
         <member name="T:ImageMagick.IXmpProfile">
             <summary>
@@ -16970,6 +16930,14 @@
             <param name="format">The format to set the define for.</param>
             <param name="name">The name of the define.</param>
             <param name="flag">The value of the define.</param>
+        </member>
+        <member name="M:ImageMagick.IMagickSettings`1.SetDefine(ImageMagick.MagickFormat,System.String,System.Int32)">
+            <summary>
+            Sets a format-specific option.
+            </summary>
+            <param name="format">The format to set the option for.</param>
+            <param name="name">The name of the option.</param>
+            <param name="value">The value of the option.</param>
         </member>
         <member name="M:ImageMagick.IMagickSettings`1.SetDefine(ImageMagick.MagickFormat,System.String,System.String)">
             <summary>
