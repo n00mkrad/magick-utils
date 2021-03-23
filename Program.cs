@@ -99,7 +99,7 @@ namespace MagickUtils
             progBar.Value = targetValue;
         }
 
-        public static void PreProcessing (bool startStopwatch = false, bool showSize = true)
+        public static void PreProcessing (bool startStopwatch = true, bool showSize = true)
         {
             dirSizePre = 0;
             dirSizePre = IOUtils.GetDirSize(new DirectoryInfo(currentDir));

@@ -10,7 +10,7 @@ namespace MagickUtils.Interfaces
     {
         public enum Subsampling { Chroma420, Chroma422, Chroma444 }
 
-        public static void Encode(string inPath, string outPath, int q, Subsampling subsampling, bool printSubsampling = true)
+        public static void Encode(string inPath, string outPath, int q, Subsampling subsampling, bool printSubsampling = false)
         {
             try
             {

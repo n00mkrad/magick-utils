@@ -73,6 +73,8 @@ namespace MagickUtils
 
             IOUtils.recursive = recursiveCbox.Checked;
             ScaleUtils.onlyDownscale = onlyDownscaleCbox.Checked;
+
+            CheckForIllegalCrossThreadCalls = false;
         }
 
         void InitCombox (ComboBox cbox, int index)

@@ -150,6 +150,7 @@
     <Compile Include="Interfaces\MozJpeg.cs" />
     <Compile Include="MagickUtils\AdjustUtils.cs" />
     <Compile Include="MagickUtils\ColorUtils.cs" />
+    <Compile Include="MagickUtils\ConvertThreaded.cs" />
     <Compile Include="MagickUtils\GeometryUtils.cs" />
     <Compile Include="MagickUtils\TilingUtils.cs" />
     <Compile Include="Utils\Config.cs" />
@@ -204,6 +205,7 @@
     </Compile>
     <Compile Include="FormsHelpers\ScaleTabHelper.cs" />
     <Compile Include="MagickUtils\ScaleUtils.cs" />
+    <Compile Include="Utils\TaskTools.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

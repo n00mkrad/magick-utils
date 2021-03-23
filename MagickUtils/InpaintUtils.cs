@@ -113,12 +113,10 @@ namespace MagickUtils
         static void PreProcessing(string path, string infoSuffix = null)
         {
             Program.Print("-> Processing " + Path.GetFileName(path) + " " + infoSuffix);
-            Program.timer.Start();
         }
 
         static void PostProcessing(MagickImage img, string sourcePath, string outPath, bool delSource = false)
         {
-            Program.timer.Stop();
             if (img != null)
                 img.Dispose();
             long bytesPost = new FileInfo(outPath).Length;

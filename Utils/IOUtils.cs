@@ -19,7 +19,7 @@ namespace MagickUtils
         public static string nameMustNotContain;
 
         // Returns a MagickImage but converts the file first if it's not compatible with IM.
-        public static MagickImage ReadImage (string path, bool showInfo = true)
+        public static MagickImage ReadImage (string path, bool showInfo = false)
         {
             try
             {

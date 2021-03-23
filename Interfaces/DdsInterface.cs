@@ -40,11 +40,10 @@ namespace MagickUtils
             crunchExePath = Path.Combine(IOUtils.GetAppDataDir(), "dds", "crunch.exe");
         }
 
-        public static void Crunch(string inpath, int qMin, int qMax, bool deleteSrc)
+        public static void Crunch(string inpath, int qMin, int qMax)
         {
             SetEncSpeed();
             Extract();
-            PreProcessing(inpath);
 
             string sourcePath = inpath;
             bool convert = Path.GetExtension(inpath).ToLower() != ".png";
@@ -66,13 +65,11 @@ namespace MagickUtils
 
             if (convert)
                 File.Delete(inpath);
-            PostProcessing(null, sourcePath, Path.ChangeExtension(inpath, "dds"), deleteSrc);
         }
 
-        public static void NvCompress(string inpath, string outpath, bool deleteSrc)
+        public static void NvCompress(string inpath, string outpath)
         {
             Extract();
-            PreProcessing(inpath);
             string sourcePath = inpath;
             bool convert = Path.GetExtension(inpath).ToLower() != ".png";
             if (convert)
@@ -86,13 +83,12 @@ namespace MagickUtils
             string args = $" -{dxtString} -alpha { mipStr} {inpath.WrapPath()} {outpath.WrapPath()}";
             ProcessStartInfo psi = new ProcessStartInfo { FileName = nvCompExePath, Arguments = args, WindowStyle = ProcessWindowStyle.Hidden };
             Process nvCompress = new Process { StartInfo = psi };
-            Program.Print("-> Running NvCompress:" + args.Split('"')[0]);
+            //Program.Print("-> Running NvCompress:" + args.Split('"')[0]);
             nvCompress.Start();
             nvCompress.WaitForExit();
 
             if (convert)
                 File.Delete(inpath);
-            PostProcessing(null, sourcePath, outpath, deleteSrc);
         }
 
         static string ConvertToPng (string inpath)
@@ -112,12 +108,10 @@ namespace MagickUtils
             bytesPre = 0;
             bytesPre = new FileInfo(path).Length;
             //Program.Print("-> Processing " + Path.GetFileName(path) + " " + infoSuffix);
-            Program.timer.Start();
         }
 
         static void PostProcessing(MagickImage img, string sourcePath, string outPath, bool delSource)
         {
-            Program.timer.Stop();
             if (img != null)
                 img.Dispose();
             long bytesPost = new FileInfo(outPath).Length;

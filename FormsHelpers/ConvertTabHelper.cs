@@ -1,4 +1,5 @@
 ﻿using MagickUtils.Interfaces;
+using MagickUtils.MagickUtils;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -31,11 +32,7 @@ namespace MagickUtils
                         ConvertUtils.ConvertToPng(file, qMin, delSrcCbox.Checked);
 
                     if(selectedFormat == IF.DDS)
-                    {
-                        if(Config.GetInt("ddsEnc") == 0) ConvertUtils.ConvertToDds(file, delSrcCbox.Checked);
-                        if (Config.GetInt("ddsEnc") == 1) DdsInterface.NvCompress(file, Path.ChangeExtension(file, "dds"), delSrcCbox.Checked);
-                        if (Config.GetInt("ddsEnc") == 2) DdsInterface.Crunch(file, qMin, qMax, delSrcCbox.Checked);
-                    }
+                        ConvertUtils.ConvertToDds(file, qMin, qMax, delSrcCbox.Checked);
 
                     if(selectedFormat == IF.TGA)
                         ConvertUtils.ConvertToTga(file, delSrcCbox.Checked);
@@ -67,7 +64,7 @@ namespace MagickUtils
             }
         }
 
-        public static void ConvertUsingPath (ComboBox qualityCombox, ComboBox qualityMaxCombox, IF selectedFormat, CheckBox delSrcCbox)
+        public static async Task ConvertUsingPath (ComboBox qualityCombox, ComboBox qualityMaxCombox, IF selectedFormat, CheckBox delSrcCbox)
         {
             int qMin = int.Parse(qualityCombox.Text.Trim());
             int qMax = qMin;
@@ -75,18 +72,18 @@ namespace MagickUtils
                 qMax = int.Parse(qualityMaxCombox.Text.Trim());
 
             if(selectedFormat == IF.JPG)
-                ConvertUtils.ConvertDirToJpeg(qMin, qMax, delSrcCbox.Checked);
+                await ConvertThreaded.EncodeImages(IF.JPG, qMin, qMin, delSrcCbox.Checked);
 
-            if(selectedFormat == IF.PNG)
-                ConvertUtils.ConvertDirToPng(qMin, delSrcCbox.Checked);
+            if (selectedFormat == IF.PNG)
+                await ConvertThreaded.EncodeImages(IF.PNG, qMin, qMin, delSrcCbox.Checked);
 
-            if(selectedFormat == IF.DDS)
-               ConvertUtils.ConvertDirToDds(qMin, qMax, delSrcCbox.Checked);
+            if (selectedFormat == IF.DDS)
+                await ConvertThreaded.EncodeImages(IF.DDS, qMin, qMin, delSrcCbox.Checked);
 
-            if(selectedFormat == IF.TGA)
-                ConvertUtils.ConvertDirToTga(delSrcCbox.Checked);
+            if (selectedFormat == IF.TGA)
+                await ConvertThreaded.EncodeImages(IF.TGA, qMin, qMin, delSrcCbox.Checked);
 
-            if(selectedFormat == IF.WEBP)
+            if (selectedFormat == IF.WEBP)
                 ConvertUtils.ConvertDirToWebp(qMin, qMax, delSrcCbox.Checked);
 
             if(selectedFormat == IF.J2K)
