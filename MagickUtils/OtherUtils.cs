@@ -60,7 +60,7 @@ namespace MagickUtils
                     await Program.PutTaskDelay();
                 }
             }
-            Program.PostProcessing(true, false);
+            Program.PostProcessing(files.Length, true, false);
         }
 
         public static void AddSuffixPrefix (string path, string text, bool suffix)
@@ -91,7 +91,7 @@ namespace MagickUtils
                 }
             }
             Program.Print("Done - Processed " + counter + " files.");
-            Program.PostProcessing(true, false);
+            Program.PostProcessing(files.Length, true, false);
         }
 
         public static void ReplaceInFilename (string path, string textToFind, string textToReplace)
@@ -119,18 +119,18 @@ namespace MagickUtils
         public static async void DelSmallImgsDir (int minSize, ImageSizeFilterUtils.SizeMode scaleMode, ImageSizeFilterUtils.Operator op)
         {
             int counter = 1;
-            FileInfo[] Files = IOUtils.GetFiles();
-            Program.Print("Checking " + Files.Length + " images...");
+            FileInfo[] files = IOUtils.GetFiles();
+            Program.Print("Checking " + files.Length + " images...");
             Program.PreProcessing();
-            foreach(FileInfo file in Files)
+            foreach(FileInfo file in files)
             {
-                Program.ShowProgress("", counter, Files.Length);
+                Program.ShowProgress("", counter, files.Length);
                 counter++;
                 ImageSizeFilterUtils.DeleteSmallImages(file.FullName, scaleMode, op, minSize);
                 if (counter % 10 == 0) await Program.PutTaskDelay();
                 if(counter % 100 == 0) Program.Print("Processed " + counter + " files...");
             }
-            Program.PostProcessing();
+            Program.PostProcessing(files.Length);
         }
 
         public static void GroupNormalsWithTex (string normalSuffixList, string diffuseSuffixList, bool lowercase)
@@ -179,7 +179,7 @@ namespace MagickUtils
                     if(counter % 50 == 0) Program.Print("Processed " + counter + " files...");
                 }
             }
-            Program.PostProcessing(false, false);
+            Program.PostProcessing(files.Length, false, false);
         }
 
         public static async void GroupNormalsWithTex (string ext, string[] normalSuffixList, string[] diffuseSuffixList, string setPrefix, bool renLower)
@@ -235,7 +235,7 @@ namespace MagickUtils
                 counter++;
                 Program.ShowProgress("", counter, files.Length);
             }
-            Program.PostProcessing(false, false);
+            Program.PostProcessing(files.Length, false, false);
         }
 
         public static void RenameCounterDir(int sortMode, bool zeroPadding, int startAt)
@@ -258,7 +258,7 @@ namespace MagickUtils
                 counter++;
                 if(counter % 100 == 0) Program.Print("Renamed " + counter + " files...");
             }
-            Program.PostProcessing(true, false);
+            Program.PostProcessing(files.Length, true, false);
         }
 
         public static async void AddZeroPaddingDir (int targetLength)
@@ -282,7 +282,7 @@ namespace MagickUtils
                     await Program.PutTaskDelay();
                 }
             }
-            Program.PostProcessing(true, false);
+            Program.PostProcessing(files.Length, true, false);
         }
 
         public static async void PrintImageInfoDir ()
@@ -298,7 +298,7 @@ namespace MagickUtils
                 counter++;
                 if (counter % 10 == 0) await Program.PutTaskDelay();
             }
-            Program.PostProcessing(true, false);
+            Program.PostProcessing(files.Length, true, false);
         }
 
         static bool DimensionsMatch (string imgPath1, string imgPath2)
@@ -327,7 +327,7 @@ namespace MagickUtils
                     await Program.PutTaskDelay();
                 }
             }
-            Program.PostProcessing(true, false);
+            Program.PostProcessing(files.Length, true, false);
         }
 
         public static void RemoveBytes (string path, int bytes)

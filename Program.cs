@@ -109,20 +109,27 @@ namespace MagickUtils
             if(startStopwatch) timer.Start();
         }
 
-        public static void PostProcessing (bool showStopwatch = false, bool showSize = true)
+        public static void PostProcessing (int amount, bool showStopwatch = false, bool showSize = true)
         {
             timer.Stop();
             dirSizeAfter = 0;
             dirSizeAfter = IOUtils.GetDirSize(new DirectoryInfo(currentDir));
-            if(showStopwatch)
-                Print("Processing time: " + FormatUtils.TimeSw(timer));
+
+            progBar.Value = 0;
+            Print("\nDone.");
+
+            if (showStopwatch)
+            {
+                string rate = ((float)amount / (timer.ElapsedMilliseconds / 1000f)).ToString("0.00");
+                Print($"Processing time: {FormatUtils.TimeSw(timer)} for {amount} files ({rate}/Sec)");
+            }
+                
+
             if(showSize)
             {
-                Print("\nFolder size after processing: " + FormatUtils.Bytes(dirSizeAfter) + " from " + FormatUtils.Bytes(dirSizePre));
+                Print("Folder size after processing: " + FormatUtils.Bytes(dirSizeAfter) + " from " + FormatUtils.Bytes(dirSizePre));
                 Print("Size ratio: " + FormatUtils.Ratio(dirSizePre, dirSizeAfter) + " of original size");
             }
-            progBar.Value = 0;
-            Print("Done.");
         }
 
         public static async Task PutTaskDelay ()

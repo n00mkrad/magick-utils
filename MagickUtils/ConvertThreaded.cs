@@ -1,4 +1,5 @@
-﻿using MagickUtils.Utils;
+﻿using MagickUtils.Interfaces;
+using MagickUtils.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -53,7 +54,7 @@ namespace MagickUtils.MagickUtils
                 await Task.Delay(500);
             }
 
-            Program.PostProcessing(true);
+            Program.PostProcessing(files.Length, true);
         }
 
         static async Task EncodeImage (FileInfo file, IF format, int qMin, int qMax, bool deleteSource)
@@ -62,6 +63,13 @@ namespace MagickUtils.MagickUtils
             if (format == IF.PNG) ConvertUtils.ConvertToPng(file.FullName, qMin, deleteSource);
             if (format == IF.DDS) ConvertUtils.ConvertToDds(file.FullName, qMin, qMax, deleteSource);
             if (format == IF.TGA) ConvertUtils.ConvertToTga(file.FullName, deleteSource);
+            if (format == IF.WEBP) ConvertUtils.ConvertToWebp(file.FullName, qMin, qMax, deleteSource);
+            if (format == IF.BMP) ConvertUtils.ConvertToBmp(file.FullName, deleteSource);
+            if (format == IF.AVIF) ConvertUtils.ConvertToAvif(file.FullName, qMin, deleteSource);
+            if (format == IF.J2K) ConvertUtils.ConvertToJpeg2000(file.FullName, qMin, deleteSource);
+            if (format == IF.FLIF) ConvertUtils.ConvertToFlif(file.FullName, qMin, deleteSource);
+            if (format == IF.HEIF) HeifInterface.EncodeImage(file.FullName, qMin, deleteSource);
+            if (format == IF.JXL) ConvertUtils.ConvertToJxl(file.FullName, qMin, qMax, deleteSource);
         }
     }
 }

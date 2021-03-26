@@ -26,7 +26,7 @@ namespace MagickUtils
                 counter++;
                 if (counter % 2 == 0) await Program.PutTaskDelay();
             }
-            Program.PostProcessing(true);
+            Program.PostProcessing(files.Length, true);
         }
 
         public static void Erase(string path, List<PatternType> patterns, int scale, MagickColor color)

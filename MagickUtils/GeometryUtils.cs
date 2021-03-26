@@ -24,7 +24,7 @@ namespace MagickUtils.MagickUtils
                 Rotate(file.FullName, mode);
                 if(counter % 3 == 0) await Program.PutTaskDelay();
             }
-            Program.PostProcessing();
+            Program.PostProcessing(files.Length);
         }
 
         public static void Rotate (string path, RotateMode mode)
@@ -66,7 +66,7 @@ namespace MagickUtils.MagickUtils
                 Flip(file.FullName, mode);
                 if(counter % 3 == 0) await Program.PutTaskDelay();
             }
-            Program.PostProcessing();
+            Program.PostProcessing(files.Length);
         }
 
         public enum FlipMode { Hor, Vert, Random }

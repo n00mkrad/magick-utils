@@ -31,7 +31,6 @@ namespace MagickUtils
                     }
                     catch
                     {
-                        //Logger.Log("Failed to read DDS using Mackig.NET - Trying DdsFileTypePlusHack");
                         try
                         {
                             MagickImage img = null;
@@ -53,17 +52,38 @@ namespace MagickUtils
                 }
                 else
                 {
+
                     MagickImage img = new MagickImage(path);
                     if (showInfo)
                         Program.Print($"-> Loaded image {Path.GetFileName(path).Truncate(60)} ({img})");
+                    
                     return img;
                 }
             }
-            catch
+            catch (Exception e)
             {
-                Program.Print("Error reading " + Path.GetFileName(path) + "!");
+                Program.Print($"Error reading {Path.GetFileName(path)}: {e.Message}.");
             }
+
             return null;
+        }
+
+        public static bool SaveImage (MagickImage img, string path, bool dispose = true)
+        {
+            try
+            {
+                img.Write(path);
+
+                if (dispose)
+                    img.Dispose();
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                Program.Print($"Error saving {Path.GetFileName(path)}: {e.Message}.");
+                return false;
+            }
         }
 
         public static MagickImage ConvertToMagickImage(Surface surface)

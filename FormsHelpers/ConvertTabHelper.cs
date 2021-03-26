@@ -71,38 +71,7 @@ namespace MagickUtils
             if(!string.IsNullOrWhiteSpace(qualityMaxCombox.Text.Trim()))
                 qMax = int.Parse(qualityMaxCombox.Text.Trim());
 
-            if(selectedFormat == IF.JPG)
-                await ConvertThreaded.EncodeImages(IF.JPG, qMin, qMin, delSrcCbox.Checked);
-
-            if (selectedFormat == IF.PNG)
-                await ConvertThreaded.EncodeImages(IF.PNG, qMin, qMin, delSrcCbox.Checked);
-
-            if (selectedFormat == IF.DDS)
-                await ConvertThreaded.EncodeImages(IF.DDS, qMin, qMin, delSrcCbox.Checked);
-
-            if (selectedFormat == IF.TGA)
-                await ConvertThreaded.EncodeImages(IF.TGA, qMin, qMin, delSrcCbox.Checked);
-
-            if (selectedFormat == IF.WEBP)
-                ConvertUtils.ConvertDirToWebp(qMin, qMax, delSrcCbox.Checked);
-
-            if(selectedFormat == IF.J2K)
-                ConvertUtils.ConvertDirToJpeg2000(qMin, delSrcCbox.Checked);
-
-            if(selectedFormat == IF.FLIF)
-                ConvertUtils.ConvertDirToFlif(Config.GetInt("flifEnc") == 1, qMin, delSrcCbox.Checked);
-
-            if (selectedFormat == IF.BMP)
-                ConvertUtils.ConvertDirToBmp(delSrcCbox.Checked);
-
-            if (selectedFormat == IF.AVIF)
-                ConvertUtils.ConvertDirToAvif(qMin, delSrcCbox.Checked);
-
-            if (selectedFormat == IF.HEIF)
-                ConvertUtils.ConvertDirToHeif(qMin, delSrcCbox.Checked);
-
-            if (selectedFormat == IF.JXL)
-                ConvertUtils.ConvertDirToJxl(qMin, qMax, delSrcCbox.Checked);
+            await ConvertThreaded.EncodeImages(selectedFormat, qMin, qMin, delSrcCbox.Checked);
         }
     }
 }

@@ -25,7 +25,7 @@ namespace MagickUtils
                 counter++;
                 if(counter % 2 == 0) await Program.PutTaskDelay();
             }
-            Program.PostProcessing(true);
+            Program.PostProcessing(files.Length, true);
         }
 
         public static void AddNoise (string path, List<NoiseType> noiseTypes, double attenMin, double attenMax, bool monoChrome)
@@ -74,7 +74,7 @@ namespace MagickUtils
                 counter++;
                 if(counter % 2 == 0) await Program.PutTaskDelay();
             }
-            Program.PostProcessing(true);
+            Program.PostProcessing(files.Length, true);
         }
 
         public static void Blur (string path, int radiusMin, int radiusMax)
@@ -110,7 +110,7 @@ namespace MagickUtils
                 counter++;
                 if(counter % 2 == 0) await Program.PutTaskDelay();
             }
-            Program.PostProcessing(true);
+            Program.PostProcessing(files.Length, true);
         }
 
         public static void EdgeDetect (string path)
@@ -136,7 +136,7 @@ namespace MagickUtils
                 counter++;
                 if (counter % 2 == 0) await Program.PutTaskDelay();
             }
-            Program.PostProcessing(true);
+            Program.PostProcessing(files.Length, true);
         }
 
         public static void Median(string path, int radiusMin, int radiusMax)
@@ -164,7 +164,7 @@ namespace MagickUtils
                 counter++;
                 if (counter % 2 == 0) await Program.PutTaskDelay();
             }
-            Program.PostProcessing(true);
+            Program.PostProcessing(files.Length, true);
         }
 
         public static void Halo(string path, int radiusMin, int radiusMax)

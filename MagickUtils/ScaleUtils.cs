@@ -43,7 +43,7 @@ namespace MagickUtils
                     ImgSharpUtils.Scale(file.FullName, sMin, sMax, filterMode);
                 await Program.PutTaskDelay();
             }
-            Program.PostProcessing();
+            Program.PostProcessing(files.Length);
         }
 
 

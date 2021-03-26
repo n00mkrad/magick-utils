@@ -16,141 +16,30 @@ namespace MagickUtils
 {
     class ConvertUtils
     {
-        public static async void ConvertDirToJpeg (int qMin, int qMax, bool delSrc)
-        {
-            int counter = 1;
-            FileInfo[] files = IOUtils.GetFiles();
-
-            Program.PreProcessing();
-            foreach(FileInfo file in files)
-            {
-                Program.ShowProgress("Converting Image ", counter, files.Length);
-                ConvertToJpeg(file.FullName, qMin, qMax, delSrc);
-                counter++;
-                if(counter % 8 == 0) await Program.PutTaskDelay();
-            }
-            Program.PostProcessing();
-        }
-
-        public async static void ConvertDirToPng (int q, bool delSrc)
-        {
-            await ConvertThreaded.EncodeImages(Program.ImageFormat.PNG, q, q, delSrc);
-        }
-
-
-
-        // public static async void ConvertDirToDds (int qMin, int qMax, bool delSrc)
-        // {
-        //     int counter = 1;
-        //     FileInfo[] files = IOUtils.GetFiles();
-        // 
-        //     Program.PreProcessing();
-        //     foreach(FileInfo file in files)
-        //     {
-        //         Program.ShowProgress("Converting Image ", counter, files.Length);
-        //         counter++;
-        //         
-        //         if (counter % 2 == 0) await Program.PutTaskDelay();
-        //     }
-        //     Program.PostProcessing();
-        // }
-
-        /*
-        public static async void ConvertDirToDdsCrunch (int qMin, int qMax, bool delSrc)
-        {
-            int counter = 1;
-            FileInfo[] files = IOUtils.GetFiles();
-
-            Program.PreProcessing();
-            foreach(FileInfo file in files)
-            {
-                Program.ShowProgress("Crunching Image ", counter, files.Length);
-                counter++;
-                DdsInterface.Crunch(file.FullName, qMin, qMax, delSrc);
-                if(counter % 2 == 0) await Program.PutTaskDelay();
-            }
-            Program.PostProcessing();
-        }
-        */
-
-        public static async void ConvertDirToTga (bool delSrc)
-        {
-            int counter = 1;
-            FileInfo[] files = IOUtils.GetFiles();
-
-            Program.PreProcessing();
-            foreach(FileInfo file in files)
-            {
-                Program.ShowProgress("Converting Image ", counter, files.Length);
-                counter++;
-                ConvertToTga(file.FullName, delSrc);
-                if (counter % 2 == 0) await Program.PutTaskDelay();
-            }
-            Program.PostProcessing();
-        }
-
-        public static async void ConvertDirToWebp (int qMin, int qMax, bool delSrc)
-        {
-            int counter = 1;
-            FileInfo[] files = IOUtils.GetFiles();
-
-            Program.PreProcessing();
-            foreach(FileInfo file in files)
-            {
-                Program.ShowProgress("Converting Image ", counter, files.Length);
-                counter++;
-                ConvertToWebp(file.FullName, qMin, qMax, delSrc);
-                if(counter % 2 == 0) await Program.PutTaskDelay();
-            }
-            Program.PostProcessing();
-        }
-
-        public static async void ConvertDirToJpeg2000 (int q, bool delSrc)
-        {
-            int counter = 1;
-            FileInfo[] files = IOUtils.GetFiles();
-
-            Program.PreProcessing();
-            foreach(FileInfo file in files)
-            {
-                Program.ShowProgress("Converting Image ", counter, files.Length);
-                counter++;
-                ConvertToJpeg2000(file.FullName, q, delSrc);
-                if(counter % 2 == 0) await Program.PutTaskDelay();
-            }
-            Program.PostProcessing();
-        }
-
-        public static async void ConvertDirToFlif (bool useFlifExe, int q, bool delSrc)
-        {
-            int counter = 1;
-            FileInfo[] files = IOUtils.GetFiles();
-
-            Program.PreProcessing();
-            foreach(FileInfo file in files)
-            {
-                Program.ShowProgress("Converting Image ", counter, files.Length);
-                counter++;
-                if(useFlifExe)
-                    FlifInterface.EncodeImage(file.FullName, q, delSrc);
-                else
-                    ConvertToFlif(file.FullName, q, delSrc);
-                await Program.PutTaskDelay();
-            }
-            Program.PostProcessing();
-        }
 
         public static void ConvertToFlif (string path, int q, bool delSrc)
         {
+            long bytesSrc = new FileInfo(path).Length;
+            string outPath = Path.ChangeExtension(path, null) + ".flif";
+
+            if (Config.GetInt("flifEnc") == 1)
+                FlifInterface.EncodeImage(path, q, delSrc);
+            else
+                ConvertToFlifMagick(path, q, delSrc);
+
+            PostProcessing(path, outPath, bytesSrc, delSrc);
+        }
+
+        public static void ConvertToFlifMagick(string path, int q, bool delSrc)
+        {
+
             MagickImage img = IOUtils.ReadImage(path);
             if (img == null) return;
             img.Format = MagickFormat.Flif;
             img.Quality = q;
             img.Settings.SetDefine(MagickFormat.Flif, "lossless", true);
             string outPath = Path.ChangeExtension(path, null) + ".flif";
-            PreProcessing(path);
-            img.Write(outPath);
-            PostProcessing(img, path, outPath, delSrc);
+            IOUtils.SaveImage(img, outPath);
         }
 
         public static async void ConvertDirToBmp(bool delSrc)
@@ -166,72 +55,38 @@ namespace MagickUtils
                 ConvertToBmp(file.FullName, delSrc);
                 if (counter % 8 == 0) await Program.PutTaskDelay();
             }
-            Program.PostProcessing();
+            Program.PostProcessing(files.Length);
         }
 
-        public static void ConvertToBmp(string path, bool delSource = false)
+        public static void ConvertToBmp(string path, bool delSrc)
         {
+            long bytesSrc = new FileInfo(path).Length;
             MagickImage img = IOUtils.ReadImage(path);
             if (img == null) return;
             img.Format = MagickFormat.Bmp;
             string outPath = Path.ChangeExtension(path, null) + ".bmp";
-            PreProcessing(path);
-            img.Write(outPath);
-            PostProcessing(img, path, outPath, delSource);
+            IOUtils.SaveImage(img, outPath);
+            PostProcessing(path, outPath, bytesSrc, delSrc);
         }
 
-        public static async void ConvertDirToAvif(int q, bool delSrc)
+        public static void ConvertToAvif(string path, int q, bool delSrc = false)
         {
-            int counter = 1;
-            FileInfo[] files = IOUtils.GetFiles();
-
-            Program.PreProcessing();
-            foreach (FileInfo file in files)
-            {
-                Program.ShowProgress("Converting Image ", counter, files.Length);
-                counter++;
-                ConvertToAvif(file.FullName, q, delSrc);
-                await Program.PutTaskDelay();
-            }
-            Program.PostProcessing();
-        }
-
-        public static void ConvertToAvif(string path, int q, bool delSource = false)
-        {
+            long bytesSrc = new FileInfo(path).Length;
             MagickImage img = IOUtils.ReadImage(path);
             if (img == null) return;
             img.Format = MagickFormat.Avif;
             img.Quality = q;
             string outPath = Path.ChangeExtension(path, null) + ".avif";
-            PreProcessing(path);
-            img.Write(outPath);
-            PostProcessing(img, path, outPath, delSource);
+            IOUtils.SaveImage(img, outPath);
+            PostProcessing(path, outPath, bytesSrc, delSrc);
         }
 
-        public static async void ConvertDirToHeif(int q, bool delSrc)
+        public static void ConvertToJpeg (string path, int qMin, int qMax, bool delSrc = false)
         {
-            int counter = 1;
-            FileInfo[] files = IOUtils.GetFiles();
-
-            Program.PreProcessing();
-            foreach (FileInfo file in files)
-            {
-                Program.ShowProgress("Converting Image ", counter, files.Length);
-                counter++;
-                HeifInterface.EncodeImage(file.FullName, q, delSrc);
-                await Program.PutTaskDelay();
-            }
-            Program.PostProcessing();
-        }
-
-        static long bytesPre;
-
-        public static void ConvertToJpeg (string path, int qMin, int qMax, bool delSource = false)
-        {
+            long bytesSrc = new FileInfo(path).Length;
             Random rand = new Random();
             int q = rand.Next(qMin, qMax + 1);
             string outPath = Path.ChangeExtension(path, null) + ".jpg";
-            PreProcessing(path, " [JPEG Quality: " + q + "]");
 
             if (Config.GetInt("jpegEnc") == 0)
             {
@@ -239,9 +94,8 @@ namespace MagickUtils
                 if (img == null) return;
                 img.Format = MagickFormat.Jpeg;
                 img.Quality = q;
-                img =   SetJpegChromaSubsampling(img);
-                img.Write(outPath);
-                PostProcessing(img, path, outPath, delSource);
+                img = SetJpegChromaSubsampling(img);
+                IOUtils.SaveImage(img, outPath);
             }
             else
             {
@@ -251,13 +105,14 @@ namespace MagickUtils
                     case 1: MozJpeg.Encode(path, outPath, q, MozJpeg.Subsampling.Chroma422); break;
                     case 2: MozJpeg.Encode(path, outPath, q, MozJpeg.Subsampling.Chroma444); break;
                 }
-
-                PostProcessing(null, path, outPath, delSource);
             }
+
+            PostProcessing(path, outPath, bytesSrc, delSrc, $"JPEG Quality: {q}");
         }
 
-        public static void ConvertToPng(string path, int q = 50, bool delSource = false)
+        public static void ConvertToPng(string path, int q = 50, bool delSrc = false)
         {
+            long bytesSrc = new FileInfo(path).Length;
             MagickImage img = IOUtils.ReadImage(path);
             if (img == null) return;
             img.Format = MagickFormat.Png;
@@ -267,17 +122,17 @@ namespace MagickUtils
                 img.Format = MagickFormat.Png32;
             img.Quality = q;
             string outPath = Path.ChangeExtension(path, null) + ".png";
-            PreProcessing(path);
+
             if (path == outPath)
                 File.Delete(path);
-            img.Write(outPath);
-            PostProcessing(img, path, outPath, delSource);
+
+            IOUtils.SaveImage(img, outPath);
+            PostProcessing(path, outPath, bytesSrc, delSrc);
         }
 
-        public static void ConvertToDds (string path, int qMin, int qMax, bool delSource = false)
+        public static void ConvertToDds (string path, int qMin, int qMax, bool delSrc = false)
         {
-            PreProcessing(path);
-
+            long bytesSrc = new FileInfo(path).Length;
             string outPath = Path.ChangeExtension(path, null) + ".dds";
 
             switch (Config.GetInt("ddsEnc"))
@@ -287,7 +142,7 @@ namespace MagickUtils
                 case 2: DdsInterface.Crunch(path, qMin, qMax); break;
             }
 
-            PostProcessing(null, path, outPath, delSource);
+            PostProcessing(path, outPath, bytesSrc, delSrc);
         }
 
         static void ConvertToDdsNative (string path)
@@ -305,91 +160,69 @@ namespace MagickUtils
             var defines = new DdsWriteDefines { Compression = compression, Mipmaps = mips, FastMipmaps = true };
             img.Settings.SetDefines(defines);
             string outPath = Path.ChangeExtension(path, null) + ".dds";
-            img.Write(outPath);
-            img.Dispose();
+            IOUtils.SaveImage(img, outPath);
         }
 
-        public static void ConvertToTga (string path, bool delSource = false)
+        public static void ConvertToTga (string path, bool delSrc = false)
         {
+            long bytesSrc = new FileInfo(path).Length;
             MagickImage img = IOUtils.ReadImage(path);
             if(img == null) return;
             img.Format = MagickFormat.Tga;
             string outPath = Path.ChangeExtension(path, null) + ".tga";
-            PreProcessing(path);
-            img.Write(outPath);
-            PostProcessing(img, path, outPath, delSource);
+            IOUtils.SaveImage(img, outPath);
+            PostProcessing(path, outPath, bytesSrc, delSrc);
         }
 
-        public static void ConvertToWebp (string path, int qMin, int qMax, bool delSource = false)
+        public static void ConvertToWebp (string path, int qMin, int qMax, bool delSrc = false)
         {
-            MagickImage img = IOUtils.ReadImage(path);if(img == null) return;
+            long bytesSrc = new FileInfo(path).Length;
+            MagickImage img = IOUtils.ReadImage(path);
+            if(img == null) return;
             img.Format = MagickFormat.WebP;
             string outPath = Path.ChangeExtension(path, null) + ".webp";
             Random rand = new Random();
             img.Quality = rand.Next(qMin, qMax + 1);
             if (img.Quality >= 100)
                 img.Settings.SetDefine(MagickFormat.WebP, "lossless", true);
-            PreProcessing(path, " [WEBP Quality: " + img.Quality.ToString().Replace("100", "Lossless") + "]");
-            img.Write(outPath);
-            PostProcessing(img, path, outPath, delSource);
+            IOUtils.SaveImage(img, outPath);
+            PostProcessing(path, outPath, bytesSrc, delSrc, $"WEBP Quality: {img.Quality.ToString().Replace("100", "Lossless")}");
         }
 
-        public static void ConvertToJpeg2000 (string path, int q, bool delSource = false)
+        public static void ConvertToJpeg2000 (string path, int q, bool delSrc = false)
         {
+            long bytesSrc = new FileInfo(path).Length;
             MagickImage img = IOUtils.ReadImage(path);
             if(img == null) return;
             img.Format = MagickFormat.Jp2;
             string outPath = Path.ChangeExtension(path, null) + ".jp2";
             img.Quality = q;
-            PreProcessing(path);
-            img.Write(outPath);
-            PostProcessing(img, path, outPath, delSource);
+            IOUtils.SaveImage(img, outPath);
+            PostProcessing(path, outPath, bytesSrc, delSrc);
         }
 
-        public static async void ConvertDirToJxl(int qMin, int qMax, bool delSrc)
+        public static void ConvertToJxl(string path, int qMin, int qMax, bool delSrc = false)
         {
-            int counter = 1;
-            FileInfo[] files = IOUtils.GetFiles();
-
-            Program.PreProcessing();
-            foreach (FileInfo file in files)
-            {
-                Program.ShowProgress("Converting Image ", counter, files.Length);
-                ConvertToJxl(file.FullName, qMin, qMax, delSrc);
-                counter++;
-                if (counter % 2 == 0) await Program.PutTaskDelay();
-            }
-            Program.PostProcessing();
-        }
-
-        public static void ConvertToJxl(string path, int qMin, int qMax, bool delSource = false)
-        {
+            long bytesSrc = new FileInfo(path).Length;
             Random rand = new Random();
             int q = rand.Next(qMin, qMax + 1);
             string outPath = Path.ChangeExtension(path, null) + ".jxl";
-            PreProcessing(path, " [JPEG XL Quality: " + q + "]");
             MagickImage img = IOUtils.ReadImage(path);
             if (img == null) return;
             img.Format = MagickFormat.Jxl;
             img.Quality = q;
-            img.Write(outPath);
-            PostProcessing(img, path, outPath, delSource);
+            IOUtils.SaveImage(img, outPath);
+            PostProcessing(path, outPath, bytesSrc, delSrc, $"JPEG XL Quality: {q}");
         }
 
-        static void PreProcessing (string path, string infoSuffix = null)
+        static void PostProcessing (string sourcePath, string outPath, long bytesSrc, bool delSrc, string note = "")
         {
-            bytesPre = 0;
-            bytesPre = new FileInfo(path).Length;
-            //Program.Print("-> Processing " + Path.GetFileName(path) + " " + infoSuffix);
-        }
-
-        static void PostProcessing (MagickImage img, string sourcePath, string outPath, bool delSource)
-        {
-            if(img != null)
-                img.Dispose();
             long bytesPost = new FileInfo(outPath).Length;
-            Program.Print($"-> Saved {Path.GetFileName(outPath)}. Size: {FormatUtils.Bytes(bytesPost)}");
-            if(delSource)
+            string noteStr = string.IsNullOrWhiteSpace(note) ? "" : $" ({note})";
+            Program.Print($"-> Saved {Path.GetFileName(outPath)}{noteStr}. Size Before: {FormatUtils.Bytes(bytesSrc)}" +
+                $" - Size After: {FormatUtils.Bytes(bytesPost)} - Ratio: {FormatUtils.Ratio(bytesSrc, bytesPost)}");
+
+            if (!string.IsNullOrWhiteSpace(sourcePath) && delSrc)
                 DelSource(sourcePath, outPath);
         }
 
@@ -397,14 +230,22 @@ namespace MagickUtils
         {
             if(Path.GetExtension(sourcePath).ToLower() == Path.GetExtension(newPath).ToLower())
             {
-                Program.Print("-> Not deleting " + Path.GetFileName(sourcePath) + " as it was overwritten");
+                Program.Print("-> Didn't delete " + Path.GetFileName(sourcePath) + " as it was overwritten.");
                 return;
             }
-            Program.Print("-> Deleting source file: " + Path.GetFileName(sourcePath) + "...");
-            File.Delete(sourcePath);
+
+            try
+            {
+                File.Delete(sourcePath);
+                Program.Print("-> Deleted source file: " + Path.GetFileName(sourcePath) + ".");
+            }
+            catch (Exception e)
+            {
+                Program.Print($"-> Failed to selete source file: {Path.GetFileName(sourcePath)}: {e.Message}");
+            }
         }
 
-        static MagickImage SetJpegChromaSubsampling (MagickImage img, bool print = false)
+        static MagickImage SetJpegChromaSubsampling (MagickImage img)
         {
             JpegWriteDefines jpegDefines = new JpegWriteDefines();
             int configVal = Config.GetInt("jpegChromaSubsampling");
@@ -417,9 +258,6 @@ namespace MagickUtils
                 jpegDefines.SamplingFactor = JpegSamplingFactor.Ratio444;
 
             img.Settings.SetDefines(jpegDefines);
-
-            if (print)
-                Program.Print("-> Chroma Subsampling: " + jpegDefines.SamplingFactor.ToString().Replace("Ratio", ""));
 
             return img;
         }

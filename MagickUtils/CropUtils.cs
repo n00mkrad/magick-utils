@@ -19,17 +19,17 @@ namespace MagickUtils
         public static async void CropDivisibleDir (int divisibleBy, Gravity grav, bool expand)
         {
             int counter = 1;
-            FileInfo[] Files = IOUtils.GetFiles();
-            Program.Print("Cropping " + Files.Length + " images...");
+            FileInfo[] files = IOUtils.GetFiles();
+            Program.Print("Cropping " + files.Length + " images...");
             Program.PreProcessing();
-            foreach (FileInfo file in Files)
+            foreach (FileInfo file in files)
             {
-                Program.ShowProgress("Cropping Image ", counter, Files.Length);
+                Program.ShowProgress("Cropping Image ", counter, files.Length);
                 counter++;
                 CropDivisible(file.FullName, divisibleBy, grav, expand);
                 if (counter % 3 == 0) await Program.PutTaskDelay();
             }
-            Program.PostProcessing();
+            Program.PostProcessing(files.Length);
         }
 
         public static void CropDivisible (string path, int divisibleBy, Gravity grav, bool expand)
@@ -71,17 +71,17 @@ namespace MagickUtils
         public static async void CropRelativeDir (int minSize, int maxSize, SizeMode sizeMode, Gravity grav)
         {
             int counter = 1;
-            FileInfo[] Files = IOUtils.GetFiles();
-            Program.Print("Resizing " + Files.Length + " images...");
+            FileInfo[] files = IOUtils.GetFiles();
+            Program.Print("Resizing " + files.Length + " images...");
             Program.PreProcessing();
-            foreach(FileInfo file in Files)
+            foreach(FileInfo file in files)
             {
-                Program.ShowProgress("Resizing Image ", counter, Files.Length);
+                Program.ShowProgress("Resizing Image ", counter, files.Length);
                 counter++;
                 CropRelative(file.FullName, minSize, maxSize, sizeMode, grav);
                 if(counter % 3 == 0) await Program.PutTaskDelay();
             }
-            Program.PostProcessing();
+            Program.PostProcessing(files.Length);
         }
 
         public enum SizeMode { Percentage, Height, Width, Longer, Shorter }
@@ -127,17 +127,17 @@ namespace MagickUtils
         public static async void CropPaddingDir (int pixMin, int pixMax, bool cut)
         {
             int counter = 1;
-            FileInfo[] Files = IOUtils.GetFiles();
-            Program.Print("Resizing " + Files.Length + " images...");
+            FileInfo[] files = IOUtils.GetFiles();
+            Program.Print("Resizing " + files.Length + " images...");
             Program.PreProcessing();
-            foreach(FileInfo file in Files)
+            foreach(FileInfo file in files)
             {
-                Program.ShowProgress("Resizing Image ", counter, Files.Length);
+                Program.ShowProgress("Resizing Image ", counter, files.Length);
                 counter++;
                 CropPadding(file.FullName, pixMin, pixMax, cut);
                 if(counter % 3 == 0) await Program.PutTaskDelay();
             }
-            Program.PostProcessing();
+            Program.PostProcessing(files.Length);
         }
 
         public static void CropPadding (string path, int pixMin, int pixMax, bool cut)
@@ -171,17 +171,17 @@ namespace MagickUtils
         public static async void CropAbsoluteDir (int newWidth, int newHeight, Gravity grav)
         {
             int counter = 1;
-            FileInfo[] Files = IOUtils.GetFiles();
-            Program.Print("Resizing " + Files.Length + " images...");
+            FileInfo[] files = IOUtils.GetFiles();
+            Program.Print("Resizing " + files.Length + " images...");
             Program.PreProcessing();
-            foreach(FileInfo file in Files)
+            foreach(FileInfo file in files)
             {
-                Program.ShowProgress("Resizing Image ", counter, Files.Length);
+                Program.ShowProgress("Resizing Image ", counter, files.Length);
                 counter++;
                 CropAbsolute(file.FullName, newWidth, newHeight, grav);
                 if(counter % 3 == 0) await Program.PutTaskDelay();
             }
-            Program.PostProcessing();
+            Program.PostProcessing(files.Length);
         }
 
         public static void CropAbsolute (string path, int newWidth, int newHeight, Gravity grav)
@@ -200,17 +200,17 @@ namespace MagickUtils
         public static async void TileDir (int w, int h, bool useTileAmount, bool delSrc)
         {
             int counter = 1;
-            FileInfo[] Files = IOUtils.GetFiles();
-            Program.Print("Tiling " + Files.Length + " images...");
+            FileInfo[] files = IOUtils.GetFiles();
+            Program.Print("Tiling " + files.Length + " images...");
             Program.PreProcessing();
-            foreach(FileInfo file in Files)
+            foreach(FileInfo file in files)
             {
-                Program.ShowProgress("Tiling Image ", counter, Files.Length);
+                Program.ShowProgress("Tiling Image ", counter, files.Length);
                 counter++;
                 await Tile(file.FullName, w, h, useTileAmount, delSrc);
                 if(counter % 2 == 0) await Program.PutTaskDelay();
             }
-            Program.PostProcessing();
+            Program.PostProcessing(files.Length);
         }
 
         public static async Task Tile (string path, int tileW, int tileH, bool useTileAmount, bool delSrc)
@@ -292,7 +292,7 @@ namespace MagickUtils
             string outpath = Program.currentDir + "-merged.png";
             result.Write(outpath);
             Program.Print("-> Written merged image to " + outpath);
-            Program.PostProcessing();
+            Program.PostProcessing(files.Length);
         }
 
         static void PreProcessing (string path, string infoSuffix = null)

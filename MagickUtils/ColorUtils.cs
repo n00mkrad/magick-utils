@@ -23,7 +23,7 @@ namespace MagickUtils.MagickUtils
                 LayerColor(file.FullName, color);
                 if(counter % 2 == 0) await Program.PutTaskDelay();
             }
-            Program.PostProcessing();
+            Program.PostProcessing(files.Length);
         }
 
         public static void LayerColor (string path, string color)
@@ -40,6 +40,7 @@ namespace MagickUtils.MagickUtils
             int counter = 1;
             FileInfo[] files = IOUtils.GetFiles();
             Program.PreProcessing();
+
             foreach(FileInfo file in files)
             {
                 Program.ShowProgress("Removing Alpha on Image ", counter, files.Length);
@@ -47,7 +48,8 @@ namespace MagickUtils.MagickUtils
                 RemoveTransparency(file.FullName, mode);
                 if(counter % 5 == 0) await Program.PutTaskDelay();
             }
-            Program.PostProcessing();
+
+            Program.PostProcessing(files.Length);
         }
 
         public enum NoAlphaMode { Off, Fill }
@@ -80,7 +82,7 @@ namespace MagickUtils.MagickUtils
                 SetColorDepth(file.FullName, bits);
                 if(counter % 2 == 0) await Program.PutTaskDelay();
             }
-            Program.PostProcessing();
+            Program.PostProcessing(files.Length);
         }
 
         public static void SetColorDepth (string path, int bits)
@@ -105,7 +107,7 @@ namespace MagickUtils.MagickUtils
                 Dither(file.FullName, colorsMin, colorsMax, type);
                 if(counter % 2 == 0) await Program.PutTaskDelay();
             }
-            Program.PostProcessing();
+            Program.PostProcessing(files.Length);
         }
 
         public static void Dither (string path, int colorsMin, int colorsMax, DitherType type)
@@ -165,7 +167,7 @@ namespace MagickUtils.MagickUtils
                 DeleteGrayscaleImg(file.FullName, thresh, invert);
                 if (counter % 5 == 0) await Program.PutTaskDelay();
             }
-            Program.PostProcessing();
+            Program.PostProcessing(files.Length);
         }
 
         public static void DeleteGrayscaleImg (string path, float thresh, bool invert)

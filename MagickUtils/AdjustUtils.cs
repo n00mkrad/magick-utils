@@ -21,7 +21,7 @@ namespace MagickUtils
                 AutoLevel(file.FullName);
                 counter++;
             }
-            Program.PostProcessing();
+            Program.PostProcessing(files.Length);
         }
 
         public static void AutoGamma (string path)
