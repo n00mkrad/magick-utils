@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MagickUtils.Utils;
 
 namespace MagickUtils
 {
@@ -44,7 +45,7 @@ namespace MagickUtils
             patternImg.Rotate(RandRange(0, 360));
             double geomW = img.Width * RandRange(1.0f, 2.0f) * GetScaleMultiplier(scale);
             double geomH = img.Height * RandRange(1.0f, 2.0f) * GetScaleMultiplier(scale);
-            //Program.Print("geomW: " + geomW + " - geomH: " + geomW);
+            //Logger.Log("geomW: " + geomW + " - geomH: " + geomW);
             MagickGeometry upscaleGeom = new MagickGeometry(Math.Round(geomW) + "x" + Math.Round(geomH) + "!");
             patternImg.Resize(upscaleGeom);
             patternImg.BitDepth(Channels.Alpha, 1);
@@ -112,7 +113,7 @@ namespace MagickUtils
 
         static void PreProcessing(string path, string infoSuffix = null)
         {
-            Program.Print("-> Processing " + Path.GetFileName(path) + " " + infoSuffix);
+            Logger.Log("-> Processing " + Path.GetFileName(path) + " " + infoSuffix);
         }
 
         static void PostProcessing(MagickImage img, string sourcePath, string outPath, bool delSource = false)
@@ -120,14 +121,14 @@ namespace MagickUtils
             if (img != null)
                 img.Dispose();
             long bytesPost = new FileInfo(outPath).Length;
-            Program.Print("-> Done.");
+            Logger.Log("-> Done.");
             if (delSource)
                 DelSource(sourcePath);
         }
 
         static void DelSource(string path)
         {
-            Program.Print("-> Deleting source file: " + Path.GetFileName(path) + "...\n");
+            Logger.Log("-> Deleting source file: " + Path.GetFileName(path) + "...\n");
             File.Delete(path);
         }
     }

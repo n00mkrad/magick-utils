@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using MagickUtils.Utils;
+using Paths = MagickUtils.Utils.Paths;
 
 namespace MagickUtils
 {
@@ -28,16 +30,16 @@ namespace MagickUtils
             File.WriteAllBytes(ddsResPath, Resources.dds);
             ZipFile zip = ZipFile.Read(ddsResPath);
             foreach (ZipEntry e in zip)
-                e.Extract(IOUtils.GetAppDataDir(), ExtractExistingFileAction.OverwriteSilently);
+                e.Extract(Paths.GetDataPath(), ExtractExistingFileAction.OverwriteSilently);
 
-            Program.Print("[DdsInterface] Extracted DDS encoding resources to " + ddsResPath);
+            Logger.Log("[DdsInterface] Extracted DDS encoding resources to " + ddsResPath);
         }
 
         static void GetPaths()
         {
-            ddsResPath = Path.Combine(IOUtils.GetAppDataDir(), "dds.zip");
-            nvCompExePath = Path.Combine(IOUtils.GetAppDataDir(), "dds", "nvcompress.exe");
-            crunchExePath = Path.Combine(IOUtils.GetAppDataDir(), "dds", "crunch.exe");
+            ddsResPath = Path.Combine(Paths.GetDataPath(), "dds.zip");
+            nvCompExePath = Path.Combine(Paths.GetDataPath(), "dds", "nvcompress.exe");
+            crunchExePath = Path.Combine(Paths.GetDataPath(), "dds", "crunch.exe");
         }
 
         public static void Crunch(string inpath, int qMin, int qMax)
@@ -58,7 +60,7 @@ namespace MagickUtils
             string args = $" -file {inpath.WrapPath()} -outsamedir";
             string args2 = $" -quality {GetRandomQuality(qMin, qMax)} -fileformat dds -mipMode {mipMode} -dxtQuality {crunchPreset}";
             ProcessStartInfo psi = new ProcessStartInfo { FileName = crunchExePath, Arguments = args + args2, WindowStyle = ProcessWindowStyle.Hidden };
-            Program.Print("-> Running Crunch:" + args2);
+            Logger.Log("-> Running Crunch:" + args2);
             Process crunchProcess = new Process { StartInfo = psi };
             crunchProcess.Start();
             crunchProcess.WaitForExit();
@@ -83,7 +85,7 @@ namespace MagickUtils
             string args = $" -{dxtString} -alpha { mipStr} {inpath.WrapPath()} {outpath.WrapPath()}";
             ProcessStartInfo psi = new ProcessStartInfo { FileName = nvCompExePath, Arguments = args, WindowStyle = ProcessWindowStyle.Hidden };
             Process nvCompress = new Process { StartInfo = psi };
-            //Program.Print("-> Running NvCompress:" + args.Split('"')[0]);
+            //Logger.Log("-> Running NvCompress:" + args.Split('"')[0]);
             nvCompress.Start();
             nvCompress.WaitForExit();
 
@@ -98,7 +100,7 @@ namespace MagickUtils
             img.Format = MagickFormat.Png00;
             img.Quality = 0;    // Disable PNG compression for speed
             img.Write(newPath);
-            Program.Print("-> Input is not a PNG - Converted temporarily to PNG for compatibility");
+            Logger.Log("-> Input is not a PNG - Converted temporarily to PNG for compatibility");
             return newPath;
         }
 
@@ -107,7 +109,7 @@ namespace MagickUtils
         {
             bytesPre = 0;
             bytesPre = new FileInfo(path).Length;
-            //Program.Print("-> Processing " + Path.GetFileName(path) + " " + infoSuffix);
+            //Logger.Log("-> Processing " + Path.GetFileName(path) + " " + infoSuffix);
         }
 
         static void PostProcessing(MagickImage img, string sourcePath, string outPath, bool delSource)
@@ -115,7 +117,7 @@ namespace MagickUtils
             if (img != null)
                 img.Dispose();
             long bytesPost = new FileInfo(outPath).Length;
-            Program.Print($"-> Done. Size pre: {FormatUtils.Bytes(bytesPre)} - Size post: {FormatUtils.Bytes(bytesPost)} - Ratio: {FormatUtils.Ratio(bytesPre, bytesPost)}");
+            Logger.Log($"-> Done. Size pre: {FormatUtils.Bytes(bytesPre)} - Size post: {FormatUtils.Bytes(bytesPost)} - Ratio: {FormatUtils.Ratio(bytesPre, bytesPost)}");
             if (delSource)
                 File.Delete(sourcePath);
         }

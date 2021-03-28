@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using MagickUtils.Utils;
 using MozJpegSharp;
 
 namespace MagickUtils.Interfaces
@@ -23,16 +24,16 @@ namespace MagickUtils.Interfaces
                 if (subsampling == Subsampling.Chroma444) subSample = TJSubsamplingOption.Chrominance444;
 
                 if (printSubsampling)
-                    Program.Print("-> Chroma Subsampling: " + subSample.ToString().Replace("Chrominance", ""));
+                    Logger.Log("-> Chroma Subsampling: " + subSample.ToString().Replace("Chrominance", ""));
 
                 compressed = compressor.Compress(bmp, subSample, q, TJFlags.None);
                 File.WriteAllBytes(outPath, compressed);
 
-                //Program.Print("[MozJpeg] Written image to " + outPath);
+                //Logger.Log("[MozJpeg] Written image to " + outPath);
             }
             catch (Exception e)
             {
-                Program.Print("MozJpeg Error: " + e.Message);
+                Logger.Log("MozJpeg Error: " + e.Message);
             }
         }
     }

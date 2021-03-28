@@ -29,13 +29,13 @@ namespace MagickUtils.MagickUtils
         public static async Task EncodeImages (FileInfo[] files, IF format, int qMin, int qMax, bool deleteSource)
         {
             Program.PreProcessing();
-
+            int maxThreads = Config.GetInt("procThreads");
             List<Task> runningTasks = new List<Task>();
             int done = 0;
 
             foreach (FileInfo file in files)
             {
-                while (runningTasks.Count >= Environment.ProcessorCount)
+                while (runningTasks.Count >= maxThreads)
                 {
                     await Task.Delay(100);
                     runningTasks = TaskTools.RemoveCompletedTasks(runningTasks, ref done);

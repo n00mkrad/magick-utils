@@ -292,11 +292,11 @@
             this.label72 = new System.Windows.Forms.Label();
             this.rotateBtn = new System.Windows.Forms.Button();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.procThreads = new System.Windows.Forms.NumericUpDown();
             this.label106 = new System.Windows.Forms.Label();
             this.filenameReplaceIncludeExt = new System.Windows.Forms.CheckBox();
             this.label105 = new System.Windows.Forms.Label();
             this.label97 = new System.Windows.Forms.Label();
-            this.pngQ = new System.Windows.Forms.ComboBox();
             this.label96 = new System.Windows.Forms.Label();
             this.bgColorSelectBtn = new System.Windows.Forms.Button();
             this.label76 = new System.Windows.Forms.Label();
@@ -358,6 +358,7 @@
             this.panel14.SuspendLayout();
             this.panel13.SuspendLayout();
             this.tabPage6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.procThreads)).BeginInit();
             this.SuspendLayout();
             // 
             // pathTextbox
@@ -487,6 +488,8 @@
             this.qualityMaxCombox.Name = "qualityMaxCombox";
             this.qualityMaxCombox.Size = new System.Drawing.Size(150, 21);
             this.qualityMaxCombox.TabIndex = 16;
+            this.qualityMaxCombox.SelectedIndexChanged += new System.EventHandler(this.SaveQuality);
+            this.qualityMaxCombox.TextUpdate += new System.EventHandler(this.SaveQuality);
             // 
             // label9
             // 
@@ -561,6 +564,8 @@
             this.qualityCombox.Size = new System.Drawing.Size(150, 21);
             this.qualityCombox.TabIndex = 9;
             this.qualityCombox.Text = "50";
+            this.qualityCombox.SelectedIndexChanged += new System.EventHandler(this.SaveQuality);
+            this.qualityCombox.TextUpdate += new System.EventHandler(this.SaveQuality);
             // 
             // label3
             // 
@@ -3350,11 +3355,11 @@
             // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.procThreads);
             this.tabPage6.Controls.Add(this.label106);
             this.tabPage6.Controls.Add(this.filenameReplaceIncludeExt);
             this.tabPage6.Controls.Add(this.label105);
             this.tabPage6.Controls.Add(this.label97);
-            this.tabPage6.Controls.Add(this.pngQ);
             this.tabPage6.Controls.Add(this.label96);
             this.tabPage6.Controls.Add(this.bgColorSelectBtn);
             this.tabPage6.Controls.Add(this.label76);
@@ -3372,6 +3377,13 @@
             this.tabPage6.Text = "Config";
             this.tabPage6.UseVisualStyleBackColor = true;
             this.tabPage6.Enter += new System.EventHandler(this.tabPage6_Enter);
+            // 
+            // procThreads
+            // 
+            this.procThreads.Location = new System.Drawing.Point(224, 82);
+            this.procThreads.Name = "procThreads";
+            this.procThreads.Size = new System.Drawing.Size(101, 20);
+            this.procThreads.TabIndex = 46;
             // 
             // label106
             // 
@@ -3409,34 +3421,18 @@
             this.label97.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label97.Location = new System.Drawing.Point(331, 84);
             this.label97.Name = "label97";
-            this.label97.Size = new System.Drawing.Size(289, 13);
+            this.label97.Size = new System.Drawing.Size(179, 13);
             this.label97.TabIndex = 42;
-            this.label97.Text = "Compression strength used when re-encoding PNGs. 0-100.";
-            // 
-            // pngQ
-            // 
-            this.pngQ.FormattingEnabled = true;
-            this.pngQ.Items.AddRange(new object[] {
-            "100",
-            "70",
-            "50",
-            "30",
-            "10",
-            "0"});
-            this.pngQ.Location = new System.Drawing.Point(223, 81);
-            this.pngQ.Name = "pngQ";
-            this.pngQ.Size = new System.Drawing.Size(101, 21);
-            this.pngQ.TabIndex = 41;
-            this.pngQ.Text = "30";
+            this.label97.Text = "For multi-threaded image processing.";
             // 
             // label96
             // 
             this.label96.AutoSize = true;
             this.label96.Location = new System.Drawing.Point(6, 84);
             this.label96.Name = "label96";
-            this.label96.Size = new System.Drawing.Size(130, 13);
+            this.label96.Size = new System.Drawing.Size(133, 13);
             this.label96.TabIndex = 40;
-            this.label96.Text = "Default PNG Compression";
+            this.label96.Text = "Image Processing Threads";
             // 
             // bgColorSelectBtn
             // 
@@ -3685,6 +3681,7 @@
             this.panel13.PerformLayout();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.procThreads)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3935,7 +3932,6 @@
         private System.Windows.Forms.Label label95;
         private System.Windows.Forms.ComboBox resampleReupscaleFilterBox;
         private System.Windows.Forms.Label label97;
-        private System.Windows.Forms.ComboBox pngQ;
         private System.Windows.Forms.Label label96;
         private System.Windows.Forms.ComboBox renameCounterPadding;
         private System.Windows.Forms.Label label98;
@@ -3978,5 +3974,6 @@
         private System.Windows.Forms.Label label114;
         private System.Windows.Forms.Label label113;
         private System.Windows.Forms.TextBox mergeRowLength;
+        private System.Windows.Forms.NumericUpDown procThreads;
     }
 }

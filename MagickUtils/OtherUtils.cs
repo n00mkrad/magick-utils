@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Configuration;
 using ImageMagick;
+using MagickUtils.Utils;
 
 namespace MagickUtils
 {
@@ -33,12 +34,12 @@ namespace MagickUtils
             foreach(FileInfo file in whitelist)
                 whitelistedPaths.Add(file.FullName);
 
-            Program.Print("Will delete all but " + whitelist.Length + " files out of " + allFiles.Length);
+            Logger.Log("Will delete all but " + whitelist.Length + " files out of " + allFiles.Length);
             foreach(FileInfo file in allFiles)
             {
                 if(!whitelistedPaths.Contains(file.FullName))
                 {
-                    Program.Print("Deleting " + file.FullName + "...");
+                    Logger.Log("Deleting " + file.FullName + "...");
                     file.Delete();
                 }
             }
@@ -56,7 +57,7 @@ namespace MagickUtils
                 counter++;
                 if (counter % 100 == 0)
                 {
-                    Program.Print("Renamed " + counter + " files...");
+                    Logger.Log("Renamed " + counter + " files...");
                     await Program.PutTaskDelay();
                 }
             }
@@ -86,11 +87,11 @@ namespace MagickUtils
                 counter++;
                 if (counter % 100 == 0)
                 {
-                    Program.Print("Processed " + counter + " files...");
+                    Logger.Log("Processed " + counter + " files...");
                     await Program.PutTaskDelay();
                 }
             }
-            Program.Print("Done - Processed " + counter + " files.");
+            Logger.Log("Done - Processed " + counter + " files.");
             Program.PostProcessing(files.Length, true, false);
         }
 
@@ -107,12 +108,12 @@ namespace MagickUtils
                 if(path != targetPath)
                 {
                     File.Move(path, targetPath);
-                    Program.Print(Path.GetFileName(path) + " => " + Path.GetFileName(targetPath));
+                    Logger.Log(Path.GetFileName(path) + " => " + Path.GetFileName(targetPath));
                 }
             }
             catch
             {
-                Program.Print("Can't rename " + Path.GetFileName(path) + " to " + Path.GetFileName(targetPath) + "perhaps a file with that name already exists");
+                Logger.Log("Can't rename " + Path.GetFileName(path) + " to " + Path.GetFileName(targetPath) + "perhaps a file with that name already exists");
             }
         }
 
@@ -120,7 +121,7 @@ namespace MagickUtils
         {
             int counter = 1;
             FileInfo[] files = IOUtils.GetFiles();
-            Program.Print("Checking " + files.Length + " images...");
+            Logger.Log("Checking " + files.Length + " images...");
             Program.PreProcessing();
             foreach(FileInfo file in files)
             {
@@ -128,7 +129,7 @@ namespace MagickUtils
                 counter++;
                 ImageSizeFilterUtils.DeleteSmallImages(file.FullName, scaleMode, op, minSize);
                 if (counter % 10 == 0) await Program.PutTaskDelay();
-                if(counter % 100 == 0) Program.Print("Processed " + counter + " files...");
+                if(counter % 100 == 0) Logger.Log("Processed " + counter + " files...");
             }
             Program.PostProcessing(files.Length);
         }
@@ -153,30 +154,30 @@ namespace MagickUtils
             int counter = 1;
             FileInfo[] files = IOUtils.GetFiles(Config.GetBool("fileOperationsNoFilter"));
             FileInfo[] filesCheckDir = IOUtils.GetFiles(Config.GetBool("fileOperationsNoFilter"), checkDir);
-            Program.Print("(1/2) Checking " + files.Length + " files...");
-            Program.Print("Folder B has " + filesCheckDir.Length + " files");
+            Logger.Log("(1/2) Checking " + files.Length + " files...");
+            Logger.Log("Folder B has " + filesCheckDir.Length + " files");
             foreach(FileInfo file in files)
             {
                 if(!File.Exists(Path.Combine(checkDir, file.Name)))
                 {
                     Program.ShowProgress("", counter, files.Length);
                     counter++;
-                    Program.Print("-> " + file.Name + " doesn't exist in second dir, will delete");
+                    Logger.Log("-> " + file.Name + " doesn't exist in second dir, will delete");
                     if(!testRun) File.Delete(file.FullName);
-                    if(counter % 50 == 0) Program.Print("Processed " + counter + " files...");
+                    if(counter % 50 == 0) Logger.Log("Processed " + counter + " files...");
                 }
             }
-            Program.Print("(2/2) Checking " + filesCheckDir.Length + " files...");
-            Program.Print("Folder A has " + filesCheckDir.Length + " files");
+            Logger.Log("(2/2) Checking " + filesCheckDir.Length + " files...");
+            Logger.Log("Folder A has " + filesCheckDir.Length + " files");
             foreach(FileInfo file in filesCheckDir)
             {
                 if(!File.Exists(Path.Combine(Program.currentDir, file.Name)))
                 {
                     Program.ShowProgress("", counter, files.Length);
                     counter++;
-                    Program.Print("-> " + file.Name + " doesn't exist in second dir, will delete");
+                    Logger.Log("-> " + file.Name + " doesn't exist in second dir, will delete");
                     if(!testRun) File.Delete(file.FullName);
-                    if(counter % 50 == 0) Program.Print("Processed " + counter + " files...");
+                    if(counter % 50 == 0) Logger.Log("Processed " + counter + " files...");
                 }
             }
             Program.PostProcessing(files.Length, false, false);
@@ -191,7 +192,7 @@ namespace MagickUtils
 
             DirectoryInfo d = new DirectoryInfo(Program.currentDir);
             FileInfo[] files = d.GetFiles("*." + ext, SearchOption.AllDirectories);
-            Program.Print("Renaming all files to lowercase...");
+            Logger.Log("Renaming all files to lowercase...");
             if(renLower)
             {
                 foreach(FileInfo file in files)
@@ -210,21 +211,21 @@ namespace MagickUtils
                 {
                     if(file.Name.Contains(suffix + currentFileExt))
                     {
-                        Program.Print("\n-> Found Normal Map: " + file.Name);
+                        Logger.Log("\n-> Found Normal Map: " + file.Name);
                         string fnameNoExt = Path.GetFileNameWithoutExtension(file.Name);
                         foreach(string albSuffix in diffuseSuffixList)
                         {
                             string diffuseName = fnameNoExt.Replace(suffix, albSuffix);
                             diffuseName += file.Extension;
                             string diffuseTexPath = file.DirectoryName + "/" + diffuseName;
-                            Program.Print("-> Looking for diffuse texture: " + diffuseTexPath);
+                            Logger.Log("-> Looking for diffuse texture: " + diffuseTexPath);
                             if(File.Exists(diffuseTexPath) && DimensionsMatch(file.FullName, diffuseTexPath))
                             {
-                                Program.Print("    -> Found diffuse texture: " + Path.GetFileName(diffuseTexPath));
+                                Logger.Log("    -> Found diffuse texture: " + Path.GetFileName(diffuseTexPath));
                                 File.Copy(diffuseTexPath, copyDiffuseDir + "/" + setPrefix + i + file.Extension, true);
-                                Program.Print("    -> Copied diffuse to " + copyDiffuseDir + "/" + setPrefix + i + file.Extension);
+                                Logger.Log("    -> Copied diffuse to " + copyDiffuseDir + "/" + setPrefix + i + file.Extension);
                                 File.Copy(file.FullName, copyNormalDir + "/" + setPrefix + i + file.Extension, true);
-                                Program.Print("    -> Copied normal map to " + copyNormalDir + "/" + setPrefix + i + file.Extension);
+                                Logger.Log("    -> Copied normal map to " + copyNormalDir + "/" + setPrefix + i + file.Extension);
                                 i++;
                                 await Program.PutTaskDelay();
                                 continue;
@@ -256,7 +257,7 @@ namespace MagickUtils
                     File.Move(file.FullName, Path.Combine(dir, counter.ToString() + Path.GetExtension(file.FullName)));
                 Program.ShowProgress("", counter, files.Length);
                 counter++;
-                if(counter % 100 == 0) Program.Print("Renamed " + counter + " files...");
+                if(counter % 100 == 0) Logger.Log("Renamed " + counter + " files...");
             }
             Program.PostProcessing(files.Length, true, false);
         }
@@ -278,7 +279,7 @@ namespace MagickUtils
                 counter++;
                 if(counter % 100 == 0)
                 {
-                    Program.Print("Renamed " + counter + " files...");
+                    Logger.Log("Renamed " + counter + " files...");
                     await Program.PutTaskDelay();
                 }
             }
@@ -323,7 +324,7 @@ namespace MagickUtils
                 counter++;
                 if (counter % 100 == 0)
                 {
-                    Program.Print("Processed " + counter + " files...");
+                    Logger.Log("Processed " + counter + " files...");
                     await Program.PutTaskDelay();
                 }
             }
@@ -346,7 +347,7 @@ namespace MagickUtils
             }
             catch
             {
-                Program.Print("Failed to remove bytes on " + path + " (Filesize: " + x.Length + " bytes)");
+                Logger.Log("Failed to remove bytes on " + path + " (Filesize: " + x.Length + " bytes)");
             }
         }
     }

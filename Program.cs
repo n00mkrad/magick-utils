@@ -6,6 +6,8 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Linq;
+using MagickUtils.Utils;
+using Paths = MagickUtils.Utils.Paths;
 
 namespace MagickUtils
 {
@@ -15,13 +17,12 @@ namespace MagickUtils
         public static string currentExt;
 
         public static MainForm mainForm;
-        public static TextBox logTbox;
         public static ProgressBar progBar;
 
         public static string previewImgPath;
 
 
-        public enum ImageFormat { JPG, PNG, DDS, TGA, WEBP, BMP, AVIF, J2K, FLIF, HEIF, JXL }
+        public enum ImageFormat { JPG, PNG, WEBP, BMP, DDS, TGA, J2K, AVIF, FLIF, HEIF, JXL }
 
         [STAThread]
         static void Main (string[] args)
@@ -51,7 +52,7 @@ namespace MagickUtils
             MagickImage tempImg = IOUtils.ReadImage(imgPath);
             if (tempImg == null) return;
             tempImg.Format = MagickFormat.Png;
-            string tempImgPath = Path.Combine(IOUtils.GetAppDataDir(), "previewImg.png");
+            string tempImgPath = Path.Combine(Paths.GetDataPath(), "previewImg.png");
             tempImg.Write(tempImgPath);
             tempImg.Dispose();
             previewImgPath = tempImgPath;
@@ -67,7 +68,7 @@ namespace MagickUtils
 
         private static void OnFormClose (Object sender, FormClosingEventArgs e)
         {
-            string tempImgPath = Path.Combine(IOUtils.GetAppDataDir(), "previewImg.png");
+            string tempImgPath = Path.Combine(Paths.GetDataPath(), "previewImg.png");
             if(File.Exists(tempImgPath)) File.Delete(tempImgPath);
         }
 
@@ -80,7 +81,7 @@ namespace MagickUtils
             {
                 MagickImage img = new MagickImage(file);
                 string fName = Path.GetFileName(img.FileName);
-                Print("Image " + i + "/" + Files.Length + ": " + fName + " (" + img.Width + "x" + img.Height + ", " + img.Depth + " bits)");
+                Logger.Log("Image " + i + "/" + Files.Length + ": " + fName + " (" + img.Width + "x" + img.Height + ", " + img.Depth + " bits)");
                 i++;
             }
         }
@@ -92,7 +93,7 @@ namespace MagickUtils
         public static void ShowProgress (string text, int current, int amount)
         {
             if(text.Trim().Length > 1)
-                Print("\n" + text + current + "/" + amount);
+                Logger.Log("\n" + text + current + "/" + amount);
             int targetValue = (int)Math.Round((float)current / amount * 100);
             if(targetValue > 100) targetValue = 100;
             if(targetValue < 0) targetValue = 0;
@@ -104,7 +105,7 @@ namespace MagickUtils
             dirSizePre = 0;
             dirSizePre = IOUtils.GetDirSize(new DirectoryInfo(currentDir));
             if(showSize)
-                Print("\nFolder size before processing: " + FormatUtils.Bytes(dirSizePre) + "\n");
+                Logger.Log("\nFolder size before processing: " + FormatUtils.Bytes(dirSizePre) + "\n");
             timer.Reset();
             if(startStopwatch) timer.Start();
         }
@@ -116,19 +117,19 @@ namespace MagickUtils
             dirSizeAfter = IOUtils.GetDirSize(new DirectoryInfo(currentDir));
 
             progBar.Value = 0;
-            Print("\nDone.");
+            Logger.Log("\nDone.");
 
             if (showStopwatch)
             {
                 string rate = ((float)amount / (timer.ElapsedMilliseconds / 1000f)).ToString("0.00");
-                Print($"Processing time: {FormatUtils.TimeSw(timer)} for {amount} files ({rate}/Sec)");
+                Logger.Log($"Processing time: {FormatUtils.TimeSw(timer)} for {amount} files ({rate}/Sec)");
             }
                 
 
             if(showSize)
             {
-                Print("Folder size after processing: " + FormatUtils.Bytes(dirSizeAfter) + " from " + FormatUtils.Bytes(dirSizePre));
-                Print("Size ratio: " + FormatUtils.Ratio(dirSizePre, dirSizeAfter) + " of original size");
+                Logger.Log("Folder size after processing: " + FormatUtils.Bytes(dirSizeAfter) + " from " + FormatUtils.Bytes(dirSizePre));
+                Logger.Log("Size ratio: " + FormatUtils.Ratio(dirSizePre, dirSizeAfter) + " of original size");
             }
         }
 
@@ -144,16 +145,16 @@ namespace MagickUtils
             return false;
         }
 
-        public static void Print(string s, bool replaceLastLine = false)
-        {
-            Console.WriteLine(s);
-            if(replaceLastLine)
-                logTbox.Text = logTbox.Text.Remove(logTbox.Text.LastIndexOf(Environment.NewLine));
-            if (logTbox == null)
-                return;
-            s = s.Replace("\n", Environment.NewLine);
-            logTbox.AppendText(Environment.NewLine + s);
-        }
+        // public static void Logger.Log(string s, bool replaceLastLine = false)
+        // {
+        //     Console.WriteLine(s);
+        //     if(replaceLastLine)
+        //         logTbox.Text = logTbox.Text.Remove(logTbox.Text.LastIndexOf(Environment.NewLine));
+        //     if (logTbox == null)
+        //         return;
+        //     s = s.Replace("\n", Environment.NewLine);
+        //     logTbox.AppendText(Environment.NewLine + s);
+        // }
 
         public static bool IsPathValid (string path, bool showError = true)
         {
@@ -167,18 +168,21 @@ namespace MagickUtils
                     MessageBox.Show("Invalid path!", "Error");
                 return false;
             }
+
             return true;
         }
 
-        public static int GetDefaultQuality (MagickImage img)
+        public static int GetFormatQuality (MagickImage img)
         {
-            if(img.Format == MagickFormat.Jpg || img.Format == MagickFormat.Jpeg)
-                return 95;
-            if(img.Format == MagickFormat.Png)
-                return Config.GetInt("pngQ");
-            if(img.Format == MagickFormat.WebP)
-                return 93;
-            return 99;
+            string formatStr = img.Format.ToString().ToUpper().Replace("JPEG", "JPG");
+
+            if (formatStr.StartsWith("PNG") && formatStr.Length > 3)    // Make "PNG24" -> "PNG" etc
+                formatStr = "PNG";
+
+            string configKey = "qMin" + formatStr;
+            int q = Config.GetInt(configKey);
+            Logger.Log($"Format quality for {img.Format} ({configKey}): {q}", true);
+            return q;
         }
     }
 }

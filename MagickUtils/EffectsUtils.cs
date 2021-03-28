@@ -7,6 +7,8 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using ImageMagick;
+using MagickUtils.Utils;
+using Paths = MagickUtils.Utils.Paths;
 
 namespace MagickUtils
 {
@@ -37,13 +39,13 @@ namespace MagickUtils
             PreProcessing(path, "- Noise Type: " + chosenNoiseType.ToString());
             Random rand = new Random();
             double att = (double)rand.Next((int)attenMin, (int)attenMax + 1);
-            Program.Print("-> Using attenuate factor " + att);
+            Logger.Log("-> Using attenuate factor " + att);
             if(monoChrome)
             {
                 MagickImage noiseImg = new MagickImage(MagickColors.White, img.Width, img.Height);
                 noiseImg.AddNoise(chosenNoiseType, att);
                 noiseImg.ColorSpace = ColorSpace.LinearGray;
-                noiseImg.Write(Path.Combine(IOUtils.GetAppDataDir(), "lastnoiseimg.png"));
+                noiseImg.Write(Path.Combine(Paths.GetDataPath(), "lastnoiseimg.png"));
                 img.Composite(noiseImg, CompositeOperator.Multiply);
             }
             else
@@ -85,9 +87,9 @@ namespace MagickUtils
             var blur = new SuperfastBlur.GaussianBlur(image as Bitmap);
             Random rand = new Random();
             int blurRad = rand.Next(radiusMin, radiusMax + 1);
-            Program.Print("-> Using blur radius " + blurRad);
+            Logger.Log("-> Using blur radius " + blurRad);
             var result = blur.Process(blurRad);
-            string tempPath = Path.Combine(IOUtils.GetAppDataDir(), "blur-out.png");
+            string tempPath = Path.Combine(Paths.GetDataPath(), "blur-out.png");
             result.Save(tempPath, ImageFormat.Png);
             result.Dispose();
             image.Dispose();
@@ -145,7 +147,7 @@ namespace MagickUtils
             MagickImage img = new MagickImage(path);
             Random rand = new Random();
             int radius = rand.Next(radiusMin, radiusMax + 1);
-            Program.Print("-> Using median radius " + radius);
+            Logger.Log("-> Using median radius " + radius);
             img.MedianFilter(radius);
             img.Write(path);
             PostProcessing(null, path, path);
@@ -173,7 +175,7 @@ namespace MagickUtils
             MagickImage img = new MagickImage(path);
             Random rand = new Random();
             int radius = rand.Next(radiusMin, radiusMax + 1);
-            Program.Print("-> Using halo intensity " + radius);
+            Logger.Log("-> Using halo intensity " + radius);
 
             MagickImage sharpenImg = new MagickImage(img);
             sharpenImg.Sharpen(0, radius);
@@ -185,7 +187,7 @@ namespace MagickUtils
 
         static void PreProcessing (string path, string infoSuffix = null)
         {
-            Program.Print("-> Processing " + Path.GetFileName(path) + " " + infoSuffix);
+            Logger.Log("-> Processing " + Path.GetFileName(path) + " " + infoSuffix);
         }
 
         static void PostProcessing (MagickImage img, string sourcePath, string outPath, bool delSource = false)
@@ -193,15 +195,15 @@ namespace MagickUtils
             if(img != null)
                 img.Dispose();
             long bytesPost = new FileInfo(outPath).Length;
-            //Program.Print("-> Done. Size pre: " + Format.Filesize(bytesPre) + " - Size post: " + Format.Filesize(bytesPost) + " - Ratio: " + Format.Ratio(bytesPre, bytesPost));
-            Program.Print("Done.");
+            //Logger.Log("-> Done. Size pre: " + Format.Filesize(bytesPre) + " - Size post: " + Format.Filesize(bytesPost) + " - Ratio: " + Format.Ratio(bytesPre, bytesPost));
+            Logger.Log("Done.");
             if(delSource)
                 DelSource(sourcePath);
         }
 
         static void DelSource (string path)
         {
-            Program.Print("-> Deleting source file: " + Path.GetFileName(path) + "...\n");
+            Logger.Log("-> Deleting source file: " + Path.GetFileName(path) + "...\n");
             File.Delete(path);
         }
     }

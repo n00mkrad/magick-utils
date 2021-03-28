@@ -2,9 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Paths = MagickUtils.Utils.Paths;
 
 namespace MagickUtils
 {
@@ -28,7 +26,7 @@ namespace MagickUtils
         {
             Program.mainForm.SetNoiseVars();
             FileInfo firstImg = IOUtils.GetFiles()[0];
-            string tempImgPath = Path.Combine(IOUtils.GetAppDataDir(), "noisepreview" + firstImg.Extension);
+            string tempImgPath = Path.Combine(Paths.GetDataPath(), "noisepreview" + firstImg.Extension);
             if(File.Exists(tempImgPath)) File.Delete(tempImgPath);
             File.Copy(firstImg.FullName, tempImgPath);
             Random rand = new Random();
@@ -56,7 +54,7 @@ namespace MagickUtils
         {
             Program.mainForm.SetBlurVars();
             FileInfo firstImg = IOUtils.GetFiles()[0];
-            string tempImgPath = Path.Combine(IOUtils.GetAppDataDir(), "blurpreview" + firstImg.Extension);
+            string tempImgPath = Path.Combine(Paths.GetDataPath(), "blurpreview" + firstImg.Extension);
             if(File.Exists(tempImgPath)) File.Delete(tempImgPath);
             File.Copy(firstImg.FullName, tempImgPath);
             EffectsUtils.Blur(tempImgPath, blurRadiusMin, blurRadiusMax);
@@ -73,7 +71,7 @@ namespace MagickUtils
         {
             Program.mainForm.SetMedianVars();
             FileInfo firstImg = IOUtils.GetFiles()[0];
-            string tempImgPath = Path.Combine(IOUtils.GetAppDataDir(), "medianpreview" + firstImg.Extension);
+            string tempImgPath = Path.Combine(Paths.GetDataPath(), "medianpreview" + firstImg.Extension);
             if (File.Exists(tempImgPath)) File.Delete(tempImgPath);
             File.Copy(firstImg.FullName, tempImgPath);
             EffectsUtils.Median(tempImgPath, medianRadiusMin, medianRadiusMax);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using MagickUtils.Utils;
 
 namespace MagickUtils
 {
@@ -12,9 +13,9 @@ namespace MagickUtils
 
         private void DdsOptionsWindow_Load (object sender, EventArgs e)
         {
-            Config.LoadComboxIndex(ddsEnc);
-            Config.LoadGuiElement(ddsCompressionType);
-            Config.LoadGuiElement(ddsEnableMips);
+            ConfigParser.LoadComboxIndex(ddsEnc);
+            ConfigParser.LoadGuiElement(ddsCompressionType);
+            ConfigParser.LoadGuiElement(ddsEnableMips);
         }
 
         private void doneBtn_Click (object sender, EventArgs e)
@@ -24,9 +25,9 @@ namespace MagickUtils
 
         private void DdsOptionsWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Config.SaveComboxIndex(ddsEnc);
-            Config.SaveGuiElement(ddsCompressionType);
-            Config.SaveGuiElement(ddsEnableMips);
+            ConfigParser.SaveComboxIndex(ddsEnc);
+            ConfigParser.SaveGuiElement(ddsCompressionType);
+            ConfigParser.SaveGuiElement(ddsEnableMips);
         }
 
         private void ddsCompressionType_SelectedIndexChanged(object sender, EventArgs e)

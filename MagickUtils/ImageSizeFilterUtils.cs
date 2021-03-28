@@ -7,6 +7,7 @@ using ImageMagick;
 using SM = MagickUtils.ImageSizeFilterUtils.SizeMode;
 using Op = MagickUtils.ImageSizeFilterUtils.Operator;
 using System.IO;
+using MagickUtils.Utils;
 
 namespace MagickUtils
 {
@@ -43,7 +44,7 @@ namespace MagickUtils
             }
 
             string fname = Path.GetFileName(path);
-            Program.Print("-> Deleted " + fname + " (" + img.Width + "x" + img.Height + ")");
+            Logger.Log("-> Deleted " + fname + " (" + img.Width + "x" + img.Height + ")");
             File.Delete(img.FileName);
         }
 

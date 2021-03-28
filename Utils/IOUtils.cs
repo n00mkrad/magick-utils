@@ -7,6 +7,7 @@ using System.Linq;
 using System.Windows.Forms;
 using DdsFileTypePlus;
 using ImageMagick;
+using MagickUtils.Utils;
 using PaintDotNet;
 
 namespace MagickUtils
@@ -41,7 +42,7 @@ namespace MagickUtils
                         }
                         catch (Exception e)
                         {
-                            Program.Print("Error reading DDS: " + Path.GetFileName(path) + "!");
+                            Logger.Log("Error reading DDS: " + Path.GetFileName(path) + "!");
                             return null;
                         }
                     }
@@ -55,14 +56,14 @@ namespace MagickUtils
 
                     MagickImage img = new MagickImage(path);
                     if (showInfo)
-                        Program.Print($"-> Loaded image {Path.GetFileName(path).Truncate(60)} ({img})");
+                        Logger.Log($"-> Loaded image {Path.GetFileName(path).Truncate(60)} ({img})");
                     
                     return img;
                 }
             }
             catch (Exception e)
             {
-                Program.Print($"Error reading {Path.GetFileName(path)}: {e.Message}.");
+                Logger.Log($"Error reading {Path.GetFileName(path)}: {e.Message}.");
             }
 
             return null;
@@ -81,7 +82,7 @@ namespace MagickUtils
             }
             catch (Exception e)
             {
-                Program.Print($"Error saving {Path.GetFileName(path)}: {e.Message}.");
+                Logger.Log($"Error saving {Path.GetFileName(path)}: {e.Message}.");
                 return false;
             }
         }
@@ -124,7 +125,7 @@ namespace MagickUtils
                 path = customDir;
             string ext = Program.currentExt;
             bool recursive = IOUtils.recursive;
-            Program.Print("Getting file list for " + path + "...");
+            Logger.Log("Getting file list for " + path + "...");
             var exts = new[] { ".png", ".jpg", ".jpeg", ".dds", ".bmp", ".gif", ".tga", ".webp", ".heic", ".jp2", ".flif", ".avif" };
             if(!Program.IsPathValid(path))
                 return new FileInfo[0];
@@ -159,14 +160,6 @@ namespace MagickUtils
             }
             FileInfo[] fileInfoArray = fileInfos.ToArray();
             return fileInfoArray;
-        }
-
-        public static string GetAppDataDir ()
-        {
-            string appDataDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            string dir = Path.Combine(appDataDir, "MagickUtils");
-            Directory.CreateDirectory(dir);
-            return dir;
         }
 
         public static bool IsPathDirectory (string path)
@@ -205,6 +198,23 @@ namespace MagickUtils
             using MemoryStream stream = new MemoryStream(File.ReadAllBytes(path));
             Image img = Image.FromStream(stream);
             return img;
+        }
+
+        public static bool CreateFileIfNotExists(string path)
+        {
+            if (File.Exists(path))
+                return false;
+
+            try
+            {
+                File.Create(path).Close();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Logger.Log($"Failed to create file at '{path}': {e.Message}");
+                return false;
+            }
         }
     }
 }

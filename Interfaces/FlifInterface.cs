@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.IO;
 using ImageMagick;
 using MagickUtils.Properties;
+using MagickUtils.Utils;
+using Paths = MagickUtils.Utils.Paths;
 
 namespace MagickUtils
 {
@@ -19,7 +21,7 @@ namespace MagickUtils
             if(File.Exists(flifExePath))
                 return;
             File.WriteAllBytes(flifExePath, Resources.flif);
-            Program.Print("[FlifInterface] Extratced flif.exe to " + flifExePath);
+            Logger.Log("[FlifInterface] Extratced flif.exe to " + flifExePath);
         }
 
         public static void DeleteExe ()
@@ -30,7 +32,7 @@ namespace MagickUtils
 
         static void GetExePath ()
         {
-            flifExePath = Path.Combine(IOUtils.GetAppDataDir(), "flif.exe");
+            flifExePath = Path.Combine(Paths.GetDataPath(), "flif.exe");
         }
 
         public static string EncodeImage (string path, int q, bool deleteSrc)
@@ -42,12 +44,12 @@ namespace MagickUtils
             string args2 = " \"" + path + "\" \"" + outPath + "\"";
             psi = new ProcessStartInfo { FileName = flifExePath, Arguments = args1 + args2 };
             psi.WorkingDirectory = Path.GetDirectoryName(flifExePath);
-            Program.Print("FLIF args:" + args1);
+            Logger.Log("FLIF args:" + args1);
             psi.WindowStyle = ProcessWindowStyle.Hidden;
             Process flifProcess = new Process { StartInfo = psi };
             flifProcess.Start();
             flifProcess.WaitForExit();
-            Program.Print("Done converting " + path);
+            Logger.Log("Done converting " + path);
             if(deleteSrc)
                 DelSource(path, outPath);
             return outPath;
@@ -66,7 +68,7 @@ namespace MagickUtils
             Process flifProcess = new Process { StartInfo = psi };
             flifProcess.Start();
             flifProcess.WaitForExit();
-            Program.Print("Done converting " + path);
+            Logger.Log("Done converting " + path);
             if (deleteSrc)
                 DelSource(path, outPath);
             return outPath;
@@ -84,10 +86,10 @@ namespace MagickUtils
         {
             if (Path.GetExtension(sourcePath).ToLower() == Path.GetExtension(newPath).ToLower())
             {
-                Program.Print("-> Not deleting " + Path.GetFileName(sourcePath) + " as it was overwritten");
+                Logger.Log("-> Not deleting " + Path.GetFileName(sourcePath) + " as it was overwritten");
                 return;
             }
-            Program.Print("-> Deleting source file: " + Path.GetFileName(sourcePath) + "...");
+            Logger.Log("-> Deleting source file: " + Path.GetFileName(sourcePath) + "...");
             File.Delete(sourcePath);
         }
     }

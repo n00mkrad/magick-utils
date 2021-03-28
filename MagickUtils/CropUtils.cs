@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MagickUtils.Utils;
 
 namespace MagickUtils
 {
@@ -20,7 +21,7 @@ namespace MagickUtils
         {
             int counter = 1;
             FileInfo[] files = IOUtils.GetFiles();
-            Program.Print("Cropping " + files.Length + " images...");
+            Logger.Log("Cropping " + files.Length + " images...");
             Program.PreProcessing();
             foreach (FileInfo file in files)
             {
@@ -54,11 +55,11 @@ namespace MagickUtils
 
             if(divisbleWidth == img.Width && divisibleHeight == img.Height)
             {
-                Program.Print("-> Skipping " + Path.GetFileName(path) + " as its resolution is already divisible by " + divisibleBy);
+                Logger.Log("-> Skipping " + Path.GetFileName(path) + " as its resolution is already divisible by " + divisibleBy);
             }
             else
             {
-                Program.Print("-> Divisible resolution: " + divisbleWidth + "x" + divisibleHeight);
+                Logger.Log("-> Divisible resolution: " + divisbleWidth + "x" + divisibleHeight);
                 if(!expand) // Crop
                     img.Crop(divisbleWidth, divisibleHeight, grav);
                 else // Expand
@@ -72,7 +73,7 @@ namespace MagickUtils
         {
             int counter = 1;
             FileInfo[] files = IOUtils.GetFiles();
-            Program.Print("Resizing " + files.Length + " images...");
+            Logger.Log("Resizing " + files.Length + " images...");
             Program.PreProcessing();
             foreach(FileInfo file in files)
             {
@@ -101,13 +102,13 @@ namespace MagickUtils
 
             if(square || sizeMode == SizeMode.Height || (sizeMode == SizeMode.Longer && heightLonger) || (sizeMode == SizeMode.Shorter && widthLonger))
             {
-                Program.Print("-> Resizing to " + targetSize + "px height...");
+                Logger.Log("-> Resizing to " + targetSize + "px height...");
                 int w = (int)Math.Round(img.Width * ((targetSize / (float)img.Height)));
                 geom = new MagickGeometry(w + "x" + targetSize);
             }
             if(sizeMode == SizeMode.Width || (sizeMode == SizeMode.Longer && widthLonger) || (sizeMode == SizeMode.Shorter && heightLonger))
             {
-                Program.Print("-> Resizing to " + targetSize + "px width...");
+                Logger.Log("-> Resizing to " + targetSize + "px width...");
                 int h = (int)Math.Round(img.Height * ((targetSize / (float)img.Width)));
                 geom = new MagickGeometry(targetSize + "x" + h);
             }
@@ -115,7 +116,7 @@ namespace MagickUtils
             {
                 int w = (int)Math.Round(img.Width * targetSize / 100f);
                 int h = (int)Math.Round(img.Height * targetSize / 100f);
-                Program.Print("-> Resizing to " + targetSize + "% (" + w + "x" + h + ")...");
+                Logger.Log("-> Resizing to " + targetSize + "% (" + w + "x" + h + ")...");
                 geom = new MagickGeometry(w + "x" + h);
             }
             img.BackgroundColor = new MagickColor("#" + Config.Get("backgroundColor"));
@@ -128,7 +129,7 @@ namespace MagickUtils
         {
             int counter = 1;
             FileInfo[] files = IOUtils.GetFiles();
-            Program.Print("Resizing " + files.Length + " images...");
+            Logger.Log("Resizing " + files.Length + " images...");
             Program.PreProcessing();
             foreach(FileInfo file in files)
             {
@@ -172,7 +173,7 @@ namespace MagickUtils
         {
             int counter = 1;
             FileInfo[] files = IOUtils.GetFiles();
-            Program.Print("Resizing " + files.Length + " images...");
+            Logger.Log("Resizing " + files.Length + " images...");
             Program.PreProcessing();
             foreach(FileInfo file in files)
             {
@@ -201,7 +202,7 @@ namespace MagickUtils
         {
             int counter = 1;
             FileInfo[] files = IOUtils.GetFiles();
-            Program.Print("Tiling " + files.Length + " images...");
+            Logger.Log("Tiling " + files.Length + " images...");
             Program.PreProcessing();
             foreach(FileInfo file in files)
             {
@@ -229,12 +230,12 @@ namespace MagickUtils
             }
 
             int i = 1;
-            Program.Print("-> Creating tiles...");
+            Logger.Log("-> Creating tiles...");
             var tiles = img.CropToTiles(tileW, tileH);
             foreach(MagickImage tile in tiles)
             {
                 tile.Write(pathNoExt + "-tile" + i + ext);
-                Program.Print("-> Saved tile " + i + "/" + tiles.Count(), true);
+                Logger.Log("-> Saved tile " + i + "/" + tiles.Count(), true);
                 i++;
                 if(i % 2 == 0) await Program.PutTaskDelay();
             }
@@ -248,7 +249,7 @@ namespace MagickUtils
         {
             int counter = 1;
             FileInfo[] files = IOUtils.GetFiles();
-            Program.Print("-> Merging " + files.Length + " images...");
+            Logger.Log("-> Merging " + files.Length + " images...");
             Program.PreProcessing();
 
             if(rowLength <= 0)
@@ -259,12 +260,12 @@ namespace MagickUtils
 
             int currImg = 1;
 
-            Program.Print("Adding images to atlas...");
+            Logger.Log("Adding images to atlas...");
             foreach(FileInfo file in files)
             {
                 Program.ShowProgress("", counter, files.Length);
                 MagickImage currentImg = new MagickImage(file);
-                Program.Print("Adding " + Path.GetFileName(currentImg.FileName) + "...", true);
+                Logger.Log("Adding " + Path.GetFileName(currentImg.FileName) + "...", true);
                 row.Add(currentImg);
                 
                 if(currImg >= rowLength)
@@ -285,13 +286,13 @@ namespace MagickUtils
                     rows.Add(mergedRow);
                 }
             }
-            Program.Print("-> Creating output image... ");
+            Logger.Log("-> Creating output image... ");
             var result = rows.AppendVertically();
             result.BackgroundColor = new MagickColor("#" + Config.Get("backgroundColor"));
             result.Format = MagickFormat.Png;
             string outpath = Program.currentDir + "-merged.png";
             result.Write(outpath);
-            Program.Print("-> Written merged image to " + outpath);
+            Logger.Log("-> Written merged image to " + outpath);
             Program.PostProcessing(files.Length);
         }
 
@@ -299,19 +300,19 @@ namespace MagickUtils
         {
             bytesPre = 0;
             bytesPre = new FileInfo(path).Length;
-            //Program.Print("-> Processing TEST " + Path.GetFileName(path) + " " + infoSuffix);
+            //Logger.Log("-> Processing TEST " + Path.GetFileName(path) + " " + infoSuffix);
         }
 
         static void PostProcessing (MagickImage img, string outPath)
         {
             img.Dispose();
             //long bytesPost = new FileInfo(outPath).Length;
-            //Program.Print("-> Done. Size pre: " + Format.Filesize(bytesPre) + " - Size post: " + Format.Filesize(bytesPost) + " - Ratio: " + Format.Ratio(bytesPre, bytesPost));
+            //Logger.Log("-> Done. Size pre: " + Format.Filesize(bytesPre) + " - Size post: " + Format.Filesize(bytesPost) + " - Ratio: " + Format.Ratio(bytesPre, bytesPost));
         }
 
         static void DelSource (string path)
         {
-            Program.Print("-> Deleting source file: " + Path.GetFileName(path) + "...\n");
+            Logger.Log("-> Deleting source file: " + Path.GetFileName(path) + "...\n");
             File.Delete(path);
         }
     }

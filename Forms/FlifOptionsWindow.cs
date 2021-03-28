@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using MagickUtils.Utils;
 
 namespace MagickUtils
 {
@@ -29,8 +23,8 @@ namespace MagickUtils
 
         private void FlifOptionsWindow_Load (object sender, EventArgs e)
         {
-            Config.LoadComboxIndex(flifEnc);
-            Config.LoadGuiElement(flifEffort);
+            ConfigParser.LoadComboxIndex(flifEnc);
+            ConfigParser.LoadGuiElement(flifEffort);
         }
 
         private void flifEnc_SelectedIndexChanged(object sender, EventArgs e)
@@ -40,8 +34,8 @@ namespace MagickUtils
 
         private void FlifOptionsWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Config.SaveComboxIndex(flifEnc);
-            Config.SaveGuiElement(flifEffort);
+            ConfigParser.SaveComboxIndex(flifEnc);
+            ConfigParser.SaveGuiElement(flifEffort);
         }
     }
 }

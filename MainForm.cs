@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MagickUtils.Utils;
 
 namespace MagickUtils
 {
@@ -34,7 +35,7 @@ namespace MagickUtils
             Config.Init();
             //HeifInterface.Extract(true);
 
-            Program.logTbox = logTbox;
+            Logger.textbox = logTbox;
             Program.progBar = progressBar1;
 
             progressBar1.Maximum = 100;
@@ -94,9 +95,14 @@ namespace MagickUtils
             Program.currentDir = pathTextbox.Text;
         }
 
+        string GetFormatStr()
+        {
+            return formatCombox.Text.Trim().ToUpper();
+        }
+
         private void formatCombox_SelectedIndexChanged (object sender, EventArgs e)
         {
-            string formatStrTrim = formatCombox.Text.Trim().ToUpper();
+            string formatStrTrim = GetFormatStr();
             qualityCombox.Enabled = true;
             qualityMaxCombox.Enabled = false;
             formatOptionsBtn.Visible = false;
@@ -104,6 +110,7 @@ namespace MagickUtils
 
             if (formatStrTrim == "JPEG")
             {
+                LoadQuality(formatStrTrim, 95, 0);
                 selectedFormat = Program.ImageFormat.JPG;
                 qualityMaxCombox.Enabled = true;
                 formatQualityLabel.Text = "JPEG Quality: 0 - 100. Default: 95";
@@ -112,46 +119,53 @@ namespace MagickUtils
 
             if(formatStrTrim == "PNG")
             {
+                LoadQuality(formatStrTrim, 30, 0);
                 selectedFormat = Program.ImageFormat.PNG;
                 formatQualityLabel.Text = "PNG Compression Strength: 0 (Raw) - 100 (Max). Default: 30";
                 formatOptionsBtn.Visible = true;
             }
 
-            if(formatStrTrim == "DDS")
+            if (formatStrTrim == "WEBP")
             {
+                LoadQuality(formatStrTrim, 93, 0);
+                selectedFormat = Program.ImageFormat.WEBP;
+                qualityMaxCombox.Enabled = true;
+                formatQualityLabel.Text = "WEBP Quality: 0 - 99. 100 for Lossless. Default: 93";
+            }
+
+            if (formatStrTrim == "BMP")
+            {
+                ClearQuality();
+                selectedFormat = Program.ImageFormat.BMP;
+                qualityCombox.Enabled = false;
+            }
+
+            if (formatStrTrim == "DDS")
+            {
+                ClearQuality();
                 selectedFormat = Program.ImageFormat.DDS;
                 qualityCombox.Enabled = Config.GetInt("ddsEnc") == 2;
                 qualityMaxCombox.Enabled = qualityCombox.Enabled;
                 formatOptionsBtn.Visible = true;
             }
 
-            if (formatStrTrim == "BMP")
-            {
-                selectedFormat = Program.ImageFormat.BMP;
-                qualityCombox.Enabled = false;
-            }
-
             if (formatStrTrim == "TGA")
             {
+                ClearQuality();
                 selectedFormat = Program.ImageFormat.TGA;
                 qualityCombox.Enabled = false;
             }
 
-            if(formatStrTrim == "WEBP")
-            {
-                selectedFormat = Program.ImageFormat.WEBP;
-                qualityMaxCombox.Enabled = true;
-                formatQualityLabel.Text = "WEBP Quality: 0 - 99. 100 for Lossless. Default: 93";
-            }
-
             if(formatStrTrim == "JPEG 2000")
             {
+                LoadQuality(formatStrTrim, 95, 0);
                 selectedFormat = Program.ImageFormat.J2K;
                 formatQualityLabel.Text = "JPEG 2000 Quality: 0 - 100";
             }
 
             if(formatStrTrim == "FLIF")
             {
+                LoadQuality(formatStrTrim, 95, 0);
                 selectedFormat = Program.ImageFormat.FLIF;
                 formatOptionsBtn.Visible = true;
                 formatQualityLabel.Text = "FLIF Quality: 0 - 100";
@@ -159,25 +173,38 @@ namespace MagickUtils
 
             if (formatStrTrim == "AVIF")
             {
+                LoadQuality(formatStrTrim, 95, 0);
                 selectedFormat = Program.ImageFormat.AVIF;
                 formatQualityLabel.Text = "AVIF Quality: 0 - 100";
             }
 
             if (formatStrTrim == "HEIF")
             {
+                LoadQuality(formatStrTrim, 50, 0);
                 selectedFormat = Program.ImageFormat.HEIF;
                 formatQualityLabel.Text = "HEIF Quality: 0 - 99. Default: 50. Use 100 for lossless mode.";
             }
 
             if (formatStrTrim == "JPEG XL")
             {
+                LoadQuality(formatStrTrim, 100, 0);
                 selectedFormat = Program.ImageFormat.JXL;
-                //qualityMaxCombox.Enabled = true;
-                //qualityCombox.Enabled = false;
                 formatQualityLabel.Text = "100 is lossless, everything lower will use a fixed lossy quality level. WIP!";
             }
 
             CheckDelSourceFormat();
+        }
+
+        void LoadQuality(string formatStrTrim, int defaultMin, int defaultMax)
+        {
+            qualityCombox.Text = Config.Get("qMin" + formatStrTrim, defaultMin.ToString());
+            qualityMaxCombox.Text = Config.Get("qMax" + formatStrTrim, defaultMax.ToString()).Replace("0", "");
+        }
+
+        void ClearQuality()
+        {
+            qualityCombox.Text = "";
+            qualityMaxCombox.Text = "";
         }
 
         void CheckDelSourceFormat ()
@@ -324,16 +351,16 @@ namespace MagickUtils
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
             foreach(string file in files)
             {
-                Program.Print("Dragndrop: " + file);
+                Logger.Log("Dragndrop: " + file);
                 if(IOUtils.IsPathDirectory(file))
                 {
-                    Program.Print("Setting directory to " + file);
+                    Logger.Log("Setting directory to " + file);
                     Program.currentDir = file;
                     pathTextbox.Text = file;
                 }
                 else
                 {
-                    Program.Print("Previewing " + file + "...");
+                    Logger.Log("Previewing " + file + "...");
                     Program.PreviewImage(file);
                 }
             }
@@ -349,7 +376,7 @@ namespace MagickUtils
         {
             bool suffix = suffixPrefixCombox.SelectedIndex != 0;
             if(String.IsNullOrWhiteSpace(suffixPrefixTbox.Text))
-                Program.Print("Can't add empty text to filenames!");
+                Logger.Log("Can't add empty text to filenames!");
             else
                 OtherUtils.AddSuffixPrefixDir(suffixPrefixTbox.Text, suffix);
         }
@@ -357,7 +384,7 @@ namespace MagickUtils
         private void replaceBtn_Click (object sender, EventArgs e)
         {
             if(String.IsNullOrWhiteSpace(replaceInputTbox.Text))
-                Program.Print("Can't replace an empty string!");
+                Logger.Log("Can't replace an empty string!");
             else
                 OtherUtils.ReplaceInFilenamesDir(replaceInputTbox.Text, replaceOutputTbox.Text);
         }
@@ -405,21 +432,19 @@ namespace MagickUtils
 
         private void saveCfgBtn_Click (object sender, EventArgs e)
         {
-            Config.SaveGuiElement(fileOperationsNoFilter);
-            Config.SaveGuiElement(filenameReplaceIncludeExt);
-            Config.SaveGuiElement(backgroundColor);
-            Config.SaveGuiElement(pngQ);
-            //Config.SaveGuiElement(imgSharpScaling);
-            Program.Print("Saved config file.");
+            ConfigParser.SaveGuiElement(fileOperationsNoFilter);
+            ConfigParser.SaveGuiElement(filenameReplaceIncludeExt);
+            ConfigParser.SaveGuiElement(backgroundColor);
+            ConfigParser.SaveGuiElement(procThreads);
+            Logger.Log("Saved config file.");
         }
 
         private void tabPage6_Enter (object sender, EventArgs e)
         {
-            Config.LoadGuiElement(fileOperationsNoFilter);
-            Config.LoadGuiElement(filenameReplaceIncludeExt);
-            Config.LoadGuiElement(backgroundColor);
-            Config.LoadGuiElement(pngQ);
-            //Config.LoadGuiElement(imgSharpScaling);
+            ConfigParser.LoadGuiElement(fileOperationsNoFilter);
+            ConfigParser.LoadGuiElement(filenameReplaceIncludeExt);
+            ConfigParser.LoadGuiElement(backgroundColor);
+            ConfigParser.LoadGuiElement(procThreads);
         }
 
         private void blurPrevBtn_Click (object sender, EventArgs e)
@@ -656,6 +681,12 @@ namespace MagickUtils
         private void onlyDownscaleCbox_CheckedChanged(object sender, EventArgs e)
         {
             ScaleUtils.onlyDownscale = onlyDownscaleCbox.Checked;
+        }
+
+        private void SaveQuality (object sender, EventArgs e)
+        {
+            Config.Set("qMin" + GetFormatStr(), qualityCombox.GetInt().ToString());
+            Config.Set("qMax" + GetFormatStr(), qualityMaxCombox.GetInt().ToString());
         }
     }
 }

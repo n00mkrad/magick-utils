@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MagickUtils.Utils;
 
 namespace MagickUtils.Interfaces
 {
@@ -25,15 +26,15 @@ namespace MagickUtils.Interfaces
             File.WriteAllBytes(heifResPath, Resources.heif);
             ZipFile zip = ZipFile.Read(heifResPath);
             foreach (ZipEntry e in zip)
-                e.Extract(IOUtils.GetAppDataDir(), ExtractExistingFileAction.OverwriteSilently);
+                e.Extract(Paths.GetDataPath(), ExtractExistingFileAction.OverwriteSilently);
 
-            Program.Print("[HeifInterface] Extracted HEIF resources to " + heifExePath);
+            Logger.Log("[HeifInterface] Extracted HEIF resources to " + heifExePath);
         }
 
         static void GetPaths()
         {
-            heifResPath = Path.Combine(IOUtils.GetAppDataDir(), "heif.zip");
-            heifExePath = Path.Combine(IOUtils.GetAppDataDir(), "heif", "heif-enc.exe");
+            heifResPath = Path.Combine(Paths.GetDataPath(), "heif.zip");
+            heifExePath = Path.Combine(Paths.GetDataPath(), "heif", "heif-enc.exe");
         }
 
         public static string EncodeImage (string path, int q, bool deleteSrc)
@@ -46,12 +47,12 @@ namespace MagickUtils.Interfaces
             string args = qualityStr + " -o " + outPath.WrapPath(true, true) + path.WrapPath(true, true);
             psi = new ProcessStartInfo { FileName = heifExePath, Arguments = args };
             psi.WorkingDirectory = Path.GetDirectoryName(heifExePath);
-            Program.Print("HEIF args:" + args);
+            Logger.Log("HEIF args:" + args);
             psi.WindowStyle = ProcessWindowStyle.Hidden;
             Process heifProcess = new Process { StartInfo = psi };
             heifProcess.Start();
             heifProcess.WaitForExit();
-            Program.Print("Done converting " + path);
+            Logger.Log("Done converting " + path);
             if (deleteSrc)
                 DelSource(path, outPath);
             return outPath;
@@ -61,10 +62,10 @@ namespace MagickUtils.Interfaces
         {
             if (Path.GetExtension(sourcePath).ToLower() == Path.GetExtension(newPath).ToLower())
             {
-                Program.Print("-> Not deleting " + Path.GetFileName(sourcePath) + " as it was overwritten");
+                Logger.Log("-> Not deleting " + Path.GetFileName(sourcePath) + " as it was overwritten");
                 return;
             }
-            Program.Print("-> Deleting source file: " + Path.GetFileName(sourcePath) + "...");
+            Logger.Log("-> Deleting source file: " + Path.GetFileName(sourcePath) + "...");
             File.Delete(sourcePath);
         }
     }

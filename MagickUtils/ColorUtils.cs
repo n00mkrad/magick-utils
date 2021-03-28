@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MagickUtils.Utils;
 
 namespace MagickUtils.MagickUtils
 {
@@ -90,7 +91,7 @@ namespace MagickUtils.MagickUtils
             MagickImage img = IOUtils.ReadImage(path);
             if (img == null) return;
             img.BitDepth(bits);
-            img.Quality = Program.GetDefaultQuality(img);
+            img.Quality = Program.GetFormatQuality(img);
             img.Write(path);
         }
 
@@ -115,16 +116,16 @@ namespace MagickUtils.MagickUtils
             MagickImage img = IOUtils.ReadImage(path);
             if (img == null) return;
             int colors = new Random().Next(colorsMin, colorsMax);
-            //Program.Print("-> Colors: " + colors + ", Dither Method: " + quantSettings.DitherMethod.ToString());
+            //Logger.Log("-> Colors: " + colors + ", Dither Method: " + quantSettings.DitherMethod.ToString());
             DitherWithMethod(img, colors, type);
-            img.Quality = Program.GetDefaultQuality(img);
+            img.Quality = Program.GetFormatQuality(img);
             img.Write(path);
         }
 
         static void DitherWithMethod (MagickImage img, int colors, DitherType type)
         {
             if(type != DitherType.Random)
-                Program.Print("-> Colors: " + colors + ", Dither Method: " + type.ToString());
+                Logger.Log("-> Colors: " + colors + ", Dither Method: " + type.ToString());
 
             if (type == DitherType.FloydSteinberg)
                 img.Quantize(new QuantizeSettings { Colors = colors, DitherMethod = DitherMethod.FloydSteinberg });
@@ -179,18 +180,18 @@ namespace MagickUtils.MagickUtils
             using (IMagickImage channel = img.Separate(Channels.Gray).First())
             {
                 saturation = channel.FormatExpression("%[fx:mean]").GetFloat();
-                Program.Print("Image Saturation: " + saturation.ToString("0.00"));
+                Logger.Log("Image Saturation: " + saturation.ToString("0.00"));
             }
 
             if (!invert && saturation < thresh)
             {
-                Program.Print("Deleting " + Path.GetFileName(path));
+                Logger.Log("Deleting " + Path.GetFileName(path));
                 File.Delete(path);
             }
                 
             if (invert && saturation > thresh)
             {
-                Program.Print("Deleting " + Path.GetFileName(path));
+                Logger.Log("Deleting " + Path.GetFileName(path));
                 File.Delete(path);
             }
 

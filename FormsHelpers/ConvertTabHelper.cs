@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MagickUtils.Utils;
 
 namespace MagickUtils
 {
@@ -22,7 +23,7 @@ namespace MagickUtils
 
             foreach(string file in files)
             {
-                Program.Print("\nDropped File: " + Path.GetFileName(file).Truncate(90));
+                Logger.Log("\nDropped File: " + Path.GetFileName(file).Truncate(90));
                 if(!IOUtils.IsPathDirectory(file))
                 {
                     if(selectedFormat == IF.JPG)
@@ -68,6 +69,7 @@ namespace MagickUtils
         {
             int qMin = int.Parse(qualityCombox.Text.Trim());
             int qMax = qMin;
+
             if(!string.IsNullOrWhiteSpace(qualityMaxCombox.Text.Trim()))
                 qMax = int.Parse(qualityMaxCombox.Text.Trim());
 

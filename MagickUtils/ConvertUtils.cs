@@ -176,6 +176,7 @@ namespace MagickUtils
 
         public static void ConvertToWebp (string path, int qMin, int qMax, bool delSrc = false)
         {
+            //Logger.Log("ConvertToWebp");
             long bytesSrc = new FileInfo(path).Length;
             MagickImage img = IOUtils.ReadImage(path);
             if(img == null) return;
@@ -185,6 +186,7 @@ namespace MagickUtils
             img.Quality = rand.Next(qMin, qMax + 1);
             if (img.Quality >= 100)
                 img.Settings.SetDefine(MagickFormat.WebP, "lossless", true);
+            Logger.Log("saving");
             IOUtils.SaveImage(img, outPath);
             PostProcessing(path, outPath, bytesSrc, delSrc, $"WEBP Quality: {img.Quality.ToString().Replace("100", "Lossless")}");
         }
@@ -219,7 +221,7 @@ namespace MagickUtils
         {
             long bytesPost = new FileInfo(outPath).Length;
             string noteStr = string.IsNullOrWhiteSpace(note) ? "" : $" ({note})";
-            Program.Print($"-> Saved {Path.GetFileName(outPath)}{noteStr}. Size Before: {FormatUtils.Bytes(bytesSrc)}" +
+            Logger.Log($"-> Saved {Path.GetFileName(outPath)}{noteStr}. Size Before: {FormatUtils.Bytes(bytesSrc)}" +
                 $" - Size After: {FormatUtils.Bytes(bytesPost)} - Ratio: {FormatUtils.Ratio(bytesSrc, bytesPost)}");
 
             if (!string.IsNullOrWhiteSpace(sourcePath) && delSrc)
@@ -230,18 +232,18 @@ namespace MagickUtils
         {
             if(Path.GetExtension(sourcePath).ToLower() == Path.GetExtension(newPath).ToLower())
             {
-                Program.Print("-> Didn't delete " + Path.GetFileName(sourcePath) + " as it was overwritten.");
+                Logger.Log("-> Didn't delete " + Path.GetFileName(sourcePath) + " as it was overwritten.");
                 return;
             }
 
             try
             {
                 File.Delete(sourcePath);
-                Program.Print("-> Deleted source file: " + Path.GetFileName(sourcePath) + ".");
+                Logger.Log("-> Deleted source file: " + Path.GetFileName(sourcePath) + ".");
             }
             catch (Exception e)
             {
-                Program.Print($"-> Failed to selete source file: {Path.GetFileName(sourcePath)}: {e.Message}");
+                Logger.Log($"-> Failed to selete source file: {Path.GetFileName(sourcePath)}: {e.Message}");
             }
         }
 
