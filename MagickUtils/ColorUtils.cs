@@ -86,12 +86,12 @@ namespace MagickUtils.MagickUtils
             Program.PostProcessing(files.Length);
         }
 
-        public static void SetColorDepth (string path, int bits)
+        public static async Task SetColorDepth (string path, int bits)
         {
             MagickImage img = IOUtils.ReadImage(path);
             if (img == null) return;
             img.BitDepth(bits);
-            img.Quality = Program.GetFormatQuality(img);
+            img.Quality = await Program.GetFormatQuality(img);
             img.Write(path);
         }
 
@@ -111,14 +111,14 @@ namespace MagickUtils.MagickUtils
             Program.PostProcessing(files.Length);
         }
 
-        public static void Dither (string path, int colorsMin, int colorsMax, DitherType type)
+        public static async Task Dither (string path, int colorsMin, int colorsMax, DitherType type)
         {
             MagickImage img = IOUtils.ReadImage(path);
             if (img == null) return;
             int colors = new Random().Next(colorsMin, colorsMax);
             //Logger.Log("-> Colors: " + colors + ", Dither Method: " + quantSettings.DitherMethod.ToString());
             DitherWithMethod(img, colors, type);
-            img.Quality = Program.GetFormatQuality(img);
+            img.Quality = await Program.GetFormatQuality(img);
             img.Write(path);
         }
 

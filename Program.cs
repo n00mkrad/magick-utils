@@ -172,7 +172,7 @@ namespace MagickUtils
             return true;
         }
 
-        public static int GetFormatQuality (MagickImage img)
+        public static async Task<int> GetFormatQuality (MagickImage img)
         {
             string formatStr = img.Format.ToString().ToUpper().Replace("JPEG", "JPG");
 
@@ -180,7 +180,7 @@ namespace MagickUtils
                 formatStr = "PNG";
 
             string configKey = "qMin" + formatStr;
-            int q = Config.GetInt(configKey);
+            int q = await Config.GetInt(configKey);
             Logger.Log($"Format quality for {img.Format} ({configKey}): {q}", true);
             return q;
         }

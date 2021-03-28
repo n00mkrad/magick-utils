@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Threading.Tasks;
 
 namespace MagickUtils.Utils
 {
@@ -42,34 +43,34 @@ namespace MagickUtils.Utils
 			}
 		}
 
-		public static void SaveComboxIndex(ComboBox comboBox)
+		public static async Task SaveComboxIndex(ComboBox comboBox)
 		{
-			global::MagickUtils.Config.Set(comboBox.Name, comboBox.SelectedIndex.ToString());
+            await Config.Set(comboBox.Name, comboBox.SelectedIndex.ToString());
 		}
 
-		public static void LoadGuiElement(ComboBox comboBox, string suffix = "")
+		public static async Task LoadGuiElement(ComboBox comboBox, string suffix = "")
 		{
-			comboBox.Text = global::MagickUtils.Config.Get(comboBox.Name) + suffix;
+			comboBox.Text = await Config.Get(comboBox.Name) + suffix;
 		}
 
-		public static void LoadGuiElement(TextBox textbox, string suffix = "")
+		public static async Task LoadGuiElement(TextBox textbox, string suffix = "")
 		{
-			textbox.Text = global::MagickUtils.Config.Get(textbox.Name) + suffix; ;
+			textbox.Text = await Config.Get(textbox.Name) + suffix;
 		}
 
-		public static void LoadGuiElement(CheckBox checkbox)
+		public static async Task LoadGuiElement(CheckBox checkbox)
 		{
-			checkbox.Checked = global::MagickUtils.Config.GetBool(checkbox.Name);
+			checkbox.Checked = await Config.GetBool(checkbox.Name);
 		}
 
-		public static void LoadGuiElement(NumericUpDown upDown)
+		public static async Task LoadGuiElement(NumericUpDown upDown)
 		{
-			upDown.Value = Convert.ToDecimal(global::MagickUtils.Config.GetFloat(upDown.Name));
+			upDown.Value = Convert.ToDecimal(await Config.GetFloat(upDown.Name));
 		}
 
-		public static void LoadComboxIndex(ComboBox comboBox)
+		public static async Task LoadComboxIndex(ComboBox comboBox)
 		{
-			comboBox.SelectedIndex = global::MagickUtils.Config.GetInt(comboBox.Name);
+			comboBox.SelectedIndex = await Config.GetInt(comboBox.Name);
 		}
 	}
 }

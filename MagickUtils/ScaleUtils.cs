@@ -3,6 +3,7 @@ using System.Data.SqlClient;
 using System.IO;
 using ImageMagick;
 using MagickUtils.Utils;
+using System.Threading.Tasks;
 
 namespace MagickUtils
 {
@@ -120,9 +121,9 @@ namespace MagickUtils
             Logger.Log("-> Done");
         }
 
-        static void Write (MagickImage img, FT filter)
+        static async Task Write (MagickImage img, FT filter)
         {
-            img.Quality = Program.GetFormatQuality(img);
+            img.Quality = await Program.GetFormatQuality(img);
             if (!appendFiltername)
             {
                 if(!dontOverwrite)

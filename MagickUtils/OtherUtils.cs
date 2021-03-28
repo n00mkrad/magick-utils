@@ -48,7 +48,7 @@ namespace MagickUtils
         public static async void AddSuffixPrefixDir (string text, bool suffix)
         {
             int counter = 1;
-            FileInfo[] files = IOUtils.GetFiles(Config.GetBool("fileOperationsNoFilter"));
+            FileInfo[] files = IOUtils.GetFiles(await Config.GetBool("fileOperationsNoFilter"));
             Program.PreProcessing(true, false);
             foreach(FileInfo file in files)
             {
@@ -78,11 +78,11 @@ namespace MagickUtils
         public static async void ReplaceInFilenamesDir (string textToFind, string textToReplace)
         {
             int counter = 1;
-            FileInfo[] files = IOUtils.GetFiles(Config.GetBool("fileOperationsNoFilter"));
+            FileInfo[] files = IOUtils.GetFiles(await Config.GetBool("fileOperationsNoFilter"));
             Program.PreProcessing(true, false);
             foreach(FileInfo file in files)
             {
-                ReplaceInFilename(file.FullName, textToFind, textToReplace);
+                await ReplaceInFilename(file.FullName, textToFind, textToReplace);
                 Program.ShowProgress("", counter, files.Length);
                 counter++;
                 if (counter % 100 == 0)
@@ -95,11 +95,11 @@ namespace MagickUtils
             Program.PostProcessing(files.Length, true, false);
         }
 
-        public static void ReplaceInFilename (string path, string textToFind, string textToReplace)
+        public static async Task ReplaceInFilename (string path, string textToFind, string textToReplace)
         {
             string ext = Path.GetExtension(path);
             string newFilename = Path.GetFileNameWithoutExtension(path).Replace(textToFind, textToReplace)+ ext;
-            bool includeExtension = Config.GetBool("filenameReplaceIncludeExt");
+            bool includeExtension = await Config.GetBool("filenameReplaceIncludeExt");
             if (includeExtension)
                 newFilename = Path.GetFileName(path).Replace(textToFind, textToReplace);
             string targetPath = Path.Combine(Path.GetDirectoryName(path), newFilename);
@@ -149,11 +149,11 @@ namespace MagickUtils
             RemoveMissingFiles(checkDir, testRun);
         }
 
-        public static void RemoveMissingFiles (string checkDir, bool testRun)
+        public static async Task RemoveMissingFiles (string checkDir, bool testRun)
         {
             int counter = 1;
-            FileInfo[] files = IOUtils.GetFiles(Config.GetBool("fileOperationsNoFilter"));
-            FileInfo[] filesCheckDir = IOUtils.GetFiles(Config.GetBool("fileOperationsNoFilter"), checkDir);
+            FileInfo[] files = IOUtils.GetFiles(await Config.GetBool("fileOperationsNoFilter"));
+            FileInfo[] filesCheckDir = IOUtils.GetFiles(await Config.GetBool("fileOperationsNoFilter"), checkDir);
             Logger.Log("(1/2) Checking " + files.Length + " files...");
             Logger.Log("Folder B has " + filesCheckDir.Length + " files");
             foreach(FileInfo file in files)
@@ -239,10 +239,10 @@ namespace MagickUtils
             Program.PostProcessing(files.Length, false, false);
         }
 
-        public static void RenameCounterDir(int sortMode, bool zeroPadding, int startAt)
+        public static async Task RenameCounterDir(int sortMode, bool zeroPadding, int startAt)
         {
             int counter = startAt;
-            FileInfo[] files = IOUtils.GetFiles(Config.GetBool("fileOperationsNoFilter"));
+            FileInfo[] files = IOUtils.GetFiles(await Config.GetBool("fileOperationsNoFilter"));
             var filesSorted = files.OrderBy(n => n);
             if(sortMode == 1)
                 filesSorted.Reverse();
@@ -262,10 +262,10 @@ namespace MagickUtils
             Program.PostProcessing(files.Length, true, false);
         }
 
-        public static async void AddZeroPaddingDir (int targetLength)
+        public static async Task AddZeroPaddingDir (int targetLength)
         {
             int counter = 1;
-            FileInfo[] files = IOUtils.GetFiles(Config.GetBool("fileOperationsNoFilter"));
+            FileInfo[] files = IOUtils.GetFiles(await Config.GetBool("fileOperationsNoFilter"));
             Program.PreProcessing(true, false);
             foreach(FileInfo file in files)
             {
@@ -289,7 +289,7 @@ namespace MagickUtils
         public static async void PrintImageInfoDir ()
         {
             int counter = 1;
-            FileInfo[] files = IOUtils.GetFiles(Config.GetBool("fileOperationsNoFilter"));
+            FileInfo[] files = IOUtils.GetFiles(await Config.GetBool("fileOperationsNoFilter"));
             Program.PreProcessing(true, false);
             foreach (FileInfo file in files)
             {
@@ -314,7 +314,7 @@ namespace MagickUtils
         public static async void RemoveBytesDir (int bytes) 
         {
             int counter = 1;
-            FileInfo[] files = IOUtils.GetFiles(Config.GetBool("fileOperationsNoFilter"));
+            FileInfo[] files = IOUtils.GetFiles(await Config.GetBool("fileOperationsNoFilter"));
             Program.PreProcessing(true, false);
             foreach (FileInfo file in files)
             {

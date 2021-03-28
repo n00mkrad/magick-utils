@@ -29,7 +29,7 @@ namespace MagickUtils.MagickUtils
         public static async Task EncodeImages (FileInfo[] files, IF format, int qMin, int qMax, bool deleteSource)
         {
             Program.PreProcessing();
-            int maxThreads = Config.GetInt("procThreads");
+            int maxThreads = await Config.GetInt("procThreads");
             List<Task> runningTasks = new List<Task>();
             int done = 0;
 
@@ -59,17 +59,17 @@ namespace MagickUtils.MagickUtils
 
         static async Task EncodeImage (FileInfo file, IF format, int qMin, int qMax, bool deleteSource)
         {
-            if (format == IF.JPG) ConvertUtils.ConvertToJpeg(file.FullName, qMin, qMax, deleteSource);
-            if (format == IF.PNG) ConvertUtils.ConvertToPng(file.FullName, qMin, deleteSource);
-            if (format == IF.DDS) ConvertUtils.ConvertToDds(file.FullName, qMin, qMax, deleteSource);
-            if (format == IF.TGA) ConvertUtils.ConvertToTga(file.FullName, deleteSource);
-            if (format == IF.WEBP) ConvertUtils.ConvertToWebp(file.FullName, qMin, qMax, deleteSource);
-            if (format == IF.BMP) ConvertUtils.ConvertToBmp(file.FullName, deleteSource);
-            if (format == IF.AVIF) ConvertUtils.ConvertToAvif(file.FullName, qMin, deleteSource);
-            if (format == IF.J2K) ConvertUtils.ConvertToJpeg2000(file.FullName, qMin, deleteSource);
-            if (format == IF.FLIF) ConvertUtils.ConvertToFlif(file.FullName, qMin, deleteSource);
-            if (format == IF.HEIF) HeifInterface.EncodeImage(file.FullName, qMin, deleteSource);
-            if (format == IF.JXL) ConvertUtils.ConvertToJxl(file.FullName, qMin, qMax, deleteSource);
+            if (format == IF.JPG) await ConvertUtils.ConvertToJpeg(file.FullName, qMin, qMax, deleteSource);
+            if (format == IF.PNG) await ConvertUtils.ConvertToPng(file.FullName, qMin, deleteSource);
+            if (format == IF.WEBP) await ConvertUtils.ConvertToWebp(file.FullName, qMin, qMax, deleteSource);
+            if (format == IF.BMP) await ConvertUtils.ConvertToBmp(file.FullName, deleteSource);
+            if (format == IF.DDS) await ConvertUtils.ConvertToDds(file.FullName, qMin, qMax, deleteSource);
+            if (format == IF.TGA) await ConvertUtils.ConvertToTga(file.FullName, deleteSource);
+            if (format == IF.J2K) await ConvertUtils.ConvertToJpeg2000(file.FullName, qMin, deleteSource);
+            if (format == IF.AVIF) await ConvertUtils.ConvertToAvif(file.FullName, qMin, deleteSource);
+            if (format == IF.FLIF) await ConvertUtils.ConvertToFlif(file.FullName, qMin, deleteSource);
+            if (format == IF.HEIF) await ConvertUtils.ConvertToHeif(file.FullName, qMin, deleteSource);
+            if (format == IF.JXL) await ConvertUtils.ConvertToJxl(file.FullName, qMin, qMax, deleteSource);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace MagickUtils
 
     class ConvertTabHelper
     {
-        public static void ConvertFileList (string[] files, ComboBox qualityCombox, ComboBox qualityMaxCombox, IF selectedFormat, CheckBox delSrcCbox)
+        public static async Task ConvertFileList (string[] files, ComboBox qualityCombox, ComboBox qualityMaxCombox, IF selectedFormat, CheckBox delSrcCbox)
         {
             int qMin = qualityCombox.GetInt();
             int qMax = qMin;
@@ -27,51 +27,51 @@ namespace MagickUtils
                 if(!IOUtils.IsPathDirectory(file))
                 {
                     if(selectedFormat == IF.JPG)
-                        ConvertUtils.ConvertToJpeg(file, qMin, qMax, delSrcCbox.Checked);
+                        await ConvertUtils.ConvertToJpeg(file, qMin, qMax, delSrcCbox.Checked);
 
                     if(selectedFormat == IF.PNG)
-                        ConvertUtils.ConvertToPng(file, qMin, delSrcCbox.Checked);
+                        await ConvertUtils.ConvertToPng(file, qMin, delSrcCbox.Checked);
 
                     if(selectedFormat == IF.DDS)
-                        ConvertUtils.ConvertToDds(file, qMin, qMax, delSrcCbox.Checked);
+                        await ConvertUtils.ConvertToDds(file, qMin, qMax, delSrcCbox.Checked);
 
                     if(selectedFormat == IF.TGA)
-                        ConvertUtils.ConvertToTga(file, delSrcCbox.Checked);
+                        await ConvertUtils.ConvertToTga(file, delSrcCbox.Checked);
 
                     if(selectedFormat == IF.WEBP)
-                        ConvertUtils.ConvertToWebp(file, qMin, qMax, delSrcCbox.Checked);
+                        await ConvertUtils.ConvertToWebp(file, qMin, qMax, delSrcCbox.Checked);
 
                     if(selectedFormat == IF.J2K)
-                        ConvertUtils.ConvertToJpeg2000(file, qMin, delSrcCbox.Checked);
+                        await ConvertUtils.ConvertToJpeg2000(file, qMin, delSrcCbox.Checked);
 
                     if(selectedFormat == IF.FLIF)
                     {
-                        if(Config.GetInt("flifEnc") == 1) FlifInterface.EncodeImage(file, qMin, delSrcCbox.Checked);
-                        else ConvertUtils.ConvertToFlif(file, qMin, delSrcCbox.Checked);
+                        if(await Config.GetInt("flifEnc") == 1) await FlifInterface.EncodeImage(file, qMin, delSrcCbox.Checked);
+                        else await ConvertUtils.ConvertToFlif(file, qMin, delSrcCbox.Checked);
                     }
                     
                     if (selectedFormat == IF.BMP)
-                        ConvertUtils.ConvertToBmp(file, delSrcCbox.Checked);
+                        await ConvertUtils.ConvertToBmp(file, delSrcCbox.Checked);
 
                     if (selectedFormat == IF.AVIF)
-                        ConvertUtils.ConvertToAvif(file, qMin, delSrcCbox.Checked);
+                        await ConvertUtils.ConvertToAvif(file, qMin, delSrcCbox.Checked);
 
                     if (selectedFormat == IF.HEIF)
-                        HeifInterface.EncodeImage(file, qMin, delSrcCbox.Checked);
+                        await HeifInterface.EncodeImage(file, qMin, delSrcCbox.Checked);
 
                     if (selectedFormat == IF.JXL)
-                        ConvertUtils.ConvertToJxl(file, qMin, qMax, delSrcCbox.Checked);
+                        await ConvertUtils.ConvertToJxl(file, qMin, qMax, delSrcCbox.Checked);
                 }
             }
         }
 
         public static async Task ConvertUsingPath (ComboBox qualityCombox, ComboBox qualityMaxCombox, IF selectedFormat, CheckBox delSrcCbox)
         {
-            int qMin = int.Parse(qualityCombox.Text.Trim());
+            int qMin = qualityCombox.GetInt();
             int qMax = qMin;
 
             if(!string.IsNullOrWhiteSpace(qualityMaxCombox.Text.Trim()))
-                qMax = int.Parse(qualityMaxCombox.Text.Trim());
+                qMax = qualityMaxCombox.GetInt();
 
             await ConvertThreaded.EncodeImages(selectedFormat, qMin, qMin, delSrcCbox.Checked);
         }

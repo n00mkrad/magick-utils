@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using MagickUtils.Utils;
 
@@ -11,8 +12,8 @@ namespace MagickUtils
 	internal class Config
 	{
         private static string configPath;
-
         private static string[] cachedLines;
+        public static bool locked;
 
         public static void Init()
         {
@@ -21,8 +22,16 @@ namespace MagickUtils
             Reload();
         }
 
-        public static void Set(string key, string value)
+        public static async Task Set(string key, string value)
         {
+            Logger.Log($"Setting config key '{key}' to '{value}'...", true);
+
+            while (locked)
+                await Task.Delay(1);
+
+            Logger.Log($"...unlocked", true);
+            locked = true;
+
             string[] lines = new string[1];
 
             try
@@ -31,7 +40,7 @@ namespace MagickUtils
             }
             catch
             {
-                MessageBox.Show("Failed to read config file!\nFlowframes will try to re-create the file if it does not exist.", "Error");
+                MessageBox.Show("Failed to read config file!\nMagickUtils will try to re-create the file if it does not exist.", "Error");
 
                 if (!File.Exists(configPath))
                     Init();
@@ -44,6 +53,7 @@ namespace MagickUtils
                     lines[i] = key + "|" + value;
                     File.WriteAllLines(configPath, lines);
                     cachedLines = lines;
+                    locked = false;
                     return;
                 }
             }
@@ -59,109 +69,115 @@ namespace MagickUtils
             File.WriteAllText(configPath, newFileContent.Trim());
 
             cachedLines = list.ToArray();
+
+            locked = false;
         }
 
-        public static string Get(string key, string defaultVal)
+        public static async Task<string> Get(string key, string defaultVal)
         {
-            WriteIfDoesntExist(key, defaultVal);
-            return Get(key);
+            await WriteIfDoesntExist(key, defaultVal);
+            return await Get(key);
         }
 
-        public static string Get(string key, Type type = Type.String)
+        public static async Task<string> Get(string key, Type type = Type.String)
         {
             try
             {
                 for (int i = 0; i < cachedLines.Length; i++)
                 {
                     string[] keyValuePair = cachedLines[i].Split('|');
+
                     if (keyValuePair[0] == key && !string.IsNullOrWhiteSpace(keyValuePair[1]))
                         return keyValuePair[1];
                 }
-                return WriteDefaultValIfExists(key, type);
+
+                return await WriteDefaultValIfExists(key, type);
             }
             catch (Exception e)
             {
                 Logger.Log($"Failed to get {key.Wrap()} from config! {e.Message}");
             }
+
             return null;
         }
 
-        public static bool GetBool(string key)
+        public static async Task<bool> GetBool(string key)
         {
-            return bool.Parse(Get(key, Type.Bool));
+            return bool.Parse(await Get(key, Type.Bool));
         }
 
-        public static bool GetBool(string key, bool defaultVal)
+        public static async Task<bool> GetBool(string key, bool defaultVal)
         {
-            WriteIfDoesntExist(key, (defaultVal ? "True" : "False"));
-            return bool.Parse(Get(key, Type.Bool));
+            await WriteIfDoesntExist(key, (defaultVal ? "True" : "False"));
+            return bool.Parse(await Get(key, Type.Bool));
         }
 
-        public static int GetInt(string key)
+        public static async Task<int> GetInt(string key)
         {
-            return Get(key, Type.Int).GetInt();
+            return (await Get(key, Type.Int)).GetInt();
         }
 
-        public static int GetInt(string key, int defaultVal)
+        public static async Task<int> GetInt(string key, int defaultVal)
         {
-            WriteIfDoesntExist(key, defaultVal.ToString());
-            return GetInt(key);
+            await WriteIfDoesntExist(key, defaultVal.ToString());
+            return await GetInt(key);
         }
 
-        public static float GetFloat(string key)
+        public static async Task<float> GetFloat(string key)
         {
-            return float.Parse(Get(key, Type.Float), CultureInfo.InvariantCulture);
+            return float.Parse(await Get(key, Type.Float), CultureInfo.InvariantCulture);
         }
 
-        public static float GetFloat(string key, float defaultVal)
+        public static async Task<float> GetFloat(string key, float defaultVal)
         {
-            WriteIfDoesntExist(key, defaultVal.ToStringDot());
-            return float.Parse(Get(key, Type.Float), CultureInfo.InvariantCulture);
+            await WriteIfDoesntExist(key, defaultVal.ToStringDot());
+            return float.Parse(await Get(key, Type.Float), CultureInfo.InvariantCulture);
         }
 
-        public static string GetFloatString(string key)
+        public static async Task<string> GetFloatString(string key)
         {
-            return Get(key, Type.Float).Replace(",", ".");
+            return (await Get(key, Type.Float)).Replace(",", ".");
         }
 
-        static void WriteIfDoesntExist(string key, string val)
+        static async Task WriteIfDoesntExist(string key, string val)
         {
             foreach (string line in cachedLines)
                 if (line.Contains(key + "|"))
                     return;
-            Set(key, val);
+
+            await Set(key, val);
         }
 
         public enum Type { String, Int, Float, Bool }
-        private static string WriteDefaultValIfExists(string key, Type type)
+        private static async Task<string> WriteDefaultValIfExists(string key, Type type)
         {
             // General
-            if (key == "fileOperationsNoFilter")    return WriteDefault(key, "True");
-            if (key == "filenameReplaceIncludeExt") return WriteDefault(key, "True");
-            if (key == "backgroundColor")           return WriteDefault(key, "000000FF");
-            if (key == "pngColorDepth")             return WriteDefault(key, "0");
-            if (key == "procThreads")               return WriteDefault(key, Environment.ProcessorCount.ToString());
+            if (key == "fileOperationsNoFilter")    return await WriteDefault(key, "True");
+            if (key == "filenameReplaceIncludeExt") return await WriteDefault(key, "True");
+            if (key == "backgroundColor")           return await WriteDefault(key, "000000FF");
+            if (key == "pngColorDepth")             return await WriteDefault(key, "0");
+            if (key == "procThreads")               return await WriteDefault(key, Environment.ProcessorCount.ToString());
             // JPEG
-            if (key == "jpegEnc")               return WriteDefault(key, "0");
-            if (key == "jpegChromaSubsampling") return WriteDefault(key, "0");
+            if (key == "jpegEnc")               return await WriteDefault(key, "0");
+            if (key == "jpegChromaSubsampling") return await WriteDefault(key, "0");
             // DDS
-            if (key == "ddsEnc")                return WriteDefault(key, "0");
-            if (key == "ddsCompressionType")    return WriteDefault(key, "BC1 (DXT1)");
-            if (key == "ddsEnableMips")         return WriteDefault(key, "False");
-            if (key == "crunchDxtSpeed")        return WriteDefault(key, "2");
-            if (key == "mipCount")              return WriteDefault(key, "10");
+            if (key == "ddsEnc")                return await WriteDefault(key, "0");
+            if (key == "ddsCompressionType")    return await WriteDefault(key, "BC1 (DXT1)");
+            if (key == "ddsEnableMips")         return await WriteDefault(key, "False");
+            if (key == "crunchDxtSpeed")        return await WriteDefault(key, "2");
+            if (key == "mipCount")              return await WriteDefault(key, "10");
             // FLIF
-            if (key == "flifEnc")       return WriteDefault(key, "0");
-            if (key == "flifEffort")    return WriteDefault(key, "50");
+            if (key == "flifEnc")       return await WriteDefault(key, "0");
+            if (key == "flifEffort")    return await WriteDefault(key, "50");
 
-            if (type == Type.Int || type == Type.Float) return WriteDefault(key, "0");     // Write default int/float (0)
-            if (type == Type.Bool) return WriteDefault(key, "False");     // Write default bool (False)
-            return WriteDefault(key, "0");
+            if (type == Type.Int || type == Type.Float) return await WriteDefault(key, "0");     // Write default int/float (0)
+            if (type == Type.Bool) return await WriteDefault(key, "False");     // Write default bool (False)
+            return await WriteDefault(key, "0");
         }
 
-        private static string WriteDefault(string key, string def)
+        private static async Task<string> WriteDefault(string key, string def)
         {
-            Set(key, def);
+            await Set(key, def);
             return def;
         }
 

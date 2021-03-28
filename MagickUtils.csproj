@@ -260,6 +260,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\LogEntry.cs" />
     <Compile Include="Forms\JpegOptionsWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -418,6 +419,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

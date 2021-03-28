@@ -36,6 +36,7 @@ namespace MagickUtils
             //HeifInterface.Extract(true);
 
             Logger.textbox = logTbox;
+            Task.Run(() => Logger.Run());
             Program.progBar = progressBar1;
 
             progressBar1.Maximum = 100;
@@ -86,7 +87,12 @@ namespace MagickUtils
 
         private void convertStartBtn_Click (object sender, EventArgs e)
         {
-            if(!Program.IsPathValid(Program.currentDir)) return;
+            if (!Program.IsPathValid(Program.currentDir))
+            {
+                Logger.Log("Path not valid!");
+                return;
+            }
+
             ConvertTabHelper.ConvertUsingPath(qualityCombox, qualityMaxCombox, selectedFormat, delSrcCbox);
         }
 
@@ -100,7 +106,7 @@ namespace MagickUtils
             return formatCombox.Text.Trim().ToUpper();
         }
 
-        private void formatCombox_SelectedIndexChanged (object sender, EventArgs e)
+        private async void formatCombox_SelectedIndexChanged (object sender, EventArgs e)
         {
             string formatStrTrim = GetFormatStr();
             qualityCombox.Enabled = true;
@@ -110,7 +116,7 @@ namespace MagickUtils
 
             if (formatStrTrim == "JPEG")
             {
-                LoadQuality(formatStrTrim, 95, 0);
+                await LoadQuality(formatStrTrim, 95, 0);
                 selectedFormat = Program.ImageFormat.JPG;
                 qualityMaxCombox.Enabled = true;
                 formatQualityLabel.Text = "JPEG Quality: 0 - 100. Default: 95";
@@ -119,7 +125,7 @@ namespace MagickUtils
 
             if(formatStrTrim == "PNG")
             {
-                LoadQuality(formatStrTrim, 30, 0);
+                await LoadQuality(formatStrTrim, 30, 0);
                 selectedFormat = Program.ImageFormat.PNG;
                 formatQualityLabel.Text = "PNG Compression Strength: 0 (Raw) - 100 (Max). Default: 30";
                 formatOptionsBtn.Visible = true;
@@ -127,7 +133,7 @@ namespace MagickUtils
 
             if (formatStrTrim == "WEBP")
             {
-                LoadQuality(formatStrTrim, 93, 0);
+                await LoadQuality(formatStrTrim, 93, 0);
                 selectedFormat = Program.ImageFormat.WEBP;
                 qualityMaxCombox.Enabled = true;
                 formatQualityLabel.Text = "WEBP Quality: 0 - 99. 100 for Lossless. Default: 93";
@@ -144,7 +150,7 @@ namespace MagickUtils
             {
                 ClearQuality();
                 selectedFormat = Program.ImageFormat.DDS;
-                qualityCombox.Enabled = Config.GetInt("ddsEnc") == 2;
+                qualityCombox.Enabled = await Config.GetInt("ddsEnc") == 2;
                 qualityMaxCombox.Enabled = qualityCombox.Enabled;
                 formatOptionsBtn.Visible = true;
             }
@@ -158,14 +164,14 @@ namespace MagickUtils
 
             if(formatStrTrim == "JPEG 2000")
             {
-                LoadQuality(formatStrTrim, 95, 0);
+                await LoadQuality(formatStrTrim, 95, 0);
                 selectedFormat = Program.ImageFormat.J2K;
                 formatQualityLabel.Text = "JPEG 2000 Quality: 0 - 100";
             }
 
             if(formatStrTrim == "FLIF")
             {
-                LoadQuality(formatStrTrim, 95, 0);
+                await LoadQuality(formatStrTrim, 95, 0);
                 selectedFormat = Program.ImageFormat.FLIF;
                 formatOptionsBtn.Visible = true;
                 formatQualityLabel.Text = "FLIF Quality: 0 - 100";
@@ -173,21 +179,21 @@ namespace MagickUtils
 
             if (formatStrTrim == "AVIF")
             {
-                LoadQuality(formatStrTrim, 95, 0);
+                await LoadQuality(formatStrTrim, 95, 0);
                 selectedFormat = Program.ImageFormat.AVIF;
                 formatQualityLabel.Text = "AVIF Quality: 0 - 100";
             }
 
             if (formatStrTrim == "HEIF")
             {
-                LoadQuality(formatStrTrim, 50, 0);
+                await LoadQuality(formatStrTrim, 50, 0);
                 selectedFormat = Program.ImageFormat.HEIF;
                 formatQualityLabel.Text = "HEIF Quality: 0 - 99. Default: 50. Use 100 for lossless mode.";
             }
 
             if (formatStrTrim == "JPEG XL")
             {
-                LoadQuality(formatStrTrim, 100, 0);
+                await LoadQuality(formatStrTrim, 100, 0);
                 selectedFormat = Program.ImageFormat.JXL;
                 formatQualityLabel.Text = "100 is lossless, everything lower will use a fixed lossy quality level. WIP!";
             }
@@ -195,10 +201,10 @@ namespace MagickUtils
             CheckDelSourceFormat();
         }
 
-        void LoadQuality(string formatStrTrim, int defaultMin, int defaultMax)
+        async Task LoadQuality(string formatStrTrim, int defaultMin, int defaultMax)
         {
-            qualityCombox.Text = Config.Get("qMin" + formatStrTrim, defaultMin.ToString());
-            qualityMaxCombox.Text = Config.Get("qMax" + formatStrTrim, defaultMax.ToString()).Replace("0", "");
+            qualityCombox.Text = await Config.Get("qMin" + formatStrTrim, defaultMin.ToString());
+            qualityMaxCombox.Text = (await Config.Get("qMax" + formatStrTrim, defaultMax.ToString())).Replace("0", "");
         }
 
         void ClearQuality()

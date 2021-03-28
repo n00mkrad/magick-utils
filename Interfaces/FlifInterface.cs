@@ -6,6 +6,7 @@ using ImageMagick;
 using MagickUtils.Properties;
 using MagickUtils.Utils;
 using Paths = MagickUtils.Utils.Paths;
+using System.Threading.Tasks;
 
 namespace MagickUtils
 {
@@ -13,64 +14,47 @@ namespace MagickUtils
     {
         public static int effort = 60;
 
-        static string flifExePath;
 
-        public static void ExtractExe ()
+        static string GetExePath ()
         {
-            GetExePath();
-            if(File.Exists(flifExePath))
-                return;
-            File.WriteAllBytes(flifExePath, Resources.flif);
-            Logger.Log("[FlifInterface] Extratced flif.exe to " + flifExePath);
+            return Path.Combine(Paths.GetDataPath(), "runtimes", "flif", "flif.exe");
         }
 
-        public static void DeleteExe ()
+        public static async Task<string> EncodeImage (string path, int q, bool deleteSrc)
         {
-            GetExePath();
-            File.Delete(flifExePath);
-        }
-
-        static void GetExePath ()
-        {
-            flifExePath = Path.Combine(Paths.GetDataPath(), "flif.exe");
-        }
-
-        public static string EncodeImage (string path, int q, bool deleteSrc)
-        {
-            ExtractExe();
             string outPath = Path.ChangeExtension(path, null) + ".flif";
             ProcessStartInfo psi;
             string args1 = " -e -Q" + q + " -E" + effort + " --overwrite";
             string args2 = " \"" + path + "\" \"" + outPath + "\"";
-            psi = new ProcessStartInfo { FileName = flifExePath, Arguments = args1 + args2 };
-            psi.WorkingDirectory = Path.GetDirectoryName(flifExePath);
-            Logger.Log("FLIF args:" + args1);
+            psi = new ProcessStartInfo { FileName = GetExePath(), Arguments = args1 + args2 };
+            psi.WorkingDirectory = Path.GetDirectoryName(GetExePath());
+            Logger.Log("FLIF args:" + args1, true);
             psi.WindowStyle = ProcessWindowStyle.Hidden;
             Process flifProcess = new Process { StartInfo = psi };
             flifProcess.Start();
             flifProcess.WaitForExit();
-            Logger.Log("Done converting " + path);
+
             if(deleteSrc)
                 DelSource(path, outPath);
+
             return outPath;
         }
 
         public static string DecodeImage (string path, bool deleteSrc, bool tempExtension = false)
         {
-            ExtractExe();
             string outPath = Path.ChangeExtension(path, null) + ".png";
             if(tempExtension) outPath = Path.ChangeExtension(path, null) + ".pngtmp";
             ProcessStartInfo psi;
             string args = " -d \"" + path + "\" \"" + outPath + "\"";
-            psi = new ProcessStartInfo { FileName = flifExePath, Arguments = args };
-            psi.WorkingDirectory = Path.GetDirectoryName(flifExePath);
+            psi = new ProcessStartInfo { FileName = GetExePath(), Arguments = args };
+            psi.WorkingDirectory = Path.GetDirectoryName(GetExePath());
             psi.WindowStyle = ProcessWindowStyle.Hidden;
             Process flifProcess = new Process { StartInfo = psi };
             flifProcess.Start();
             flifProcess.WaitForExit();
-            Logger.Log("Done converting " + path);
             if (deleteSrc)
                 DelSource(path, outPath);
+
             return outPath;
         }
 

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Threading.Tasks;
 using MagickUtils.Utils;
 using Paths = MagickUtils.Utils.Paths;
 
@@ -12,7 +13,6 @@ namespace MagickUtils
 {
     class DdsInterface
     {
-        static string ddsResPath;
         static string nvCompExePath;
         static string crunchExePath;
 
@@ -20,47 +20,31 @@ namespace MagickUtils
         public static CrunchPreset crunchPreset;
         //public static bool currentMipMode;
 
-        public static void Extract(bool overwrite = false)
-        {
-            GetPaths();
-
-            if (File.Exists(nvCompExePath) && File.Exists(crunchExePath) && !overwrite)
-                return;
-
-            File.WriteAllBytes(ddsResPath, Resources.dds);
-            ZipFile zip = ZipFile.Read(ddsResPath);
-            foreach (ZipEntry e in zip)
-                e.Extract(Paths.GetDataPath(), ExtractExistingFileAction.OverwriteSilently);
-
-            Logger.Log("[DdsInterface] Extracted DDS encoding resources to " + ddsResPath);
-        }
-
         static void GetPaths()
         {
-            ddsResPath = Path.Combine(Paths.GetDataPath(), "dds.zip");
-            nvCompExePath = Path.Combine(Paths.GetDataPath(), "dds", "nvcompress.exe");
-            crunchExePath = Path.Combine(Paths.GetDataPath(), "dds", "crunch.exe");
+            nvCompExePath = Path.Combine(Paths.GetDataPath(), "runtimes", "dds", "nvcompress.exe");
+            crunchExePath = Path.Combine(Paths.GetDataPath(), "runtimes", "dds", "crunch.exe");
         }
 
-        public static void Crunch(string inpath, int qMin, int qMax)
+        public static async Task Crunch(string inpath, int qMin, int qMax)
         {
+            GetPaths();
             SetEncSpeed();
-            Extract();
 
             string sourcePath = inpath;
             bool convert = Path.GetExtension(inpath).ToLower() != ".png";
             if (convert)
                 inpath = ConvertToPng(inpath);
 
-            string dxtString = Config.Get("ddsCompressionType").Split(' ')[0].ToUpper().Replace("ARGB", "A8R8G8B8");
+            string dxtString = (await Config.Get("ddsCompressionType")).Split(' ')[0].ToUpper().Replace("ARGB", "A8R8G8B8");
 
             string mipMode = "None";
-            if (Config.GetBool("ddsEnableMips")) mipMode = "UseSourceOrGenerate";
+            if (await Config.GetBool("ddsEnableMips")) mipMode = "UseSourceOrGenerate";
 
             string args = $" -file {inpath.WrapPath()} -outsamedir";
             string args2 = $" -quality {GetRandomQuality(qMin, qMax)} -fileformat dds -mipMode {mipMode} -dxtQuality {crunchPreset}";
             ProcessStartInfo psi = new ProcessStartInfo { FileName = crunchExePath, Arguments = args + args2, WindowStyle = ProcessWindowStyle.Hidden };
-            Logger.Log("-> Running Crunch:" + args2);
+            Logger.Log("Running Crunch:" + args2, true);
             Process crunchProcess = new Process { StartInfo = psi };
             crunchProcess.Start();
             crunchProcess.WaitForExit();
@@ -69,18 +53,18 @@ namespace MagickUtils
                 File.Delete(inpath);
         }
 
-        public static void NvCompress(string inpath, string outpath)
+        public static async Task NvCompress(string inpath, string outpath)
         {
-            Extract();
+            GetPaths();
             string sourcePath = inpath;
             bool convert = Path.GetExtension(inpath).ToLower() != ".png";
             if (convert)
                 inpath = ConvertToPng(inpath);
 
-            string dxtString = Config.Get("ddsCompressionType").Split(' ')[0].ToLower().Replace("argb", "rgb");
+            string dxtString = (await Config.Get("ddsCompressionType")).Split(' ')[0].ToLower().Replace("argb", "rgb");
 
             string mipStr = "-nomips";
-            if (Config.GetBool("ddsEnableMips")) mipStr = "";
+            if (await Config.GetBool("ddsEnableMips")) mipStr = "";
 
             string args = $" -{dxtString} -alpha { mipStr} {inpath.WrapPath()} {outpath.WrapPath()}";
             ProcessStartInfo psi = new ProcessStartInfo { FileName = nvCompExePath, Arguments = args, WindowStyle = ProcessWindowStyle.Hidden };
@@ -128,9 +112,9 @@ namespace MagickUtils
             return rand.Next(qMin, qMax + 1);
         }
 
-        static void SetEncSpeed()
+        static async Task SetEncSpeed()
         {
-            switch (Config.GetInt("crunchDxtSpeed"))
+            switch (await Config.GetInt("crunchDxtSpeed"))
             {
                 case 0: crunchPreset = CrunchPreset.superfast; break;
                 case 1: crunchPreset = CrunchPreset.fast; break;
