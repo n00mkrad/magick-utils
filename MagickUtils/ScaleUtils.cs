@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data.SqlClient;
 using System.IO;
 using ImageMagick;
 using MagickUtils.Utils;
@@ -16,32 +15,32 @@ namespace MagickUtils
 
         public static async void ResampleDirRand (float sMin, float sMax, int downFilterMode, string downFilterName, int upFilterMode, string upFilterName)
         {
-            int counter = 1;
-            FileInfo[] files = IOUtils.GetFiles();
-
-            foreach(FileInfo file in files)
-            {
-                Program.ShowProgress("Resampling Image ", counter, files.Length);
-                counter++;
-                RandomResample(file.FullName, sMin, sMax, downFilterMode, downFilterName, upFilterMode, upFilterName);
-                if(counter % 2 == 0) await Program.PutTaskDelay();
-            }
-        }
-
-        public static async void ScaleDir (float sMin, float sMax, int filterMode, string filterName)
-        {
-            int counter = 1;
+            int counter = 0;
             FileInfo[] files = IOUtils.GetFiles();
             Program.PreProcessing();
 
-            foreach (FileInfo file in files)
-            {
-                Program.ShowProgress("Scaling Image ", counter, files.Length);
-                counter++;
-                Scale(file.FullName, sMin, sMax, filterMode, filterName);
-                await Program.PutTaskDelay();
-            }
-            Program.PostProcessing(files.Length);
+            Task forEach = Task.Run(async () => Parallel.ForEach(files, await MtUtils.GetParallelOpts(), async file => {
+                await RandomResample(file.FullName, sMin, sMax, downFilterMode, downFilterName, upFilterMode, upFilterName);
+                Program.ShowProgressIncrement("", ref counter, files.Length);
+            }));
+
+            while (!forEach.IsCompleted) await Task.Delay(1);
+            Program.PostProcessing(files.Length, true);
+        }
+
+        public static async Task ScaleDir (float sMin, float sMax, int filterMode, string filterName)
+        {
+            int counter = 0;
+            FileInfo[] files = IOUtils.GetFiles();
+            Program.PreProcessing();
+
+            Task forEach = Task.Run(async () => Parallel.ForEach(files, await MtUtils.GetParallelOpts(), async file => {
+                await Scale(file.FullName, sMin, sMax, filterMode, filterName);
+                Program.ShowProgressIncrement("", ref counter, files.Length);
+            }));
+
+            while (!forEach.IsCompleted) await Task.Delay(1);
+            Program.PostProcessing(files.Length, true);
         }
 
 
@@ -51,24 +50,23 @@ namespace MagickUtils
         public static bool appendFiltername;
         public static bool dontOverwrite;
 
-        public static void RandomResample (string path, float minScale, float maxScale, int downFilterMode, string downFilterName, int upFilterMode, string upFilterName)
+        public static async Task RandomResample (string path, float minScale, float maxScale, int downFilterMode, string downFilterName, int upFilterMode, string upFilterName)
         {
+            long bytesSrc = new FileInfo(path).Length;
             MagickImage img = IOUtils.ReadImage(path);
             FT filter = GetFilter(downFilterMode, downFilterName);
             int srcWidth = img.Width;
             int srcHeight = img.Height;
             Random rand = new Random();
             float targetScale = (float)rand.NextDouble(minScale, maxScale + 1);
-            Logger.Log("-> Scaling down to " + targetScale + "% with filter " + filter + "...");
             img.FilterType = filter;
             img.Resize(new Percentage(targetScale));
             MagickGeometry upscaleGeom = new MagickGeometry(srcWidth + "x" + srcHeight + "!");
             img.FilterType = GetFilter(upFilterMode, upFilterName);
-            Logger.Log("-> Scaling back up...\n");
             img.Resize(upscaleGeom);
             PreProcessing(path);
-            Write(img, filter);
-            PostProcessing(img, path);
+            string outPath = await Write(img, filter);
+            ConvertUtils.PostProcessing(path, outPath, bytesSrc, false, $"Scaled to {targetScale.ToString("0.00")}% with {filter}");
         }
 
         static FT GetRandomFilter (bool onlyBasicFilters = false)
@@ -80,8 +78,9 @@ namespace MagickUtils
             else return filtersAll[rand.Next(filtersAll.Length)];
         }
 
-        public static void Scale (string path, float minScale, float maxScale, int randFilterMode, string filterName)
+        public static async Task Scale (string path, float minScale, float maxScale, int randFilterMode, string filterName)
         {
+            long bytesSrc = new FileInfo(path).Length;
             MagickImage img = IOUtils.ReadImage(path);
             if (img == null) return;
             FT filter = GetFilter(randFilterMode, filterName);
@@ -97,7 +96,6 @@ namespace MagickUtils
             {
                 if(onlyDownscale && (img.Height <= targetScale))
                     return;
-                Logger.Log("-> Scaling to " + targetScale + "px height with filter " + filter + "...");
                 MagickGeometry geom = new MagickGeometry("x" + targetScale);
                 img.Resize(geom);
             }
@@ -105,23 +103,20 @@ namespace MagickUtils
             {
                 if(onlyDownscale && (img.Width <= targetScale))
                     return;
-                Logger.Log("-> Scaling to " + targetScale + "px width with filter " + filter + "...");
                 MagickGeometry geom = new MagickGeometry(targetScale + "x");
                 img.Resize(geom);
             }
             if(currMode == SM.Percentage)
             {
-                Logger.Log("-> Scaling to " + targetScale + "% with filter " + filter + "...");
                 MagickGeometry geom = new MagickGeometry(Math.Round(img.Width * targetScale / 100f) + "x" + Math.Round(img.Height * targetScale));
                 img.Resize(geom);
             }
-            PreProcessing(path);
-            Write(img, filter);
-            PostProcessing(img, path);
-            Logger.Log("-> Done");
+
+            string outPath = await Write(img, filter);
+            ConvertUtils.PostProcessing(path, outPath, bytesSrc, false, $"Scaled to {targetScale}% with {filter}");
         }
 
-        static async Task Write (MagickImage img, FT filter)
+        static async Task<string> Write (MagickImage img, FT filter)    // Returns output path
         {
             img.Quality = await Program.GetFormatQuality(img);
             if (!appendFiltername)
@@ -129,12 +124,15 @@ namespace MagickUtils
                 if(!dontOverwrite)
                 {
                     img.Write(img.FileName);
+                    return img.FileName;
                 }
                 else
                 {
                     string pathNoExtension = Path.ChangeExtension(img.FileName, null);
                     string ext = Path.GetExtension(img.FileName);
-                    img.Write(pathNoExtension + "-Scaled" + ext);
+                    string outPath = pathNoExtension + "-Scaled" + ext;
+                    IOUtils.SaveImage(img, outPath);
+                    return outPath;
                 }
             }
             else
@@ -142,8 +140,10 @@ namespace MagickUtils
                 string oldPath = img.FileName;
                 string pathNoExtension = Path.ChangeExtension(img.FileName, null);
                 string ext = Path.GetExtension(img.FileName);
-                img.Write(pathNoExtension + "-Scaled-" + filter.ToString().Replace("Catrom", "Bicubic") + ext);
-                if(!dontOverwrite) File.Delete(oldPath);
+                string outPath = pathNoExtension + "-Scaled-" + filter.ToString().Replace("Catrom", "Bicubic") + ext;
+                IOUtils.SaveImage(img, outPath);
+                if (!dontOverwrite) File.Delete(oldPath);
+                return outPath;
             }
         }
 
@@ -180,12 +180,12 @@ namespace MagickUtils
         {
             img.Dispose();
             //long bytesPost = new FileInfo(outPath).Length;
-            //Logger.Log("-> Done. Size pre: " + Format.Filesize(bytesPre) + " - Size post: " + Format.Filesize(bytesPost) + " - Ratio: " + Format.Ratio(bytesPre, bytesPost));
+            //Logger.Log("Done. Size pre: " + Format.Filesize(bytesPre) + " - Size post: " + Format.Filesize(bytesPost) + " - Ratio: " + Format.Ratio(bytesPre, bytesPost));
         }
 
         static void DelSource (string path)
         {
-            Logger.Log("-> Deleting source file: " + Path.GetFileName(path) + "...\n");
+            Logger.Log("Deleting source file: " + Path.GetFileName(path) + "...\n");
             File.Delete(path);
         }
     }

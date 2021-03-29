@@ -39,7 +39,7 @@ namespace MagickUtils
         public static string Ratio (long numFrom, long numTo)
         {
             float ratio = ((float)numTo / (float)numFrom) * 100f;
-            return ratio.ToString("0.00") + "%";
+            return ratio.ToString("0.0") + "%";
         }
 
         public static string RatioInt (long numFrom, long numTo)

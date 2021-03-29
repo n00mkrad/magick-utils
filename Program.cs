@@ -90,6 +90,12 @@ namespace MagickUtils
         static long dirSizePre;
         static long dirSizeAfter;
 
+        public static void ShowProgressIncrement (string text, ref int current, int amount)
+        {
+            current++;
+            ShowProgress(text, current, amount);
+        }
+
         public static void ShowProgress (string text, int current, int amount)
         {
             if(text.Trim().Length > 1)
@@ -181,7 +187,7 @@ namespace MagickUtils
 
             string configKey = "qMin" + formatStr;
             int q = await Config.GetInt(configKey);
-            Logger.Log($"Format quality for {img.Format} ({configKey}): {q}", true);
+            // Logger.Log($"Format quality for {img.Format} ({configKey}): {q}", true);
             return q;
         }
     }

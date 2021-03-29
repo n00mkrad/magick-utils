@@ -13,8 +13,6 @@ namespace MagickUtils.MagickUtils
 
     class ConvertThreaded
     {
-        public enum Encoder { JpgMagick, JpgMoz, Png, DdsMagick, DdsNv, DdsCrunch, Tga, Webp, Bmp, Avif, J2k, FlifMagick, FlifExe, HeifExe, Jxl }
-
         public static async Task EncodeImages(IF format, int qMin, int qMax, bool deleteSource)
         {
             await EncodeImages(IOUtils.GetFiles(), format, qMin, qMax, deleteSource);
@@ -38,7 +36,7 @@ namespace MagickUtils.MagickUtils
                 while (runningTasks.Count >= maxThreads)
                 {
                     await Task.Delay(100);
-                    runningTasks = TaskTools.RemoveCompletedTasks(runningTasks, ref done);
+                    runningTasks = MtUtils.RemoveCompletedTasks(runningTasks, ref done);
                 }
 
                 Task newTask = Task.Run(() => EncodeImage(file, format, qMin, qMax, deleteSource));
@@ -50,7 +48,7 @@ namespace MagickUtils.MagickUtils
             while (runningTasks.Count > 0)
             {
                 Program.ShowProgress("", done, files.Length);
-                runningTasks = TaskTools.RemoveCompletedTasks(runningTasks, ref done);
+                runningTasks = MtUtils.RemoveCompletedTasks(runningTasks, ref done);
                 await Task.Delay(500);
             }
 

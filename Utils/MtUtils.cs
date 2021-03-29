@@ -7,8 +7,13 @@ using System.Threading.Tasks;
 
 namespace MagickUtils.Utils
 {
-    class TaskTools
+    class MtUtils
     {
+
+        public static async Task<ParallelOptions> GetParallelOpts ()
+        {
+            return new ParallelOptions { MaxDegreeOfParallelism = await Config.GetInt("procThreads") };
+        }
 
         public static List<Task> GetRunningTasks (List<Task> taskList)
         {

@@ -204,15 +204,16 @@ namespace MagickUtils
             PostProcessing(path, outPath, bytesSrc, delSrc, $"JPEG XL Quality: {q}");
         }
 
-        static void PostProcessing (string sourcePath, string outPath, long bytesSrc, bool delSrc, string note = "")
+        public static void PostProcessing (string sourcePath, string outPath, long bytesSrc, bool delSrc, string note = "")
         {
             try
             {
                 long bytesPost = new FileInfo(outPath).Length;
                 string noteStr = string.IsNullOrWhiteSpace(note) ? "" : $" ({note})";
+                string filename = Path.GetFileNameWithoutExtension(outPath).Trunc(35) + Path.GetExtension(outPath);
                 Logger.Log(
-                    $"-> Saved {Path.GetFileName(outPath)}{noteStr}. Size Before: {FormatUtils.Bytes(bytesSrc)}" +
-                    $" - Size After: {FormatUtils.Bytes(bytesPost)} - Ratio: {FormatUtils.Ratio(bytesSrc, bytesPost)}");
+                    $"Saved {filename}{noteStr}. Size Before: {FormatUtils.Bytes(bytesSrc)}" +
+                    $" - Size After: {FormatUtils.Bytes(bytesPost)} ({FormatUtils.Ratio(bytesSrc, bytesPost)})");
 
                 if (!string.IsNullOrWhiteSpace(sourcePath) && delSrc)
                     DelSource(sourcePath, outPath);
@@ -227,18 +228,18 @@ namespace MagickUtils
         {
             if(Path.GetExtension(sourcePath).ToLower() == Path.GetExtension(newPath).ToLower())
             {
-                Logger.Log("-> Didn't delete " + Path.GetFileName(sourcePath) + " as it was overwritten.");
+                Logger.Log("Didn't delete " + Path.GetFileName(sourcePath) + " as it was overwritten.");
                 return;
             }
 
             try
             {
                 File.Delete(sourcePath);
-                Logger.Log("-> Deleted source file: " + Path.GetFileName(sourcePath) + ".");
+                Logger.Log("Deleted source file: " + Path.GetFileName(sourcePath) + ".");
             }
             catch (Exception e)
             {
-                Logger.Log($"-> Failed to selete source file: {Path.GetFileName(sourcePath)}: {e.Message}");
+                Logger.Log($"Failed to selete source file: {Path.GetFileName(sourcePath)}: {e.Message}");
             }
         }
 
