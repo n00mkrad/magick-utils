@@ -88,7 +88,7 @@ namespace MagickUtils
                 inpath = ConvertToPng(inpath);
 
             string format = (await Config.Get("ddsCompressionType")).Split(' ')[0].ToLower();
-            format = format.Replace("bc1", "BC1_UNORM").Replace("bc2", "BC2_UNORM").Replace("bc3", "BC3_UNORM")
+            format = format.Replace("argb", "R8G8B8A8_UNORM").Replace("bc1", "BC1_UNORM").Replace("bc2", "BC2_UNORM").Replace("bc3", "BC3_UNORM")
                 .Replace("bc4", "BC4_UNORM").Replace("bc5", "BC5_UNORM").Replace("bc6", "BC6H_UF16").Replace("bc7", "BC7_UNORM");
             string mips = (await Config.GetBool("ddsEnableMips")) ? "-m 4" : "-m 0";
             string args = $" -y -nologo {mips} -f {format} -o {inpath.GetParentDir().Wrap()} {inpath.Wrap()}";

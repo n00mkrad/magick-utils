@@ -42,17 +42,19 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label1.Location = new System.Drawing.Point(8, 9);
+            this.label1.Location = new System.Drawing.Point(11, 11);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(256, 20);
+            this.label1.Size = new System.Drawing.Size(314, 25);
             this.label1.TabIndex = 23;
             this.label1.Text = "DDS (DirectDraw Surface) Options";
             // 
             // doneBtn
             // 
-            this.doneBtn.Location = new System.Drawing.Point(12, 201);
+            this.doneBtn.Location = new System.Drawing.Point(16, 247);
+            this.doneBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.doneBtn.Name = "doneBtn";
-            this.doneBtn.Size = new System.Drawing.Size(440, 23);
+            this.doneBtn.Size = new System.Drawing.Size(587, 28);
             this.doneBtn.TabIndex = 25;
             this.doneBtn.Text = "Done";
             this.doneBtn.UseVisualStyleBackColor = true;
@@ -67,26 +69,30 @@
             "NvCompress (Best Compression, Slow BC7)",
             "Texconv (Fast BC7)",
             "Crunch (Adjustable Quality)"});
-            this.ddsEnc.Location = new System.Drawing.Point(154, 67);
+            this.ddsEnc.Location = new System.Drawing.Point(205, 82);
+            this.ddsEnc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ddsEnc.Name = "ddsEnc";
-            this.ddsEnc.Size = new System.Drawing.Size(250, 21);
+            this.ddsEnc.Size = new System.Drawing.Size(332, 24);
             this.ddsEnc.TabIndex = 40;
+            this.ddsEnc.SelectedIndexChanged += new System.EventHandler(this.CheckCompat);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 70);
+            this.label2.Location = new System.Drawing.Point(16, 86);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 13);
+            this.label2.Size = new System.Drawing.Size(94, 17);
             this.label2.TabIndex = 39;
             this.label2.Text = "DDS Encoder";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 97);
+            this.label3.Location = new System.Drawing.Point(16, 119);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(93, 13);
+            this.label3.Size = new System.Drawing.Size(123, 17);
             this.label3.TabIndex = 41;
             this.label3.Text = "DDS Compression";
             // 
@@ -103,35 +109,38 @@
             "BC5",
             "BC6",
             "BC7 (Texconv Recommended)"});
-            this.ddsCompressionType.Location = new System.Drawing.Point(154, 94);
+            this.ddsCompressionType.Location = new System.Drawing.Point(205, 116);
+            this.ddsCompressionType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ddsCompressionType.Name = "ddsCompressionType";
-            this.ddsCompressionType.Size = new System.Drawing.Size(250, 21);
+            this.ddsCompressionType.Size = new System.Drawing.Size(332, 24);
             this.ddsCompressionType.TabIndex = 42;
-            this.ddsCompressionType.SelectedIndexChanged += new System.EventHandler(this.ddsCompressionType_SelectedIndexChanged);
+            this.ddsCompressionType.SelectedIndexChanged += new System.EventHandler(this.CheckCompat);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 124);
+            this.label4.Location = new System.Drawing.Point(16, 153);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(85, 13);
+            this.label4.Size = new System.Drawing.Size(112, 17);
             this.label4.TabIndex = 44;
             this.label4.Text = "Enable Mipmaps";
             // 
             // ddsEnableMips
             // 
             this.ddsEnableMips.AutoSize = true;
-            this.ddsEnableMips.Location = new System.Drawing.Point(154, 123);
+            this.ddsEnableMips.Location = new System.Drawing.Point(205, 151);
+            this.ddsEnableMips.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ddsEnableMips.Name = "ddsEnableMips";
-            this.ddsEnableMips.Size = new System.Drawing.Size(15, 14);
+            this.ddsEnableMips.Size = new System.Drawing.Size(18, 17);
             this.ddsEnableMips.TabIndex = 45;
             this.ddsEnableMips.UseVisualStyleBackColor = true;
             // 
             // DdsOptionsWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(464, 236);
+            this.ClientSize = new System.Drawing.Size(619, 290);
             this.Controls.Add(this.ddsEnableMips);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.ddsCompressionType);
@@ -141,6 +150,7 @@
             this.Controls.Add(this.doneBtn);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "DdsOptionsWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DDS Format Options";
