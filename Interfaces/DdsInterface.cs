@@ -92,7 +92,6 @@ namespace MagickUtils
                 .Replace("bc4", "BC4_UNORM").Replace("bc5", "BC5_UNORM").Replace("bc6", "BC6H_UF16").Replace("bc7", "BC7_UNORM");
             string mips = (await Config.GetBool("ddsEnableMips")) ? "-m 4" : "-m 0";
             string args = $" -y -nologo {mips} -f {format} -o {inpath.GetParentDir().Wrap()} {inpath.Wrap()}";
-            Logger.Log("texconv " + args, true);
             ProcessStartInfo psi = new ProcessStartInfo { FileName = texconvExePath, Arguments = args, WindowStyle = ProcessWindowStyle.Hidden };
             Process crunchProcess = new Process { StartInfo = psi };
             crunchProcess.Start();
