@@ -25,7 +25,7 @@ namespace MagickUtils.Interfaces
             ProcessStartInfo psi;
             string qualityStr = " -q " + q;
             if (q >= 100) qualityStr = " -L ";
-            string args = qualityStr + " -o " + outPath.WrapPath(true, true) + path.WrapPath(true, true);
+            string args = qualityStr + " -o " + outPath.Wrap(true, true) + path.Wrap(true, true);
             psi = new ProcessStartInfo { FileName = GetExePath(), Arguments = args };
             psi.WorkingDirectory = Path.GetDirectoryName(GetExePath());
             Logger.Log("HEIF args:" + args, true);

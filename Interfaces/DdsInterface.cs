@@ -8,6 +8,7 @@ using System.IO;
 using System.Threading.Tasks;
 using MagickUtils.Utils;
 using Paths = MagickUtils.Utils.Paths;
+using System.Linq;
 
 namespace MagickUtils
 {
@@ -15,6 +16,7 @@ namespace MagickUtils
     {
         static string nvCompExePath;
         static string crunchExePath;
+        static string texconvExePath;
 
         public enum CrunchPreset { superfast, fast, normal, better, uber };
         public static CrunchPreset crunchPreset;
@@ -24,6 +26,7 @@ namespace MagickUtils
         {
             nvCompExePath = Path.Combine(Paths.GetDataPath(), "runtimes", "dds", "nvcompress.exe");
             crunchExePath = Path.Combine(Paths.GetDataPath(), "runtimes", "dds", "crunch.exe");
+            texconvExePath = Path.Combine(Paths.GetDataPath(), "runtimes", "dds", "texconv.exe");
         }
 
         public static async Task Crunch(string inpath, int qMin, int qMax)
@@ -31,25 +34,22 @@ namespace MagickUtils
             GetPaths();
             SetEncSpeed();
 
-            string sourcePath = inpath;
-            bool convert = Path.GetExtension(inpath).ToLower() != ".png";
-            if (convert)
+            bool convertFirst = Path.GetExtension(inpath).ToLower() != ".png";
+
+            if (convertFirst)
                 inpath = ConvertToPng(inpath);
 
-            string dxtString = (await Config.Get("ddsCompressionType")).Split(' ')[0].ToUpper().Replace("ARGB", "A8R8G8B8");
-
-            string mipMode = "None";
-            if (await Config.GetBool("ddsEnableMips")) mipMode = "UseSourceOrGenerate";
-
-            string args = $" -file {inpath.WrapPath()} -outsamedir";
-            string args2 = $" -quality {GetRandomQuality(qMin, qMax)} -fileformat dds -mipMode {mipMode} -dxtQuality {crunchPreset}";
+            string dxtString = (await Config.Get("ddsCompressionType")).Split(' ')[0].ToUpper().Replace("ARGB", "A8R8G8B8");;
+            string mipMode = (await Config.GetBool("ddsEnableMips")) ? "UseSourceOrGenerate"  : "None";
+            string args = $" -file {inpath.Wrap()} -outsamedir";
+            string args2 = $" -quality {GetRandomQuality(qMin, qMax)} -fileformat dds -mipMode {mipMode} -dxtQuality {crunchPreset} {dxtString}";
             ProcessStartInfo psi = new ProcessStartInfo { FileName = crunchExePath, Arguments = args + args2, WindowStyle = ProcessWindowStyle.Hidden };
             Logger.Log("Running Crunch:" + args2, true);
             Process crunchProcess = new Process { StartInfo = psi };
             crunchProcess.Start();
             crunchProcess.WaitForExit();
 
-            if (convert)
+            if (convertFirst)
                 File.Delete(inpath);
         }
 
@@ -66,7 +66,7 @@ namespace MagickUtils
             string mipStr = "-nomips";
             if (await Config.GetBool("ddsEnableMips")) mipStr = "";
 
-            string args = $" -{dxtString} -alpha { mipStr} {inpath.WrapPath()} {outpath.WrapPath()}";
+            string args = $" -{dxtString} -alpha {mipStr} {inpath.Wrap()} {outpath.Wrap()}";
             ProcessStartInfo psi = new ProcessStartInfo { FileName = nvCompExePath, Arguments = args, WindowStyle = ProcessWindowStyle.Hidden };
             Process nvCompress = new Process { StartInfo = psi };
             //Logger.Log("-> Running NvCompress:" + args.Split('"')[0]);
@@ -77,6 +77,31 @@ namespace MagickUtils
                 File.Delete(inpath);
         }
 
+        public static async Task Texconv (string inpath)
+        {
+            GetPaths();
+
+            string[] supported = new string[] { "png", "jpg", "jpeg", "webp", "dds", "bmp" };
+            bool convertFirst = !supported.Contains(Path.GetExtension(inpath).ToLower().Replace(".", ""));
+
+            if (convertFirst)
+                inpath = ConvertToPng(inpath);
+
+            string format = (await Config.Get("ddsCompressionType")).Split(' ')[0].ToLower();
+            format = format.Replace("bc1", "BC1_UNORM").Replace("bc2", "BC2_UNORM").Replace("bc3", "BC3_UNORM")
+                .Replace("bc4", "BC4_UNORM").Replace("bc5", "BC5_UNORM").Replace("bc6", "BC6H_UF16").Replace("bc7", "BC7_UNORM");
+            string mips = (await Config.GetBool("ddsEnableMips")) ? "-m 4" : "-m 0";
+            string args = $" -y -nologo {mips} -f {format} -o {inpath.GetParentDir().Wrap()} {inpath.Wrap()}";
+            Logger.Log("texconv " + args, true);
+            ProcessStartInfo psi = new ProcessStartInfo { FileName = texconvExePath, Arguments = args, WindowStyle = ProcessWindowStyle.Hidden };
+            Process crunchProcess = new Process { StartInfo = psi };
+            crunchProcess.Start();
+            crunchProcess.WaitForExit();
+
+            if (convertFirst)
+                File.Delete(inpath);
+        }
+
         static string ConvertToPng (string inpath)
         {
             string newPath = Path.ChangeExtension(inpath, "png");
@@ -84,7 +109,7 @@ namespace MagickUtils
             img.Format = MagickFormat.Png00;
             img.Quality = 0;    // Disable PNG compression for speed
             img.Write(newPath);
-            Logger.Log("-> Input is not a PNG - Converted temporarily to PNG for compatibility");
+            Logger.Log("Input is not a PNG - Converted temporarily to PNG for compatibility", true);
             return newPath;
         }
 

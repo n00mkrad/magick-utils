@@ -148,11 +148,12 @@ namespace MagickUtils
 
             if (formatStrTrim == "DDS")
             {
-                ClearQuality();
+                await LoadQuality(formatStrTrim, 255, 0);
                 selectedFormat = Program.ImageFormat.DDS;
                 qualityCombox.Enabled = await Config.GetInt("ddsEnc") == 2;
                 qualityMaxCombox.Enabled = qualityCombox.Enabled;
                 formatOptionsBtn.Visible = true;
+                formatQualityLabel.Text = "DDS Quality: 0 - 255. Default: 255. Only works with Crunch Encoder!";
             }
 
             if (formatStrTrim == "TGA")

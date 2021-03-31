@@ -138,16 +138,6 @@ namespace MagickUtils
             return value;
         }
 
-        public static string WrapPath(this string path, bool addSpaceFront = false, bool addSpaceEnd = false)
-        {
-            string s = "\"" + path + "\"";
-            if (addSpaceFront)
-                s = " " + s;
-            if (addSpaceEnd)
-                s = s + " ";
-            return s;
-        }
-
         public static string Truncate(this string str, int maxChars)
         {
             return str.Length <= maxChars ? str : str.Substring(0, maxChars) + "...";

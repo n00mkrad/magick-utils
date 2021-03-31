@@ -63,12 +63,13 @@
             this.ddsEnc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ddsEnc.FormattingEnabled = true;
             this.ddsEnc.Items.AddRange(new object[] {
-            "ImageMagick",
-            "NvCompress",
-            "Crunch"});
+            "ImageMagick (Native)",
+            "NvCompress (Best Compression, Slow BC7)",
+            "Texconv (Fast BC7)",
+            "Crunch (Adjustable Quality)"});
             this.ddsEnc.Location = new System.Drawing.Point(154, 67);
             this.ddsEnc.Name = "ddsEnc";
-            this.ddsEnc.Size = new System.Drawing.Size(125, 21);
+            this.ddsEnc.Size = new System.Drawing.Size(250, 21);
             this.ddsEnc.TabIndex = 40;
             // 
             // label2
@@ -99,10 +100,12 @@
             "BC2 (DXT3)",
             "BC3 (DXT5)",
             "BC4",
-            "BC5"});
+            "BC5",
+            "BC6",
+            "BC7 (Texconv Recommended)"});
             this.ddsCompressionType.Location = new System.Drawing.Point(154, 94);
             this.ddsCompressionType.Name = "ddsCompressionType";
-            this.ddsCompressionType.Size = new System.Drawing.Size(125, 21);
+            this.ddsCompressionType.Size = new System.Drawing.Size(250, 21);
             this.ddsCompressionType.TabIndex = 42;
             this.ddsCompressionType.SelectedIndexChanged += new System.EventHandler(this.ddsCompressionType_SelectedIndexChanged);
             // 

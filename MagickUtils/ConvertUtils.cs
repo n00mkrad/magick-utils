@@ -124,7 +124,8 @@ namespace MagickUtils
             {
                 case 0: await ConvertToDdsNative(path); break;
                 case 1: await DdsInterface.NvCompress(path, outPath); break;
-                case 2: await DdsInterface.Crunch(path, qMin, qMax); break;
+                case 2: await DdsInterface.Texconv(path); break;
+                case 3: await DdsInterface.Crunch(path, qMin, qMax); break;
             }
 
             PostProcessing(path, outPath, bytesSrc, delSrc);
