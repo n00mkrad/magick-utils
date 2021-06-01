@@ -36,7 +36,6 @@ namespace MagickUtils
             //HeifInterface.Extract(true);
 
             Logger.textbox = logTbox;
-            Task.Run(() => Logger.Run());
             Program.progBar = progressBar1;
 
             progressBar1.Maximum = 100;
