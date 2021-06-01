@@ -216,5 +216,44 @@ namespace MagickUtils
                 return false;
             }
         }
+
+        /// <summary>
+		/// Delete a path if it exists. Works for files and directories. Returns success status.
+		/// </summary>
+		public static bool TryDeleteIfExists(string path)      // Returns true if no exception occurs
+        {
+            try
+            {
+                if (path == null)
+                    return false;
+
+                DeleteIfExists(path);
+                return true;
+            }
+            catch (Exception e)
+            {
+                Logger.Log($"TryDeleteIfExists: Error trying to delete {path}: {e.Message}", true);
+                return false;
+            }
+        }
+
+        public static bool DeleteIfExists(string path)		// Returns true if the file/dir exists
+        {
+            Logger.Log($"DeleteIfExists({path})", true);
+
+            if (!IsPathDirectory(path) && File.Exists(path))
+            {
+                File.Delete(path);
+                return true;
+            }
+
+            if (IsPathDirectory(path) && Directory.Exists(path))
+            {
+                Directory.Delete(path, true);
+                return true;
+            }
+
+            return false;
+        }
     }
 }

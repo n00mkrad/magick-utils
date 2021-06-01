@@ -73,7 +73,7 @@ namespace MagickUtils
             int q = rand.Next(qMin, qMax + 1);
             string outPath = Path.ChangeExtension(path, null) + ".jpg";
 
-            if (await Config.GetInt("jpegEnc") == 0)
+            if (await Config.GetInt("jpegEnc") == 0) // Native Magick JPEG Encoder
             {
                 MagickImage img = IOUtils.ReadImage(path);
                 if (img == null) return;
@@ -82,14 +82,19 @@ namespace MagickUtils
                 img = await SetJpegChromaSubsampling(img);
                 IOUtils.SaveImage(img, outPath);
             }
-            else
+            else // MozJPEG Encoder
             {
+                bool convert = !IsPng(path);
+                if (convert) path = await ConvertToTempPng(path);
+
                 switch (await Config.GetInt("jpegChromaSubsampling"))
                 {
                     case 0: MozJpeg.Encode(path, outPath, q, MozJpeg.Subsampling.Chroma420); break;
                     case 1: MozJpeg.Encode(path, outPath, q, MozJpeg.Subsampling.Chroma422); break;
                     case 2: MozJpeg.Encode(path, outPath, q, MozJpeg.Subsampling.Chroma444); break;
                 }
+
+                if (convert) IOUtils.TryDeleteIfExists(path);
             }
 
             PostProcessing(path, outPath, bytesSrc, delSrc, $"JPEG Quality: {q}");
@@ -162,7 +167,6 @@ namespace MagickUtils
 
         public static async Task ConvertToWebp(string path, int qMin, int qMax, bool delSrc = false)
         {
-            //Logger.Log("ConvertToWebp");
             long bytesSrc = new FileInfo(path).Length;
             MagickImage img = IOUtils.ReadImage(path);
             if (img == null) return;
@@ -203,6 +207,22 @@ namespace MagickUtils
             img.Quality = q;
             IOUtils.SaveImage(img, outPath);
             PostProcessing(path, outPath, bytesSrc, delSrc, $"JPEG XL Quality: {q}");
+        }
+
+        public static bool IsPng (string inPath)
+        {
+            return Path.GetExtension(inPath).ToLower() == ".png";
+        }
+
+        public static async Task<string> ConvertToTempPng(string inPath)
+        {
+            string outPath = Path.ChangeExtension(inPath, null) + ".temp.png";
+            MagickImage img = IOUtils.ReadImage(inPath);
+            img.Format = MagickFormat.Png00;
+            img.Quality = 0;    // Disable PNG compression for speed
+            img.Write(outPath);
+            //Logger.Log("Input is not a PNG - Converted temporarily to PNG for compatibility", true);
+            return outPath;
         }
 
         public static void PostProcessing(string sourcePath, string outPath, long bytesSrc, bool delSrc, string note = "")
