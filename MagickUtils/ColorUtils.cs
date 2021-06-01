@@ -46,7 +46,7 @@ namespace MagickUtils.MagickUtils
             {
                 Program.ShowProgress("Removing Alpha on Image ", counter, files.Length);
                 counter++;
-                RemoveTransparency(file.FullName, mode);
+                await RemoveTransparency(file.FullName, mode);
                 if(counter % 5 == 0) await Program.PutTaskDelay();
             }
 
@@ -54,14 +54,14 @@ namespace MagickUtils.MagickUtils
         }
 
         public enum NoAlphaMode { Off, Fill }
-        public static void RemoveTransparency (string path, NoAlphaMode mode)
+        public static async Task RemoveTransparency (string path, NoAlphaMode mode)
         {
             MagickImage img = IOUtils.ReadImage(path);
             if (img == null) return;
             if (mode == NoAlphaMode.Fill)
             {
-                MagickImage bg = new MagickImage(new MagickColor("#" + Config.Get("backgroundColor")), img.Width, img.Height);
-                bg.BackgroundColor = new MagickColor("#" + Config.Get("backgroundColor"));
+                MagickImage bg = new MagickImage(new MagickColor("#" + (await Config.Get("backgroundColor"))), img.Width, img.Height);
+                bg.BackgroundColor = new MagickColor("#" + (await Config.Get("backgroundColor")));
                 bg.Composite(img, CompositeOperator.Over);
                 img = bg;
             }

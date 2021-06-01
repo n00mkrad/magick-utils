@@ -27,13 +27,13 @@ namespace MagickUtils
             {
                 Program.ShowProgress("Cropping Image ", counter, files.Length);
                 counter++;
-                CropDivisible(file.FullName, divisibleBy, grav, expand);
+                await CropDivisible(file.FullName, divisibleBy, grav, expand);
                 if (counter % 3 == 0) await Program.PutTaskDelay();
             }
             Program.PostProcessing(files.Length);
         }
 
-        public static void CropDivisible (string path, int divisibleBy, Gravity grav, bool expand)
+        public static async Task CropDivisible (string path, int divisibleBy, Gravity grav, bool expand)
         {
             MagickImage img = IOUtils.ReadImage(path);
             if (img == null) return;
@@ -50,7 +50,7 @@ namespace MagickUtils
             {
                 while(divisbleWidth % divisibleBy != 0) divisbleWidth++;
                 while(divisibleHeight % divisibleBy != 0) divisibleHeight++;
-                img.BackgroundColor = new MagickColor("#" + Config.Get("backgroundColor"));
+                img.BackgroundColor = new MagickColor("#" + (await Config.Get("backgroundColor")));
             }
 
             if(divisbleWidth == img.Width && divisibleHeight == img.Height)
@@ -79,14 +79,14 @@ namespace MagickUtils
             {
                 Program.ShowProgress("Resizing Image ", counter, files.Length);
                 counter++;
-                CropRelative(file.FullName, minSize, maxSize, sizeMode, grav);
+                await CropRelative(file.FullName, minSize, maxSize, sizeMode, grav);
                 if(counter % 3 == 0) await Program.PutTaskDelay();
             }
             Program.PostProcessing(files.Length);
         }
 
         public enum SizeMode { Percentage, Height, Width, Longer, Shorter }
-        public static void CropRelative (string path, int minSize, int maxSize, SizeMode sizeMode, Gravity grav)
+        public static async Task CropRelative (string path, int minSize, int maxSize, SizeMode sizeMode, Gravity grav)
         {
             MagickImage img = IOUtils.ReadImage(path);
             if (img == null) return;
@@ -119,7 +119,7 @@ namespace MagickUtils
                 Logger.Log("-> Resizing to " + targetSize + "% (" + w + "x" + h + ")...");
                 geom = new MagickGeometry(w + "x" + h);
             }
-            img.BackgroundColor = new MagickColor("#" + Config.Get("backgroundColor"));
+            img.BackgroundColor = new MagickColor("#" + (await Config.Get("backgroundColor")));
             img.Extent(geom, grav);
             img.Write(path);
             PostProcessing(img, path);
@@ -135,13 +135,13 @@ namespace MagickUtils
             {
                 Program.ShowProgress("Resizing Image ", counter, files.Length);
                 counter++;
-                CropPadding(file.FullName, pixMin, pixMax, cut);
+                await CropPadding(file.FullName, pixMin, pixMax, cut);
                 if(counter % 3 == 0) await Program.PutTaskDelay();
             }
             Program.PostProcessing(files.Length);
         }
 
-        public static void CropPadding (string path, int pixMin, int pixMax, bool cut)
+        public static async Task CropPadding (string path, int pixMin, int pixMax, bool cut)
         {
             MagickImage img = IOUtils.ReadImage(path);
             if (img == null) return;
@@ -161,7 +161,7 @@ namespace MagickUtils
                 w = img.Width - pix;
                 h = img.Height - pix;
             }
-            img.BackgroundColor = new MagickColor("#" + Config.Get("backgroundColor"));
+            img.BackgroundColor = new MagickColor("#" + (await Config.Get("backgroundColor")));
             MagickGeometry geom = new MagickGeometry(w + "x" + h + "!");
             img.Extent(geom, Gravity.Center);
 
@@ -175,23 +175,25 @@ namespace MagickUtils
             FileInfo[] files = IOUtils.GetFiles();
             Logger.Log("Resizing " + files.Length + " images...");
             Program.PreProcessing();
+
             foreach(FileInfo file in files)
             {
                 Program.ShowProgress("Resizing Image ", counter, files.Length);
                 counter++;
-                CropAbsolute(file.FullName, newWidth, newHeight, grav);
+                await CropAbsolute(file.FullName, newWidth, newHeight, grav);
                 if(counter % 3 == 0) await Program.PutTaskDelay();
             }
+
             Program.PostProcessing(files.Length);
         }
 
-        public static void CropAbsolute (string path, int newWidth, int newHeight, Gravity grav)
+        public static async Task CropAbsolute (string path, int newWidth, int newHeight, Gravity grav)
         {
             MagickImage img = IOUtils.ReadImage(path);
             if (img == null) return;
             PreProcessing(path);
 
-            img.BackgroundColor = new MagickColor("#" + Config.Get("backgroundColor"));
+            img.BackgroundColor = new MagickColor("#" + (await Config.Get("backgroundColor")));
             img.Extent(newWidth, newHeight, grav);
 
             img.Write(path);
@@ -245,7 +247,7 @@ namespace MagickUtils
                 DelSource(path);
         }
 
-        public static async void MergeAllDir (int rowLength)
+        public static async Task MergeAllDir (int rowLength)
         {
             int counter = 1;
             FileInfo[] files = IOUtils.GetFiles();
@@ -288,7 +290,7 @@ namespace MagickUtils
             }
             Logger.Log("-> Creating output image... ");
             var result = rows.AppendVertically();
-            result.BackgroundColor = new MagickColor("#" + Config.Get("backgroundColor"));
+            result.BackgroundColor = new MagickColor("#" + (await Config.Get("backgroundColor")));
             result.Format = MagickFormat.Png;
             string outpath = Program.currentDir + "-merged.png";
             result.Write(outpath);
